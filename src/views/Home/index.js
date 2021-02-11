@@ -4,8 +4,13 @@ import './Home.css';
 
 const Home = () => (
   <div>
-    <h1 className="text-3xl pt-12 pb-2 font-bold">Welcome!</h1>
-    <p>Here you will find some information about COVID</p>
+    <div className="grid grid-cols-2">
+      <section>
+        <h1 className="text-3xl pt-12 pb-2 font-bold">Welcome!</h1>
+        <p>Here you will find some information about COVID</p>
+      </section>
+      <section className="flex items-center pt-12">Search goes here...</section>
+    </div>
 
     <div className="cards pt-8 grid grid-cols-3 grid-rows-2 gap-4">
       <div className="card first bg-green col-span-2">
