@@ -1,0 +1,9 @@
+.card {
+  @apply rounded-md px-12 flex flex-col justify-center;
+
+  min-height: 200px;
+}
+
+.card:not(.first) {
+  @apply text-center px-16;
+}
