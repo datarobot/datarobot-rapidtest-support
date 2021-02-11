@@ -1,7 +1,9 @@
-.card {
-  @apply rounded-md px-12 flex flex-col justify-center;
+.cards {
+  grid-template-rows: 55% 1fr;
+}
 
-  min-height: 200px;
+.card {
+  @apply rounded-md px-12 py-8 flex flex-col justify-center;
 }
 
 .card:not(.first) {

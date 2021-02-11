@@ -4,7 +4,7 @@ import './Home.css';
 
 const Home = () => (
   <div>
-    <div className="grid grid-cols-2 auto-rows-min">
+    <div className="grid grid-cols-2">
       <section>
         <h1 className="text-3xl pt-12 pb-2 font-bold">Welcome!</h1>
         <p>Here you will find some information about COVID</p>
@@ -14,7 +14,7 @@ const Home = () => (
       </section>
     </div>
 
-    <div className="cards pt-8 grid grid-cols-3 grid-rows-2 gap-4">
+    <div className="cards pt-8 grid grid-cols-3 grid-rows-2 gap-4 auto-rows-max">
       <div className="card first bg-green col-span-2">
         <p className="text-3xl font-bold pb-4">Request an account</p>
         <p className="max-w-md">
