@@ -1,0 +1,9 @@
+.footer {
+  height: 50px;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+.links > * {
+  @apply mr-4;
+}

@@ -1,0 +1,31 @@
+module.exports = {
+  extends: ['airbnb/base', 'prettier', 'react-app'],
+  plugins: ['eslint-plugin-prettier'],
+  env: {
+    browser: true,
+  },
+  parserOptions: {
+    ecmaVersion: 2018,
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  rules: {
+    quotes: ['error', 'single'],
+    semi: ['error', 'always'],
+    'no-unused-vars': ['error', { vars: 'all' }],
+    eqeqeq: ['error', 'smart'],
+    'func-style': ['error', 'expression'],
+    'func-names': ['error', 'always', { generators: 'as-needed' }],
+    'consistent-return': 0,
+    'import/no-extraneous-dependencies': 0,
+    'import/no-unresolved': 0,
+    'prettier/prettier': [
+      'error',
+      {
+        endOfLine: 'auto',
+        singleQuote: true,
+      },
+    ],
+  },
+};

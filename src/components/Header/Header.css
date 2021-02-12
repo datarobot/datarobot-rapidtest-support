@@ -1,0 +1,13 @@
+.header {
+  @apply fixed top-0 right-0 left-0 border-b border-dark-blue shadow;
+
+  height: 80px;
+}
+
+.logo {
+  max-width: 200px;
+}
+
+.links {
+  right: 5vw;
+}
