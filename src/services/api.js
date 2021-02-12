@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-// eslint-disable-next-line import/prefer-default-export
 export const requestAccess = async ({ firstName, lastName, email, phone }) => {
   const { data } = await axios.post('/accounts', {
     firstName,
@@ -11,6 +10,12 @@ export const requestAccess = async ({ firstName, lastName, email, phone }) => {
     enabled: false,
     dateAdded: new Date(),
   });
+
+  return data;
+};
+
+export const getSiteList = async () => {
+  const { data } = await axios.get('/sites');
 
   return data;
 };
