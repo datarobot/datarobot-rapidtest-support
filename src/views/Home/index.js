@@ -5,7 +5,7 @@ import { useAtom } from 'jotai';
 
 import Icon from 'components/Icon';
 import Input from 'components/Input';
-import RequestAccountModal from 'components/RequestAccountModal';
+import RequestAccountModal from 'components/Modals/RequestAccount';
 
 import loginAtom from 'store';
 
@@ -41,43 +41,56 @@ const Home = () => {
 
         <div className="cards pt-8 grid grid-cols-3 grid-rows-2 gap-4 auto-rows-max">
           {loggedIn ? (
-            <Link
-              to="/sites"
-              onClick={handleToggleModal}
-              className="card first bg-green col-span-2"
-            >
-              <p className="text-3xl font-bold pb-4">Manage sites</p>
-              <p className="max-w-md text-left">
-                Sometimes horses cough and fart at the same time, so stay out of
-                the range of its butt muscle because a horses butt muscle is
-                thick.
-              </p>
-              <p className="pt-4 font-bold">What's this?</p>
-            </Link>
+            <>
+              <Link
+                to="/sites"
+                onClick={handleToggleModal}
+                className="card first bg-green col-span-2"
+              >
+                <p className="text-3xl font-bold pb-4">Manage sites</p>
+                <p className="max-w-md text-left">
+                  Sometimes horses cough and fart at the same time, so stay out
+                  of the range of its butt muscle because a horses butt muscle
+                  is thick.
+                </p>
+                <p className="pt-4 font-bold">What's this?</p>
+              </Link>
+
+              <Link to="/accounts" className="card bg-red">
+                <p className="text-xl font-bold pb-4">Manage Accounts</p>
+                <p>
+                  It's OK to get rib grease on your face, because you're
+                  allowing people to see that you're proud of these ribs.
+                </p>
+                <p className="pt-4 font-bold">What's this?</p>
+              </Link>
+            </>
           ) : (
-            <button
-              onClick={handleToggleModal}
-              type="button"
-              className="card first bg-green col-span-2"
-            >
-              <p className="text-3xl font-bold pb-4">Request an account</p>
-              <p className="max-w-md text-left">
-                Sometimes horses cough and fart at the same time, so stay out of
-                the range of its butt muscle because a horses butt muscle is
-                thick.
-              </p>
-              <p className="pt-4 font-bold">What's this?</p>
-            </button>
+            <>
+              <button
+                onClick={handleToggleModal}
+                type="button"
+                className="card first bg-green col-span-2"
+              >
+                <p className="text-3xl font-bold pb-4">Request an account</p>
+                <p className="max-w-md text-left">
+                  Sometimes horses cough and fart at the same time, so stay out
+                  of the range of its butt muscle because a horses butt muscle
+                  is thick.
+                </p>
+                <p className="pt-4 font-bold">What's this?</p>
+              </button>
+              <div className="card bg-red">
+                <p className="text-xl font-bold pb-4">Request a program</p>
+                <p>
+                  It's OK to get rib grease on your face, because you're
+                  allowing people to see that you're proud of these ribs.
+                </p>
+                <p className="pt-4 font-bold">What's this?</p>
+              </div>
+            </>
           )}
 
-          <div className="card bg-red">
-            <p className="text-xl font-bold pb-4">Request a program</p>
-            <p>
-              It's OK to get rib grease on your face, because you're allowing
-              people to see that you're proud of these ribs.
-            </p>
-            <p className="pt-4 font-bold">What's this?</p>
-          </div>
           <div className="card bg-orange">
             <p className="text-xl font-bold pb-4">Training Materials</p>
             <p>

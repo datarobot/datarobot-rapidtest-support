@@ -9,6 +9,7 @@ import './App.css';
 
 const Home = lazy(() => import('views/Home'));
 const Sites = lazy(() => import('views/Sites'));
+const Accounts = lazy(() => import('views/Accounts'));
 
 const App = () => (
   <Provider>
@@ -20,6 +21,7 @@ const App = () => (
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/sites" component={Sites} />
+            <Route path="/accounts" component={Accounts} />
           </Switch>
         </Suspense>
 
