@@ -57,7 +57,13 @@ const Sites = () => {
 
   return (
     <div>
-      <Table columns={columns} data={sites} />
+      <Table
+        columns={columns}
+        data={sites}
+        addButtonText="+ Add a site"
+        uploadButtonText="+ Upload a list of sites"
+        onAddClick={handleToggleModal}
+      />
       <AddSiteModal showModal={showModal} handleClose={handleToggleModal} />
     </div>
   );
