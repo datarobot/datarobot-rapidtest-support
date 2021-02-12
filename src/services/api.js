@@ -14,6 +14,17 @@ export const requestAccess = async ({ firstName, lastName, email, phone }) => {
   return data;
 };
 
+export const addSite = async (payload) => {
+  const { street, city, state, zip } = payload;
+
+  const { data } = await axios.post('/sites', {
+    ...payload,
+    address: { street, city, state, zip },
+  });
+
+  return data;
+};
+
 export const getSiteList = async () => {
   const { data } = await axios.get('/sites');
 

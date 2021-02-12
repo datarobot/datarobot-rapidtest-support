@@ -9,7 +9,8 @@
       "requestPending": true,
       "enabled": false,
       "approvedBy": "Jay Hick"
-    }, {
+    },
+    {
       "id": 2,
       "firstName": "Benita",
       "lastName": "Creus",
@@ -18,7 +19,8 @@
       "requestPending": true,
       "enabled": false,
       "approvedBy": "Benita Creus"
-    }, {
+    },
+    {
       "id": 3,
       "firstName": "Mose",
       "lastName": "Hubner",
@@ -27,7 +29,8 @@
       "requestPending": false,
       "enabled": true,
       "approvedBy": "Mose Hubner"
-    }, {
+    },
+    {
       "id": 4,
       "firstName": "Helene",
       "lastName": "Baison",
@@ -36,7 +39,8 @@
       "requestPending": false,
       "enabled": false,
       "approvedBy": "Helene Baison"
-    }, {
+    },
+    {
       "id": 5,
       "firstName": "Waneta",
       "lastName": "Talby",
@@ -45,7 +49,8 @@
       "requestPending": false,
       "enabled": true,
       "approvedBy": "Waneta Talby"
-    }, {
+    },
+    {
       "id": 6,
       "firstName": "Aridatha",
       "lastName": "Bengoechea",
@@ -54,7 +59,8 @@
       "requestPending": false,
       "enabled": true,
       "approvedBy": "Aridatha Bengoechea"
-    }, {
+    },
+    {
       "id": 7,
       "firstName": "Glennis",
       "lastName": "Cancellieri",
@@ -63,7 +69,8 @@
       "requestPending": false,
       "enabled": false,
       "approvedBy": "Glennis Cancellieri"
-    }, {
+    },
+    {
       "id": 8,
       "firstName": "Freida",
       "lastName": "Pariss",
@@ -72,7 +79,8 @@
       "requestPending": true,
       "enabled": false,
       "approvedBy": "Freida Pariss"
-    }, {
+    },
+    {
       "id": 9,
       "firstName": "Derrick",
       "lastName": "Pacquet",
@@ -81,7 +89,8 @@
       "requestPending": true,
       "enabled": false,
       "approvedBy": "Derrick Pacquet"
-    }, {
+    },
+    {
       "id": 10,
       "firstName": "Odo",
       "lastName": "Stealfox",
@@ -90,6 +99,12 @@
       "requestPending": true,
       "enabled": false,
       "approvedBy": "Odo Stealfox"
+    },
+    {
+      "requestPending": true,
+      "enabled": false,
+      "dateAdded": "2021-02-12T21:13:41.041Z",
+      "id": 11
     }
   ],
   "sites": [
@@ -212,6 +227,23 @@
       },
       "enabled": true,
       "contact": "Reeta Meriot"
+    },
+    {
+      "name": "My Site",
+      "street": "1234 Street Rd",
+      "city": "Anywhere",
+      "state": "Ohio",
+      "zip": "43035",
+      "contact": "Ted Danson",
+      "contactEmail": "ted@danson.com",
+      "cliaNumber": "123456",
+      "address": {
+        "street": "1234 Street Rd",
+        "city": "Anywhere",
+        "state": "Ohio",
+        "zip": "43035"
+      },
+      "id": 11
     }
   ]
 }

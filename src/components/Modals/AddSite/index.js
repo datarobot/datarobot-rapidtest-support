@@ -5,12 +5,12 @@ import { useForm, Controller } from 'react-hook-form';
 import Input from 'components/Input';
 import Modal from 'components/Modal';
 
-import { requestAccess } from 'services/api';
+import { addSite } from 'services/api';
 
 const AddSiteModal = ({ showModal, handleClose }) => {
   const { control, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
-    requestAccess(data)
+    addSite(data)
       .then(() => {
         // Do stuff
       })
@@ -23,19 +23,19 @@ const AddSiteModal = ({ showModal, handleClose }) => {
     <Modal
       show={showModal}
       handleClose={handleClose}
-      title="Request Account"
+      title="Add a site"
       confirmationAction={handleSubmit(onSubmit)}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
-          name="firstName"
+          name="name"
           control={control}
           defaultValue=""
           render={({ onChange, value }) => (
             <Input
-              name="firstName"
-              label="First Name"
-              placeholder="First name"
+              name="name"
+              label="Site Name"
+              placeholder="Site name"
               onChange={onChange}
               value={value}
             />
@@ -43,14 +43,85 @@ const AddSiteModal = ({ showModal, handleClose }) => {
         />
 
         <Controller
-          name="lastName"
+          name="street"
           control={control}
           defaultValue=""
           render={({ onChange, value }) => (
             <Input
-              name="lastName"
-              label="Last Name"
-              placeholder="Last name"
+              name="street"
+              label="Street address"
+              placeholder="Street address"
+              onChange={onChange}
+              value={value}
+              className="mt-2"
+            />
+          )}
+        />
+
+        <fieldset className="flex">
+          <div className="w-1/2 mr-1">
+            <Controller
+              name="city"
+              control={control}
+              defaultValue=""
+              render={({ onChange, value }) => (
+                <Input
+                  name="city"
+                  label="City"
+                  placeholder="City"
+                  onChange={onChange}
+                  value={value}
+                  className="mt-2"
+                />
+              )}
+            />
+          </div>
+
+          <div className="w-1/4 mr-1">
+            <Controller
+              name="state"
+              control={control}
+              defaultValue=""
+              render={({ onChange, value }) => (
+                <Input
+                  name="state"
+                  label="State"
+                  placeholder="State"
+                  onChange={onChange}
+                  value={value}
+                  className="mt-2"
+                />
+              )}
+            />
+          </div>
+          <div className="w-1/4">
+            <Controller
+              name="zip"
+              control={control}
+              defaultValue=""
+              render={({ onChange, value }) => (
+                <Input
+                  name="zip"
+                  label="Zip code"
+                  placeholder="Zip code"
+                  onChange={onChange}
+                  value={value}
+                  className="mt-2"
+                />
+              )}
+            />
+          </div>
+        </fieldset>
+
+        <Controller
+          name="contact"
+          control={control}
+          defaultValue=""
+          render={({ onChange, value }) => (
+            <Input
+              name="contact"
+              label="Contact Name"
+              placeholder="Contact Name"
               onChange={onChange}
               value={value}
               className="mt-2"
@@ -59,31 +130,31 @@ const AddSiteModal = ({ showModal, handleClose }) => {
         />
 
         <Controller
-          name="phone"
+          name="contactEmail"
           control={control}
           defaultValue=""
           render={({ onChange, value }) => (
             <Input
-              name="phone"
-              label="Phone"
-              placeholder="Phone"
-              onChange={onChange}
-              value={value}
-              className="mt-2"
-            />
-          )}
-        />
-
-        <Controller
-          name="email"
-          control={control}
-          defaultValue=""
-          render={({ onChange, value }) => (
-            <Input
-              name="email"
-              label="Email"
+              name="contactEmail"
+              label="Contact Email"
               type="email"
-              placeholder="Email"
+              placeholder="Contact Email"
+              onChange={onChange}
+              value={value}
+              className="mt-2"
+            />
+          )}
+        />
+
+        <Controller
+          name="cliaNumber"
+          control={control}
+          defaultValue=""
+          render={({ onChange, value }) => (
+            <Input
+              name="cliaNumber"
+              label="CLIA Number"
+              placeholder="CLIA Number"
               onChange={onChange}
               value={value}
               className="mt-2"
