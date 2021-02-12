@@ -19,3 +19,9 @@ export const getSiteList = async () => {
 
   return data;
 };
+
+export const getAccountList = async () => {
+  const { data } = await axios.get('/accounts');
+
+  return data;
+};

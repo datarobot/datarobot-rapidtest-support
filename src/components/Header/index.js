@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 
 import loginAtom from 'store';
@@ -12,8 +13,9 @@ const Header = () => {
 
   return (
     <div className="header bg-blue flex justify-center items-center">
-      <img src={logo} className="logo" alt="logo" />
-
+      <Link to="/">
+        <img src={logo} className="logo" alt="logo" />
+      </Link>
       <section className="links absolute">
         {loggedIn ? (
           <button
