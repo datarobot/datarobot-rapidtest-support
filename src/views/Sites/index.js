@@ -4,6 +4,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import { getSiteList } from 'services/api';
 
+import AddSiteModal from 'components/Modals/AddSite';
 import Table from 'components/Table';
 
 const SiteAddress = ({ values }) => {
@@ -19,6 +20,9 @@ const SiteStatus = ({ values }) => (values ? 'enabled' : 'disabled');
 
 const Sites = () => {
   const [sites, setSites] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleToggleModal = () => setShowModal(!showModal);
 
   const columns = useMemo(
     () => [
@@ -54,6 +58,7 @@ const Sites = () => {
   return (
     <div>
       <Table columns={columns} data={sites} />
+      <AddSiteModal showModal={showModal} handleClose={handleToggleModal} />
     </div>
   );
 };
