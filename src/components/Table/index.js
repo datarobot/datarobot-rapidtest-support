@@ -6,7 +6,14 @@ import { useTable, useFilters, useSortBy } from 'react-table';
 import Icon from 'components/Icon';
 import Input from 'components/Input';
 
-const Table = ({ columns, data }) => {
+const Table = ({
+  columns,
+  data,
+  addButtonText,
+  uploadButtonText,
+  onAddClick,
+  onUploadClick,
+}) => {
   const [filterInput, setFilterInput] = useState('');
 
   const {
@@ -33,13 +40,30 @@ const Table = ({ columns, data }) => {
 
   return (
     <>
-      <div className="w-1/2 my-6">
-        <Input
-          value={filterInput}
-          onChange={handleFilterChange}
-          placeholder="Search..."
-          rounded
-        />
+      <div className="grid grid-cols-2 my-6">
+        <div className="flex flex-0 justify-center">
+          <Input
+            value={filterInput}
+            onChange={handleFilterChange}
+            placeholder="Search..."
+            className="self-center"
+            rounded
+          />
+        </div>
+        <div className="table-buttons flex flex-col items-end">
+          <button
+            className="btn-clear text-dark-blue uppercase"
+            onClick={onAddClick}
+          >
+            {addButtonText}
+          </button>
+          <button
+            className="btn-clear text-dark-blue uppercase"
+            onClick={onUploadClick}
+          >
+            {uploadButtonText}
+          </button>
+        </div>
       </div>
       <table {...getTableProps()} className="border-collapse w-full">
         <thead>

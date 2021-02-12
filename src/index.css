@@ -19,5 +19,9 @@ body {
   .btn-primary:hover {
     @apply shadow-lg bg-dark-blue;
   }
+
+  .btn-clear {
+    @apply bg-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none;
+  }
 }
 
