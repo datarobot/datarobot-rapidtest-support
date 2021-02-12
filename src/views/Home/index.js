@@ -1,13 +1,19 @@
+// @ts-nocheck
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useAtom } from 'jotai';
 
 import Icon from 'components/Icon';
 import Input from 'components/Input';
 import RequestAccountModal from 'components/RequestAccountModal';
 
+import loginAtom from 'store';
+
 import './Home.css';
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
+  const [loggedIn] = useAtom(loginAtom);
 
   const handleToggleModal = () => setShowModal(!showModal);
 
@@ -34,19 +40,36 @@ const Home = () => {
         </div>
 
         <div className="cards pt-8 grid grid-cols-3 grid-rows-2 gap-4 auto-rows-max">
-          <button
-            onClick={handleToggleModal}
-            type="button"
-            className="card first bg-green col-span-2"
-          >
-            <p className="text-3xl font-bold pb-4">Request an account</p>
-            <p className="max-w-md">
-              Sometimes horses cough and fart at the same time, so stay out of
-              the range of its butt muscle because a horses butt muscle is
-              thick.
-            </p>
-            <p className="pt-4 font-bold">What's this?</p>
-          </button>
+          {loggedIn ? (
+            <Link
+              to="/sites"
+              onClick={handleToggleModal}
+              className="card first bg-green col-span-2"
+            >
+              <p className="text-3xl font-bold pb-4">Manage sites</p>
+              <p className="max-w-md text-left">
+                Sometimes horses cough and fart at the same time, so stay out of
+                the range of its butt muscle because a horses butt muscle is
+                thick.
+              </p>
+              <p className="pt-4 font-bold">What's this?</p>
+            </Link>
+          ) : (
+            <button
+              onClick={handleToggleModal}
+              type="button"
+              className="card first bg-green col-span-2"
+            >
+              <p className="text-3xl font-bold pb-4">Request an account</p>
+              <p className="max-w-md text-left">
+                Sometimes horses cough and fart at the same time, so stay out of
+                the range of its butt muscle because a horses butt muscle is
+                thick.
+              </p>
+              <p className="pt-4 font-bold">What's this?</p>
+            </button>
+          )}
+
           <div className="card bg-red">
             <p className="text-xl font-bold pb-4">Request a program</p>
             <p>
