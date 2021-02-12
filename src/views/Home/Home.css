@@ -1,0 +1,11 @@
+.cards {
+  grid-template-rows: 55% 1fr;
+}
+
+.card {
+  @apply rounded-md px-12 py-8 flex flex-col justify-center;
+}
+
+.card:not(.first) {
+  @apply text-center px-16;
+}
