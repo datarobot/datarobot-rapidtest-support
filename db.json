@@ -1,0 +1,217 @@
+{
+  "accounts": [
+    {
+      "id": 1,
+      "firstName": "Jay",
+      "lastName": "Hick",
+      "email": "jhick0@ovh.net",
+      "phone": "697-816-2920",
+      "requestPending": true,
+      "enabled": false,
+      "approvedBy": "Jay Hick"
+    }, {
+      "id": 2,
+      "firstName": "Benita",
+      "lastName": "Creus",
+      "email": "bcreus1@blogspot.com",
+      "phone": "838-364-9802",
+      "requestPending": true,
+      "enabled": false,
+      "approvedBy": "Benita Creus"
+    }, {
+      "id": 3,
+      "firstName": "Mose",
+      "lastName": "Hubner",
+      "email": "mhubner2@de.vu",
+      "phone": "529-842-9395",
+      "requestPending": false,
+      "enabled": true,
+      "approvedBy": "Mose Hubner"
+    }, {
+      "id": 4,
+      "firstName": "Helene",
+      "lastName": "Baison",
+      "email": "hbaison3@xrea.com",
+      "phone": "654-418-4167",
+      "requestPending": false,
+      "enabled": false,
+      "approvedBy": "Helene Baison"
+    }, {
+      "id": 5,
+      "firstName": "Waneta",
+      "lastName": "Talby",
+      "email": "wtalby4@wordpress.org",
+      "phone": "613-721-9132",
+      "requestPending": false,
+      "enabled": true,
+      "approvedBy": "Waneta Talby"
+    }, {
+      "id": 6,
+      "firstName": "Aridatha",
+      "lastName": "Bengoechea",
+      "email": "abengoechea5@elpais.com",
+      "phone": "969-457-4805",
+      "requestPending": false,
+      "enabled": true,
+      "approvedBy": "Aridatha Bengoechea"
+    }, {
+      "id": 7,
+      "firstName": "Glennis",
+      "lastName": "Cancellieri",
+      "email": "gcancellieri6@desdev.cn",
+      "phone": "843-541-8030",
+      "requestPending": false,
+      "enabled": false,
+      "approvedBy": "Glennis Cancellieri"
+    }, {
+      "id": 8,
+      "firstName": "Freida",
+      "lastName": "Pariss",
+      "email": "fpariss7@china.com.cn",
+      "phone": "639-354-3655",
+      "requestPending": true,
+      "enabled": false,
+      "approvedBy": "Freida Pariss"
+    }, {
+      "id": 9,
+      "firstName": "Derrick",
+      "lastName": "Pacquet",
+      "email": "dpacquet8@webeden.co.uk",
+      "phone": "739-653-9110",
+      "requestPending": true,
+      "enabled": false,
+      "approvedBy": "Derrick Pacquet"
+    }, {
+      "id": 10,
+      "firstName": "Odo",
+      "lastName": "Stealfox",
+      "email": "ostealfox9@bigcartel.com",
+      "phone": "997-612-7696",
+      "requestPending": true,
+      "enabled": false,
+      "approvedBy": "Odo Stealfox"
+    }
+  ],
+  "sites": [
+    {
+      "id": 1,
+      "siteName": "Edgetag",
+      "address": {
+        "street": "978 Carioca Parkway",
+        "city": "Pompano Beach",
+        "state": "Florida",
+        "zip": "33064"
+      },
+      "enabled": true,
+      "contact": "Isidor Tregea"
+    },
+    {
+      "id": 2,
+      "siteName": "Browsebug",
+      "address": {
+        "street": "4 Westridge Way",
+        "city": "Huntsville",
+        "state": "Alabama",
+        "zip": "35815"
+      },
+      "enabled": true,
+      "contact": "Theo Dearnaley"
+    },
+    {
+      "id": 3,
+      "siteName": "Skipstorm",
+      "address": {
+        "street": "56523 Nelson Drive",
+        "city": "Amarillo",
+        "state": "Texas",
+        "zip": "79176"
+      },
+      "enabled": true,
+      "contact": "Ellery Inger"
+    },
+    {
+      "id": 4,
+      "siteName": "Flipopia",
+      "address": {
+        "street": "9 Daystar Point",
+        "city": "Anaheim",
+        "state": "California",
+        "zip": "92825"
+      },
+      "enabled": true,
+      "contact": "Greggory Sapwell"
+    },
+    {
+      "id": 5,
+      "siteName": "Centidel",
+      "address": {
+        "street": "59137 Melby Alley",
+        "city": "Provo",
+        "state": "Utah",
+        "zip": "84605"
+      },
+      "enabled": true,
+      "contact": "Winnie Ordish"
+    },
+    {
+      "id": 6,
+      "siteName": "Skyba",
+      "address": {
+        "street": "788 Shelley Circle",
+        "city": "Colorado Springs",
+        "state": "Colorado",
+        "zip": "80910"
+      },
+      "enabled": false,
+      "contact": "Fabio Lies"
+    },
+    {
+      "id": 7,
+      "siteName": "Photobug",
+      "address": {
+        "street": "013 Nevada Crossing",
+        "city": "Austin",
+        "state": "Texas",
+        "zip": "78721"
+      },
+      "enabled": true,
+      "contact": "Den Satterly"
+    },
+    {
+      "id": 8,
+      "siteName": "Oyoba",
+      "address": {
+        "street": "0638 Anhalt Place",
+        "city": "San Jose",
+        "state": "California",
+        "zip": "95160"
+      },
+      "enabled": true,
+      "contact": "Boycey Olcot"
+    },
+    {
+      "id": 9,
+      "siteName": "Leenti",
+      "address": {
+        "street": "58 Melody Way",
+        "city": "Fort Worth",
+        "state": "Texas",
+        "zip": "76162"
+      },
+      "enabled": false,
+      "contact": "Herold Brent"
+    },
+    {
+      "id": 10,
+      "siteName": "Digitube",
+      "address": {
+        "street": "87616 Tennyson Hill",
+        "city": "El Paso",
+        "state": "Texas",
+        "zip": "79940"
+      },
+      "enabled": true,
+      "contact": "Reeta Meriot"
+    }
+  ]
+}
