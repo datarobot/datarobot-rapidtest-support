@@ -85,9 +85,15 @@ const Table = ({
                   >
                     <div className="w-full flex justify-between">
                       {column.render('Header')}
-                      {!isSorted && <Icon iconName="sort" />}
-                      {isSorted && !isSortedDesc && <Icon iconName="sort-up" />}
-                      {isSortedDesc && <Icon iconName="sort-down" />}
+                      {typeof column.Header === 'string' && (
+                        <>
+                          {!isSorted && <Icon iconName="sort" />}
+                          {isSorted && !isSortedDesc && (
+                            <Icon iconName="sort-up" />
+                          )}
+                          {isSortedDesc && <Icon iconName="sort-down" />}
+                        </>
+                      )}
                     </div>
                   </th>
                 );

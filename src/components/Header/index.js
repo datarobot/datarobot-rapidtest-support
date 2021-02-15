@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 
-import loginAtom from 'store';
+import { loginAtom } from 'store';
 
 import logo from '../../assets/images/logo.svg';
 import './Header.css';
