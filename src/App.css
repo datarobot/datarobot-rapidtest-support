@@ -3,4 +3,5 @@
   padding-top: 80px;
   padding-left: 5vw;
   padding-right: 5vw;
+  overflow-y: scroll;
 }
