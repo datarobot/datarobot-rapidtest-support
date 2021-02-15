@@ -77,7 +77,6 @@ const Table = ({
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                     className={cls(
                       'p-2 font-bold text-left uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell',
-                      // eslint-disable-next-line no-nested-ternary
                       {
                         'sort-asc': isSorted,
                         'sorted-desc': isSortedDesc,
@@ -122,33 +121,3 @@ const Table = ({
 };
 
 export default Table;
-
-// <table {...getTableProps()}>
-//           <thead>
-//             {
-//               // Loop over the header rows
-//               headerGroups.map((headerGroup) => (
-//                 // Apply the header row props
-//                 <tr {...headerGroup.getHeaderGroupProps()}>
-//                   {
-//                     // Loop over the headers in each row
-//                     headerGroup.headers.map((column) => (
-//                       // Apply the header cell props
-//                       <th {...column.getHeaderProps()}>
-//                         {
-//                           // Render the header
-//                           column.render('Header')
-//                         }
-//                       </th>
-//                     ))
-//                   }
-//                 </tr>
-//               ))
-//             }
-//           </thead>
-//           <tbody>
-//             <tr>
-//               <td></td>
-//             </tr>
-//           </tbody>
-//         </table>

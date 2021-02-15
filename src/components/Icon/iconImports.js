@@ -1,4 +1,5 @@
 import {
+  faPencilAlt,
   faSearch,
   faSort,
   faSortUp,
@@ -6,4 +7,4 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 
-library.add(faSearch, faSort, faSortUp, faSortDown);
+library.add(faPencilAlt, faSearch, faSort, faSortUp, faSortDown);
