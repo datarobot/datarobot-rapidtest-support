@@ -1,10 +1,13 @@
+/* eslint-disable no-param-reassign */
 // @ts-nocheck
 import React, { useState } from 'react';
 import cls from 'classnames';
-import { useTable, useFilters, useSortBy } from 'react-table';
+import { useTable, useFilters, useSortBy, usePagination } from 'react-table';
 
 import Icon from 'components/Icon';
 import Input from 'components/Input';
+
+import './Table.css';
 
 const Table = ({
   columns,
@@ -20,17 +23,69 @@ const Table = ({
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
     prepareRow,
     setFilter,
+    rows,
+    page, // Instead of using 'rows', we'll use page,
+    // which has only the rows for the active page
+
+    // The rest of these things are super handy, too ;)
+    canPreviousPage,
+    canNextPage,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    state: { pageIndex, pageSize },
   } = useTable(
     {
       columns,
       data,
+      initialState: { pageIndex: 0 },
     },
     useFilters,
-    useSortBy
+    useSortBy,
+    usePagination
   );
+
+  const pageButtons = [];
+
+  const getPagingRange = (
+    current = pageIndex,
+    { min = 1, total = rows.length, length = pageCount } = {}
+  ) => {
+    if (length > total) {
+      length = total;
+    }
+
+    let start = current - Math.floor(length / 2);
+    start = Math.max(start, min);
+    start = Math.min(start, min + total - length);
+
+    return Array.from({ length }, (el, i) => start + i);
+  };
+
+  for (let i = 0; i < getPagingRange().length; i += 1) {
+    pageButtons.push(
+      <button
+        key={i}
+        className={cls('px-4', {
+          'btn-clear': i !== pageIndex,
+          'btn-primary': i === pageIndex,
+        })}
+        onClick={() => gotoPage(i)}
+      >
+        {i + 1}
+      </button>
+    );
+  }
+
+  const calculateCurrentView = () => {
+    const offset = pageIndex * pageSize + 1;
+    const totalOffset =
+      offset < rows.length ? (pageIndex + 1) * pageSize : rows.length;
+    return `Showing ${offset} to ${totalOffset} of ${rows.length} entries`;
+  };
 
   const handleFilterChange = (e) => {
     const value = e.target.value || undefined;
@@ -102,7 +157,7 @@ const Table = ({
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row) => {
+          {page.map((row) => {
             prepareRow(row);
             return (
               <tr
@@ -122,6 +177,44 @@ const Table = ({
           })}
         </tbody>
       </table>
+      {rows.length > pageSize && (
+        <div className="pagination">
+          <div className="w-full flex justify-between">
+            <span className="text-gray-500">{calculateCurrentView()}</span>{' '}
+            <span>
+              <button
+                className="btn-clear px-4"
+                onClick={() => gotoPage(0)}
+                disabled={!canPreviousPage}
+              >
+                {'<<'}
+              </button>
+              <button
+                className="btn-clear px-4"
+                onClick={() => previousPage()}
+                disabled={!canPreviousPage}
+              >
+                Previous
+              </button>
+              <span>{pageButtons}</span>
+              <button
+                className="btn-clear px-4"
+                onClick={() => nextPage()}
+                disabled={!canNextPage}
+              >
+                Next
+              </button>
+              <button
+                className="btn-clear px-4"
+                onClick={() => gotoPage(pageCount - 1)}
+                disabled={!canNextPage}
+              >
+                {'>>'}
+              </button>
+            </span>
+          </div>
+        </div>
+      )}
     </>
   );
 };

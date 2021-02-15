@@ -23,5 +23,9 @@ body {
   .btn-clear {
     @apply bg-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none;
   }
+
+  .btn-clear:disabled {
+    @apply text-gray-500 cursor-not-allowed;
+  }
 }
 
