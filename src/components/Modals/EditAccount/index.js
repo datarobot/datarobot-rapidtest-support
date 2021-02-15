@@ -100,7 +100,7 @@ const EditAccountModal = ({ showModal, handleClose, accountId, onSave }) => {
               onChange={({ target }) =>
                 handleOnChange('requestPending', !target.checked)
               }
-              label="Approve"
+              label="Approved"
               labelClass="mt-4"
             />
           </div>

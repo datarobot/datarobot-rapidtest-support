@@ -1,3 +1,12 @@
+.tableWrapper {
+  height: 60vh;
+  overflow-y: scroll;
+}
+
 .pagination {
-  @apply py-4 pl-3;
+  @apply py-4 pl-3 fixed bg-white;
+
+  bottom: 50px;
+  right: 5vw;
+  left: 5vw;
 }
