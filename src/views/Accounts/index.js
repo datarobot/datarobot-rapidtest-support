@@ -94,12 +94,14 @@ const ApproveAllButton = () => {
     if (unapproved.length) {
       for (let i = 0; i < unapproved.length; i += 1) {
         const acc = unapproved[i];
-        editAccount(acc.id, { ...acc, requestPending: false }).then(
-          async () => {
-            const data = await getAccountList();
-            setAccounts(data);
-          }
-        );
+        editAccount(acc.id, {
+          ...acc,
+          requestPending: false,
+          enabled: true,
+        }).then(async () => {
+          const data = await getAccountList();
+          setAccounts(data);
+        });
       }
     }
   };
@@ -123,10 +125,12 @@ const Accounts = () => {
   const [showModal, setShowModal] = useState(false);
 
   const approveAccount = (id, val) => {
-    editAccount(id, { ...val, requestPending: false }).then(async () => {
-      const data = await getAccountList();
-      setAccounts(data);
-    });
+    editAccount(id, { ...val, requestPending: false, enabled: true }).then(
+      async () => {
+        const data = await getAccountList();
+        setAccounts(data);
+      }
+    );
   };
 
   const handleToggleModal = () => {
@@ -153,6 +157,7 @@ const Accounts = () => {
     () => [
       {
         Header: 'Name',
+        id: 'name',
         accessor: (val) => `${val.lastName}, ${val.firstName}`,
       },
       {
