@@ -25,8 +25,22 @@ export const addSite = async (payload) => {
   return data;
 };
 
+export const editSite = async (id, payload) => {
+  const { data } = await axios.put(`/sites/${id}`, {
+    ...payload,
+  });
+
+  return data;
+};
+
 export const getSiteList = async () => {
   const { data } = await axios.get('/sites');
+
+  return data;
+};
+
+export const getSite = async (id) => {
+  const { data } = await axios.get(`/sites/${id}`);
 
   return data;
 };
