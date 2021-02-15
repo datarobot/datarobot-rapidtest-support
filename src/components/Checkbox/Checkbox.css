@@ -1,0 +1,11 @@
+.checkbox:checked + svg {
+  display: block;
+}
+
+.checkboxDisabled .labelText, .checkboxDisabled .checkbox {
+  @apply cursor-not-allowed;
+}
+
+.checkboxDisabled .checkboxWrapper {
+  @apply border-gray-300;
+}

@@ -37,6 +37,7 @@ const Sites = () => {
   const handleEditRow = useCallback((id) => {
     setSiteId(id);
     handleToggleModal('edit');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const columns = useMemo(
