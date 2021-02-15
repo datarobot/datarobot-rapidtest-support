@@ -25,10 +25,11 @@
       "firstName": "Mose",
       "lastName": "Hubner",
       "email": "mhubner2@de.vu",
-      "phone": "529-842-9395",
+      "phone": "529-842-9359",
       "requestPending": false,
-      "enabled": true,
-      "approvedBy": "Mose Hubner"
+      "enabled": false,
+      "approvedBy": "Mose Hubner",
+      "status": true
     },
     {
       "id": 4,
@@ -37,7 +38,7 @@
       "email": "hbaison3@xrea.com",
       "phone": "654-418-4167",
       "requestPending": false,
-      "enabled": false,
+      "enabled": true,
       "approvedBy": "Helene Baison"
     },
     {
@@ -48,7 +49,8 @@
       "phone": "613-721-9132",
       "requestPending": false,
       "enabled": true,
-      "approvedBy": "Waneta Talby"
+      "approvedBy": "Waneta Talby",
+      "status": false
     },
     {
       "id": 6,
@@ -57,7 +59,7 @@
       "email": "abengoechea5@elpais.com",
       "phone": "969-457-4805",
       "requestPending": false,
-      "enabled": true,
+      "enabled": false,
       "approvedBy": "Aridatha Bengoechea"
     },
     {
@@ -99,12 +101,6 @@
       "requestPending": true,
       "enabled": false,
       "approvedBy": "Odo Stealfox"
-    },
-    {
-      "requestPending": true,
-      "enabled": false,
-      "dateAdded": "2021-02-12T21:13:41.041Z",
-      "id": 11
     }
   ],
   "sites": [

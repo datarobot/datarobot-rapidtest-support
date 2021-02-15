@@ -1,5 +1,5 @@
 import { atom } from 'jotai';
 
-const loginAtom = atom('');
+export const loginAtom = atom('');
 
-export default loginAtom;
+export const accountsAtom = atom([]);
