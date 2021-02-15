@@ -7,7 +7,7 @@ import Icon from 'components/Icon';
 import Input from 'components/Input';
 import RequestAccountModal from 'components/Modals/RequestAccount';
 
-import loginAtom from 'store';
+import { loginAtom } from 'store';
 
 import './Home.css';
 

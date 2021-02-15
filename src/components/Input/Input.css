@@ -11,3 +11,7 @@
 .input.isRounded {
   @apply rounded;
 }
+
+.input-label {
+  @apply inline-block text-dark-blue uppercase text-sm mt-2;
+}

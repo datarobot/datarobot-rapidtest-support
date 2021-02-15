@@ -18,6 +18,7 @@ module.exports = {
     'func-style': ['error', 'expression'],
     'func-names': ['error', 'always', { generators: 'as-needed' }],
     'consistent-return': 0,
+    'no-nested-ternary': 0,
     'import/no-extraneous-dependencies': 0,
     'import/no-unresolved': 0,
     'prettier/prettier': [

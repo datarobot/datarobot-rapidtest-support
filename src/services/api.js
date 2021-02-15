@@ -45,6 +45,20 @@ export const getSite = async (id) => {
   return data;
 };
 
+export const editAccount = async (id, payload) => {
+  const { data } = await axios.put(`/accounts/${id}`, {
+    ...payload,
+  });
+
+  return data;
+};
+
+export const getAccount = async (id) => {
+  const { data } = await axios.get(`/accounts/${id}`);
+
+  return data;
+};
+
 export const getAccountList = async () => {
   const { data } = await axios.get('/accounts');
 
