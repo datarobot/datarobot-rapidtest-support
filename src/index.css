@@ -12,6 +12,10 @@ body {
 }
 
 @layer components {
+  [class*="btn-"] {
+    transition: all 250ms ease;
+  }
+
   .btn-primary {
     @apply bg-blue text-white border-dark-blue rounded px-4 py-2 font-bold uppercase shadow outline-none focus:outline-none text-sm;
   }
@@ -21,11 +25,23 @@ body {
   }
 
   .btn-clear {
-    @apply bg-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none;
+    @apply bg-transparent font-bold uppercase rounded px-6 py-2 text-sm outline-none focus:outline-none;
+  }
+
+  .btn-clear:hover:not(:disabled) {
+    @apply bg-gray-300;
   }
 
   .btn-clear:disabled {
     @apply text-gray-500 cursor-not-allowed;
+  }
+
+  .btn-white {
+    @apply bg-white text-dark-blue rounded px-4 py-2 font-bold uppercase shadow outline-none focus:outline-none text-sm;
+  }
+
+  .btn-white:hover {
+    @apply shadow-lg bg-blue text-white;
   }
 }
 

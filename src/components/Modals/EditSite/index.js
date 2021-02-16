@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 
 import Input from 'components/Input';
@@ -8,6 +9,7 @@ import Modal from 'components/Modal';
 import { editSite, getSite } from 'services/api';
 
 const EditSiteModal = ({ showModal, handleClose, siteId }) => {
+  const { t } = useTranslation();
   const { handleSubmit, errors } = useForm();
   const [site, setSite] = useState();
 
@@ -46,96 +48,93 @@ const EditSiteModal = ({ showModal, handleClose, siteId }) => {
     <Modal
       show={showModal}
       handleClose={handleClose}
-      title="Edit site"
+      title={
+        <Trans i18nKey="editSite.title" siteName={site?.name}>
+          Editing {site?.name}
+        </Trans>
+      }
       confirmationAction={handleSubmit(onSubmit)}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input
           name="name"
-          label="Site Name"
-          placeholder="Site name"
+          label={t('site.label.name')}
+          placeholder={t('site.label.name')}
           onChange={({ target }) => handleOnChange('name', target.value)}
           value={site?.name || ''}
         />
 
         <Input
           name="street"
-          label="Street address"
-          placeholder="Street address"
+          label={t('site.label.street')}
+          placeholder={t('site.label.street')}
           onChange={({ target }) =>
             handleOnChange('street', target.value, true)
           }
           value={site?.address.street || ''}
-          className="mt-2"
         />
 
         <fieldset className="flex">
           <div className="w-1/2 mr-1">
             <Input
               name="city"
-              label="City"
-              placeholder="City"
+              label={t('site.label.city')}
+              placeholder={t('site.label.city')}
               onChange={({ target }) =>
                 handleOnChange('city', target.value, true)
               }
               value={site?.address.city || ''}
-              className="mt-2"
             />
           </div>
 
           <div className="w-1/4 mr-1">
             <Input
               name="state"
-              label="State"
-              placeholder="State"
+              label={t('site.label.state')}
+              placeholder={t('site.label.state')}
               onChange={({ target }) =>
                 handleOnChange('state', target.value, true)
               }
               value={site?.address.state || ''}
-              className="mt-2"
             />
           </div>
           <div className="w-1/4">
             <Input
               name="zip"
-              label="Zip code"
-              placeholder="Zip code"
+              label={t('site.label.zip')}
+              placeholder={t('site.label.zip')}
               onChange={({ target }) =>
                 handleOnChange('zip', target.value, true)
               }
               value={site?.address.zip || ''}
-              className="mt-2"
             />
           </div>
         </fieldset>
 
         <Input
           name="contact"
-          label="Contact Name"
-          placeholder="Contact Name"
+          label={t('site.label.contactName')}
+          placeholder={t('site.label.contactName')}
           onChange={({ target }) => handleOnChange('contact', target.value)}
           value={site?.contact || ''}
-          className="mt-2"
         />
 
         <Input
           name="contactEmail"
-          label="Contact Email"
+          label={t('site.label.contactEmail')}
           type="email"
-          placeholder="Contact Email"
+          placeholder={t('site.label.contactEmail')}
           onChange={({ target }) =>
             handleOnChange('contactEmail', target.value)
           }
           value={site?.contactEmail || ''}
-          className="mt-2"
         />
         <Input
           name="cliaNumber"
-          label="CLIA Number"
-          placeholder="CLIA Number"
+          label={t('site.label.cliaNumber')}
+          placeholder={t('site.label.cliaNumber')}
           onChange={({ target }) => handleOnChange('cliaNumber', target.value)}
           value={site?.cliaNumber || ''}
-          className="mt-2"
         />
 
         {errors.email && <span>This field is required</span>}

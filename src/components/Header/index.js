@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
+import { useTranslation } from 'react-i18next';
 
 import { loginAtom } from 'store';
 
@@ -9,6 +10,7 @@ import logo from '../../assets/images/logo.svg';
 import './Header.css';
 
 const Header = () => {
+  const { t } = useTranslation();
   const [loggedIn, setLoggedIn] = useAtom(loginAtom);
 
   return (
@@ -19,26 +21,23 @@ const Header = () => {
       <section className="links absolute">
         {loggedIn ? (
           <button
-            className="btn-clear mr-4 text-white"
+            className="btn-clear text-white"
             type="button"
             onClick={() => setLoggedIn(false)}
           >
-            Log out
+            {t('buttons.signout')}
           </button>
         ) : (
           <button
-            className="btn-clear mr-4 text-white"
+            className="btn-clear text-white"
             type="button"
             onClick={() => setLoggedIn(true)}
           >
-            Login
+            {t('buttons.signin')}
           </button>
         )}
-        <button
-          className="text-blue font-bold bg-white px-4 py-2 rounded"
-          type="button"
-        >
-          Join
+        <button className="btn-white" type="button">
+          {t('buttons.signup')}
         </button>
       </section>
     </div>
