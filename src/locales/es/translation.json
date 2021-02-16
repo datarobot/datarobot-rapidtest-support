@@ -1,6 +1,47 @@
 {
+  "account": {
+    "table": {
+      "approvedBy": "Aprobado por",
+      "email": "Correo electrónico",
+      "name": "Nombre",
+      "phone": "Teléfono",
+      "status": "Estado"
+    }
+  },
+  "addSite": {
+    "title": "Agregar un sitio"
+  },
+  "buttons": {
+    "addAccount": "Agregar una cuenta nueva",
+    "approve": "Aprobar",
+    "approveAll": "Aprobar todo",
+    "signin": "Registrarse",
+    "signout": "Desconectar",
+    "signup": "Inscribirse",
+    "uploadAccount": "Cargar una lista de cuentas"
+  },
+  "editSite": {
+    "title": "Edición {{siteName}}"
+  },
   "home": {
     "subtext": "Aquí encontrará información sobre COVID",
     "welcome": "¡Bienvenido!"
+  },
+  "site": {
+    "label": {
+      "city": "Ciudad",
+      "cliaNumber": "Número CLIA",
+      "contactEmail": "Email de contacto",
+      "contactName": "Nombre de contacto",
+      "name": "Nombre del sitio",
+      "state": "Expresar",
+      "street": "Calle",
+      "zip": "Código postal"
+    }
+  },
+  "tooltips": {
+    "disableAccount": "Deshabilitar cuenta",
+    "enableAccount": "Habilitar cuenta",
+    "requestPending": "Pedido pendiente"
   }
 }
