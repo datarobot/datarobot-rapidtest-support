@@ -8,7 +8,7 @@ const Footer = () => (
     <p>
       &copy;{year} <span className="font-bold ml-1">rapid</span>test
     </p>
-    <div className="links flex">
+    <div className="footer-links flex">
       <p>Link</p>
       <p>Link</p>
       <p>Link</p>
