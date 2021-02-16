@@ -1,24 +1,30 @@
 {
-  "account": {
-    "table": {
-      "approvedBy": "Aprobado por",
-      "email": "Correo electrónico",
-      "name": "Nombre",
-      "phone": "Teléfono",
-      "status": "Estado"
-    }
-  },
   "addSite": {
     "title": "Agregar un sitio"
   },
   "buttons": {
     "addAccount": "Agregar una cuenta nueva",
+    "addSite": "Agregar un sitio nuevo",
     "approve": "Aprobar",
     "approveAll": "Aprobar todo",
+    "next": "Próximo",
+    "previous": "Previo",
     "signin": "Registrarse",
     "signout": "Desconectar",
     "signup": "Inscribirse",
-    "uploadAccount": "Cargar una lista de cuentas"
+    "uploadAccount": "Cargar una lista de cuentas",
+    "uploadSite": "Cargar una lista de sitios"
+  },
+  "common": {
+    "table": {
+      "address": "Dirección",
+      "approvedBy": "Aprobado por",
+      "contact": "Contacto",
+      "email": "Correo electrónico",
+      "name": "Nombre",
+      "phone": "Teléfono",
+      "status": "Estado"
+    }
   },
   "editSite": {
     "title": "Edición {{siteName}}"
@@ -26,6 +32,9 @@
   "home": {
     "subtext": "Aquí encontrará información sobre COVID",
     "welcome": "¡Bienvenido!"
+  },
+  "pagination": {
+    "showingEntries": "Mostrando {{offset}} a {{totalOffset}} de {{totalEntries}} entradas"
   },
   "site": {
     "label": {

@@ -1,6 +1,7 @@
 // @ts-nocheck
 /* eslint-disable no-unused-vars */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { getSiteList } from 'services/api';
 
@@ -21,6 +22,7 @@ const SiteAddress = ({ values }) => {
 const SiteStatus = ({ values }) => (values ? 'enabled' : 'disabled');
 
 const Sites = () => {
+  const { t } = useTranslation();
   const [sites, setSites] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -43,21 +45,21 @@ const Sites = () => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Name',
+        Header: t('common.table.name'),
         accessor: 'name',
       },
       {
-        Header: 'Address',
+        Header: t('common.table.address'),
         accessor: 'address',
         Cell: ({ cell: { value } }) => <SiteAddress values={value} />,
       },
       {
-        Header: 'Status',
+        Header: t('common.table.status'),
         accessor: 'enabled',
         Cell: ({ cell: { value } }) => <SiteStatus values={value} />,
       },
       {
-        Header: 'Contact',
+        Header: t('common.table.contact'),
         accessor: 'contact',
       },
       {
@@ -72,6 +74,7 @@ const Sites = () => {
         ),
       },
     ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [handleEditRow]
   );
 
@@ -87,8 +90,8 @@ const Sites = () => {
       <Table
         columns={columns}
         data={sites}
-        addButtonText="+ Add a site"
-        uploadButtonText="+ Upload a list of sites"
+        addButtonText={t('buttons.addSite')}
+        uploadButtonText={t('buttons.uploadSite')}
         onAddClick={handleToggleModal}
       />
       <AddSiteModal
