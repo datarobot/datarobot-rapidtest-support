@@ -1,11 +1,11 @@
-.cards {
-  grid-template-rows: 55% 1fr;
+.homeCard {
+  @apply flex justify-center items-center font-semibold p-8 text-3xl rounded-lg w-1/5 h-64;
+
+  transition: all 250ms ease;
 }
 
-.card {
-  @apply rounded-md px-12 py-8 flex flex-col justify-center;
-}
+.homeCard:hover {
+  @apply cursor-pointer shadow-xl;
 
-.card:not(.first) {
-  @apply text-center px-16;
+  transform: scale(1.05);
 }
