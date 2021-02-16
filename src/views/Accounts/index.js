@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import cls from 'classnames';
 import { useAtom } from 'jotai';
 import ReactTooltip from 'react-tooltip';
+import { useTranslation } from 'react-i18next';
 
 import { getAccountList, editAccount } from 'services/api';
 
@@ -13,6 +14,7 @@ import Icon from 'components/Icon';
 import Table from 'components/Table';
 
 const StatusCell = ({ val }) => {
+  const { t } = useTranslation();
   const [, setAccounts] = useAtom(accountsAtom);
   const { id, requestPending, enabled } = val;
 
@@ -56,19 +58,20 @@ const StatusCell = ({ val }) => {
         color={enabled ? '#Df472C' : isDisabled ? '#33a15e' : '#999'}
       />
       <ReactTooltip effect="solid" id="enable">
-        Enable account
+        {t('tooltips.enableAccount')}
       </ReactTooltip>
       <ReactTooltip effect="solid" id="disable">
-        Disable account
+        {t('tooltips.disableAccount')}
       </ReactTooltip>
       <ReactTooltip effect="solid" id="pending">
-        Approval pending
+        {t('tooltips.requestPending')}
       </ReactTooltip>
     </span>
   );
 };
 
 const ApproveButton = ({ onClick, val }) => {
+  const { t } = useTranslation();
   const { requestPending } = val;
 
   if (requestPending) {
@@ -78,7 +81,7 @@ const ApproveButton = ({ onClick, val }) => {
         className="btn-primary text-xs py-1 px-2"
         type="button"
       >
-        Approve
+        {t('buttons.approve')}
       </button>
     );
   }
@@ -86,6 +89,7 @@ const ApproveButton = ({ onClick, val }) => {
 };
 
 const ApproveAllButton = () => {
+  const { t } = useTranslation();
   const [accounts, setAccounts] = useAtom(accountsAtom);
 
   const approveAllAccounts = () => {
@@ -113,13 +117,14 @@ const ApproveAllButton = () => {
         className="btn-primary text-xs py-1 px-2"
         type="button"
       >
-        Approve All
+        {t('buttons.approveAll')}
       </button>
     </div>
   );
 };
 
 const Accounts = () => {
+  const { t } = useTranslation();
   const [accounts, setAccounts] = useAtom(accountsAtom);
   const [accountId, setAccountId] = useState();
   const [showModal, setShowModal] = useState(false);
@@ -156,24 +161,24 @@ const Accounts = () => {
   const columns = useMemo(
     () => [
       {
-        Header: 'Name',
+        Header: t('common.table.name'),
         id: 'name',
         accessor: (val) => `${val.lastName}, ${val.firstName}`,
       },
       {
-        Header: 'Email',
+        Header: t('common.table.email'),
         accessor: 'email',
       },
       {
-        Header: 'Phone',
+        Header: t('common.table.phone'),
         accessor: 'phone',
       },
       {
-        Header: 'Status',
+        Header: t('common.table.status'),
         accessor: (val) => <StatusCell val={val} />,
       },
       {
-        Header: 'Approved By',
+        Header: t('common.table.approvedBy'),
         accessor: 'approvedBy',
       },
       {
@@ -213,6 +218,7 @@ const Accounts = () => {
       const data = await getAccountList();
       setAccounts(data);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -220,8 +226,9 @@ const Accounts = () => {
       <Table
         columns={columns}
         data={accounts}
-        addButtonText="+ Add a new account"
-        uploadButtonText="+ Upload a list of accounts"
+        addButtonText={t('buttons.addAccount')}
+        // "+ Add a new account"
+        uploadButtonText={t('buttons.uploadAccount')}
         onAddClick={handleToggleModal}
       />
 

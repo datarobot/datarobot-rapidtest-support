@@ -10,3 +10,19 @@
   right: 5vw;
   left: 5vw;
 }
+
+.pagingButtons {
+  @apply flex items-center;
+}
+
+.pagingButton {
+  @apply px-4;
+}
+
+.pagingButton:hover {
+  @apply text-blue;
+}
+
+.pagingButton:disabled {
+  @apply text-gray-400 cursor-not-allowed;
+}

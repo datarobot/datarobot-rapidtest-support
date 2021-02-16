@@ -6,6 +6,7 @@ import { useTable, useFilters, useSortBy, usePagination } from 'react-table';
 
 import Icon from 'components/Icon';
 import Input from 'components/Input';
+import Pagination from 'components/Table/Pagination';
 
 import './Table.css';
 
@@ -18,7 +19,6 @@ const Table = ({
   onUploadClick,
 }) => {
   const [filterInput, setFilterInput] = useState('');
-
   const {
     getTableProps,
     getTableBodyProps,
@@ -69,9 +69,8 @@ const Table = ({
     pageButtons.push(
       <button
         key={i}
-        className={cls('px-4', {
-          'btn-clear': i !== pageIndex,
-          'btn-primary': i === pageIndex,
+        className={cls('px-2 cursor-pointer font-bold', {
+          'text-blue': i === pageIndex,
         })}
         onClick={() => gotoPage(i)}
       >
@@ -79,13 +78,6 @@ const Table = ({
       </button>
     );
   }
-
-  const calculateCurrentView = () => {
-    const offset = pageIndex * pageSize + 1;
-    const totalOffset =
-      offset < rows.length ? (pageIndex + 1) * pageSize : rows.length;
-    return `Showing ${offset} to ${totalOffset} of ${rows.length} entries`;
-  };
 
   const handleFilterChange = (e) => {
     const value = e.target.value || undefined;
@@ -180,42 +172,18 @@ const Table = ({
         </table>
       </div>
       {rows.length > pageSize && (
-        <div className="pagination">
-          <div className="w-full flex justify-between">
-            <span className="text-gray-500">{calculateCurrentView()}</span>{' '}
-            <span>
-              <button
-                className="btn-clear px-4"
-                onClick={() => gotoPage(0)}
-                disabled={!canPreviousPage}
-              >
-                {'<<'}
-              </button>
-              <button
-                className="btn-clear px-4"
-                onClick={() => previousPage()}
-                disabled={!canPreviousPage}
-              >
-                Previous
-              </button>
-              <span>{pageButtons}</span>
-              <button
-                className="btn-clear px-4"
-                onClick={() => nextPage()}
-                disabled={!canNextPage}
-              >
-                Next
-              </button>
-              <button
-                className="btn-clear px-4"
-                onClick={() => gotoPage(pageCount - 1)}
-                disabled={!canNextPage}
-              >
-                {'>>'}
-              </button>
-            </span>
-          </div>
-        </div>
+        <Pagination
+          canNextPage={canNextPage}
+          canPreviousPage={canPreviousPage}
+          gotoPage={gotoPage}
+          nextPage={nextPage}
+          pageButtons={pageButtons}
+          pageCount={pageCount}
+          pageIndex={pageIndex}
+          pageSize={pageSize}
+          previousPage={previousPage}
+          rows={rows}
+        />
       )}
     </>
   );

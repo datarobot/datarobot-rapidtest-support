@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
+import { useTranslation } from 'react-i18next';
 
 import Icon from 'components/Icon';
 import Input from 'components/Input';
@@ -12,6 +13,7 @@ import { loginAtom } from 'store';
 import './Home.css';
 
 const Home = () => {
+  const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const [loggedIn] = useAtom(loginAtom);
 
@@ -22,8 +24,11 @@ const Home = () => {
       <div>
         <div className="grid grid-cols-2">
           <section>
-            <h1 className="text-3xl pt-12 pb-2 font-bold">Welcome!</h1>
-            <p>Here you will find some information about COVID</p>
+            <h1 className="text-3xl pt-12 pb-2 font-bold">
+              {t('home.welcome')}
+            </h1>
+            <p>{t('home.subtext')}</p>
+            {/* <p>Here you will find some information about COVID</p> */}
           </section>
           <section className="flex items-center pt-12 col-auto">
             <Input
