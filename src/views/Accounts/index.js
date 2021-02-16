@@ -161,24 +161,24 @@ const Accounts = () => {
   const columns = useMemo(
     () => [
       {
-        Header: t('account.table.name'),
+        Header: t('common.table.name'),
         id: 'name',
         accessor: (val) => `${val.lastName}, ${val.firstName}`,
       },
       {
-        Header: t('account.table.email'),
+        Header: t('common.table.email'),
         accessor: 'email',
       },
       {
-        Header: t('account.table.phone'),
+        Header: t('common.table.phone'),
         accessor: 'phone',
       },
       {
-        Header: t('account.table.status'),
+        Header: t('common.table.status'),
         accessor: (val) => <StatusCell val={val} />,
       },
       {
-        Header: t('account.table.approvedBy'),
+        Header: t('common.table.approvedBy'),
         accessor: 'approvedBy',
       },
       {
@@ -218,6 +218,7 @@ const Accounts = () => {
       const data = await getAccountList();
       setAccounts(data);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

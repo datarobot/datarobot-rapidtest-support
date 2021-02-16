@@ -14,6 +14,7 @@ module.exports = {
         red: '#F9DCD7',
         'dark-red': '#Df472C',
         orange: '#F5D2A2',
+        transparent: 'transparent',
       },
     },
   },
