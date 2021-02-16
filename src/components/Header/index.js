@@ -19,7 +19,7 @@ const Header = () => {
       <section className="links absolute">
         {loggedIn ? (
           <button
-            className="text-white font-bold focus:outline-none"
+            className="btn-clear mr-4 text-white"
             type="button"
             onClick={() => setLoggedIn(false)}
           >
@@ -27,7 +27,7 @@ const Header = () => {
           </button>
         ) : (
           <button
-            className="text-white font-bold focus:outline-none"
+            className="btn-clear mr-4 text-white"
             type="button"
             onClick={() => setLoggedIn(true)}
           >
