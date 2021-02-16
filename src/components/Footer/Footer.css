@@ -4,6 +4,6 @@
   padding-right: 5vw;
 }
 
-.links > * {
+.footer-links > * {
   @apply mr-4;
 }

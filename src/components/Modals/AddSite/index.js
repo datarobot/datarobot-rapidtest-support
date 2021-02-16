@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
 
 import Input from 'components/Input';
@@ -8,6 +9,7 @@ import Modal from 'components/Modal';
 import { addSite } from 'services/api';
 
 const AddSiteModal = ({ showModal, handleClose }) => {
+  const { t } = useTranslation();
   const { control, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
     addSite(data)
@@ -23,7 +25,8 @@ const AddSiteModal = ({ showModal, handleClose }) => {
     <Modal
       show={showModal}
       handleClose={handleClose}
-      title="Add a site"
+      title={t('addSite.title')}
+      // Add a site
       confirmationAction={handleSubmit(onSubmit)}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -34,8 +37,8 @@ const AddSiteModal = ({ showModal, handleClose }) => {
           render={({ onChange, value }) => (
             <Input
               name="name"
-              label="Site Name"
-              placeholder="Site name"
+              label={t('site.label.name')} // "Site Name"
+              placeholder={t('site.label.name')}
               onChange={onChange}
               value={value}
             />
@@ -49,8 +52,8 @@ const AddSiteModal = ({ showModal, handleClose }) => {
           render={({ onChange, value }) => (
             <Input
               name="street"
-              label="Street address"
-              placeholder="Street address"
+              label={t('site.label.street')} // "Street address"
+              placeholder={t('site.label.street')}
               onChange={onChange}
               value={value}
               className="mt-2"
@@ -67,8 +70,8 @@ const AddSiteModal = ({ showModal, handleClose }) => {
               render={({ onChange, value }) => (
                 <Input
                   name="city"
-                  label="City"
-                  placeholder="City"
+                  label={t('site.label.city')} // "City"
+                  placeholder={t('site.label.city')}
                   onChange={onChange}
                   value={value}
                   className="mt-2"
@@ -85,8 +88,8 @@ const AddSiteModal = ({ showModal, handleClose }) => {
               render={({ onChange, value }) => (
                 <Input
                   name="state"
-                  label="State"
-                  placeholder="State"
+                  label={t('site.label.state')}
+                  placeholder={t('site.label.state')}
                   onChange={onChange}
                   value={value}
                   className="mt-2"
@@ -102,8 +105,8 @@ const AddSiteModal = ({ showModal, handleClose }) => {
               render={({ onChange, value }) => (
                 <Input
                   name="zip"
-                  label="Zip code"
-                  placeholder="Zip code"
+                  label={t('site.label.zip')}
+                  placeholder={t('site.label.zip')}
                   onChange={onChange}
                   value={value}
                   className="mt-2"
@@ -120,8 +123,8 @@ const AddSiteModal = ({ showModal, handleClose }) => {
           render={({ onChange, value }) => (
             <Input
               name="contact"
-              label="Contact Name"
-              placeholder="Contact Name"
+              label={t('site.label.contactName')}
+              placeholder={t('site.label.contactName')}
               onChange={onChange}
               value={value}
               className="mt-2"
@@ -136,9 +139,9 @@ const AddSiteModal = ({ showModal, handleClose }) => {
           render={({ onChange, value }) => (
             <Input
               name="contactEmail"
-              label="Contact Email"
+              label={t('site.label.contactEmail')}
               type="email"
-              placeholder="Contact Email"
+              placeholder={t('site.label.contactEmail')}
               onChange={onChange}
               value={value}
               className="mt-2"
@@ -153,8 +156,8 @@ const AddSiteModal = ({ showModal, handleClose }) => {
           render={({ onChange, value }) => (
             <Input
               name="cliaNumber"
-              label="CLIA Number"
-              placeholder="CLIA Number"
+              label={t('site.label.cliaNumber')}
+              placeholder={t('site.label.cliaNumber')}
               onChange={onChange}
               value={value}
               className="mt-2"

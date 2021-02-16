@@ -1,0 +1,56 @@
+{
+  "addSite": {
+    "title": "Add a site"
+  },
+  "buttons": {
+    "addAccount": "Add a new account",
+    "addSite": "Add a new site",
+    "approve": "Approve",
+    "approveAll": "Approve all",
+    "next": "Next",
+    "previous": "Previous",
+    "signin": "Sign In",
+    "signout": "Sign Out",
+    "signup": "Sign Up",
+    "uploadAccount": "Upload a list of accounts",
+    "uploadSite": "Upload a list of sites"
+  },
+  "common": {
+    "table": {
+      "address": "Address",
+      "approvedBy": "Approved by",
+      "contact": "Contact",
+      "email": "Email",
+      "name": "Name",
+      "phone": "Phone",
+      "status": "Status"
+    }
+  },
+  "editSite": {
+    "title": "Editing <1>{{siteName}}</1>"
+  },
+  "home": {
+    "subtext": "Here you will find some information about COVID",
+    "welcome": "Welcome!"
+  },
+  "pagination": {
+    "showingEntries": "Showing {{offset}} to {{totalOffset}} of {{totalEntries}} entries"
+  },
+  "site": {
+    "label": {
+      "city": "City",
+      "cliaNumber": "CLIA Number",
+      "contactEmail": "Contact Email",
+      "contactName": "Contact Name",
+      "name": "Site Name",
+      "state": "State",
+      "street": "Street Address",
+      "zip": "Zip Code"
+    }
+  },
+  "tooltips": {
+    "disableAccount": "Disable account",
+    "enableAccount": "Enable account",
+    "requestPending": "Request pending"
+  }
+}
