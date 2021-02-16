@@ -43,5 +43,9 @@ body {
   .btn-white:hover {
     @apply shadow-lg bg-blue text-white;
   }
+
+  .full-height {
+    min-height: calc(100vh - 130px);
+  }
 }
 
