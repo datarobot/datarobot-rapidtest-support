@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 
 import Input from 'components/Input';
@@ -44,15 +44,18 @@ const EditSiteModal = ({ showModal, handleClose, siteId }) => {
     return setSite((prevState) => ({ ...prevState, [prop]: val }));
   };
 
+  const modalTitle = (name) => `${t('editSite.title')} ${name}`;
+
   return (
     <Modal
       show={showModal}
       handleClose={handleClose}
-      title={
-        <Trans i18nKey="editSite.title" siteName={site?.name}>
-          Editing {site?.name}
-        </Trans>
-      }
+      title={modalTitle(site?.name)}
+      // {
+      //   <Trans i18nKey="editSite.title" siteName={site?.name}>
+      //     Editing {site?.name}
+      //   </Trans>
+      // }
       confirmationAction={handleSubmit(onSubmit)}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
