@@ -27,7 +27,7 @@
     }
   },
   "editSite": {
-    "title": "Editing <1>{{siteName}}</1>"
+    "title": "Editing "
   },
   "home": {
     "subtext": "Here you will find some information about COVID",

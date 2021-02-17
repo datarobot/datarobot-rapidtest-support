@@ -1,0 +1,6 @@
+{
+  "/api/sites": "/sites",
+  "/api/sites/:id": "/sites/:id",
+  "/api/accounts": "/accounts",
+  "/api/accounts/:id": "/accounts/:id"
+}

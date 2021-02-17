@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const requestAccess = async ({ firstName, lastName, email, phone }) => {
-  const { data } = await axios.post('/accounts', {
+  const { data } = await axios.post('/api/accounts', {
     firstName,
     lastName,
     email,
@@ -17,7 +17,7 @@ export const requestAccess = async ({ firstName, lastName, email, phone }) => {
 export const addSite = async (payload) => {
   const { street, city, state, zip } = payload;
 
-  const { data } = await axios.post('/sites', {
+  const { data } = await axios.post('/api/sites', {
     ...payload,
     address: { street, city, state, zip },
   });
@@ -26,7 +26,7 @@ export const addSite = async (payload) => {
 };
 
 export const editSite = async (id, payload) => {
-  const { data } = await axios.put(`/sites/${id}`, {
+  const { data } = await axios.put(`/api/sites/${id}`, {
     ...payload,
   });
 
@@ -34,19 +34,19 @@ export const editSite = async (id, payload) => {
 };
 
 export const getSiteList = async () => {
-  const { data } = await axios.get('/sites');
+  const { data } = await axios.get('/api/sites');
 
   return data;
 };
 
 export const getSite = async (id) => {
-  const { data } = await axios.get(`/sites/${id}`);
+  const { data } = await axios.get(`/api/sites/${id}`);
 
   return data;
 };
 
 export const editAccount = async (id, payload) => {
-  const { data } = await axios.put(`/accounts/${id}`, {
+  const { data } = await axios.put(`/api/accounts/${id}`, {
     ...payload,
   });
 
@@ -54,13 +54,25 @@ export const editAccount = async (id, payload) => {
 };
 
 export const getAccount = async (id) => {
-  const { data } = await axios.get(`/accounts/${id}`);
+  const { data } = await axios.get(`/api/accounts/${id}`);
 
   return data;
 };
 
 export const getAccountList = async () => {
-  const { data } = await axios.get('/accounts');
+  const { data } = await axios.get('/api/accounts');
+
+  return data;
+};
+
+export const searchSchool = async (name) => {
+  const { data } = await axios.post('/schools', { name });
+
+  return data;
+};
+
+export const getSchool = async (id) => {
+  const { data } = await axios.get(`/schools/${id}`);
 
   return data;
 };
