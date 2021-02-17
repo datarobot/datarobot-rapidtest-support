@@ -30,7 +30,9 @@ const Modal = ({
       {...rest}
     >
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-30 outline-none focus:outline-none">
-        <div className="relative w-auto my-6 mx-auto max-w-2xl z-40">
+        <div
+          className={cls('relative w-auto my-6 mx-auto z-40', modalClassName)}
+        >
           {/* content */}
           <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/* header */}

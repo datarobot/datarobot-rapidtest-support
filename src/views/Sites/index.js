@@ -92,7 +92,7 @@ const Sites = () => {
         data={sites}
         addButtonText={t('buttons.addSite')}
         uploadButtonText={t('buttons.uploadSite')}
-        onAddClick={handleToggleModal}
+        onAddClick={() => handleToggleModal('add')}
       />
       <AddSiteModal
         showModal={showAddModal}

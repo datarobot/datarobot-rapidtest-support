@@ -1,0 +1,7 @@
+.clearIcon {
+  @apply text-blue;
+
+  position: absolute;
+  top: 2.75rem;
+  right: 1rem;
+}

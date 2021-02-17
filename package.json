@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.1",
-    "@fortawesome/fontawesome-svg-core": "^1.2.34",
-    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/pro-regular-svg-icons": "5.15.1",
     "@fortawesome/pro-solid-svg-icons": "5.15.1",
     "@fortawesome/react-fontawesome": "^0.1.14",
@@ -19,12 +19,14 @@
     "i18next": "^19.8.7",
     "i18next-browser-languagedetector": "^6.0.1",
     "jotai": "0.14.1",
+    "leaflet": "1.7.1",
     "postcss": "^7",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hook-form": "^6.15.1",
     "react-i18next": "^11.8.6",
+    "react-leaflet": "3.1.0",
     "react-modal": "^3.12.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
@@ -38,7 +40,7 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "server": "./node_modules/.bin/json-server --port 4000 --watch ./db.json",
+    "server": "./node_modules/.bin/json-server --port 4000 --watch ./db.json --routes routes.json",
     "dev": "concurrently \"yarn server\" \"yarn start\"",
     "translate": "NODE_ENV=development yarn run babel --quiet --ignore 'node_modules/**','src/__tests__/**' -f .babelrc 'src/**/*.js' > /dev/null 2>&1"
   },
@@ -60,7 +62,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:4000",
   "devDependencies": {
     "@babel/cli": "^7.12.16",
     "babel-plugin-i18next-extract": "^0.8.2",
@@ -68,6 +69,7 @@
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-prettier": "^3.3.1",
+    "http-proxy-middleware": "1.0.6",
     "json-server": "^0.16.3",
     "prettier": "^2.2.1"
   }

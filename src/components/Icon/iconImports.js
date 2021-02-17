@@ -8,6 +8,7 @@ import {
   faSort,
   faSortUp,
   faSortDown,
+  faTimes,
   faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -30,5 +31,6 @@ library.add(
   faSort,
   faSortUp,
   faSortDown,
+  faTimes,
   faTimesCircle
 );
