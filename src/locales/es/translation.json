@@ -29,6 +29,14 @@
   "editSite": {
     "title": "Edición "
   },
+  "errorMessages": {
+    "common": {
+      "required": "Este campo es obligatorio."
+    },
+    "zip": {
+      "invalid": "Ingrese un código postal válido."
+    }
+  },
   "home": {
     "subtext": "Aquí encontrará información sobre COVID",
     "welcome": "¡Bienvenido!"

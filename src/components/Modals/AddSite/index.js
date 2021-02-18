@@ -5,16 +5,20 @@ import { useForm, Controller } from 'react-hook-form';
 
 import Autocomplete from 'components/Autocomplete';
 import Input from 'components/Input';
+import Select from 'components/Select';
 import Map from 'components/Map';
 import Modal from 'components/Modal';
 
+import { STATE_OPTIONS } from 'rt-constants';
+
 import { useDebounce } from 'hooks';
 
+// eslint-disable-next-line no-unused-vars
 import { addSite, searchSchool, getSchool } from 'services/api';
 
 const AddSiteModal = ({ showModal, handleClose }) => {
   const { t } = useTranslation();
-  const { control, handleSubmit, errors } = useForm();
+  const { control, handleSubmit, errors, setValue } = useForm();
   const [schools, setSchools] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentSchool, setCurrentSchool] = useState();
@@ -22,13 +26,14 @@ const AddSiteModal = ({ showModal, handleClose }) => {
   const [mapZoom, setMapZoom] = useState();
 
   const onSubmit = (data) => {
-    addSite(data)
-      .then(() => {
-        // Do stuff
-      })
-      .catch(() => {
-        // handle errors
-      });
+    console.log(data);
+    // addSite(data)
+    //   .then(() => {
+    //     // Do stuff
+    //   })
+    //   .catch(() => {
+    //     // handle errors
+    //   });
   };
 
   const doSearch = async (val) => {
@@ -57,6 +62,15 @@ const AddSiteModal = ({ showModal, handleClose }) => {
     const school = await getSchool(id);
     setSchools([]);
     setCurrentSchool(school);
+    for (const key in school.address) {
+      if ({}.hasOwnProperty.call(school.address, key)) {
+        console.log(school.address[key], key);
+        setValue(key, school.address[key], {
+          shouldValidate: true,
+          shouldDirty: true,
+        });
+      }
+    }
     setMapCenter({ lat: school.lat, lng: school.lng });
     setMapZoom(16);
   };
@@ -87,12 +101,18 @@ const AddSiteModal = ({ showModal, handleClose }) => {
       modalClassName="w-3/4"
     >
       <div className="flex">
-        <form className="max-w-lg mr-2" onSubmit={handleSubmit(onSubmit)}>
+        <form className="w-1/2 mr-2" onSubmit={handleSubmit(onSubmit)}>
           <Controller
             name="name"
             control={control}
             defaultValue=""
-            render={({ onChange, value }) => (
+            rules={{
+              required: {
+                value: true,
+                message: t('errorMessages.common.required'),
+              },
+            }}
+            render={({ onChange, value, ref }) => (
               <Autocomplete
                 inputName="name"
                 label={t('site.label.name')} // "Site Name"
@@ -109,20 +129,32 @@ const AddSiteModal = ({ showModal, handleClose }) => {
                 inputValue={
                   currentSchool?.name ? currentSchool?.name : value || ''
                 }
+                inputRef={ref}
                 listValues={schools}
                 onItemClick={handleListItemClick}
                 onClearClick={handleClearSite}
+                isRequired
               />
             )}
           />
-
+          {errors && errors.name && (
+            <p className="text-dark-red font-bold text-xs uppercase">
+              {errors.name.message}
+            </p>
+          )}
           <Controller
-            name="street"
+            name="address"
             control={control}
             defaultValue=""
+            rules={{
+              required: {
+                value: true,
+                message: t('errorMessages.common.required'),
+              },
+            }}
             render={({ onChange, value }) => (
               <Input
-                name="street"
+                name="address"
                 label={t('site.label.street')} // "Street address"
                 placeholder={t('site.label.street')}
                 onChange={onChange}
@@ -132,16 +164,27 @@ const AddSiteModal = ({ showModal, handleClose }) => {
                     : value || ''
                 }
                 className="mt-2"
+                isRequired
               />
             )}
           />
-
+          {errors && errors.address && (
+            <p className="text-dark-red font-bold text-xs uppercase">
+              {errors.address.message}
+            </p>
+          )}
           <fieldset className="flex">
             <div className="w-1/2 mr-1">
               <Controller
                 name="city"
                 control={control}
                 defaultValue=""
+                rules={{
+                  required: {
+                    value: true,
+                    message: t('errorMessages.common.required'),
+                  },
+                }}
                 render={({ onChange, value }) => (
                   <Input
                     name="city"
@@ -154,9 +197,15 @@ const AddSiteModal = ({ showModal, handleClose }) => {
                         : value || ''
                     }
                     className="mt-2"
+                    isRequired
                   />
                 )}
               />
+              {errors && errors.city && (
+                <p className="text-dark-red font-bold text-xs uppercase">
+                  {errors.city.message}
+                </p>
+              )}
             </div>
 
             <div className="w-1/4 mr-1">
@@ -164,27 +213,45 @@ const AddSiteModal = ({ showModal, handleClose }) => {
                 name="state"
                 control={control}
                 defaultValue=""
-                render={({ onChange, value }) => (
-                  <Input
-                    name="state"
-                    label={t('site.label.state')}
-                    placeholder={t('site.label.state')}
-                    onChange={onChange}
-                    value={
-                      currentSchool?.address.state
-                        ? currentSchool?.address.state
-                        : value || ''
-                    }
-                    className="mt-2"
-                  />
-                )}
+                onChange={(value) => value}
+                as={Select}
+                options={STATE_OPTIONS}
+                value={
+                  currentSchool?.address.state
+                    ? currentSchool?.address.state
+                    : ''
+                }
+                label={t('site.label.state')}
+                className="mt-2"
+                isRequired
+                rules={{
+                  required: {
+                    value: true,
+                    message: t('errorMessages.common.required'),
+                  },
+                }}
               />
+              {errors && errors.state && (
+                <p className="text-dark-red font-bold text-xs uppercase">
+                  {errors.state.message}
+                </p>
+              )}
             </div>
             <div className="w-1/4">
               <Controller
                 name="zip"
                 control={control}
                 defaultValue=""
+                rules={{
+                  required: {
+                    value: true,
+                    message: t('errorMessages.common.required'),
+                  },
+                  minLength: {
+                    value: 5,
+                    message: t('errorMessages.zip.invalid'),
+                  },
+                }}
                 render={({ onChange, value }) => (
                   <Input
                     name="zip"
@@ -197,9 +264,15 @@ const AddSiteModal = ({ showModal, handleClose }) => {
                         : value || ''
                     }
                     className="mt-2"
+                    isRequired
                   />
                 )}
               />
+              {errors && errors.zip && (
+                <p className="text-dark-red font-bold text-xs uppercase">
+                  {errors.zip.message}
+                </p>
+              )}
             </div>
           </fieldset>
 
@@ -207,6 +280,12 @@ const AddSiteModal = ({ showModal, handleClose }) => {
             name="contact"
             control={control}
             defaultValue=""
+            rules={{
+              required: {
+                value: true,
+                message: t('errorMessages.common.required'),
+              },
+            }}
             render={({ onChange, value }) => (
               <Input
                 name="contact"
@@ -215,14 +294,26 @@ const AddSiteModal = ({ showModal, handleClose }) => {
                 onChange={onChange}
                 value={value}
                 className="mt-2"
+                isRequired
               />
             )}
           />
+          {errors && errors.contact && (
+            <p className="text-dark-red font-bold text-xs uppercase">
+              {errors.contact.message}
+            </p>
+          )}
 
           <Controller
             name="contactEmail"
             control={control}
             defaultValue=""
+            rules={{
+              required: {
+                value: true,
+                message: t('errorMessages.common.required'),
+              },
+            }}
             render={({ onChange, value }) => (
               <Input
                 name="contactEmail"
@@ -232,14 +323,26 @@ const AddSiteModal = ({ showModal, handleClose }) => {
                 onChange={onChange}
                 value={value}
                 className="mt-2"
+                isRequired
               />
             )}
           />
+          {errors && errors.contactEmail && (
+            <p className="text-dark-red font-bold text-xs uppercase">
+              {errors.contactEmail.message}
+            </p>
+          )}
 
           <Controller
             name="cliaNumber"
             control={control}
             defaultValue=""
+            rules={{
+              required: {
+                value: true,
+                message: t('errorMessages.common.required'),
+              },
+            }}
             render={({ onChange, value }) => (
               <Input
                 name="cliaNumber"
@@ -248,12 +351,17 @@ const AddSiteModal = ({ showModal, handleClose }) => {
                 onChange={onChange}
                 value={value}
                 className="mt-2"
+                isRequired
               />
             )}
           />
-          {errors.email && <span>This field is required</span>}
+          {errors && errors.cliaNumber && (
+            <p className="text-dark-red font-bold text-xs uppercase">
+              {errors.cliaNumber.message}
+            </p>
+          )}
         </form>
-        <div className="w-full max-w-lg">
+        <div className="w-1/2 2xl:w-full">
           <Map center={mapCenter} zoom={mapZoom} />
         </div>
       </div>
