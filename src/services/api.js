@@ -66,13 +66,13 @@ export const getAccountList = async () => {
 };
 
 export const searchSchool = async (name) => {
-  const { data } = await axios.post('/schools', { name });
+  const { data } = await axios.post('/api/schools', { name });
 
   return data;
 };
 
 export const getSchool = async (id) => {
-  const { data } = await axios.get(`/schools/${id}`);
+  const { data } = await axios.get(`/api/schools/${id}`);
 
   return data;
 };
