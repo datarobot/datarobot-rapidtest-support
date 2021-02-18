@@ -26,16 +26,9 @@ const Table = ({
     prepareRow,
     setFilter,
     rows,
-    page, // Instead of using 'rows', we'll use page,
-    // which has only the rows for the active page
-
-    // The rest of these things are super handy, too ;)
-    canPreviousPage,
-    canNextPage,
+    page,
     pageCount,
     gotoPage,
-    nextPage,
-    previousPage,
     state: { pageIndex, pageSize },
   } = useTable(
     {
@@ -124,7 +117,7 @@ const Table = ({
                     <th
                       {...column.getHeaderProps(column.getSortByToggleProps())}
                       className={cls(
-                        'p-2 font-bold text-left uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden lg:table-cell',
+                        'p-2 font-bold text-left uppercase bg-gray-100 border-b border-gray-400 text-gray-600 hidden lg:table-cell',
                         {
                           'sort-asc': isSorted,
                           'sorted-desc': isSortedDesc,
@@ -160,7 +153,7 @@ const Table = ({
                   {row.cells.map((cell) => (
                     <td
                       {...cell.getCellProps()}
-                      className="w-full lg:w-auto p-2 text-gray-800 border border-b block lg:table-cell relative lg:static"
+                      className="w-full lg:w-auto p-2 text-gray-800 border-b border-gray-400 block lg:table-cell relative lg:static"
                     >
                       {cell.render('Cell')}
                     </td>
@@ -173,15 +166,10 @@ const Table = ({
       </div>
       {rows.length > pageSize && (
         <Pagination
-          canNextPage={canNextPage}
-          canPreviousPage={canPreviousPage}
           gotoPage={gotoPage}
-          nextPage={nextPage}
-          pageButtons={pageButtons}
           pageCount={pageCount}
           pageIndex={pageIndex}
           pageSize={pageSize}
-          previousPage={previousPage}
           rows={rows}
         />
       )}
