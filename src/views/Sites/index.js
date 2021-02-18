@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useAtom } from 'jotai';
 
 import { getSiteList } from 'services/api';
 
@@ -10,11 +11,13 @@ import EditSiteModal from 'components/Modals/EditSite';
 import Icon from 'components/Icon';
 import Table from 'components/Table';
 
+import { sitesAtom } from 'store';
+
 const SiteAddress = ({ values }) => {
-  const { street, city, state, zip } = values;
+  const { address, city, state, zip } = values;
   return (
     <span>
-      {street} {city}, {state} {zip}
+      {address} {city}, {state} {zip}
     </span>
   );
 };
@@ -23,10 +26,10 @@ const SiteStatus = ({ values }) => (values ? 'enabled' : 'disabled');
 
 const Sites = () => {
   const { t } = useTranslation();
-  const [sites, setSites] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [siteId, setSiteId] = useState();
+  const [sites, setSites] = useAtom(sitesAtom);
 
   const handleToggleModal = (modal) => {
     if (modal === 'add') {
@@ -83,7 +86,7 @@ const Sites = () => {
       const data = await getSiteList();
       setSites(data);
     })();
-  }, []);
+  }, [setSites]);
 
   return (
     <div>
