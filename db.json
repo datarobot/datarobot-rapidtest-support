@@ -6,8 +6,8 @@
       "lastName": "Hick",
       "email": "jhick0@ovh.net",
       "phone": "697-816-2920",
-      "requestPending": true,
-      "enabled": false,
+      "requestPending": false,
+      "enabled": true,
       "approvedBy": "Jay Hick"
     },
     {
@@ -16,8 +16,8 @@
       "lastName": "Creus",
       "email": "bcreus1@blogspot.com",
       "phone": "838-364-9802",
-      "requestPending": true,
-      "enabled": false,
+      "requestPending": false,
+      "enabled": true,
       "approvedBy": "Benita Creus"
     },
     {
@@ -78,8 +78,8 @@
       "lastName": "Pariss",
       "email": "fpariss7@china.com.cn",
       "phone": "639-354-3655",
-      "requestPending": true,
-      "enabled": false,
+      "requestPending": false,
+      "enabled": true,
       "approvedBy": "Freida Pariss"
     },
     {
@@ -88,8 +88,8 @@
       "lastName": "Pacquet",
       "email": "dpacquet8@webeden.co.uk",
       "phone": "739-653-9110",
-      "requestPending": true,
-      "enabled": false,
+      "requestPending": false,
+      "enabled": true,
       "approvedBy": "Derrick Pacquet"
     },
     {
@@ -98,18 +98,18 @@
       "lastName": "Stealfox",
       "email": "ostealfox9@bigcartel.com",
       "phone": "997-612-7696",
-      "requestPending": true,
-      "enabled": false,
+      "requestPending": false,
+      "enabled": true,
       "approvedBy": "Odo Stealfox"
     },
-        {
+    {
       "id": 11,
       "firstName": "Bill",
       "lastName": "Murray",
       "email": "bmurray@email.com",
       "phone": "555-555-5555",
-      "requestPending": true,
-      "enabled": false,
+      "requestPending": false,
+      "enabled": true,
       "approvedBy": "No one"
     }
   ],

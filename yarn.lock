@@ -4144,7 +4144,7 @@ data-urls@^2.0.0:
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
 
-date-fns@^2.0.1:
+date-fns@2.17.0, date-fns@^2.0.1:
   version "2.17.0"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/date-fns/-/date-fns-2.17.0.tgz#afa55daea539239db0a64e236ce716ef3d681ba1"
   integrity sha1-r6VdrqU5I52wpk4jbOcW7z1oG6E=
