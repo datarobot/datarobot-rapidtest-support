@@ -29,6 +29,14 @@
   "editSite": {
     "title": "Editing "
   },
+  "errorMessages": {
+    "common": {
+      "required": "This field is required."
+    },
+    "zip": {
+      "invalid": "Enter a valid Zip Code."
+    }
+  },
   "home": {
     "subtext": "Here you will find some information about COVID",
     "welcome": "Welcome!"

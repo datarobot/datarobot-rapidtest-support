@@ -14,6 +14,7 @@ const Autocomplete = ({
   onClearClick = () => {},
   onKeyDown = () => {},
   onItemClick = () => {},
+  isRequired,
 }) => (
   <div className="relative">
     <Input
@@ -23,6 +24,7 @@ const Autocomplete = ({
       onChange={onChange}
       value={inputValue || ''}
       onKeyDown={onKeyDown}
+      isRequired={isRequired}
     />
 
     <Icon iconName="times" className="clearIcon" onClick={onClearClick} />

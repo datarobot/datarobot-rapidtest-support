@@ -4,7 +4,7 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { format } from 'date-fns';
 
-import { ENABLE_I18N_LOGGING } from 'constants.js';
+import { ENABLE_I18N_LOGGING } from 'rt-constants';
 import en from 'locales/en/translation.json';
 import es from 'locales/es/translation.json';
 
