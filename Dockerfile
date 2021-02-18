@@ -12,14 +12,13 @@ RUN curl -fSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$
   && rm yarn-v$YARN_VERSION.tar.gz
 
 WORKDIR /html/
+ENV NODE_ENV=production
 COPY package.json yarn.lock ./
 COPY .yarnrc .yarnrc
 RUN yarn install
 
 COPY . .
 RUN NODE_OPTIONS='--max_old_space_size=8192' yarn build
-RUN mv /html/build/static/* /html/build/
-RUN rm -rf /html/build/static
 
 #####################################################################
 # This is the Production image we run, it combines the apionly stuff
@@ -39,9 +38,15 @@ ENV STATIC_FILES_DIR=/html/static/ \
   API_SERVER_PORT=8081 \
   ENV=production
 
-USER 1001
-EXPOSE 8081
-CMD ["python", "-m", "app"]
+FROM nginx:stable-alpine
+COPY --from=htmlbuild /html/build /usr/share/nginx/html
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
+
+# USER 1001
+# EXPOSE 8081
+# CMD ["python", "-m", "app"]
 
 # This label is used to create correct applications bundle and manifest file with <sha>.
 ARG GIT_COMMIT=unspecified

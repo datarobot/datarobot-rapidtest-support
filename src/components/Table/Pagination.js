@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import { Trans } from 'react-i18next';
+import ReactPaginate from 'react-paginate';
 
 import Icon from 'components/Icon';
 
@@ -22,60 +23,35 @@ const CalculateCurrentView = ({ pageIndex, pageSize, rows }) => {
   );
 };
 
-const Pagination = ({
-  canNextPage,
-  canPreviousPage,
-  gotoPage,
-  nextPage,
-  pageButtons,
-  pageCount,
-  pageIndex,
-  pageSize,
-  previousPage,
-  rows,
-}) => (
-  <div className="pagination">
-    <div className="w-full flex justify-between">
+const Pagination = ({ gotoPage, pageCount, pageIndex, pageSize, rows }) => {
+  const handlePageClick = (d) => {
+    gotoPage(d.selected);
+  };
+
+  return (
+    <div className="paginationWrapper">
       <span className="text-gray-500">
         <CalculateCurrentView
           pageIndex={pageIndex}
           pageSize={pageSize}
           rows={rows}
         />
-      </span>{' '}
-      <span className="pagingButtons">
-        <button
-          className="pagingButton"
-          onClick={() => gotoPage(0)}
-          disabled={!canPreviousPage}
-        >
-          <Icon iconName="chevron-double-left" size="sm" />
-        </button>
-        <button
-          className="pagingButton"
-          onClick={() => previousPage()}
-          disabled={!canPreviousPage}
-        >
-          <Icon iconName="chevron-left" size="sm" />
-        </button>
-        <span>{pageButtons}</span>
-        <button
-          className="pagingButton"
-          onClick={() => nextPage()}
-          disabled={!canNextPage}
-        >
-          <Icon iconName="chevron-right" size="sm" />
-        </button>
-        <button
-          className="pagingButton"
-          onClick={() => gotoPage(pageCount - 1)}
-          disabled={!canNextPage}
-        >
-          <Icon iconName="chevron-double-right" size="sm" />
-        </button>
       </span>
+      <ReactPaginate
+        previousLabel={<Icon iconName="chevron-left" size="sm" />}
+        nextLabel={<Icon iconName="chevron-right" size="sm" />}
+        breakLabel={'...'}
+        breakClassName={'break-me'}
+        pageCount={pageCount}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={3}
+        onPageChange={handlePageClick}
+        containerClassName={'pagination'}
+        subContainerClassName={'pages pagination'}
+        activeClassName={'active'}
+      />
     </div>
-  </div>
-);
+  );
+};
 
 export default Pagination;
