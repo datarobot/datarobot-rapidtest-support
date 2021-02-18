@@ -15,3 +15,9 @@
 .input-label {
   @apply inline-block text-dark-blue uppercase text-sm mt-2;
 }
+
+.input-label.required::after {
+  content: '*';
+
+  @apply font-bold text-dark-red ml-1;
+}
