@@ -3,12 +3,28 @@
   overflow-y: scroll;
 }
 
-.pagination {
-  @apply py-4 pl-3 fixed bg-white;
+.paginationWrapper {
+  @apply flex justify-between py-4 pl-3 fixed bg-white;
 
   bottom: 50px;
   right: 5vw;
   left: 5vw;
+}
+
+.pagination {
+  @apply flex font-semibold;
+}
+
+.pagination .active {
+  @apply text-dark-blue font-black;
+}
+
+.pagination .disabled {
+  @apply text-gray-400 cursor-not-allowed;
+}
+
+.pagination a {
+   @apply px-4;
 }
 
 .pagingButtons {
