@@ -11,11 +11,15 @@ const Input = ({
   placeholder,
   className,
   rounded,
+  isRequired,
   ...rest
 }) => (
   <>
     {label && (
-      <label className="input-label" htmlFor={name}>
+      <label
+        className={cls('input-label', { required: isRequired })}
+        htmlFor={name}
+      >
         {label}
       </label>
     )}
