@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
+import { useAtom } from 'jotai';
 
 import Autocomplete from 'components/Autocomplete';
 import Input from 'components/Input';
@@ -11,6 +12,7 @@ import Modal from 'components/Modal';
 
 import { STATE_OPTIONS } from 'rt-constants';
 
+import { sitesAtom } from 'store';
 import { useDebounce } from 'hooks';
 
 // eslint-disable-next-line no-unused-vars
@@ -24,9 +26,13 @@ const AddSiteModal = ({ showModal, handleClose }) => {
   const [currentSchool, setCurrentSchool] = useState();
   const [mapCenter, setMapCenter] = useState();
   const [mapZoom, setMapZoom] = useState();
+  const [sites, setSites] = useAtom(sitesAtom);
 
   const onSubmit = (data) => {
-    console.log(data);
+    const { address, city, state, zip } = data;
+
+    setSites([...sites, { ...data, address: { address, city, state, zip } }]);
+    handleClose();
     // addSite(data)
     //   .then(() => {
     //     // Do stuff
@@ -62,9 +68,14 @@ const AddSiteModal = ({ showModal, handleClose }) => {
     const school = await getSchool(id);
     setSchools([]);
     setCurrentSchool(school);
+
+    setValue('name', school.name, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+
     for (const key in school.address) {
       if ({}.hasOwnProperty.call(school.address, key)) {
-        console.log(school.address[key], key);
         setValue(key, school.address[key], {
           shouldValidate: true,
           shouldDirty: true,
