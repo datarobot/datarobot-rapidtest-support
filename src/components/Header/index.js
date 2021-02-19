@@ -1,7 +1,5 @@
 // @ts-nocheck
-import { useEffect, useState } from 'react';
-import cls from 'classnames';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 
@@ -15,27 +13,11 @@ import './Header.css';
 const Header = () => {
   const { t } = useTranslation();
   const [loggedIn, setLoggedIn] = useAtom(loginAtom);
-  const { pathname } = useLocation();
-  const [isLandingPage, setIsLandingPage] = useState(false);
-
-  useEffect(() => {
-    setIsLandingPage(pathname === ROUTES.LANDING_PAGE);
-
-    if (pathname === ROUTES.LANDING_PAGE) {
-      document.body.classList.add('isLandingPage');
-    } else {
-      document.body.classList.remove('isLandingPage');
-    }
-  }, [pathname]);
 
   return (
-    <div
-      className={cls('header', {
-        isLandingPage,
-      })}
-    >
-      <Link to="/">
-        <Logo className="logo" color={isLandingPage ? '#283542' : '#fff'} />
+    <div className="header">
+      <Link to={ROUTES.LANDING_PAGE}>
+        <Logo className="logo" color="#00528D" />
       </Link>
       <section className="links absolute">
         {loggedIn ? (
@@ -55,13 +37,7 @@ const Header = () => {
             {t('buttons.signin')}
           </button>
         )}
-        <button
-          className={cls({
-            'btn-outline-primary': isLandingPage,
-            'btn-white': !isLandingPage,
-          })}
-          type="button"
-        >
+        <button className="btn-primary" type="button">
           {t('buttons.signup')}
         </button>
       </section>

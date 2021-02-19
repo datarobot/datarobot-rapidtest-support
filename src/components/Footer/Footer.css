@@ -1,7 +1,8 @@
 .footer {
-  @apply bg-blue text-white flex justify-between items-center fixed bottom-0 left-0 right-0;
+  @apply bg-blue text-white flex justify-between items-center w-screen;
 
   height: 50px;
+  margin-left: -8.5vw;
   padding-left: 8.5vw;
   padding-right: 8.5vw;
 }

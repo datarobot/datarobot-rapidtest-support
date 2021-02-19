@@ -1,5 +1,5 @@
 .header {
-  @apply fixed top-0 right-0 left-0 border-b border-dark-blue shadow bg-blue flex justify-center items-center;
+  @apply fixed top-0 right-0 left-0 flex items-center bg-white z-10;
 
   height: 80px;
   padding-left: 8.5vw;
@@ -11,7 +11,7 @@
 }
 
 .login-btn {
-  @apply bg-transparent font-bold rounded px-6 py-2 text-sm outline-none focus:outline-none text-white
+  @apply bg-transparent font-bold rounded px-6 py-2 text-sm outline-none focus:outline-none text-blue;
 }
 
 .isLandingPage .login-btn {

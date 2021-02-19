@@ -25,7 +25,7 @@ body.isLandingPage {
   }
 
   .btn-primary:hover {
-    @apply shadow-lg bg-dark-purple;
+    @apply shadow-lg bg-dark-blue;
   }
 
   .btn-clear {
@@ -41,11 +41,11 @@ body.isLandingPage {
   }
 
   .btn-clear {
-    @apply bg-transparent font-bold rounded px-6 py-2 text-sm outline-none focus:outline-none;
+    @apply border border-transparent bg-transparent text-blue font-bold rounded px-6 py-2 text-sm outline-none focus:outline-none;
   }
 
   .btn-clear:hover:not(:disabled) {
-    @apply bg-gray-300;
+    @apply border border-blue;
   }
 
   .btn-clear:disabled {

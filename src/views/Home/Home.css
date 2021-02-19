@@ -13,3 +13,9 @@
 
   transform: scale(1.05);
 }
+
+.two-column {
+  column-count: 2;
+  column-gap: 4rem;
+  column-fill: auto;
+}
