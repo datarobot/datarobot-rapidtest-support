@@ -6133,6 +6133,11 @@ immer@7.0.9:
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/immer/-/immer-7.0.9.tgz#28e7552c21d39dd76feccd2b800b7bc86ee4a62e"
   integrity sha1-KOdVLCHTnddv7M0rgAt7yG7kpi4=
 
+immer@^8.0.1:
+  version "8.0.1"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/immer/-/immer-8.0.1.tgz#9c73db683e2b3975c424fb0572af5889877ae656"
+  integrity sha1-nHPbaD4rOXXEJPsFcq9YiYd65lY=
+
 import-cwd@^2.0.0:
   version "2.1.0"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/import-cwd/-/import-cwd-2.1.0.tgz#aa6cf36e722761285cb371ec6519f53e2435b0a9"
