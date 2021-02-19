@@ -179,7 +179,7 @@ const Accounts = () => {
       },
       {
         Header: t('common.table.approvedBy'),
-        accessor: 'approvedBy',
+        accessor: 'ApprovedBy',
       },
       {
         Header: () => <ApproveAllButton />,

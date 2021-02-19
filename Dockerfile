@@ -27,26 +27,35 @@ RUN NODE_OPTIONS='--max_old_space_size=8192' yarn build
 #####################################################################
 FROM docker.hq.datarobot.com/datarobot/covid-rhel8-base:2021-01-04 as prod
 
+ENV IS_PROD=true
+
 USER 0
 
+RUN mkdir /logs ; touch /logs/error.log
+
 RUN yum -y update && \
-  yum -y install xmlsec1 xmlsec1-openssl && \
+  yum -y install xmlsec1 xmlsec1-openssl nginx golang && \
   yum -y clean all
 
-COPY --from=htmlbuild /html/build/ /html/static/
+WORKDIR /mcfly
+COPY ./mcfly/go.mod ./mcfly/go.sum ./mcfly/accounts.csv ./mcfly/schools.csv ./mcfly/sites.csv ./
+RUN go mod download
+COPY ./mcfly .
+RUN go build -o main .
+
+WORKDIR /
+
+COPY --from=htmlbuild /html/build /usr/share/nginx/html
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./Makefile ./Makefile
+
+EXPOSE 80
+
+CMD ["make", "start-app"]
+
 ENV STATIC_FILES_DIR=/html/static/ \
   API_SERVER_PORT=8081 \
   ENV=production
-
-FROM nginx:stable-alpine
-COPY --from=htmlbuild /html/build /usr/share/nginx/html
-COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
-
-# USER 1001
-# EXPOSE 8081
-# CMD ["python", "-m", "app"]
 
 # This label is used to create correct applications bundle and manifest file with <sha>.
 ARG GIT_COMMIT=unspecified

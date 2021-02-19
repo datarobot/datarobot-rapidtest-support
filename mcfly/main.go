@@ -144,9 +144,21 @@ func readSample(rs io.ReadSeeker) ([][]string, error) {
 }
 
 func setup() {
-	schoolsCsv, err := os.Open("schools.csv")
-	sitesCsv, err := os.Open("sites.csv")
-	accountsCsv, err := os.Open("accounts.csv")
+	isProd := os.Getenv("IS_PROD")
+	var schoolsCsv *os.File
+	var sitesCsv *os.File
+	var accountsCsv *os.File
+	var err error
+
+	if isProd == "true" {
+		schoolsCsv, err = os.Open("/mcfly/schools.csv")
+		sitesCsv, err = os.Open("/mcfly/sites.csv")
+		accountsCsv, err = os.Open("/mcfly/accounts.csv")
+	} else {
+		schoolsCsv, err = os.Open("schools.csv")
+		sitesCsv, err = os.Open("sites.csv")
+		accountsCsv, err = os.Open("accounts.csv")
+	}
 
 	if err != nil {
 		panic(err)
@@ -164,18 +176,18 @@ func setup() {
 	}
 
 	for _, account := range accounts {
-		pending, _ := strconv.ParseBool(account[4])
-		enabled, _ := strconv.ParseBool(account[5])
+		pending, _ := strconv.ParseBool(account[5])
+		enabled, _ := strconv.ParseBool(account[6])
 
 		allAccounts = append(allAccounts, Account{
 			ID:             account[0],
 			FirstName:      account[1],
 			LastName:       account[1],
-			Email:          account[2],
-			Phone:          account[3],
+			Email:          account[3],
+			Phone:          account[4],
 			RequestPending: pending,
 			Enabled:        enabled,
-			ApprovedBy:     account[6],
+			ApprovedBy:     account[7],
 		})
 	}
 
@@ -216,7 +228,6 @@ func setup() {
 }
 
 func main() {
-
 	setup()
 
 	router := mux.NewRouter().StrictSlash(true)
@@ -226,5 +237,7 @@ func main() {
 	router.HandleFunc("/api/sites", getSiteList).Methods("GET")
 	router.HandleFunc("/api/accounts", getAccountList).Methods("GET")
 	log.Fatal(http.ListenAndServe(":1337", router))
+
+	fmt.Print("McFly is listening on port 1337")
 
 }
