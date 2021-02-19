@@ -3,6 +3,7 @@ export const ENABLE_I18N_LOGGING = process.env.REACT_APP_ENABLE_I18N_LOGGING;
 
 export const ROUTES = {
   LANDING_PAGE: '/',
+  JOIN: '/join',
   PROGRAM_ADMIN: '/program-admin',
   OTHER: '/other',
   SITES: '/sites',
