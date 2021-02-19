@@ -9,6 +9,25 @@ export const ROUTES = {
   ACCOUNTS: '/accounts',
 };
 
+export const LANDING_PAGE_LINKS = {
+  TESTING_OTHERS: [
+    { text: 'Request a user account', url: '' },
+    { text: 'Request a site', url: '' },
+    { text: 'Report an issue', url: '' },
+    { text: 'Training materials', url: '' },
+    { text: 'FAQ', url: '' },
+    { text: 'Contact support', url: '' },
+  ],
+  GETTING_TESTED: [
+    { text: 'Link 1', url: '' },
+    { text: 'Link 2', url: '' },
+    { text: 'Link 3', url: '' },
+    { text: 'Link 4', url: '' },
+    { text: 'Link 5', url: '' },
+    { text: 'Link 6', url: '' },
+  ],
+};
+
 export const STATE_OPTIONS = [
   { value: 'AL', label: 'AL' },
   { value: 'AK', label: 'AK' },
