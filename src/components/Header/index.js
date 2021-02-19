@@ -55,7 +55,13 @@ const Header = () => {
             {t('buttons.signin')}
           </button>
         )}
-        <button className="btn-outline-primary" type="button">
+        <button
+          className={cls({
+            'btn-outline-primary': isLandingPage,
+            'btn-white': !isLandingPage,
+          })}
+          type="button"
+        >
           {t('buttons.signup')}
         </button>
       </section>

@@ -6,12 +6,16 @@
   padding-right: 8.5vw
 }
 
-.header.isLandingPage {
-  @apply bg-transparent justify-between border-b-0 shadow-none;
+.isLandingPage .header {
+  @apply bg-transparent border-b-0 shadow-none;
 }
 
 .login-btn {
-  @apply bg-transparent font-bold rounded px-6 py-2 text-sm outline-none focus:outline-none text-purple
+  @apply bg-transparent font-bold rounded px-6 py-2 text-sm outline-none focus:outline-none text-white
+}
+
+.isLandingPage .login-btn {
+  @apply text-purple
 }
 
 .logo {
