@@ -14,9 +14,11 @@ const App = () => (
     <Router>
       <div className="App">
         <Header />
-        <Suspense fallback={<div>Loading</div>}>
-          <Routes />
-        </Suspense>
+        <main className="content">
+          <Suspense fallback={<div>Loading</div>}>
+            <Routes />
+          </Suspense>
+        </main>
         <Footer />
       </div>
     </Router>

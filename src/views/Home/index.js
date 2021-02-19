@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import HomePageCard from 'components/HomePageCard';
 
-import { LANDING_PAGE_LINKS } from 'rt-constants';
+import { LANDING_PAGE_LINKS, ROUTES } from 'rt-constants';
 
 import gettingTested from '../../assets/images/getting-tested.svg';
 import testingOthers from '../../assets/images/testing-others.svg';
@@ -29,10 +29,14 @@ const Home = () => {
           </p>
 
           <div className="btn-row my-6">
-            <Link to="/other" className="btn-primary mr-6 py-3" role="button">
+            <Link
+              to={ROUTES.JOIN}
+              className="btn-primary mr-6 py-3"
+              role="button"
+            >
               Join an existing program
             </Link>
-            <Link to="/program-admin" className="btn-clear py-3" role="button">
+            <Link to={ROUTES.JOIN} className="btn-clear py-3" role="button">
               Learn how to Start a program in your state
             </Link>
           </div>
