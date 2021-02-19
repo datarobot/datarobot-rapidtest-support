@@ -1,27 +1,46 @@
 // @ts-nocheck
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import cls from 'classnames';
+import { Link, useLocation } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 
+import Logo from 'components/Logo';
+
+import { ROUTES } from 'rt-constants';
 import { loginAtom } from 'store';
 
-import logo from '../../assets/images/logo.svg';
 import './Header.css';
 
 const Header = () => {
   const { t } = useTranslation();
   const [loggedIn, setLoggedIn] = useAtom(loginAtom);
+  const { pathname } = useLocation();
+  const [isLandingPage, setIsLandingPage] = useState(false);
+
+  useEffect(() => {
+    setIsLandingPage(pathname === ROUTES.LANDING_PAGE);
+
+    if (pathname === ROUTES.LANDING_PAGE) {
+      document.body.classList.add('isLandingPage');
+    } else {
+      document.body.classList.remove('isLandingPage');
+    }
+  }, [pathname]);
 
   return (
-    <div className="header bg-blue flex justify-center items-center">
+    <div
+      className={cls('header', {
+        isLandingPage,
+      })}
+    >
       <Link to="/">
-        <img src={logo} className="logo" alt="logo" />
+        <Logo className="logo" color={isLandingPage ? '#283542' : '#fff'} />
       </Link>
       <section className="links absolute">
         {loggedIn ? (
           <button
-            className="btn-clear text-white"
+            className="login-btn"
             type="button"
             onClick={() => setLoggedIn(false)}
           >
@@ -29,14 +48,14 @@ const Header = () => {
           </button>
         ) : (
           <button
-            className="btn-clear text-white"
+            className="login-btn"
             type="button"
             onClick={() => setLoggedIn(true)}
           >
             {t('buttons.signin')}
           </button>
         )}
-        <button className="btn-white" type="button">
+        <button className="btn-outline-primary" type="button">
           {t('buttons.signup')}
         </button>
       </section>
