@@ -1,7 +1,17 @@
 .header {
-  @apply fixed top-0 right-0 left-0 border-b border-dark-blue shadow;
+  @apply fixed top-0 right-0 left-0 border-b border-dark-blue shadow bg-blue flex justify-center items-center;
 
   height: 80px;
+  padding-left: 8.5vw;
+  padding-right: 8.5vw
+}
+
+.header.isLandingPage {
+  @apply bg-transparent justify-between border-b-0 shadow-none;
+}
+
+.login-btn {
+  @apply bg-transparent font-bold rounded px-6 py-2 text-sm outline-none focus:outline-none text-purple
 }
 
 .logo {
@@ -9,5 +19,5 @@
 }
 
 .links {
-  right: 5vw;
+  right: 8.5vw;
 }

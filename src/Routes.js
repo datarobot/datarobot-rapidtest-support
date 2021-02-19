@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { ROUTES } from 'rt-constants';
 
 const Home = lazy(() => import('views/Home'));
 const ProgramAdmin = lazy(() => import('views/ProgramAdmin'));
@@ -9,11 +10,11 @@ const Accounts = lazy(() => import('views/Accounts'));
 
 const Routes = () => (
   <Switch>
-    <Route path="/program-admin" component={ProgramAdmin} />
-    <Route path="/other" component={Other} />
-    <Route path="/sites" component={Sites} />
-    <Route path="/accounts" component={Accounts} />
-    <Route path="/" component={Home} />
+    <Route path={ROUTES.PROGRAM_ADMIN} component={ProgramAdmin} />
+    <Route path={ROUTES.OTHER} component={Other} />
+    <Route path={ROUTES.SITES} component={Sites} />
+    <Route path={ROUTES.ACCOUNTS} component={Accounts} />
+    <Route path={ROUTES.LANDING_PAGE} component={Home} />
   </Switch>
 );
 
