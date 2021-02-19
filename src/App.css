@@ -1,7 +1,7 @@
 .App {
   min-height: calc(100vh - 130px);
   margin-top: 80px;
-  padding-left: 5vw;
-  padding-right: 5vw;
+  padding-left: 8.5vw;
+  padding-right: 8.5vw;
   overflow-y: scroll;
 }

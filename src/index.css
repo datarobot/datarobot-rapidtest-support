@@ -11,21 +11,37 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body.isLandingPage {
+  background: linear-gradient(180deg, #C3DAF4 0%, #ECDFE3 100%);
+}
+
 @layer components {
   [class*="btn-"] {
     transition: all 250ms ease;
   }
 
   .btn-primary {
-    @apply bg-blue text-white border-dark-blue rounded px-4 py-2 font-bold uppercase shadow outline-none focus:outline-none text-sm;
+    @apply bg-purple text-white rounded px-4 py-2 font-bold shadow outline-none focus:outline-none text-sm;
   }
 
   .btn-primary:hover {
-    @apply shadow-lg bg-dark-blue;
+    @apply shadow-lg bg-dark-purple;
   }
 
   .btn-clear {
-    @apply bg-transparent font-bold uppercase rounded px-6 py-2 text-sm outline-none focus:outline-none;
+    @apply bg-transparent font-bold rounded px-6 py-2 text-sm outline-none focus:outline-none;
+  }
+
+  .btn-outline-primary {
+    @apply border border-purple text-purple rounded px-4 py-2 font-bold outline-none focus:outline-none text-sm;
+  }
+
+  .btn-outline-primary:hover {
+    @apply bg-purple text-white;
+  }
+
+  .btn-clear {
+    @apply bg-transparent font-bold rounded px-6 py-2 text-sm outline-none focus:outline-none;
   }
 
   .btn-clear:hover:not(:disabled) {
@@ -37,7 +53,7 @@ body {
   }
 
   .btn-white {
-    @apply bg-white text-dark-blue rounded px-4 py-2 font-bold uppercase shadow outline-none focus:outline-none text-sm;
+    @apply bg-white text-dark-blue rounded px-4 py-2 font-bold shadow outline-none focus:outline-none text-sm;
   }
 
   .btn-white:hover {
@@ -46,6 +62,12 @@ body {
 
   .full-height {
     min-height: calc(100vh - 130px);
+  }
+
+  .headline {
+    font-size: 2.5rem;
+    line-height: 2.75rem;
+    font-weight: 700;
   }
 }
 

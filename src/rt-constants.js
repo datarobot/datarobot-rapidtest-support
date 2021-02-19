@@ -1,6 +1,14 @@
 // eslint-disable-next-line import/prefer-default-export
 export const ENABLE_I18N_LOGGING = process.env.REACT_APP_ENABLE_I18N_LOGGING;
 
+export const ROUTES = {
+  LANDING_PAGE: '/',
+  PROGRAM_ADMIN: '/program-admin',
+  OTHER: '/other',
+  SITES: '/sites',
+  ACCOUNTS: '/accounts',
+};
+
 export const STATE_OPTIONS = [
   { value: 'AL', label: 'AL' },
   { value: 'AK', label: 'AK' },
