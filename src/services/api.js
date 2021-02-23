@@ -16,15 +16,17 @@ const defaultOptions = {
 // Set up axios with default options and interceptors
 const http = axios.create(defaultOptions);
 
-export const requestAccess = async ({ firstName, lastName, email, phone }) => {
-  const { data } = await http.post(`${serverUrl}/proctors`, {
-    firstName,
-    lastName,
-    email,
-    phone,
-    requestPending: true,
-    enabled: false,
-    dateAdded: new Date(),
+export const requestAccess = async ({
+  first_name,
+  last_name,
+  email_address,
+  phone_office,
+}) => {
+  const { data } = await http.post('/proctor', {
+    first_name,
+    last_name,
+    email_address,
+    phone_office,
   });
 
   return data;
