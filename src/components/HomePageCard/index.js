@@ -17,6 +17,8 @@ const HomePageCard = ({ text, subText, icon, links = [] }) => (
           <li key={link.text}>
             <a
               href={link.url}
+              target="_blank"
+              rel="noreferrer noopener"
               className="text-blue font-bold text-sm py-1 inline-block"
             >
               <Icon className="mr-1" iconName="long-arrow-right" /> {link.text}
