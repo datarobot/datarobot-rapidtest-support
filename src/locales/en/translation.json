@@ -12,8 +12,7 @@
     "signin": "Sign In",
     "signout": "Sign Out",
     "signup": "Sign Up",
-    "uploadAccount": "Upload a list of accounts",
-    "uploadSite": "Upload a list of sites"
+    "uploadList": "Upload a list"
   },
   "common": {
     "table": {
@@ -23,7 +22,8 @@
       "email": "Email",
       "name": "Name",
       "phone": "Phone",
-      "status": "Status"
+      "status": "Status",
+      "addedOn": "Added On"
     }
   },
   "editSite": {

@@ -7,8 +7,8 @@
   @apply flex justify-between py-4 pl-3 fixed bg-white;
 
   bottom: 50px;
-  right: 5vw;
-  left: 5vw;
+  right: 8.5vw;
+  left: 8.5vw;
 }
 
 .pagination {
@@ -19,8 +19,11 @@
   @apply text-dark-blue font-black;
 }
 
-.pagination .disabled {
-  @apply text-gray-400 cursor-not-allowed;
+.pagination .disabled a {
+  @apply text-gray-400;
+
+  cursor: not-allowed !important;
+  outline: none;
 }
 
 .pagination a {

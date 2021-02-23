@@ -1,7 +1,7 @@
 .input {
   @apply w-full border px-4 py-2 rounded;
   
-  border-color: #DDE5E6;
+  border-color: #D1D8Dc;
 }
 
 .input:focus {
@@ -13,7 +13,7 @@
 }
 
 .input-label {
-  @apply inline-block text-dark-blue uppercase text-sm mt-2;
+  @apply inline-block text-blue text-sm mt-2;
 }
 
 .input-label.required::after {

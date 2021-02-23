@@ -27,7 +27,9 @@ const Autocomplete = ({
       isRequired={isRequired}
     />
 
-    <Icon iconName="times" className="clearIcon" onClick={onClearClick} />
+    <button type="button" className="btn-clear clearIcon">
+      <Icon iconName="times" onClick={onClearClick} />
+    </button>
 
     {listValues?.length > 0 && (
       <ul className="absolute bg-white w-full p-4 shadow">
