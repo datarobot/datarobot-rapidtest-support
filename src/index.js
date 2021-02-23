@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './i18n';
 
+import 'assets/styles/fonts.css';
 import './index.css';
 import App from './App';
 // import reportWebVitals from './reportWebVitals';

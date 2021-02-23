@@ -1,28 +1,27 @@
 // @ts-nocheck
-/* eslint-disable no-unused-vars */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
 
 import { getSiteList } from 'services/api';
-
+import { ROUTES } from 'rt-constants';
 import AddSiteModal from 'components/Modals/AddSite';
 import EditSiteModal from 'components/Modals/EditSite';
+import ToggleButton from 'components/ToggleButton';
 import Icon from 'components/Icon';
 import Table from 'components/Table';
 
 import { sitesAtom } from 'store';
 
-const SiteAddress = ({ values }) => {
-  const { address, city, state, zip } = values;
-  return (
-    <span>
-      {address} {city}, {state} {zip}
-    </span>
-  );
-};
-
-const SiteStatus = ({ values }) => (values ? 'enabled' : 'disabled');
+const SiteStatus = ({ values }) => (
+  <ToggleButton
+    selected={values}
+    toggleSelected={() => {
+      // eslint-disable-next-line no-param-reassign
+      values = !values;
+    }}
+  />
+);
 
 const Sites = () => {
   const { t } = useTranslation();
@@ -48,33 +47,34 @@ const Sites = () => {
   const columns = useMemo(
     () => [
       {
-        Header: t('common.table.name'),
-        accessor: 'name',
+        Header: t('site.label.name'),
+        accessor: 'site_name',
+        Cell: ({ row }) => (
+          <>
+            <Icon
+              iconName="pencil-alt"
+              color="#5282cc"
+              className="mr-2"
+              onClick={() => handleEditRow(parseInt(row.id, 10) + 1)}
+            />
+            {row.values.site_name}
+          </>
+        ),
       },
       {
         Header: t('common.table.address'),
-        accessor: 'address',
-        Cell: ({ cell: { value } }) => <SiteAddress values={value} />,
-      },
-      {
-        Header: t('common.table.status'),
-        accessor: 'enabled',
-        Cell: ({ cell: { value } }) => <SiteStatus values={value} />,
+        id: 'address',
+        accessor: (val) => `${val.street}, ${val.city} ${val.state} ${val.zip}`,
       },
       {
         Header: t('common.table.contact'),
-        accessor: 'contact',
+        accessor: 'contact_name',
+        Cell: ({ row }) => <>{row.values.contact_name || '-'}</>,
       },
       {
-        Header: () => null,
-        id: 'expander',
-        Cell: ({ row }) => (
-          <Icon
-            iconName="pencil-alt"
-            color="#5282cc"
-            onClick={() => handleEditRow(parseInt(row.id, 10) + 1)}
-          />
-        ),
+        Header: t('common.table.status'),
+        accessor: 'archive',
+        Cell: ({ cell: { value } }) => <SiteStatus values={value} />,
       },
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -91,11 +91,12 @@ const Sites = () => {
   return (
     <div>
       <Table
+        tableName="Manage Sites"
         columns={columns}
         data={sites}
         addButtonText={t('buttons.addSite')}
-        uploadButtonText={t('buttons.uploadSite')}
-        onAddClick={() => handleToggleModal('add')}
+        uploadButtonText={`+ ${t('buttons.uploadList')}`}
+        addRoute={ROUTES.ADD_SITE}
       />
       <AddSiteModal
         showModal={showAddModal}

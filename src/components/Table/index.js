@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 // @ts-nocheck
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import cls from 'classnames';
 import { useTable, useFilters, useSortBy, usePagination } from 'react-table';
 
@@ -11,12 +12,13 @@ import Pagination from 'components/Table/Pagination';
 import './Table.css';
 
 const Table = ({
-  columns,
-  data,
+  columns = [],
+  data = [],
   addButtonText,
   uploadButtonText,
-  onAddClick,
   onUploadClick,
+  tableName,
+  addRoute,
 }) => {
   const [filterInput, setFilterInput] = useState('');
   const {
@@ -81,7 +83,10 @@ const Table = ({
   return (
     <>
       <div className="grid grid-cols-2 my-6">
-        <div className="flex flex-0 justify-center">
+        <div className="flex flex-0 flex-col justify-center">
+          {tableName && (
+            <h1 className="headline text-blue mb-4">{tableName}</h1>
+          )}
           <Input
             value={filterInput || ''}
             onChange={handleFilterChange}
@@ -90,19 +95,13 @@ const Table = ({
             rounded
           />
         </div>
-        <div className="table-buttons flex flex-col items-end">
-          <button
-            className="btn-clear text-dark-blue uppercase"
-            onClick={onAddClick}
-          >
-            {addButtonText}
-          </button>
-          <button
-            className="btn-clear text-dark-blue uppercase"
-            onClick={onUploadClick}
-          >
+        <div className="table-buttons flex justify-end items-center">
+          <button className="btn-clear text-blue" onClick={onUploadClick}>
             {uploadButtonText}
           </button>
+          <Link to={addRoute} className="btn-primary">
+            {addButtonText}
+          </Link>
         </div>
       </div>
       <div className="tableWrapper">
@@ -117,7 +116,7 @@ const Table = ({
                     <th
                       {...column.getHeaderProps(column.getSortByToggleProps())}
                       className={cls(
-                        'p-2 font-bold text-left uppercase bg-gray-100 border-b border-gray-400 text-gray-600 hidden lg:table-cell',
+                        'p-2 font-bold text-left text-sm uppercase border-b border-gray-400 text-gray-500 hidden lg:table-cell',
                         {
                           'sort-asc': isSorted,
                           'sorted-desc': isSortedDesc,

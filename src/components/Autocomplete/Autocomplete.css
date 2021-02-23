@@ -2,6 +2,10 @@
   @apply text-blue;
 
   position: absolute;
-  top: 2.75rem;
-  right: 1rem;
+  top: 2.15rem;
+  right: 0;
+}
+
+.clearIcon:hover {
+  border-color: transparent !important;
 }
