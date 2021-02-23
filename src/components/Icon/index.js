@@ -12,6 +12,7 @@ import styles from './icon.module.css';
 const typeRegular = 'far';
 const typeSolid = 'fas';
 const typeBrand = 'fab';
+const typeLight = 'fal';
 
 // the following function allows us to convert direction to rotation value
 const getRotation = (direction) => {
@@ -189,5 +190,12 @@ getAwesomeIcon.propTypes = {
   iconClassName: PropTypes.string,
 };
 
-export { getAwesomeIcon, typeRegular, typeSolid, typeBrand, getRotation };
+export {
+  getAwesomeIcon,
+  typeRegular,
+  typeSolid,
+  typeBrand,
+  typeLight,
+  getRotation,
+};
 export default Icon;

@@ -12,8 +12,7 @@
     "signin": "Registrarse",
     "signout": "Desconectar",
     "signup": "Inscribirse",
-    "uploadAccount": "Cargar una lista de cuentas",
-    "uploadSite": "Cargar una lista de sitios"
+    "uploadList": "Subir una lista"
   },
   "common": {
     "table": {
@@ -23,7 +22,8 @@
       "email": "Correo electrónico",
       "name": "Nombre",
       "phone": "Teléfono",
-      "status": "Estado"
+      "status": "Estado",
+      "addedOn": "Añadido"
     }
   },
   "editSite": {
@@ -50,6 +50,7 @@
       "cliaNumber": "Número CLIA",
       "contactEmail": "Email de contacto",
       "contactName": "Nombre de contacto",
+      "county": "Condado",
       "name": "Nombre del sitio",
       "state": "Expresar",
       "street": "Calle",

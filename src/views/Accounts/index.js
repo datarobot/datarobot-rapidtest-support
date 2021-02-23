@@ -6,7 +6,7 @@ import ReactTooltip from 'react-tooltip';
 import { useTranslation } from 'react-i18next';
 
 import { getAccountList, editAccount } from 'services/api';
-
+import { ROUTES } from 'rt-constants';
 import { accountsAtom } from 'store';
 
 import EditAccountModal from 'components/Modals/EditAccount';
@@ -163,15 +163,18 @@ const Accounts = () => {
       {
         Header: t('common.table.name'),
         id: 'name',
-        accessor: (val) => `${val.lastName}, ${val.firstName}`,
+        accessor: (val) => `${val.last_name}, ${val.first_name}`,
       },
       {
         Header: t('common.table.email'),
-        accessor: 'email',
+        id: 'email',
+        accessor: ({ email_address }) => (
+          <a href={`mailto:${email_address}`}>{email_address}</a>
+        ),
       },
       {
         Header: t('common.table.phone'),
-        accessor: 'phone',
+        accessor: 'phone_number_office',
       },
       {
         Header: t('common.table.status'),
@@ -217,6 +220,7 @@ const Accounts = () => {
     (async () => {
       const data = await getAccountList();
       setAccounts(data);
+      console.log(data);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -224,12 +228,14 @@ const Accounts = () => {
   return (
     <div>
       <Table
+        tableName="Manage Accounts"
         columns={columns}
         data={accounts}
         addButtonText={t('buttons.addAccount')}
         // "+ Add a new account"
-        uploadButtonText={t('buttons.uploadAccount')}
+        uploadButtonText={`+ ${t('buttons.uploadList')}`}
         onAddClick={handleToggleModal}
+        addRoute={ROUTES.ADD_ACCOUNT}
       />
 
       <EditAccountModal

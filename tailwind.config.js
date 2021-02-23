@@ -5,9 +5,9 @@ module.exports = {
     extend: {
       colors: {
         black: '#111111',
-        blue: '#5282CC',
-        'dark-blue': '#3668b5',
-        'light-blue': '#B2C7E2',
+        blue: '#00528D',
+        'dark-blue': '#004374',
+        'light-blue': '#006AB7',
         'blue-grey': '#ACD5D7',
         green: '#CAEED8',
         'dark-green': '#33a15e',
@@ -16,7 +16,7 @@ module.exports = {
         orange: '#F5D2A2',
         transparent: 'transparent',
         'dark-grey': '#283542',
-        purple: '#6C4DE1',
+        purple: '#00528D',
         'dark-purple': '#4D37DD',
       },
     },

@@ -4,6 +4,7 @@ import {
   faChevronRight,
   faHourglassHalf,
   faPencilAlt,
+  faQuestionCircle,
   faSearch,
   faSort,
   faSortUp,
@@ -15,6 +16,7 @@ import {
 import {
   faChevronDoubleLeft,
   faChevronDoubleRight,
+  faLongArrowRight,
 } from '@fortawesome/pro-solid-svg-icons';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -26,7 +28,9 @@ library.add(
   faChevronLeft,
   faChevronRight,
   faHourglassHalf,
+  faLongArrowRight,
   faPencilAlt,
+  faQuestionCircle,
   faSearch,
   faSort,
   faSortUp,

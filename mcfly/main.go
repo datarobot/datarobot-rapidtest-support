@@ -42,14 +42,15 @@ type Site struct {
 }
 
 type Account struct {
-	ID             string `json:"id"`
-	FirstName      string `json:"firstName"`
-	LastName       string `json:"lastName"`
-	Email          string `json:"email"`
-	Phone          string `json:"phone"`
-	RequestPending bool   `json:"requestPending"`
-	Enabled        bool   `json:"enabled"`
-	ApprovedBy     string `json:"approvedBy`
+	ID        int    `json:"id"`
+	FirstName string `json:"first_name"`
+	LastName  string `json:"last_name"`
+	Email     string `json:"email_address"`
+	Phone     string `json:"phone_number_office"`
+	Archive   bool   `json:"archive"`
+	// RequestPending bool   `json:"requestPending"`
+	// Enabled        bool   `json:"archive"`
+	// ApprovedBy     string `json:"approvedBy`
 }
 
 var allAccounts []Account
@@ -176,23 +177,21 @@ func setup() {
 	}
 
 	for _, account := range accounts {
-		pending, _ := strconv.ParseBool(account[5])
-		enabled, _ := strconv.ParseBool(account[6])
+		id, _ := strconv.Atoi(account[0])
+		archive, _ := strconv.ParseBool(account[5])
 
 		allAccounts = append(allAccounts, Account{
-			ID:             account[0],
-			FirstName:      account[1],
-			LastName:       account[1],
-			Email:          account[3],
-			Phone:          account[4],
-			RequestPending: pending,
-			Enabled:        enabled,
-			ApprovedBy:     account[7],
+			ID:        id,
+			FirstName: account[1],
+			LastName:  account[2],
+			Email:     account[3],
+			Phone:     account[4],
+			Archive:   archive,
 		})
 	}
 
 	for _, site := range sites {
-		enabled, _ := strconv.ParseBool(site[6])
+		enabled, _ := strconv.ParseBool(site[5])
 
 		allSites = append(allSites, Site{
 			ID:   site[0],
@@ -204,7 +203,7 @@ func setup() {
 				Zip:     site[5],
 			},
 			Enabled: enabled,
-			Contact: site[7],
+			Contact: site[6],
 		})
 	}
 
