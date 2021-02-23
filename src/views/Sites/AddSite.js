@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import { useAtom } from 'jotai';
 
 import Autocomplete from 'components/Autocomplete';
@@ -10,7 +11,7 @@ import PageHeader from 'components/PageHeader';
 import Select from 'components/Select';
 import Map from 'components/Map';
 
-import { STATE_OPTIONS } from 'rt-constants';
+import { ROUTES, STATE_OPTIONS } from 'rt-constants';
 
 import { sitesAtom } from 'store';
 import { useDebounce } from 'hooks';
@@ -26,20 +27,20 @@ const AddSite = () => {
   const [currentSchool, setCurrentSchool] = useState();
   const [mapCenter, setMapCenter] = useState();
   const [mapZoom, setMapZoom] = useState();
+  const history = useHistory();
+  // eslint-disable-next-line no-unused-vars
   const [sites, setSites] = useAtom(sitesAtom);
 
   const onSubmit = (data) => {
-    const { address, city, state, zip } = data;
-
-    setSites([...sites, { ...data, address: { address, city, state, zip } }]);
-
-    // addSite(data)
-    //   .then(() => {
-    //     // Do stuff
-    //   })
-    //   .catch(() => {
-    //     // handle errors
-    //   });
+    addSite(data)
+      .then((res) => {
+        if (res.id) {
+          history.push(ROUTES.SITES);
+        }
+      })
+      .catch(() => {
+        // handle errors
+      });
   };
 
   const doSearch = async (val) => {
@@ -74,9 +75,9 @@ const AddSite = () => {
       shouldDirty: true,
     });
 
-    for (const key in school.address) {
-      if ({}.hasOwnProperty.call(school.address, key)) {
-        setValue(key, school.address[key], {
+    for (const key in school) {
+      if ({}.hasOwnProperty.call(school, key)) {
+        setValue(key, school[key], {
           shouldValidate: true,
           shouldDirty: true,
         });
@@ -87,7 +88,6 @@ const AddSite = () => {
   };
 
   const handleClearSite = () => {
-    console.log('CLEARING!');
     setCurrentSchool();
     setSearchTerm('');
   };
@@ -107,7 +107,7 @@ const AddSite = () => {
       <div className="flex">
         <form className="w-1/2 mr-4" onSubmit={handleSubmit(onSubmit)}>
           <Controller
-            name="name"
+            name="site_name"
             control={control}
             defaultValue=""
             rules={{
@@ -118,7 +118,7 @@ const AddSite = () => {
             }}
             render={({ onChange, value, ref }) => (
               <Autocomplete
-                inputName="name"
+                inputName="site_name"
                 label={t('site.label.name')} // "Site Name"
                 placeholder={t('site.label.name')}
                 onChange={({ target }) => {
@@ -131,7 +131,9 @@ const AddSite = () => {
                   }
                 }}
                 inputValue={
-                  currentSchool?.name ? currentSchool?.name : value || ''
+                  currentSchool?.site_name
+                    ? currentSchool?.site_name
+                    : value || ''
                 }
                 inputRef={ref}
                 listValues={schools}
@@ -141,44 +143,48 @@ const AddSite = () => {
               />
             )}
           />
-          {errors && errors.name && (
+          {errors && errors.site_name && (
             <p className="text-dark-red font-bold text-xs uppercase">
-              {errors.name.message}
+              {errors.site_name.message}
             </p>
           )}
-          <Controller
-            name="address"
-            control={control}
-            defaultValue=""
-            rules={{
-              required: {
-                value: true,
-                message: t('errorMessages.common.required'),
-              },
-            }}
-            render={({ onChange, value }) => (
-              <Input
-                name="address"
-                label={t('site.label.street')} // "Street address"
-                placeholder={t('site.label.street')}
-                onChange={onChange}
-                value={
-                  currentSchool?.address.address
-                    ? currentSchool?.address.address
-                    : value || ''
-                }
-                className="mt-1"
-                isRequired
-              />
-            )}
-          />
-          {errors && errors.address && (
+
+          {errors && errors.street && (
             <p className="text-dark-red font-bold text-xs uppercase">
-              {errors.address.message}
+              {errors.street.message}
             </p>
           )}
           <fieldset className="flex">
-            <div className="w-1/2 mr-1">
+            <div className="w-1/2 mr-2">
+              <Controller
+                name="street"
+                control={control}
+                defaultValue=""
+                rules={{
+                  required: {
+                    value: true,
+                    message: t('errorMessages.common.required'),
+                  },
+                }}
+                render={({ onChange, value }) => (
+                  <Input
+                    name="street"
+                    label={t('site.label.street')} // "Street address"
+                    placeholder={t('site.label.street')}
+                    onChange={onChange}
+                    value={
+                      currentSchool?.street
+                        ? currentSchool?.street
+                        : value || ''
+                    }
+                    className="mt-1"
+                    isRequired
+                  />
+                )}
+              />
+            </div>
+
+            <div className="w-1/2">
               <Controller
                 name="city"
                 control={control}
@@ -196,9 +202,7 @@ const AddSite = () => {
                     placeholder={t('site.label.city')}
                     onChange={onChange}
                     value={
-                      currentSchool?.address.city
-                        ? currentSchool?.address.city
-                        : value || ''
+                      currentSchool?.city ? currentSchool?.city : value || ''
                     }
                     className="mt-1"
                     isRequired
@@ -211,8 +215,44 @@ const AddSite = () => {
                 </p>
               )}
             </div>
+          </fieldset>
 
-            <div className="w-1/4 mr-1">
+          <fieldset className="flex">
+            <div className="w-1/2 mr-2">
+              <Controller
+                name="county"
+                control={control}
+                defaultValue=""
+                rules={{
+                  required: {
+                    value: true,
+                    message: t('errorMessages.common.required'),
+                  },
+                }}
+                render={({ onChange, value }) => (
+                  <Input
+                    name="county"
+                    label={t('site.label.county')}
+                    placeholder={t('site.label.county')}
+                    onChange={onChange}
+                    value={
+                      currentSchool?.county
+                        ? currentSchool?.county
+                        : value || ''
+                    }
+                    className="mt-1"
+                    isRequired
+                  />
+                )}
+              />
+              {errors && errors.county && (
+                <p className="text-dark-red font-bold text-xs uppercase">
+                  {errors.county.message}
+                </p>
+              )}
+            </div>
+
+            <div className="w-1/4 mr-2">
               <Controller
                 name="state"
                 control={control}
@@ -220,11 +260,7 @@ const AddSite = () => {
                 onChange={(value) => value}
                 as={Select}
                 options={STATE_OPTIONS}
-                value={
-                  currentSchool?.address.state
-                    ? currentSchool?.address.state
-                    : ''
-                }
+                value={currentSchool?.state ? currentSchool?.state : ''}
                 label={t('site.label.state')}
                 className="mt-1"
                 isRequired
@@ -241,6 +277,7 @@ const AddSite = () => {
                 </p>
               )}
             </div>
+
             <div className="w-1/4">
               <Controller
                 name="zip"
@@ -263,9 +300,7 @@ const AddSite = () => {
                     placeholder={t('site.label.zip')}
                     onChange={onChange}
                     value={
-                      currentSchool?.address.zip
-                        ? currentSchool?.address.zip
-                        : value || ''
+                      currentSchool?.zip ? currentSchool?.zip : value || ''
                     }
                     className="mt-1"
                     isRequired
@@ -281,7 +316,7 @@ const AddSite = () => {
           </fieldset>
 
           <Controller
-            name="contact"
+            name="contact_name"
             control={control}
             defaultValue=""
             rules={{
@@ -292,7 +327,7 @@ const AddSite = () => {
             }}
             render={({ onChange, value }) => (
               <Input
-                name="contact"
+                name="contact_name"
                 label={t('site.label.contactName')}
                 placeholder={t('site.label.contactName')}
                 onChange={onChange}
@@ -302,14 +337,14 @@ const AddSite = () => {
               />
             )}
           />
-          {errors && errors.contact && (
+          {errors && errors.contact_name && (
             <p className="text-dark-red font-bold text-xs uppercase">
-              {errors.contact.message}
+              {errors.contact_name.message}
             </p>
           )}
 
           <Controller
-            name="contactEmail"
+            name="contact_email"
             control={control}
             defaultValue=""
             rules={{
@@ -320,7 +355,7 @@ const AddSite = () => {
             }}
             render={({ onChange, value }) => (
               <Input
-                name="contactEmail"
+                name="contact_email"
                 label={t('site.label.contactEmail')}
                 type="email"
                 placeholder={t('site.label.contactEmail')}
@@ -331,14 +366,14 @@ const AddSite = () => {
               />
             )}
           />
-          {errors && errors.contactEmail && (
+          {errors && errors.contact_email && (
             <p className="text-dark-red font-bold text-xs uppercase">
-              {errors.contactEmail.message}
+              {errors.contact_email.message}
             </p>
           )}
 
           <Controller
-            name="cliaNumber"
+            name="clia"
             control={control}
             defaultValue=""
             rules={{
@@ -349,7 +384,7 @@ const AddSite = () => {
             }}
             render={({ onChange, value }) => (
               <Input
-                name="cliaNumber"
+                name="clia"
                 label={t('site.label.cliaNumber')}
                 placeholder={t('site.label.cliaNumber')}
                 onChange={onChange}
@@ -359,9 +394,9 @@ const AddSite = () => {
               />
             )}
           />
-          {errors && errors.cliaNumber && (
+          {errors && errors.clia && (
             <p className="text-dark-red font-bold text-xs uppercase">
-              {errors.cliaNumber.message}
+              {errors.clia.message}
             </p>
           )}
 

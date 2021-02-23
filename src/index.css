@@ -58,7 +58,8 @@ body {
     @apply shadow-lg bg-blue text-white;
   }
 
-  a:not([role="button"]):not([class*="btn-"]) {
+  a:not([role="button"]):not([class*="btn-"]):not(.nav-link)
+   {
     @apply underline text-blue;
   }
 

@@ -8,6 +8,7 @@ export const ROUTES = {
   OTHER: '/other',
   SITES: '/sites',
   ADD_SITE: '/sites/new',
+  EDIT_SITE: '/sites/edit',
   ACCOUNTS: '/accounts',
 };
 

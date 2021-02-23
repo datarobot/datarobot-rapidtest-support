@@ -31,11 +31,14 @@ export const requestAccess = async ({ firstName, lastName, email, phone }) => {
 };
 
 export const addSite = async (payload) => {
-  const { street, city, state, zip } = payload;
+  const zip = parseInt(payload.zip, 10);
+  // eslint-disable-next-line no-param-reassign
+  payload.zip = zip;
+  // eslint-disable-next-line no-param-reassign
+  payload.site_type = 'School';
 
-  const { data } = await http.post('/api/sites', {
+  const { data } = await http.post('/site', {
     ...payload,
-    address: { street, city, state, zip },
   });
 
   return data;
@@ -56,7 +59,7 @@ export const getSiteList = async () => {
 };
 
 export const getSite = async (id) => {
-  const { data } = await http.get(`${serverUrl}/sites/${id}`);
+  const { data } = await http.get(`/sites/${id}`);
 
   return data;
 };
