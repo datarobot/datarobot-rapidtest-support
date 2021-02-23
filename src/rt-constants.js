@@ -10,6 +10,7 @@ export const ROUTES = {
   ADD_SITE: '/sites/new',
   EDIT_SITE: '/sites/edit',
   ACCOUNTS: '/accounts',
+  ADD_ACCOUNT: '/accounts/new',
 };
 
 export const LANDING_PAGE_LINKS = {

@@ -6,7 +6,7 @@ import ReactTooltip from 'react-tooltip';
 import { useTranslation } from 'react-i18next';
 
 import { getAccountList, editAccount } from 'services/api';
-
+import { ROUTES } from 'rt-constants';
 import { accountsAtom } from 'store';
 
 import EditAccountModal from 'components/Modals/EditAccount';
@@ -235,6 +235,7 @@ const Accounts = () => {
         // "+ Add a new account"
         uploadButtonText={`+ ${t('buttons.uploadList')}`}
         onAddClick={handleToggleModal}
+        addRoute={ROUTES.ADD_ACCOUNT}
       />
 
       <EditAccountModal
