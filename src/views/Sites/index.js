@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 
 import { getSiteList } from 'services/api';
@@ -11,7 +12,7 @@ import ToggleButton from 'components/ToggleButton';
 import Icon from 'components/Icon';
 import Table from 'components/Table';
 
-import { sitesAtom } from 'store';
+import { sitesAtom, currentSiteAtom } from 'store';
 
 const SiteStatus = ({ values }) => (
   <ToggleButton
@@ -29,6 +30,7 @@ const Sites = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [siteId, setSiteId] = useState();
   const [sites, setSites] = useAtom(sitesAtom);
+  const [, setCurrentSite] = useAtom(currentSiteAtom);
 
   const handleToggleModal = (modal) => {
     if (modal === 'add') {
@@ -38,9 +40,10 @@ const Sites = () => {
     return setShowEditModal(!showEditModal);
   };
 
-  const handleEditRow = useCallback((id) => {
-    setSiteId(id);
+  const handleEditRow = useCallback((site) => {
+    setSiteId(site.id);
     handleToggleModal('edit');
+    setCurrentSite(site);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -51,12 +54,12 @@ const Sites = () => {
         accessor: 'site_name',
         Cell: ({ row }) => (
           <>
-            <Icon
-              iconName="pencil-alt"
-              color="#5282cc"
-              className="mr-2"
-              onClick={() => handleEditRow(parseInt(row.id, 10) + 1)}
-            />
+            <Link
+              to={ROUTES.EDIT_SITE}
+              onClick={() => handleEditRow(row.original)}
+            >
+              <Icon iconName="pencil-alt" color="#5282cc" className="mr-2" />
+            </Link>
             {row.values.site_name}
           </>
         ),

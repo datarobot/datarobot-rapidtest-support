@@ -50,6 +50,7 @@
       "cliaNumber": "CLIA Number",
       "contactEmail": "Contact Email",
       "contactName": "Contact Name",
+      "county": "County",
       "name": "Site Name",
       "state": "State",
       "street": "Street Address",

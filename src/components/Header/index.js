@@ -4,6 +4,7 @@ import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 
 import Logo from 'components/Logo';
+import Nav from 'components/Header/Nav';
 
 import { ROUTES } from 'rt-constants';
 import { loginAtom } from 'store';
@@ -16,10 +17,13 @@ const Header = () => {
 
   return (
     <div className="header">
-      <Link to={ROUTES.LANDING_PAGE}>
-        <Logo className="logo" color="#00528D" />
+      <Link className="logo" to={ROUTES.LANDING_PAGE}>
+        <Logo color="#00528D" />
       </Link>
-      <section className="links absolute">
+
+      <Nav />
+
+      <section className="links">
         {loggedIn ? (
           <button
             className="login-btn"

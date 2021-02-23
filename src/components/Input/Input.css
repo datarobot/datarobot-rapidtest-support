@@ -1,7 +1,7 @@
 .input {
   @apply w-full border px-4 py-2 rounded;
   
-  border-color: #D1D8Dc;
+  border-color: #D1D8DC;
 }
 
 .input:focus {
