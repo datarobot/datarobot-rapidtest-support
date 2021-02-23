@@ -17,6 +17,7 @@ module.exports = {
     eqeqeq: ['error', 'smart'],
     'func-style': ['error', 'expression'],
     'func-names': ['error', 'always', { generators: 'as-needed' }],
+    camelcase: 0,
     'consistent-return': 0,
     'no-nested-ternary': 0,
     'import/extensions': 0,
