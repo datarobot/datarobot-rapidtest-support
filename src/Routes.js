@@ -21,7 +21,7 @@ const Routes = () => (
     <Route path={ROUTES.ADD_SITE} component={AddSite} />
     <Route path={ROUTES.EDIT_SITE} component={EditSite} />
     <Route exact path={ROUTES.ACCOUNTS} component={Accounts} />
-    <Route path={ROUTES.ADD_ACCOUNTS} component={AddAccount} />
+    <Route path={ROUTES.ADD_ACCOUNT} component={AddAccount} />
     <Route path={ROUTES.LANDING_PAGE} component={Home} />
   </Switch>
 );

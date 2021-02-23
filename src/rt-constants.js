@@ -23,12 +23,26 @@ export const LANDING_PAGE_LINKS = {
     { text: 'Contact support', url: '' },
   ],
   GETTING_TESTED: [
-    { text: 'Link 1', url: '' },
-    { text: 'Link 2', url: '' },
-    { text: 'Link 3', url: '' },
-    { text: 'Link 4', url: '' },
-    { text: 'Link 5', url: '' },
-    { text: 'Link 6', url: '' },
+    {
+      text: 'CDC guidance for school and childcare programs',
+      url:
+        'https://www.cdc.gov/coronavirus/2019-ncov/community/schools-childcare/index.html',
+    },
+    {
+      text: 'COVID testing guidance',
+      url:
+        'https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/testing.html',
+    },
+    {
+      text: 'Children, teens, young adults  (CDC)',
+      url:
+        'https://www.cdc.gov/coronavirus/2019-ncov/daily-life-coping/caring-for-children.html',
+    },
+    {
+      text: 'Screen for COVID among school population',
+      url:
+        'https://www.cdc.gov/coronavirus/2019-ncov/community/schools-childcare/symptom-screening.html',
+    },
   ],
 };
 
