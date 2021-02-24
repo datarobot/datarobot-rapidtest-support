@@ -26,8 +26,8 @@ const Edit = () => {
 
   const onSubmit = () => {
     editSite(currentSite.id, currentSite)
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        // Do stuff
       })
       .catch(() => {
         // handle errors
