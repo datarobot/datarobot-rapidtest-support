@@ -16,7 +16,7 @@ export const ROUTES = {
 };
 
 export const FIREBASE_CONFIG = {
-  apiKey: 'AIzaSyBZyewHDLAKsBi3GC21RdSfd9MjoXNJIL8',
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: 'pennrapidtest.firebaseapp.com',
   projectId: 'pennrapidtest',
   storageBucket: 'pennrapidtest.appspot.com',
