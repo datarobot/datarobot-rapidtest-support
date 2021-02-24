@@ -1,8 +1,7 @@
 import { Link } from 'react-router-dom';
-
 import Icon from 'components/Icon';
-
 import { ROUTES } from 'rt-constants';
+import trainingMaterials from 'static/TrainingMaterials.pdf';
 
 const LoggedIn = () => (
   <>
@@ -12,7 +11,7 @@ const LoggedIn = () => (
 
         <p className="mt-6 mb-12 text-lg">
           Reopen your schools. Rollout a COVID-19 testing program using
-          RepidTest and send reports to government regulated relevant health
+          RapidTest and send reports to government regulated relevant health
           authorities.
         </p>
       </section>
@@ -57,7 +56,7 @@ const LoggedIn = () => (
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae quisque
           urna q uam mauris quis.
         </p>
-        <a href="/" className="learn-more-link">
+        <a href={trainingMaterials} className="learn-more-link">
           Learn more <Icon iconName="long-arrow-right" className="ml-2" />
         </a>
       </div>
