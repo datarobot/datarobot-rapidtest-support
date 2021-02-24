@@ -8,14 +8,14 @@ import Icon from 'components/Icon';
 import Input from 'components/Input';
 import RequestAccountModal from 'components/Modals/RequestAccount';
 
-// import { loginAtom } from 'store';
+// import { authenticatedAtom } from 'store';
 
 import './ProgramAdmin.css';
 
 const ProgramAdmin = () => {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
-  // const [loggedIn] = useAtom(loginAtom);
+  // const [authenticated] = useAtom(authenticatedAtom);
 
   const handleToggleModal = () => setShowModal(!showModal);
 
