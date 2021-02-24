@@ -1,0 +1,7 @@
+.static {
+  @apply mt-12;
+}
+
+.static-content ul {
+  list-style: disc;
+}
