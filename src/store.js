@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 
-export const loginAtom = atom('');
+export const authenticatedAtom = atom('');
 
 export const accountsAtom = atom([]);
 export const currentAccountAtom = atom({});

@@ -14,6 +14,7 @@ const Modal = ({
   closeButtonText = 'Cancel',
   closeAction,
   confirmationAction = () => {},
+  showFooter = true,
   ...rest
 }) => {
   ReactModal.setAppElement('body');
@@ -34,10 +35,10 @@ const Modal = ({
           className={cls('relative w-auto my-6 mx-auto z-40', modalClassName)}
         >
           {/* content */}
-          <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+          <div className="border-0 rounded shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
             {/* header */}
-            <div className="flex items-start justify-between p-6 border-b border-solid border-gray-300 rounded-t">
-              <h3 className="text-2xl font-semibold uppercase">{title}</h3>
+            <div className="flex items-start justify-between p-6 rounded-t">
+              <h3 className="text-2xl font-semibold text-blue">{title}</h3>
               <button
                 className="p-1 ml-auto bg-transparent border-0 text-black opacity-75 float-right text-3xl leading-none outline-none focus:outline-none"
                 onClick={handleClose}
@@ -48,26 +49,28 @@ const Modal = ({
               </button>
             </div>
             {/* body */}
-            <div className="relative p-6 flex-auto">{children}</div>
+            <div className="relative p-6 pt-0 flex-auto">{children}</div>
             {/* footer */}
-            <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
-              <button
-                className="btn-clear mr-1 mb-1"
-                type="button"
-                style={{ transition: 'all .15s ease' }}
-                onClick={handleClose}
-              >
-                {closeButtonText}
-              </button>
-              <button
-                className="btn-primary mr-1 mb-1"
-                type="button"
-                style={{ transition: 'all .15s ease' }}
-                onClick={confirmationAction}
-              >
-                {confirmButtonText}
-              </button>
-            </div>
+            {showFooter && (
+              <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
+                <button
+                  className="btn-clear mr-1 mb-1"
+                  type="button"
+                  style={{ transition: 'all .15s ease' }}
+                  onClick={handleClose}
+                >
+                  {closeButtonText}
+                </button>
+                <button
+                  className="btn-primary mr-1 mb-1"
+                  type="button"
+                  style={{ transition: 'all .15s ease' }}
+                  onClick={confirmationAction}
+                >
+                  {confirmButtonText}
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

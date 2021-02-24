@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { ROUTES } from 'rt-constants';
 
 const Home = lazy(() => import('views/Home'));
@@ -14,7 +14,7 @@ const AddAccount = lazy(() => import('views/Accounts/AddAccount'));
 const EditAccount = lazy(() => import('views/Accounts/EditAccount'));
 const Faq = lazy(() => import('views/Faq'));
 
-const Routes = () => (
+export const LoggedInRoutes = () => (
   <Switch>
     <Route path={ROUTES.PROGRAM_ADMIN} component={ProgramAdmin} />
     <Route path={ROUTES.JOIN} component={Join} />
@@ -30,4 +30,50 @@ const Routes = () => (
   </Switch>
 );
 
-export default Routes;
+export const LoggedOutRoutes = () => (
+  <Switch>
+    <Route path={ROUTES.JOIN} component={Join} />
+    <Route path={ROUTES.OTHER} component={Other} />
+    <Route path={ROUTES.FAQ} component={Faq} />
+    <Route path={ROUTES.LANDING_PAGE} component={Home} />
+  </Switch>
+);
+
+export const PrivateRoute = ({
+  component: Component,
+  authenticated,
+  ...rest
+}) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      authenticated === true ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: ROUTES.LANDING_PAGE,
+            state: { from: props.location },
+          }}
+        />
+      )
+    }
+  />
+);
+
+export const PublicRoute = ({
+  component: Component,
+  authenticated,
+  ...rest
+}) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      authenticated === false ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to={ROUTES.LANDING_PAGE} />
+      )
+    }
+  />
+);
