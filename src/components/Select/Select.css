@@ -1,5 +1,5 @@
 select {
-  @apply w-full border px-4 py-2 rounded;
+  @apply w-full border px-4 py-2 rounded mt-1;
 
   border-color: #D1D8DC;
   -webkit-box-sizing: border-box;

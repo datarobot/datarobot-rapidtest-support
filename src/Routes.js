@@ -11,6 +11,7 @@ const AddSite = lazy(() => import('views/Sites/AddSite'));
 const EditSite = lazy(() => import('views/Sites/EditSite'));
 const Accounts = lazy(() => import('views/Accounts'));
 const AddAccount = lazy(() => import('views/Accounts/AddAccount'));
+const EditAccount = lazy(() => import('views/Accounts/EditAccount'));
 
 const Routes = () => (
   <Switch>
@@ -22,6 +23,7 @@ const Routes = () => (
     <Route path={ROUTES.EDIT_SITE} component={EditSite} />
     <Route exact path={ROUTES.ACCOUNTS} component={Accounts} />
     <Route path={ROUTES.ADD_ACCOUNT} component={AddAccount} />
+    <Route path={ROUTES.EDIT_ACCOUNT} component={EditAccount} />
     <Route path={ROUTES.LANDING_PAGE} component={Home} />
   </Switch>
 );

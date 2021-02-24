@@ -42,7 +42,7 @@
     "welcome": "¡Bienvenido!"
   },
   "pagination": {
-    "showingEntries": "Mostrando {{offset}} a {{totalOffset}} de {{totalEntries}} entradas"
+    "showingEntries": "{{offset}} - {{totalOffset}} de {{totalEntries}}"
   },
   "site": {
     "label": {

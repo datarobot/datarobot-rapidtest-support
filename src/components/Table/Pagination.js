@@ -8,7 +8,9 @@ import Icon from 'components/Icon';
 const CalculateCurrentView = ({ pageIndex, pageSize, rows }) => {
   const offset = pageIndex * pageSize + 1;
   const totalOffset =
-    offset < rows.length ? (pageIndex + 1) * pageSize : rows.length;
+    (pageIndex + 1) * pageSize < rows.length
+      ? (pageIndex + 1) * pageSize
+      : rows.length;
   const totalEntries = rows.length;
 
   return (
@@ -18,7 +20,7 @@ const CalculateCurrentView = ({ pageIndex, pageSize, rows }) => {
       total={totalOffset}
       totalEntries={totalEntries}
     >
-      Showing {{ offset }} to {{ totalOffset }} of {{ totalEntries }} entries
+      {{ offset }} - {{ totalOffset }} of {{ totalEntries }}
     </Trans>
   );
 };
@@ -30,7 +32,7 @@ const Pagination = ({ gotoPage, pageCount, pageIndex, pageSize, rows }) => {
 
   return (
     <div className="paginationWrapper">
-      <span className="text-gray-500">
+      <span className="text-gray-500 text-sm font-bold">
         <CalculateCurrentView
           pageIndex={pageIndex}
           pageSize={pageSize}

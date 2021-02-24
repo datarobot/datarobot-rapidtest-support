@@ -1,15 +1,16 @@
+/* eslint-disable no-unused-vars */
 // @ts-nocheck
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import cls from 'classnames';
+import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import ReactTooltip from 'react-tooltip';
 import { useTranslation } from 'react-i18next';
 
 import { getAccountList, editAccount } from 'services/api';
 import { ROUTES } from 'rt-constants';
-import { accountsAtom } from 'store';
+import { accountsAtom, currentAccountAtom } from 'store';
 
-import EditAccountModal from 'components/Modals/EditAccount';
 import Icon from 'components/Icon';
 import Table from 'components/Table';
 
@@ -126,8 +127,8 @@ const ApproveAllButton = () => {
 const Accounts = () => {
   const { t } = useTranslation();
   const [accounts, setAccounts] = useAtom(accountsAtom);
-  const [accountId, setAccountId] = useState();
-  const [showModal, setShowModal] = useState(false);
+  const [, setCurrentAccount] = useAtom(currentAccountAtom);
+  const [accountsToApprove, setAccountsToApprove] = useState([]);
 
   const approveAccount = (id, val) => {
     editAccount(id, { ...val, requestPending: false, enabled: true }).then(
@@ -138,28 +139,39 @@ const Accounts = () => {
     );
   };
 
-  const handleToggleModal = () => {
-    setShowModal(!showModal);
+  // const handleSaveAccount = () => {
+  //   getAccountList()
+  //     .then((data) => {
+  //       setAccounts(data);
+  //     })
+  // };
+
+  const handleCheckAccount = ({ target }) => {
+    setAccountsToApprove((prevState) => [...prevState, target.value]);
   };
 
-  const handleSaveAccount = () => {
-    getAccountList()
-      .then((data) => {
-        setAccounts(data);
-      })
-      .finally(() => {
-        handleToggleModal();
-      });
-  };
-
-  const handleEditRow = useCallback((id) => {
-    setAccountId(id);
-    handleToggleModal('edit');
+  const handleEditRow = useCallback((account) => {
+    console.log(account);
+    setCurrentAccount(account);
+    // setAccountId(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const columns = useMemo(
     () => [
+      {
+        Header: () => null,
+        id: 'approve-check',
+        Cell: ({ row }) => (
+          <div className="flex justify-center">
+            <input
+              type="checkbox"
+              value={row.original.id}
+              onChange={handleCheckAccount}
+            />
+          </div>
+        ),
+      },
       {
         Header: t('common.table.name'),
         id: 'name',
@@ -181,10 +193,6 @@ const Accounts = () => {
         accessor: (val) => <StatusCell val={val} />,
       },
       {
-        Header: t('common.table.approvedBy'),
-        accessor: 'ApprovedBy',
-      },
-      {
         Header: () => <ApproveAllButton />,
         id: 'approve',
         disableSortBy: true,
@@ -201,14 +209,17 @@ const Accounts = () => {
         Header: () => null,
         id: 'edit',
         Cell: ({ row }) => (
-          <div className="flex justify-center">
+          <Link
+            to={ROUTES.EDIT_ACCOUNT}
+            onClick={() => handleEditRow(row.original)}
+            className="flex justify-center"
+          >
             <Icon
               iconName="pencil-alt"
               color="#5282cc"
               className="cursor-pointer"
-              onClick={() => handleEditRow(parseInt(row.id, 10) + 1)}
             />
-          </div>
+          </Link>
         ),
       },
     ],
@@ -220,7 +231,6 @@ const Accounts = () => {
     (async () => {
       const data = await getAccountList();
       setAccounts(data);
-      console.log(data);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -234,15 +244,8 @@ const Accounts = () => {
         addButtonText={t('buttons.addAccount')}
         // "+ Add a new account"
         uploadButtonText={`+ ${t('buttons.uploadList')}`}
-        onAddClick={handleToggleModal}
+        // onAddClick={handleToggleModal}
         addRoute={ROUTES.ADD_ACCOUNT}
-      />
-
-      <EditAccountModal
-        showModal={showModal}
-        handleClose={() => handleToggleModal()}
-        accountId={accountId}
-        onSave={handleSaveAccount}
       />
     </div>
   );
