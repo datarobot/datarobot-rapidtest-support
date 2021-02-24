@@ -11,7 +11,7 @@ import './Other.css';
 const Other = () => {
   const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
-  // const [loggedIn] = useAtom(loginAtom);
+  // const [authenticated] = useAtom(authenticatedAtom);
 
   const handleToggleModal = () => setShowModal(!showModal);
 

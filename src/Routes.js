@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { ROUTES } from 'rt-constants';
 
 const Home = lazy(() => import('views/Home'));
@@ -37,4 +37,43 @@ export const LoggedOutRoutes = () => (
     <Route path={ROUTES.FAQ} component={Faq} />
     <Route path={ROUTES.LANDING_PAGE} component={Home} />
   </Switch>
+);
+
+export const PrivateRoute = ({
+  component: Component,
+  authenticated,
+  ...rest
+}) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      authenticated === true ? (
+        <Component {...props} />
+      ) : (
+        <Redirect
+          to={{
+            pathname: ROUTES.LANDING_PAGE,
+            state: { from: props.location },
+          }}
+        />
+      )
+    }
+  />
+);
+
+export const PublicRoute = ({
+  component: Component,
+  authenticated,
+  ...rest
+}) => (
+  <Route
+    {...rest}
+    render={(props) =>
+      authenticated === false ? (
+        <Component {...props} />
+      ) : (
+        <Redirect to={ROUTES.LANDING_PAGE} />
+      )
+    }
+  />
 );
