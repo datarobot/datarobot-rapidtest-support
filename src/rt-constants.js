@@ -12,6 +12,7 @@ export const ROUTES = {
   ACCOUNTS: '/accounts',
   ADD_ACCOUNT: '/accounts/new',
   EDIT_ACCOUNT: '/accounts/edit',
+  FAQ: '/faq',
 };
 
 export const LANDING_PAGE_LINKS = {
