@@ -20,7 +20,7 @@ const Nav = () => (
       </Link>
     </li>
     <li>
-      <Link className="nav-link" to={ROUTES.LANDING_PAGE}>
+      <Link className="nav-link" to={ROUTES.FAQ}>
         FAQ
       </Link>
     </li>
