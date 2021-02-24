@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 
-import { getSiteList } from 'services/api';
+import { getSiteList, editSite } from 'services/api';
 import { ROUTES } from 'rt-constants';
 import AddSiteModal from 'components/Modals/AddSite';
 import EditSiteModal from 'components/Modals/EditSite';
@@ -14,15 +14,14 @@ import Table from 'components/Table';
 
 import { sitesAtom, currentSiteAtom } from 'store';
 
-const SiteStatus = ({ values }) => (
-  <ToggleButton
-    selected={values}
-    toggleSelected={() => {
-      // eslint-disable-next-line no-param-reassign
-      values = !values;
-    }}
-  />
-);
+const SiteStatus = ({ values, row }) => {
+  const updateSite = (e) => {
+    const site = { ...row.original, archive: e };
+    editSite(site.id, site);
+  };
+
+  return <ToggleButton selected={!values} toggleSelected={updateSite} />;
+};
 
 const Sites = () => {
   const { t } = useTranslation();
@@ -77,7 +76,9 @@ const Sites = () => {
       {
         Header: t('common.table.status'),
         accessor: 'archive',
-        Cell: ({ cell: { value } }) => <SiteStatus values={value} />,
+        Cell: ({ row, cell: { value } }) => (
+          <SiteStatus values={value} row={row} />
+        ),
       },
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps

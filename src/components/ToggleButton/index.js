@@ -14,6 +14,7 @@ const ToggleButton = ({ selected, toggleSelected }) => {
       onColor="#00528D"
       onChange={(e) => {
         setIsSelected(e);
+        toggleSelected(e);
       }}
     />
   );
