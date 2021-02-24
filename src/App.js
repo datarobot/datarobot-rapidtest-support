@@ -1,51 +1,43 @@
 // @ts-nocheck
-import React, { Suspense } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'jotai';
-
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
-import {
-  FirebaseAuthProvider,
-  FirebaseAuthConsumer,
-  // IfFirebaseAuthed,
-  // IfFirebaseAuthedAnd
-} from '@react-firebase/auth';
+import { useAtom } from 'jotai';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 
+// eslint-disable-next-line no-unused-vars
 import { LoggedInRoutes, LoggedOutRoutes } from 'Routes';
-
-import { FIREBASE_CONFIG } from 'rt-constants';
+import { authenticatedAtom } from 'store';
+import { auth } from './services/firebase';
 
 import './App.css';
 
 const App = () => {
-  console.log(firebase);
+  const [authenticated, setAuthenticated] = useAtom(authenticatedAtom);
+
+  useEffect(() => {
+    auth().onAuthStateChanged((user) => {
+      if (user) {
+        setAuthenticated(true);
+      } else {
+        setAuthenticated(false);
+      }
+    });
+  }, []);
+
   return (
-    <Provider>
-      <Router>
-        <div className="App">
-          <FirebaseAuthProvider {...FIREBASE_CONFIG} firebase={firebase}>
-            <Header />
-            <main className="content">
-              <Suspense fallback={<div>Loading</div>}>
-                <FirebaseAuthConsumer>
-                  {({ isSignedIn }) => {
-                    if (isSignedIn === true) {
-                      return <LoggedInRoutes />;
-                    }
-                    return <LoggedOutRoutes />;
-                  }}
-                </FirebaseAuthConsumer>
-              </Suspense>
-            </main>
-            <Footer />
-          </FirebaseAuthProvider>
-        </div>
-      </Router>
-    </Provider>
+    <Router>
+      <div className="App">
+        <Header />
+        <main className="content">
+          <Suspense fallback={<div>Loading</div>}>
+            {authenticated ? <LoggedInRoutes /> : <LoggedOutRoutes />}
+          </Suspense>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 };
 

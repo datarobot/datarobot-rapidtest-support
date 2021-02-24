@@ -3,14 +3,14 @@ import { useAtom } from 'jotai';
 import LoggedIn from 'components/Home/LoggedIn';
 import LoggedOut from 'components/Home/LoggedOut';
 
-import { loginAtom } from 'store';
+import { authenticatedAtom } from 'store';
 
 import './Home.css';
 
 const Home = () => {
-  const [loggedIn] = useAtom(loginAtom);
+  const [authenticated] = useAtom(authenticatedAtom);
 
-  return <>{loggedIn ? <LoggedIn /> : <LoggedOut />}</>;
+  return <>{authenticated ? <LoggedIn /> : <LoggedOut />}</>;
 };
 
 export default Home;
