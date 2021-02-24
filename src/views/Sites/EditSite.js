@@ -47,10 +47,10 @@ const Edit = () => {
       <div className="flex">
         <form className="mr-4" onSubmit={handleSubmit(onSubmit)}>
           <Input
-            name="name"
+            name="site_name"
             label={t('site.label.name')}
             placeholder={t('site.label.name')}
-            onChange={({ target }) => handleOnChange('name', target.value)}
+            onChange={({ target }) => handleOnChange('site_name', target.value)}
             value={currentSite?.site_name || ''}
           />
 
