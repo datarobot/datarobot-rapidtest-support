@@ -11,6 +11,7 @@ export const ROUTES = {
   EDIT_SITE: '/sites/edit',
   ACCOUNTS: '/accounts',
   ADD_ACCOUNT: '/accounts/new',
+  EDIT_ACCOUNT: '/accounts/edit',
 };
 
 export const LANDING_PAGE_LINKS = {

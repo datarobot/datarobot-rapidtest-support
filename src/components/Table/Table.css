@@ -4,7 +4,7 @@
 }
 
 .paginationWrapper {
-  @apply flex justify-between py-4 pl-3 fixed bg-white;
+  @apply flex justify-between items-center py-4 pl-3 fixed bg-white;
 
   bottom: 50px;
   right: 8.5vw;
@@ -27,7 +27,11 @@
 }
 
 .pagination a {
-   @apply px-4;
+  @apply px-4;
+}
+
+.pagination a:focus {
+  @apply outline-none;
 }
 
 .pagingButtons {

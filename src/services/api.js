@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-// const serverUrl = 'https://app.warapidtest.org/api/maintenance/v1';
-const serverUrl = '/api/maintenance/v1';
+const serverUrl =
+  process.env.NODE_ENV === 'production'
+    ? process.env.REACT_APP_SERVER_URL
+    : '/api/maintenance/v1';
 
 const defaultOptions = {
   baseURL: serverUrl,
@@ -47,7 +49,7 @@ export const addSite = async (payload) => {
 };
 
 export const editSite = async (id, payload) => {
-  const { data } = await http.put(`${serverUrl}/sites/${id}`, {
+  const { data } = await http.patch(`/site/${id}`, {
     ...payload,
   });
 
@@ -67,7 +69,7 @@ export const getSite = async (id) => {
 };
 
 export const editAccount = async (id, payload) => {
-  const { data } = await http.put(`${serverUrl}/proctor/${id}`, {
+  const { data } = await http.patch(`/proctor/${id}`, {
     ...payload,
   });
 

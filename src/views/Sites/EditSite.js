@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useAtom } from 'jotai';
 
 import Input from 'components/Input';
@@ -11,46 +11,31 @@ import Map from 'components/Map';
 
 import { STATE_OPTIONS } from 'rt-constants';
 
-import { sitesAtom, currentSiteAtom } from 'store';
+import { currentSiteAtom } from 'store';
 
 // eslint-disable-next-line no-unused-vars
-import { addSite, searchSchool, getSchool } from 'services/api';
+import { editSite } from 'services/api';
 
 const Edit = () => {
   const { t } = useTranslation();
-  const { control, handleSubmit, errors } = useForm();
+  const { handleSubmit, errors } = useForm();
   const [mapCenter] = useState();
   const [mapZoom] = useState();
-  const [sites, setSites] = useAtom(sitesAtom);
+
   const [currentSite, setCurrentSite] = useAtom(currentSiteAtom);
 
-  useEffect(() => {
-    console.log(currentSite);
-  }, [currentSite]);
-
-  const onSubmit = (data) => {
-    const { address, city, state, zip } = data;
-
-    setSites([...sites, { ...data, address: { address, city, state, zip } }]);
-
-    // addSite(data)
-    //   .then(() => {
-    //     // Do stuff
-    //   })
-    //   .catch(() => {
-    //     // handle errors
-    //   });
+  const onSubmit = () => {
+    editSite(currentSite.id, currentSite)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch(() => {
+        // handle errors
+      });
   };
 
-  const handleOnChange = (prop, val, isAddress = false) => {
-    if (isAddress) {
-      return setCurrentSite((prevState) => ({
-        ...prevState,
-        address: { ...prevState.address, [prop]: val },
-      }));
-    }
-
-    return setCurrentSite((prevState) => ({ ...prevState, [prop]: val }));
+  const handleOnChange = (prop, val) => {
+    setCurrentSite((prevState) => ({ ...prevState, [prop]: val }));
   };
 
   return (
@@ -80,61 +65,62 @@ const Edit = () => {
           />
 
           <fieldset className="flex">
-            <div className="w-1/2 mr-1">
+            <div className="w-1/2 mr-2">
               <Input
-                name="city"
-                label={t('site.label.city')}
-                placeholder={t('site.label.city')}
+                name="county"
+                label={t('site.label.county')}
+                placeholder={t('site.label.county')}
                 onChange={({ target }) =>
-                  handleOnChange('city', target.value, true)
+                  handleOnChange('county', target.value)
                 }
-                value={currentSite?.city || ''}
-              />
-            </div>
-
-            <div className="w-1/4 mr-1">
-              <Controller
-                name="state"
-                control={control}
-                defaultValue=""
-                onChange={(value) => value}
-                as={Select}
-                options={STATE_OPTIONS}
-                value={currentSite?.state ? currentSite?.state : ''}
-                label={t('site.label.state')}
+                value={currentSite?.county || ''}
+                className="mt-1"
                 isRequired
-                rules={{
-                  required: {
-                    value: true,
-                    message: t('errorMessages.common.required'),
-                  },
-                }}
               />
-              {errors && errors.state && (
+
+              {errors && errors.county && (
                 <p className="text-dark-red font-bold text-xs uppercase">
-                  {errors.state.message}
+                  {errors.county.message}
                 </p>
               )}
             </div>
+
+            <div className="w-1/4 mr-2">
+              <Select
+                label={t('site.label.state')}
+                options={STATE_OPTIONS}
+                value={currentSite?.state || ''}
+                onChange={({ target }) => handleOnChange('state', target.value)}
+              />
+            </div>
+
             <div className="w-1/4">
               <Input
                 name="zip"
                 label={t('site.label.zip')}
                 placeholder={t('site.label.zip')}
-                onChange={({ target }) =>
-                  handleOnChange('zip', target.value, true)
-                }
+                onChange={({ target }) => handleOnChange('zip', target.value)}
                 value={currentSite?.zip || ''}
+                className="mt-1"
+                isRequired
               />
+
+              {errors && errors.zip && (
+                <p className="text-dark-red font-bold text-xs uppercase">
+                  {errors.zip.message}
+                </p>
+              )}
             </div>
           </fieldset>
 
           <Input
-            name="contact"
+            name="contact_name"
             label={t('site.label.contactName')}
             placeholder={t('site.label.contactName')}
-            onChange={({ target }) => handleOnChange('contact', target.value)}
-            value={currentSite?.contact || ''}
+            onChange={({ target }) =>
+              handleOnChange('contact_name', target.value)
+            }
+            value={currentSite?.contact_name || ''}
           />
 
           <Input
@@ -145,19 +131,27 @@ const Edit = () => {
             onChange={({ target }) =>
               handleOnChange('contactEmail', target.value)
             }
-            value={currentSite?.contactEmail || ''}
+            value={currentSite?.contact_email || ''}
           />
           <Input
-            name="cliaNumber"
+            name="clia"
             label={t('site.label.cliaNumber')}
             placeholder={t('site.label.cliaNumber')}
-            onChange={({ target }) =>
-              handleOnChange('cliaNumber', target.value)
-            }
-            value={currentSite?.cliaNumber || ''}
+            onChange={({ target }) => handleOnChange('clia', target.value)}
+            value={currentSite?.clia || ''}
           />
 
           {errors.email && <span>This field is required</span>}
+
+          <div className="btn-row mt-4">
+            <button className="btn-primary" type="submit">
+              Save Info
+            </button>
+
+            <button className="btn-clear" type="button">
+              Cancel
+            </button>
+          </div>
         </form>
         <div className="w-1/2 2xl:w-full">
           <Map center={mapCenter} zoom={mapZoom} />
