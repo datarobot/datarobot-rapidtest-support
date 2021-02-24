@@ -21,7 +21,7 @@ const LoggedOut = () => {
 
           <p className="my-6 text-lg">
             Reopen your schools. Rollout a COVID-19 testing program using
-            RepidTest and send reports to government regulated relevant health
+            RapidTest and send reports to government regulated relevant health
             authorities.
           </p>
 

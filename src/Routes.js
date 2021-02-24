@@ -26,7 +26,7 @@ export const LoggedInRoutes = () => (
     <Route path={ROUTES.ADD_ACCOUNT} component={AddAccount} />
     <Route path={ROUTES.EDIT_ACCOUNT} component={EditAccount} />
     <Route path={ROUTES.FAQ} component={Faq} />
-    <Route path={ROUTES.LANDING_PAGE} component={Home} />
+    <Route exact path={ROUTES.LANDING_PAGE} component={Home} />
   </Switch>
 );
 

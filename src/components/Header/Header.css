@@ -46,6 +46,10 @@
   transition: all 250ms ease;
 }
 
+.nav-link.active {
+  @apply text-opacity-100 border-b-2 border-dark-blue;
+}
+
 .nav-link:hover {
   @apply text-opacity-100;
 }

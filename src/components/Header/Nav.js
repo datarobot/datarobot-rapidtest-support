@@ -1,38 +1,38 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { ROUTES } from 'rt-constants';
 
 const Nav = () => (
   <ul className="nav">
     <li>
-      <Link className="nav-link" to={ROUTES.SITES}>
+      <NavLink exact className="nav-link" to={ROUTES.SITES}>
         Sites
-      </Link>
+      </NavLink>
     </li>
     <li>
-      <Link className="nav-link" to={ROUTES.ACCOUNTS}>
+      <NavLink exact className="nav-link" to={ROUTES.ACCOUNTS}>
         Testers
-      </Link>
+      </NavLink>
     </li>
     <li>
-      <Link className="nav-link" to={ROUTES.LANDING_PAGE}>
+      <NavLink exact className="nav-link" to={ROUTES.LANDING_PAGE}>
         Dashboard
-      </Link>
+      </NavLink>
     </li>
     <li>
-      <Link className="nav-link" to={ROUTES.FAQ}>
+      <NavLink exact className="nav-link" to={ROUTES.FAQ}>
         FAQ
-      </Link>
+      </NavLink>
     </li>
     <li>
-      <Link className="nav-link" to={ROUTES.LANDING_PAGE}>
+      <NavLink exact className="nav-link" to={ROUTES.LANDING_PAGE}>
         Materials
-      </Link>
+      </NavLink>
     </li>
     <li>
-      <Link className="nav-link" to={ROUTES.LANDING_PAGE}>
+      <NavLink exact className="nav-link" to={ROUTES.LANDING_PAGE}>
         Board
-      </Link>
+      </NavLink>
     </li>
   </ul>
 );
