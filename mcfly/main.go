@@ -10,7 +10,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"strconv"
 
 	"github.com/gorilla/mux"
 	"github.com/lithammer/fuzzysearch/fuzzy"
@@ -33,29 +32,7 @@ type Address struct {
 	Zip     string `json:"zip"`
 }
 
-type Site struct {
-	ID      string   `json:"id"`
-	Name    string   `json:"name"`
-	Enabled bool     `json:"enabled"`
-	Contact string   `json:"contact"`
-	Address *Address `json:"address,omitempty"`
-}
-
-type Account struct {
-	ID        int    `json:"id"`
-	FirstName string `json:"first_name"`
-	LastName  string `json:"last_name"`
-	Email     string `json:"email_address"`
-	Phone     string `json:"phone_number_office"`
-	Archive   bool   `json:"archive"`
-	// RequestPending bool   `json:"requestPending"`
-	// Enabled        bool   `json:"archive"`
-	// ApprovedBy     string `json:"approvedBy`
-}
-
-var allAccounts []Account
 var allSchools []School
-var allSites []Site
 
 func homeLink(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome home!")
@@ -98,20 +75,6 @@ func getSchoolList(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func getSiteList(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(allSites)
-}
-
-func getAccountList(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/json")
-
-	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(allAccounts)
-}
-
 func getSchool(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	w.Header().Set("Content-Type", "application/json")
@@ -147,18 +110,12 @@ func readSample(rs io.ReadSeeker) ([][]string, error) {
 func setup() {
 	isProd := os.Getenv("IS_PROD")
 	var schoolsCsv *os.File
-	var sitesCsv *os.File
-	var accountsCsv *os.File
 	var err error
 
 	if isProd == "true" {
 		schoolsCsv, err = os.Open("/mcfly/schools.csv")
-		sitesCsv, err = os.Open("/mcfly/sites.csv")
-		accountsCsv, err = os.Open("/mcfly/accounts.csv")
 	} else {
 		schoolsCsv, err = os.Open("schools.csv")
-		sitesCsv, err = os.Open("sites.csv")
-		accountsCsv, err = os.Open("accounts.csv")
 	}
 
 	if err != nil {
@@ -166,45 +123,11 @@ func setup() {
 	}
 
 	defer schoolsCsv.Close()
-	defer sitesCsv.Close()
 
-	accounts, err := readSample(accountsCsv)
 	schools, err := readSample(schoolsCsv)
-	sites, err := readSample(sitesCsv)
 
 	if err != nil {
 		panic(err)
-	}
-
-	for _, account := range accounts {
-		id, _ := strconv.Atoi(account[0])
-		archive, _ := strconv.ParseBool(account[5])
-
-		allAccounts = append(allAccounts, Account{
-			ID:        id,
-			FirstName: account[1],
-			LastName:  account[2],
-			Email:     account[3],
-			Phone:     account[4],
-			Archive:   archive,
-		})
-	}
-
-	for _, site := range sites {
-		enabled, _ := strconv.ParseBool(site[5])
-
-		allSites = append(allSites, Site{
-			ID:   site[0],
-			Name: site[1],
-			Address: &Address{
-				Address: site[2],
-				City:    site[3],
-				State:   site[4],
-				Zip:     site[5],
-			},
-			Enabled: enabled,
-			Contact: site[6],
-		})
 	}
 
 	for _, school := range schools {
@@ -233,8 +156,6 @@ func main() {
 	router.HandleFunc("/", homeLink)
 	router.HandleFunc("/api/schools", getSchoolList).Methods("POST")
 	router.HandleFunc("/api/schools/{id}", getSchool).Methods("GET")
-	router.HandleFunc("/api/sites", getSiteList).Methods("GET")
-	router.HandleFunc("/api/accounts", getAccountList).Methods("GET")
 	log.Fatal(http.ListenAndServe(":1337", router))
 
 	fmt.Print("McFly is listening on port 1337")
