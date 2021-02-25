@@ -16,7 +16,7 @@ import { sitesAtom, currentSiteAtom } from 'store';
 
 const SiteStatus = ({ values, row }) => {
   const updateSite = (e) => {
-    const site = { ...row.original, archive: e };
+    const site = { ...row.original, archive: !e };
     editSite(site.id, site);
   };
 

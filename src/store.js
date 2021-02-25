@@ -1,6 +1,7 @@
 import { atom } from 'jotai';
 
-export const authenticatedAtom = atom('');
+export const authenticatedAtom = atom(localStorage.getItem('authenticated'));
+export const userAtom = atom({});
 
 export const accountsAtom = atom([]);
 export const currentAccountAtom = atom({});

@@ -16,7 +16,7 @@ import './Header.css';
 
 const Header = () => {
   const { t } = useTranslation();
-  const [authenticated] = useAtom(authenticatedAtom);
+  const [authenticated, setAuthenticated] = useAtom(authenticatedAtom);
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   return (
@@ -30,17 +30,21 @@ const Header = () => {
 
         <section className="links">
           {authenticated ? (
-            <button className="login-btn" type="button" onClick={signOut}>
-              {t('buttons.signout')}
-            </button>
-          ) : (
-            <button
-              className="login-btn"
-              type="button"
-              onClick={() => setShowLoginModal(true)}
+            <Link
+              to={ROUTES.LANDING_PAGE}
+              className="login-btn btn-clear mr-2"
+              onClick={() => {
+                signOut();
+                setAuthenticated(false);
+                localStorage.setItem('authenticated', false);
+              }}
             >
+              {t('buttons.signout')}
+            </Link>
+          ) : (
+            <Link to={ROUTES.LOG_IN} className="login-btn btn-clear mr-2">
               {t('buttons.signin')}
-            </button>
+            </Link>
           )}
           <button className="btn-primary" type="button">
             {t('buttons.signup')}

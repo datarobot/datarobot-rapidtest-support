@@ -5,8 +5,9 @@
   "buttons": {
     "addAccount": "Agregar una cuenta nueva",
     "addSite": "Agregar un sitio nuevo",
-    "approve": "Aprobar",
+    "activate": "Activar",
     "approveAll": "Aprobar todo",
+    "deactivate": "Desactivar",
     "next": "Próximo",
     "previous": "Previo",
     "signin": "Registrarse",

@@ -13,6 +13,8 @@ export const ROUTES = {
   ADD_ACCOUNT: '/accounts/new',
   EDIT_ACCOUNT: '/accounts/edit',
   FAQ: '/faq',
+  DASHBOARD: '/dashboard',
+  LOG_IN: '/login',
 };
 
 export const FIREBASE_CONFIG = {

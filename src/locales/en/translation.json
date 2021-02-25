@@ -5,8 +5,9 @@
   "buttons": {
     "addAccount": "Add a new account",
     "addSite": "Add a new site",
-    "approve": "Approve",
+    "activate": "Activate",
     "approveAll": "Approve all",
+    "deactivate": "Deactivate" ,
     "next": "Next",
     "previous": "Previous",
     "signin": "Sign In",

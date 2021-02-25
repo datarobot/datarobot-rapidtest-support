@@ -8,6 +8,7 @@ import { useTable, useFilters, useSortBy, usePagination } from 'react-table';
 import Icon from 'components/Icon';
 import Input from 'components/Input';
 import Pagination from 'components/Table/Pagination';
+import Loading from 'components/Loading';
 
 import './Table.css';
 
@@ -105,63 +106,73 @@ const Table = ({
         </div>
       </div>
       <div className="tableWrapper">
-        <table {...getTableProps()} className="table border-collapse w-full">
-          <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => {
-                  const { isSorted, isSortedDesc } = column;
+        {page.length === 0 ? (
+          <Loading
+            color="#00528D"
+            size={256}
+            containerClassName="full-height"
+          />
+        ) : (
+          <table {...getTableProps()} className="table border-collapse w-full">
+            <thead>
+              {headerGroups.map((headerGroup) => (
+                <tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column) => {
+                    const { isSorted, isSortedDesc } = column;
 
-                  return (
-                    <th
-                      {...column.getHeaderProps(column.getSortByToggleProps())}
-                      className={cls(
-                        'p-2 font-bold text-left text-sm uppercase border-b border-gray-400 text-gray-500 hidden lg:table-cell',
-                        {
-                          'sort-asc': isSorted,
-                          'sorted-desc': isSortedDesc,
-                        }
-                      )}
-                    >
-                      <div className="w-full flex justify-between">
-                        {column.render('Header')}
-                        {typeof column.Header === 'string' && (
-                          <>
-                            {!isSorted && <Icon iconName="sort" />}
-                            {isSorted && !isSortedDesc && (
-                              <Icon iconName="sort-up" />
-                            )}
-                            {isSortedDesc && <Icon iconName="sort-down" />}
-                          </>
+                    return (
+                      <th
+                        {...column.getHeaderProps(
+                          column.getSortByToggleProps()
                         )}
-                      </div>
-                    </th>
-                  );
-                })}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {page.map((row) => {
-              prepareRow(row);
-              return (
-                <tr
-                  {...row.getRowProps()}
-                  className="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0"
-                >
-                  {row.cells.map((cell) => (
-                    <td
-                      {...cell.getCellProps()}
-                      className="w-full lg:w-auto p-2 text-gray-800 border-b border-gray-400 block lg:table-cell relative lg:static"
-                    >
-                      {cell.render('Cell')}
-                    </td>
-                  ))}
+                        className={cls(
+                          'p-2 font-bold text-left text-sm uppercase border-b border-gray-400 text-gray-500 hidden lg:table-cell',
+                          {
+                            'sort-asc': isSorted,
+                            'sorted-desc': isSortedDesc,
+                          }
+                        )}
+                      >
+                        <div className="w-full flex justify-between">
+                          {column.render('Header')}
+                          {typeof column.Header === 'string' && (
+                            <>
+                              {!isSorted && <Icon iconName="sort" />}
+                              {isSorted && !isSortedDesc && (
+                                <Icon iconName="sort-up" />
+                              )}
+                              {isSortedDesc && <Icon iconName="sort-down" />}
+                            </>
+                          )}
+                        </div>
+                      </th>
+                    );
+                  })}
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
+              ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {page.map((row) => {
+                prepareRow(row);
+                return (
+                  <tr
+                    {...row.getRowProps()}
+                    className="bg-white lg:hover:bg-gray-100 flex lg:table-row flex-row lg:flex-row flex-wrap lg:flex-no-wrap mb-10 lg:mb-0"
+                  >
+                    {row.cells.map((cell) => (
+                      <td
+                        {...cell.getCellProps()}
+                        className="w-full lg:w-auto p-2 text-gray-800 border-b border-gray-400 block lg:table-cell relative lg:static"
+                      >
+                        {cell.render('Cell')}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </div>
       {rows.length > pageSize && (
         <Pagination

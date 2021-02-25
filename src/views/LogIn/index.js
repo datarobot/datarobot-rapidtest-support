@@ -3,32 +3,36 @@
 import { useForm } from 'react-hook-form';
 import { useAtom } from 'jotai';
 import { ControlledInput } from 'components/Input';
-import Modal from 'components/Modal';
+
+import PageHeader from 'components/PageHeader';
 
 import { signIn } from 'services/firebase';
 import { userAtom } from 'store';
 
-const LogIn = ({ showModal, handleClose }) => {
+const LogIn = ({ location, history }) => {
   const { handleSubmit, register, errors } = useForm();
   const [, setUserInfo] = useAtom(userAtom);
-
   const onSubmit = ({ username, password }) => {
     signIn(username, password).then((info) => {
-      localStorage.setItem('authenticated', true);
       setUserInfo(info);
-      handleClose();
+      if (location?.state?.from) {
+        history.push(location.state.from);
+      } else {
+        history.push('/');
+      }
     });
   };
 
   return (
-    <Modal
-      show={showModal}
-      handleClose={handleClose}
-      title="Log In"
-      showFooter={false}
-    >
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <ControlledInput label="Email" name="username" ref={register} />
+    <>
+      <PageHeader headline="Log In" />
+      <form onSubmit={handleSubmit(onSubmit)} className="w-2/5">
+        <ControlledInput
+          label="Email"
+          name="username"
+          ref={register}
+          autoFocus
+        />
         <ControlledInput
           label="Password"
           type="password"
@@ -41,7 +45,7 @@ const LogIn = ({ showModal, handleClose }) => {
         </button>
       </form>
       {errors && errors.email && <p>ERROR!!!</p>}
-    </Modal>
+    </>
   );
 };
 

@@ -7,7 +7,7 @@ const LoggedIn = () => (
   <>
     <div className="hero flex mt-8">
       <section className="w-3/5 flex flex-col content-between items-between justify-between">
-        <h1 className="headline text-blue">Welcome, User Person!</h1>
+        <h1 className="headline text-blue">Welcome!</h1>
 
         <p className="mt-6 mb-12 text-lg">
           Reopen your schools. Rollout a COVID-19 testing program using

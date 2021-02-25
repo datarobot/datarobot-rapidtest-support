@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */
 // @ts-nocheck
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import cls from 'classnames';
 import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import ReactTooltip from 'react-tooltip';
@@ -16,48 +15,16 @@ import Table from 'components/Table';
 
 const StatusCell = ({ val }) => {
   const { t } = useTranslation();
-  const [, setAccounts] = useAtom(accountsAtom);
-  const { id, requestPending, enabled } = val;
+  // const [, setAccounts] = useAtom(accountsAtom);
+  const { id, archive } = val;
 
-  const isDisabled = !enabled && !requestPending;
-
-  let cellText;
-
-  if (requestPending) {
-    cellText = 'requested';
-  } else {
-    cellText = enabled ? 'enabled' : 'disabled';
-  }
-
-  const changeStatus = () => {
-    if (requestPending) {
-      return;
-    }
-
-    editAccount(id, { ...val, enabled: !enabled }).then(async () => {
-      const data = await getAccountList();
-      setAccounts(data);
-    });
-  };
+  const isDisabled = archive;
+  const cellText = isDisabled ? 'Inactive' : 'Active';
 
   return (
-    <span className="text-xs uppercase flex justify-between">
+    <span>
       {cellText}
-      <Icon
-        className={cls({ 'cursor-pointer': !requestPending })}
-        data-tip
-        data-for={enabled ? 'disable' : isDisabled ? 'enable' : 'pending'}
-        onClick={changeStatus}
-        size="lg"
-        iconName={
-          enabled
-            ? 'times-circle'
-            : isDisabled
-            ? 'check-circle'
-            : 'hourglass-half'
-        }
-        color={enabled ? '#Df472C' : isDisabled ? '#33a15e' : '#999'}
-      />
+
       <ReactTooltip effect="solid" id="enable">
         {t('tooltips.enableAccount')}
       </ReactTooltip>
@@ -71,22 +38,29 @@ const StatusCell = ({ val }) => {
   );
 };
 
-const ApproveButton = ({ onClick, val }) => {
+const ActivateButton = ({ val }) => {
   const { t } = useTranslation();
-  const { requestPending } = val;
+  const { id, archive } = val;
+  const [accounts, setAccounts] = useAtom(accountsAtom);
 
-  if (requestPending) {
-    return (
+  const toggleAccountActive = () => {
+    editAccount(id, { ...val, archive: !archive }).then(async () => {
+      // const data = await getAccountList();
+      setAccounts([...accounts, { ...val, archive: !archive }]);
+    });
+  };
+
+  return (
+    <>
       <button
-        onClick={onClick}
-        className="btn-primary text-xs py-1 px-2"
+        onClick={toggleAccountActive}
+        className="text-light-blue py-1 px-2"
         type="button"
       >
-        {t('buttons.approve')}
+        {!archive ? t('buttons.deactivate') : t('buttons.activate')}
       </button>
-    );
-  }
-  return <></>;
+    </>
+  );
 };
 
 const ApproveAllButton = () => {
@@ -129,15 +103,6 @@ const Accounts = () => {
   const [accounts, setAccounts] = useAtom(accountsAtom);
   const [, setCurrentAccount] = useAtom(currentAccountAtom);
   const [accountsToApprove, setAccountsToApprove] = useState([]);
-
-  const approveAccount = (id, val) => {
-    editAccount(id, { ...val, requestPending: false, enabled: true }).then(
-      async () => {
-        const data = await getAccountList();
-        setAccounts(data);
-      }
-    );
-  };
 
   // const handleSaveAccount = () => {
   //   getAccountList()
@@ -198,10 +163,7 @@ const Accounts = () => {
         disableSortBy: true,
         accessor: (val) => (
           <div className="flex justify-center">
-            <ApproveButton
-              onClick={() => approveAccount(val.id, val)}
-              val={val}
-            />
+            <ActivateButton val={val} />
           </div>
         ),
       },

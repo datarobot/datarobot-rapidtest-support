@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { ROUTES } from 'rt-constants';
@@ -13,31 +14,7 @@ const Accounts = lazy(() => import('views/Accounts'));
 const AddAccount = lazy(() => import('views/Accounts/AddAccount'));
 const EditAccount = lazy(() => import('views/Accounts/EditAccount'));
 const Faq = lazy(() => import('views/Faq'));
-
-export const LoggedInRoutes = () => (
-  <Switch>
-    <Route path={ROUTES.PROGRAM_ADMIN} component={ProgramAdmin} />
-    <Route path={ROUTES.JOIN} component={Join} />
-    <Route path={ROUTES.OTHER} component={Other} />
-    <Route exact path={ROUTES.SITES} component={Sites} />
-    <Route path={ROUTES.ADD_SITE} component={AddSite} />
-    <Route path={ROUTES.EDIT_SITE} component={EditSite} />
-    <Route exact path={ROUTES.ACCOUNTS} component={Accounts} />
-    <Route path={ROUTES.ADD_ACCOUNT} component={AddAccount} />
-    <Route path={ROUTES.EDIT_ACCOUNT} component={EditAccount} />
-    <Route path={ROUTES.FAQ} component={Faq} />
-    <Route exact path={ROUTES.LANDING_PAGE} component={Home} />
-  </Switch>
-);
-
-export const LoggedOutRoutes = () => (
-  <Switch>
-    <Route path={ROUTES.JOIN} component={Join} />
-    <Route path={ROUTES.OTHER} component={Other} />
-    <Route path={ROUTES.FAQ} component={Faq} />
-    <Route path={ROUTES.LANDING_PAGE} component={Home} />
-  </Switch>
-);
+const LogIn = lazy(() => import('views/LogIn'));
 
 export const PrivateRoute = ({
   component: Component,
@@ -47,12 +24,12 @@ export const PrivateRoute = ({
   <Route
     {...rest}
     render={(props) =>
-      authenticated === true ? (
+      authenticated || !localStorage.getItem('authenticated') ? (
         <Component {...props} />
       ) : (
         <Redirect
           to={{
-            pathname: ROUTES.LANDING_PAGE,
+            pathname: ROUTES.LOG_IN,
             state: { from: props.location },
           }}
         />
@@ -61,19 +38,45 @@ export const PrivateRoute = ({
   />
 );
 
-export const PublicRoute = ({
-  component: Component,
-  authenticated,
-  ...rest
-}) => (
-  <Route
-    {...rest}
-    render={(props) =>
-      authenticated === false ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to={ROUTES.LANDING_PAGE} />
-      )
-    }
-  />
+export const Routes = ({ authenticated }) => (
+  <Switch>
+    <Route path={ROUTES.PROGRAM_ADMIN} component={ProgramAdmin} />
+    <Route path={ROUTES.JOIN} component={Join} />
+    <Route path={ROUTES.OTHER} component={Other} />
+    <PrivateRoute
+      authenticated={authenticated}
+      exact
+      path={ROUTES.SITES}
+      component={Sites}
+    />
+    <PrivateRoute
+      authenticated={authenticated}
+      path={ROUTES.ADD_SITE}
+      component={AddSite}
+    />
+    <PrivateRoute
+      authenticated={authenticated}
+      path={ROUTES.EDIT_SITE}
+      component={EditSite}
+    />
+    <PrivateRoute
+      authenticated={authenticated}
+      exact
+      path={ROUTES.ACCOUNTS}
+      component={Accounts}
+    />
+    <PrivateRoute
+      authenticated={authenticated}
+      path={ROUTES.ADD_ACCOUNT}
+      component={AddAccount}
+    />
+    <PrivateRoute
+      authenticated={authenticated}
+      path={ROUTES.EDIT_ACCOUNT}
+      component={EditAccount}
+    />
+    <Route path={ROUTES.FAQ} component={Faq} />
+    <Route exact path={ROUTES.LANDING_PAGE} component={Home} />
+    <Route exact path={ROUTES.LOG_IN} component={LogIn} />
+  </Switch>
 );

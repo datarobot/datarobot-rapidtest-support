@@ -1,6 +1,7 @@
+// @ts-nocheck
 /* eslint-disable import/prefer-default-export */
-import firebase from 'firebase';
-
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import { FIREBASE_CONFIG } from 'rt-constants';
 
 firebase.initializeApp(FIREBASE_CONFIG);
@@ -11,9 +12,9 @@ export const signUp = (email, pwd) =>
   firebase.auth().createUserWithEmailAndPassword(email, pwd);
 
 export const signIn = async (email, pwd) => {
-  const user = await firebase.auth().signInWithEmailAndPassword(email, pwd);
+  const authed = await firebase.auth().signInWithEmailAndPassword(email, pwd);
 
-  return user;
+  return authed;
 };
 
 export const signOut = () => firebase.auth().signOut();
