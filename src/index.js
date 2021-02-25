@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'jotai';
 import './i18n';
 
+import AuthProvider from 'components/AuthProvider';
+
 import 'assets/styles/fonts.css';
 import './index.css';
 import App from './App';
@@ -10,9 +12,11 @@ import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Provider>
-      <App />
-    </Provider>
+    <AuthProvider>
+      <Provider>
+        <App />
+      </Provider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

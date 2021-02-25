@@ -14,7 +14,6 @@ const LogIn = ({ showModal, handleClose }) => {
 
   const onSubmit = ({ username, password }) => {
     signIn(username, password).then((info) => {
-      localStorage.setItem('authenticated', true);
       setUserInfo(info);
       handleClose();
     });

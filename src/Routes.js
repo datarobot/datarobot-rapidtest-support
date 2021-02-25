@@ -24,7 +24,7 @@ export const PrivateRoute = ({
   <Route
     {...rest}
     render={(props) =>
-      authenticated || !localStorage.getItem('authenticated') ? (
+      authenticated ? (
         <Component {...props} />
       ) : (
         <Redirect

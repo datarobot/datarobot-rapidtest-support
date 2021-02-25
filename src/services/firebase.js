@@ -5,7 +5,7 @@ import 'firebase/auth';
 import { FIREBASE_CONFIG } from 'rt-constants';
 
 firebase.initializeApp(FIREBASE_CONFIG);
-
+firebase.auth();
 export const { auth } = firebase;
 
 export const signUp = (email, pwd) =>

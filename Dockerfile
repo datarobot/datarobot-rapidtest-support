@@ -49,7 +49,7 @@ COPY --from=htmlbuild /html/build /usr/share/nginx/html
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./Makefile ./Makefile
 
-EXPOSE 80
+EXPOSE 8080
 
 CMD ["make", "start-app"]
 

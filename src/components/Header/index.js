@@ -1,22 +1,22 @@
 // @ts-nocheck
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 
 import Logo from 'components/Logo';
 import Nav from 'components/Header/Nav';
 import LoginModal from 'components/Modals/LogIn';
+import { AuthContext } from 'components/AuthProvider';
 
 import { ROUTES } from 'rt-constants';
-import { authenticatedAtom } from 'store';
+
 import { signOut } from 'services/firebase';
 
 import './Header.css';
 
 const Header = () => {
   const { t } = useTranslation();
-  const [authenticated, setAuthenticated] = useAtom(authenticatedAtom);
+  const { authenticated } = useContext(AuthContext);
   const [showLoginModal, setShowLoginModal] = useState(false);
 
   return (
@@ -35,8 +35,6 @@ const Header = () => {
               className="login-btn btn-clear mr-2"
               onClick={() => {
                 signOut();
-                setAuthenticated(false);
-                localStorage.setItem('authenticated', false);
               }}
             >
               {t('buttons.signout')}

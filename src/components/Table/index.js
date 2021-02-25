@@ -109,8 +109,8 @@ const Table = ({
         {page.length === 0 ? (
           <Loading
             color="#00528D"
-            size={256}
-            containerClassName="full-height"
+            size={128}
+            containerClassName="full-height -mt-12"
           />
         ) : (
           <table {...getTableProps()} className="table border-collapse w-full">
