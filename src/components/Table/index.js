@@ -88,16 +88,19 @@ const Table = ({
           {tableName && (
             <h1 className="headline text-blue mb-4">{tableName}</h1>
           )}
-          <Input
-            value={filterInput || ''}
-            onChange={handleFilterChange}
-            placeholder="Search..."
-            className="self-center"
-            rounded
-          />
+          <div className="flex items-center">
+            <Icon iconName="search" />
+            <Input
+              value={filterInput || ''}
+              onChange={handleFilterChange}
+              placeholder="Search..."
+              className="self-center search"
+              rounded
+            />
+          </div>
         </div>
         <div className="table-buttons flex justify-end items-center">
-          <button className="btn-clear text-blue" onClick={onUploadClick}>
+          <button className="btn-clear text-blue mr-2" onClick={onUploadClick}>
             {uploadButtonText}
           </button>
           <Link to={addRoute} className="btn-primary">

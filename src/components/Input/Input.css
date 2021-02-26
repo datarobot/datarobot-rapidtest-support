@@ -21,3 +21,18 @@
 
   @apply font-bold text-dark-red ml-1;
 }
+
+.search {
+  @apply border-transparent outline-none ml-2;
+
+  border-right: 1px solid #ccc;
+  width: 20%;
+  min-width: 0;
+  transition: all 500ms ease;
+}
+
+.search:focus {
+  @apply w-full border outline-none;
+
+  min-width: 100%;
+}

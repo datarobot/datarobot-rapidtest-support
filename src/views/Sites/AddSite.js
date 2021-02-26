@@ -319,12 +319,6 @@ const AddSite = () => {
             name="contact_name"
             control={control}
             defaultValue=""
-            rules={{
-              required: {
-                value: true,
-                message: t('errorMessages.common.required'),
-              },
-            }}
             render={({ onChange, value }) => (
               <Input
                 name="contact_name"
@@ -333,26 +327,14 @@ const AddSite = () => {
                 onChange={onChange}
                 value={value}
                 className="mt-1"
-                isRequired
               />
             )}
           />
-          {errors && errors.contact_name && (
-            <p className="text-dark-red font-bold text-xs uppercase">
-              {errors.contact_name.message}
-            </p>
-          )}
 
           <Controller
             name="contact_email"
             control={control}
             defaultValue=""
-            rules={{
-              required: {
-                value: true,
-                message: t('errorMessages.common.required'),
-              },
-            }}
             render={({ onChange, value }) => (
               <Input
                 name="contact_email"
@@ -362,15 +344,9 @@ const AddSite = () => {
                 onChange={onChange}
                 value={value}
                 className="mt-1"
-                isRequired
               />
             )}
           />
-          {errors && errors.contact_email && (
-            <p className="text-dark-red font-bold text-xs uppercase">
-              {errors.contact_email.message}
-            </p>
-          )}
 
           <Controller
             name="clia"

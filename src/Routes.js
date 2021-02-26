@@ -15,6 +15,7 @@ const AddAccount = lazy(() => import('views/Accounts/AddAccount'));
 const EditAccount = lazy(() => import('views/Accounts/EditAccount'));
 const Faq = lazy(() => import('views/Faq'));
 const LogIn = lazy(() => import('views/LogIn'));
+const Dashboard = lazy(() => import('views/Dashboard'));
 
 export const PrivateRoute = ({
   component: Component,
@@ -74,6 +75,11 @@ export const Routes = ({ authenticated }) => (
       authenticated={authenticated}
       path={ROUTES.EDIT_ACCOUNT}
       component={EditAccount}
+    />
+    <PrivateRoute
+      authenticated={authenticated}
+      path={ROUTES.DASHBOARD}
+      component={Dashboard}
     />
     <Route path={ROUTES.FAQ} component={Faq} />
     <Route exact path={ROUTES.LANDING_PAGE} component={Home} />

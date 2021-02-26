@@ -18,9 +18,9 @@ const Loading = ({
         className="loader-after"
         style={{
           borderColor: `${color} transparent`,
-          borderWidth: size * 0.1,
-          width: size * 0.7 - 6,
-          height: size * 0.7 - 6,
+          borderWidth: size * 0.025,
+          width: size * 0.75 - 6,
+          height: size * 0.75 - 6,
         }}
       ></div>
     </div>

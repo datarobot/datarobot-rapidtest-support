@@ -68,6 +68,8 @@ body {
   }
 
   .headline {
+    @apply text-blue;
+    
     font-size: 2.5rem;
     line-height: 2.75rem;
     font-weight: 700;

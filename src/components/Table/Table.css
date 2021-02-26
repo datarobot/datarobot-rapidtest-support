@@ -12,11 +12,11 @@
 }
 
 .pagination {
-  @apply flex font-semibold;
+  @apply flex font-medium;
 }
 
 .pagination .active {
-  @apply text-dark-blue font-black;
+  @apply text-light-blue font-bold;
 }
 
 .pagination .disabled a {
@@ -43,7 +43,7 @@
 }
 
 .pagingButton:hover {
-  @apply text-blue;
+  @apply text-light-blue;
 }
 
 .pagingButton:disabled {

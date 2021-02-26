@@ -63,41 +63,6 @@ const ActivateButton = ({ val }) => {
   );
 };
 
-const ApproveAllButton = () => {
-  const { t } = useTranslation();
-  const [accounts, setAccounts] = useAtom(accountsAtom);
-
-  const approveAllAccounts = () => {
-    const unapproved = accounts.filter(({ requestPending }) => requestPending);
-
-    if (unapproved.length) {
-      for (let i = 0; i < unapproved.length; i += 1) {
-        const acc = unapproved[i];
-        editAccount(acc.id, {
-          ...acc,
-          requestPending: false,
-          enabled: true,
-        }).then(async () => {
-          const data = await getAccountList();
-          setAccounts(data);
-        });
-      }
-    }
-  };
-
-  return (
-    <div className="w-full flex justify-center">
-      <button
-        onClick={approveAllAccounts}
-        className="btn-primary text-xs py-1 px-2"
-        type="button"
-      >
-        {t('buttons.approveAll')}
-      </button>
-    </div>
-  );
-};
-
 const Accounts = () => {
   const { t } = useTranslation();
   const [accounts, setAccounts] = useAtom(accountsAtom);
@@ -116,7 +81,6 @@ const Accounts = () => {
   };
 
   const handleEditRow = useCallback((account) => {
-    console.log(account);
     setCurrentAccount(account);
     // setAccountId(id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -158,11 +122,11 @@ const Accounts = () => {
         accessor: (val) => <StatusCell val={val} />,
       },
       {
-        Header: () => <ApproveAllButton />,
+        Header: () => <span className="w-full text-right mr-2">Action</span>,
         id: 'approve',
         disableSortBy: true,
         accessor: (val) => (
-          <div className="flex justify-center">
+          <div className="flex justify-end">
             <ActivateButton val={val} />
           </div>
         ),
