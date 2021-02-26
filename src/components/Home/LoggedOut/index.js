@@ -21,7 +21,7 @@ const LoggedOut = () => {
 
           <p className="my-6 text-lg">
             Reopen your schools. Rollout a COVID-19 testing program using
-            RapidTest and send reports to government regulated relevant health
+            RapidTest and send reports to the relevant health
             authorities.
           </p>
 
@@ -43,13 +43,13 @@ const LoggedOut = () => {
       <div className="flex mt-12">
         <HomePageCard
           text="I'm testing others"
-          subText="Information for Parents and Students"
+          subText="Information for health workers and school personnel"
           icon={testingOthers}
           links={TESTING_OTHERS}
         />
         <HomePageCard
           text="I'm getting tested"
-          subText="Information for health workers and school personnel"
+          subText="Information for Parents and Students"
           icon={gettingTested}
           links={GETTING_TESTED}
         />
@@ -57,7 +57,7 @@ const LoggedOut = () => {
 
       <article className="my-12">
         <h3 className="font-bold text-blue text-2xl mb-4">
-          About testing program
+          About
         </h3>
         <section className="two-column">
           As the COVID-19 pandemic continues, finding ways to safely reopen
