@@ -16,8 +16,6 @@ import PageHeader from 'components/PageHeader';
 import { ROUTES } from 'rt-constants';
 
 import { currentAccountAtom } from 'store';
-
-// eslint-disable-next-line no-unused-vars
 import { editAccount, getAccount } from 'services/api';
 
 const EditAccount = ({ history }) => {
@@ -35,6 +33,9 @@ const EditAccount = ({ history }) => {
             setCurrentAccount({});
             history.push(ROUTES.ACCOUNTS);
           },
+          closeButton: false,
+          hideProgressBar: true,
+          autoClose: 1500,
         });
       })
       .catch((err) => {
@@ -43,10 +44,7 @@ const EditAccount = ({ history }) => {
   };
 
   const handleOnChange = (prop, val) => {
-    setCurrentAccount((prevState) => {
-      console.log({ ...prevState, [prop]: val });
-      return { ...prevState, [prop]: val };
-    });
+    setCurrentAccount((prevState) => ({ ...prevState, [prop]: val }));
   };
 
   useEffect(() => {
@@ -56,7 +54,13 @@ const EditAccount = ({ history }) => {
         setCurrentAccount(account);
       })
       .catch((err) => {
-        console.error(err.message);
+        const resp = err.response.data.errors;
+        for (const key in resp) {
+          if (Object.hasOwnProperty.call(resp, key)) {
+            const msg = resp[key];
+            toast.error(msg, { autoClose: 10000 });
+          }
+        }
       })
       .finally(() => {
         setIsLoading(false);
@@ -155,7 +159,7 @@ const EditAccount = ({ history }) => {
             {errors.email && <span>This field is required</span>}
 
             <div className="btn-row mt-4">
-              <button className="btn-primary" type="submit">
+              <button className="btn-primary mr-2" type="submit">
                 Save Info
               </button>
 

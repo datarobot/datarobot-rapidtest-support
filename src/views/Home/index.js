@@ -1,14 +1,15 @@
-import { useAtom } from 'jotai';
+// @ts-nocheck
+import { useContext } from 'react';
 
 import LoggedIn from 'components/Home/LoggedIn';
 import LoggedOut from 'components/Home/LoggedOut';
 
-import { authenticatedAtom } from 'store';
+import { AuthContext } from 'components/AuthProvider';
 
 import './Home.css';
 
 const Home = () => {
-  const [authenticated] = useAtom(authenticatedAtom);
+  const { authenticated } = useContext(AuthContext);
 
   return <>{authenticated ? <LoggedIn /> : <LoggedOut />}</>;
 };

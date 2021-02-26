@@ -1,38 +1,69 @@
 // @ts-nocheck
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import { useAtom } from 'jotai';
+import { toast } from 'react-toastify';
 
-import Input from 'components/Input';
+import { ControlledInput } from 'components/Input';
+import Loading from 'components/Loading';
 import PageHeader from 'components/PageHeader';
 import Select from 'components/Select';
 import Map from 'components/Map';
 
-import { STATE_OPTIONS } from 'rt-constants';
+import { STATE_OPTIONS, ROUTES } from 'rt-constants';
 
 import { currentSiteAtom } from 'store';
 
-// eslint-disable-next-line no-unused-vars
-import { editSite } from 'services/api';
+import { editSite, getSite } from 'services/api';
 
-const Edit = () => {
+const Edit = ({ history }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
-  const { handleSubmit, errors } = useForm();
+  const { handleSubmit, errors, register } = useForm();
   const [mapCenter] = useState();
   const [mapZoom] = useState();
+  const { id } = useParams();
 
   const [currentSite, setCurrentSite] = useAtom(currentSiteAtom);
 
   const onSubmit = () => {
     editSite(currentSite.id, currentSite)
       .then(() => {
-        // Do stuff
+        toast.success('Success!', {
+          onClose: () => {
+            history.push(ROUTES.SITES);
+          },
+          closeButton: false,
+          hideProgressBar: true,
+          autoClose: 1500,
+        });
       })
-      .catch(() => {
-        // handle errors
+      .catch((err) => {
+        const resp = err.response.data.errors;
+        for (const key in resp) {
+          if (Object.hasOwnProperty.call(resp, key)) {
+            const msg = resp[key];
+            toast.error(msg, { autoClose: 10000 });
+          }
+        }
       });
   };
+
+  useEffect(() => {
+    setIsLoading(true);
+    getSite(id)
+      .then((site) => {
+        setCurrentSite(site[0]);
+      })
+      .catch((err) => {
+        console.error(err.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [id, setCurrentSite]);
 
   const handleOnChange = (prop, val) => {
     setCurrentSite((prevState) => ({ ...prevState, [prop]: val }));
@@ -40,123 +71,141 @@ const Edit = () => {
 
   return (
     <section className="mb-12">
-      <PageHeader
-        headline={`${t('editSite.title')} ${currentSite.site_name}`}
-      />
+      {currentSite.site_name && (
+        <PageHeader
+          headline={`${t('editSite.title')} ${currentSite.site_name}`}
+        />
+      )}
 
-      <div className="flex">
-        <form className="mr-4" onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            name="site_name"
-            label={t('site.label.name')}
-            placeholder={t('site.label.name')}
-            onChange={({ target }) => handleOnChange('site_name', target.value)}
-            value={currentSite?.site_name || ''}
-          />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="flex">
+          <form className="mr-4" onSubmit={handleSubmit(onSubmit)}>
+            <ControlledInput
+              name="site_name"
+              label={t('site.label.name')}
+              placeholder={t('site.label.name')}
+              onChange={({ target }) =>
+                handleOnChange('site_name', target.value)
+              }
+              value={currentSite?.site_name || ''}
+              ref={register}
+            />
 
-          <Input
-            name="street"
-            label={t('site.label.street')}
-            placeholder={t('site.label.street')}
-            onChange={({ target }) =>
-              handleOnChange('street', target.value, true)
-            }
-            value={currentSite?.street || ''}
-          />
+            <ControlledInput
+              name="street"
+              label={t('site.label.street')}
+              placeholder={t('site.label.street')}
+              onChange={({ target }) =>
+                handleOnChange('street', target.value, true)
+              }
+              value={currentSite?.street || ''}
+            />
 
-          <fieldset className="flex">
-            <div className="w-1/2 mr-2">
-              <Input
-                name="county"
-                label={t('site.label.county')}
-                placeholder={t('site.label.county')}
-                onChange={({ target }) =>
-                  handleOnChange('county', target.value)
-                }
-                value={currentSite?.county || ''}
-                className="mt-1"
-                isRequired
-              />
+            <fieldset className="flex">
+              <div className="w-1/2 mr-2">
+                <ControlledInput
+                  name="county"
+                  label={t('site.label.county')}
+                  placeholder={t('site.label.county')}
+                  onChange={({ target }) =>
+                    handleOnChange('county', target.value)
+                  }
+                  value={currentSite?.county || ''}
+                  className="mt-1"
+                  isRequired
+                  ref={register}
+                />
 
-              {errors && errors.county && (
-                <p className="text-dark-red font-bold text-xs uppercase">
-                  {errors.county.message}
-                </p>
-              )}
+                {errors && errors.county && (
+                  <p className="text-dark-red font-bold text-xs uppercase">
+                    {errors.county.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="w-1/4 mr-2">
+                <Select
+                  name="state"
+                  label={t('site.label.state')}
+                  options={STATE_OPTIONS}
+                  value={currentSite?.state || ''}
+                  onChange={({ target }) =>
+                    handleOnChange('state', target.value)
+                  }
+                  ref={register}
+                />
+              </div>
+
+              <div className="w-1/4">
+                <ControlledInput
+                  name="zip"
+                  label={t('site.label.zip')}
+                  placeholder={t('site.label.zip')}
+                  onChange={({ target }) => handleOnChange('zip', target.value)}
+                  value={currentSite?.zip || ''}
+                  className="mt-1"
+                  isRequired
+                  ref={register}
+                />
+
+                {errors && errors.zip && (
+                  <p className="text-dark-red font-bold text-xs uppercase">
+                    {errors.zip.message}
+                  </p>
+                )}
+              </div>
+            </fieldset>
+
+            <ControlledInput
+              name="contact_name"
+              label={t('site.label.contactName')}
+              placeholder={t('site.label.contactName')}
+              onChange={({ target }) =>
+                handleOnChange('contact_name', target.value)
+              }
+              ref={register}
+              value={currentSite?.contact_name || ''}
+            />
+
+            <ControlledInput
+              name="contactEmail"
+              label={t('site.label.contactEmail')}
+              type="email"
+              placeholder={t('site.label.contactEmail')}
+              onChange={({ target }) =>
+                handleOnChange('contactEmail', target.value)
+              }
+              value={currentSite?.contact_email || ''}
+              ref={register}
+            />
+            <ControlledInput
+              name="clia"
+              label={t('site.label.cliaNumber')}
+              placeholder={t('site.label.cliaNumber')}
+              onChange={({ target }) => handleOnChange('clia', target.value)}
+              value={currentSite?.clia || ''}
+              ref={register}
+            />
+
+            {errors.email && <span>This field is required</span>}
+
+            <div className="btn-row mt-4">
+              <button className="btn-primary mr-2" type="submit">
+                Save Info
+              </button>
+
+              <button className="btn-clear" type="button">
+                Cancel
+              </button>
             </div>
-
-            <div className="w-1/4 mr-2">
-              <Select
-                label={t('site.label.state')}
-                options={STATE_OPTIONS}
-                value={currentSite?.state || ''}
-                onChange={({ target }) => handleOnChange('state', target.value)}
-              />
-            </div>
-
-            <div className="w-1/4">
-              <Input
-                name="zip"
-                label={t('site.label.zip')}
-                placeholder={t('site.label.zip')}
-                onChange={({ target }) => handleOnChange('zip', target.value)}
-                value={currentSite?.zip || ''}
-                className="mt-1"
-                isRequired
-              />
-
-              {errors && errors.zip && (
-                <p className="text-dark-red font-bold text-xs uppercase">
-                  {errors.zip.message}
-                </p>
-              )}
-            </div>
-          </fieldset>
-
-          <Input
-            name="contact_name"
-            label={t('site.label.contactName')}
-            placeholder={t('site.label.contactName')}
-            onChange={({ target }) =>
-              handleOnChange('contact_name', target.value)
-            }
-            value={currentSite?.contact_name || ''}
-          />
-
-          <Input
-            name="contactEmail"
-            label={t('site.label.contactEmail')}
-            type="email"
-            placeholder={t('site.label.contactEmail')}
-            onChange={({ target }) =>
-              handleOnChange('contactEmail', target.value)
-            }
-            value={currentSite?.contact_email || ''}
-          />
-          <Input
-            name="clia"
-            label={t('site.label.cliaNumber')}
-            placeholder={t('site.label.cliaNumber')}
-            onChange={({ target }) => handleOnChange('clia', target.value)}
-            value={currentSite?.clia || ''}
-          />
-
-          {errors.email && <span>This field is required</span>}
-
-          <div className="btn-row mt-4">
-            <button className="btn-primary" type="submit">
-              Save Info
-            </button>
-
-            <button className="btn-clear" type="button">
-              Cancel
-            </button>
+          </form>
+          <div className="w-1/2 2xl:w-full">
+            <Map center={mapCenter} zoom={mapZoom} />
           </div>
-        </form>
-        <div className="w-1/2 2xl:w-full">
-          <Map center={mapCenter} zoom={mapZoom} />
         </div>
-      </div>
+      )}
     </section>
   );
 };

@@ -40,6 +40,7 @@
     "react-markdown": "5.0.3",
     "react-modal": "^3.12.1",
     "react-paginate": "7.1.0",
+    "react-pdf": "5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
     "react-table": "^7.6.3",
@@ -47,6 +48,7 @@
     "react-tabs": "3.2.0",
     "react-toastify": "7.0.3",
     "react-tooltip": "^4.2.13",
+    "remark-gfm": "1.0.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "web-vitals": "^1.0.1"
   },

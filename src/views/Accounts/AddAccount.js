@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import Icon from 'components/Icon';
 import Input from 'components/Input';
@@ -9,19 +9,23 @@ import PageHeader from 'components/PageHeader';
 import { ROUTES } from 'rt-constants';
 import { requestAccess } from 'services/api';
 
-const AddAccount = () => {
+const AddAccount = ({ history }) => {
   const { control, handleSubmit, errors } = useForm();
-  const history = useHistory();
 
   const onSubmit = (data) => {
     requestAccess(data)
-      .then((res) => {
-        if (res.id) {
-          history.push(ROUTES.ACCOUNTS);
-        }
+      .then(() => {
+        toast.success('Success!', {
+          onClose: () => {
+            history.push(ROUTES.ACCOUNTS);
+          },
+          closeButton: false,
+          hideProgressBar: true,
+          autoClose: 1500,
+        });
       })
-      .catch(() => {
-        // handle errors
+      .catch((err) => {
+        toast.error(err.message);
       });
   };
 
@@ -114,7 +118,7 @@ const AddAccount = () => {
           />
 
           <div className="btn-row mt-4">
-            <button className="btn-primary" type="submit">
+            <button className="btn-primary mr-2" type="submit">
               Save Info
             </button>
 

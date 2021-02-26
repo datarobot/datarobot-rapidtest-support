@@ -54,7 +54,7 @@ const ActivateButton = ({ val }) => {
     <>
       <button
         onClick={toggleAccountActive}
-        className="text-light-blue py-1 px-2"
+        className="text-light-blue py-0 px-2"
         type="button"
       >
         {!archive ? t('buttons.deactivate') : t('buttons.activate')}

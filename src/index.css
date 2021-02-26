@@ -63,6 +63,17 @@ body {
     @apply underline text-blue;
   }
 
+  a:not([role="button"]):not([class*="btn-"]):not(.nav-link):hover {
+
+    text-shadow:
+      -.5px -.5px 0 rgba(0, 82, 141, 0.25),
+      .5px -.5px 0 rgba(0, 82, 141, 0.25),
+      -.5px .5px 0 rgba(0, 82, 141, 0.25),
+      .5px .5px 0 rgba(0, 82, 141, 0.25);
+
+    transition: all 250ms ease;
+  }
+
   .full-height {
     min-height: calc(100vh - 130px);
   }
@@ -81,3 +92,6 @@ body {
 
 }
 
+.Toastify__toast-container {
+  width: fit-content !important;
+}

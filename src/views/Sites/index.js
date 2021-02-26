@@ -53,10 +53,7 @@ const Sites = () => {
         accessor: 'site_name',
         Cell: ({ row }) => (
           <>
-            <Link
-              to={ROUTES.EDIT_SITE}
-              onClick={() => handleEditRow(row.original)}
-            >
+            <Link to={`${ROUTES.EDIT_SITE}/${row.original.id}`}>
               <Icon
                 iconName="pencil-alt"
                 type="fal"

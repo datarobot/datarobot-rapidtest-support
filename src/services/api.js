@@ -66,7 +66,7 @@ export const getSiteList = async () => {
 };
 
 export const getSite = async (id) => {
-  const { data } = await http.get(`/sites/${id}`);
+  const { data } = await http.get(`/site/${id}`);
 
   return data;
 };
