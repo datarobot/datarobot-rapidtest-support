@@ -1,7 +1,25 @@
+h1, h2, h3 {
+  @apply font-bold text-blue;
+}
+
+h2 {
+  @apply text-2xl mt-8 mb-4;
+}
+
 .static {
-  @apply mt-12;
+  @apply mt-12 w-3/5;
 }
 
 .static-content ul {
   list-style: disc;
+}
+
+.static-content ul li {
+  @apply font-bold text-lg pt-2;
+}
+
+.static-content ul li ul li {
+  @apply ml-4 font-normal text-base py-1;
+
+  list-style: circle;
 }

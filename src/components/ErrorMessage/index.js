@@ -1,5 +1,3 @@
-import React from 'react';
-
 const ErrorMessage = ({ errors, errorKey }) => (
   <>
     {errors && errors[errorKey] && (

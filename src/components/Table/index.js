@@ -89,7 +89,7 @@ const Table = ({
             <h1 className="headline text-blue mb-4">{tableName}</h1>
           )}
           <div className="flex items-center">
-            <Icon iconName="search" />
+            <Icon iconName="search" type="fal" />
             <Input
               value={filterInput || ''}
               onChange={handleFilterChange}

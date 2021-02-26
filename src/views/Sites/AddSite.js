@@ -2,8 +2,8 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
 import { useAtom } from 'jotai';
+import { toast } from 'react-toastify';
 
 import Autocomplete from 'components/Autocomplete';
 import Input from 'components/Input';
@@ -19,7 +19,7 @@ import { useDebounce } from 'hooks';
 // eslint-disable-next-line no-unused-vars
 import { addSite, searchSchool, getSchool } from 'services/api';
 
-const AddSite = () => {
+const AddSite = ({ history }) => {
   const { t } = useTranslation();
   const { control, handleSubmit, errors, setValue } = useForm();
   const [schools, setSchools] = useState([]);
@@ -27,19 +27,29 @@ const AddSite = () => {
   const [currentSchool, setCurrentSchool] = useState();
   const [mapCenter, setMapCenter] = useState();
   const [mapZoom, setMapZoom] = useState();
-  const history = useHistory();
   // eslint-disable-next-line no-unused-vars
   const [sites, setSites] = useAtom(sitesAtom);
 
   const onSubmit = (data) => {
     addSite(data)
-      .then((res) => {
-        if (res.id) {
-          history.push(ROUTES.SITES);
-        }
+      .then(() => {
+        toast.success('Success!', {
+          onClose: () => {
+            history.push(ROUTES.SITES);
+          },
+          closeButton: false,
+          hideProgressBar: true,
+          autoClose: 1500,
+        });
       })
-      .catch(() => {
-        // handle errors
+      .catch((err) => {
+        const resp = err.response.data.errors;
+        for (const key in resp) {
+          if (Object.hasOwnProperty.call(resp, key)) {
+            const msg = resp[key];
+            toast.error(msg, { autoClose: 10000 });
+          }
+        }
       });
   };
 
@@ -377,7 +387,7 @@ const AddSite = () => {
           )}
 
           <div className="btn-row mt-4">
-            <button className="btn-primary" type="submit">
+            <button className="btn-primary mr-2" type="submit">
               Save Info
             </button>
 

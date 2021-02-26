@@ -16,6 +16,7 @@ const EditAccount = lazy(() => import('views/Accounts/EditAccount'));
 const Faq = lazy(() => import('views/Faq'));
 const LogIn = lazy(() => import('views/LogIn'));
 const Dashboard = lazy(() => import('views/Dashboard'));
+const TrainingMaterials = lazy(() => import('views/TrainingMaterials'));
 
 export const PrivateRoute = ({
   component: Component,
@@ -57,7 +58,7 @@ export const Routes = ({ authenticated }) => (
     />
     <PrivateRoute
       authenticated={authenticated}
-      path={ROUTES.EDIT_SITE}
+      path={`${ROUTES.EDIT_SITE}/:id`}
       component={EditSite}
     />
     <PrivateRoute
@@ -73,7 +74,7 @@ export const Routes = ({ authenticated }) => (
     />
     <PrivateRoute
       authenticated={authenticated}
-      path={ROUTES.EDIT_ACCOUNT}
+      path={`${ROUTES.EDIT_ACCOUNT}/:id`}
       component={EditAccount}
     />
     <PrivateRoute
@@ -82,6 +83,7 @@ export const Routes = ({ authenticated }) => (
       component={Dashboard}
     />
     <Route path={ROUTES.FAQ} component={Faq} />
+    <Route path={ROUTES.TRAINING_MATERIALS} component={TrainingMaterials} />
     <Route exact path={ROUTES.LANDING_PAGE} component={Home} />
     <Route exact path={ROUTES.LOG_IN} component={LogIn} />
   </Switch>

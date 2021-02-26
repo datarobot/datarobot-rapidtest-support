@@ -15,6 +15,7 @@ export const ROUTES = {
   FAQ: '/faq',
   DASHBOARD: '/dashboard',
   LOG_IN: '/login',
+  TRAINING_MATERIALS: '/training-materials',
 };
 
 export const FIREBASE_CONFIG = {
@@ -28,11 +29,11 @@ export const FIREBASE_CONFIG = {
 
 export const LANDING_PAGE_LINKS = {
   TESTING_OTHERS: [
-    { text: 'Request a user account', url: '' },
-    { text: 'Request a site', url: '' },
+    { text: 'Request a user account', url: ROUTES.ADD_ACCOUNT },
+    { text: 'Request a site', url: ROUTES.ADD_SITE },
     { text: 'Report an issue', url: '' },
-    { text: 'Training materials', url: '' },
-    { text: 'FAQ', url: '' },
+    { text: 'Training materials', url: ROUTES.TRAINING_MATERIALS },
+    { text: 'FAQ', url: ROUTES.FAQ },
     { text: 'Contact support', url: '' },
   ],
   GETTING_TESTED: [

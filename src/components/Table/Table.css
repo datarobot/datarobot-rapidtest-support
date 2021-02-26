@@ -6,7 +6,7 @@
 .paginationWrapper {
   @apply flex justify-between items-center py-4 pl-3 fixed bg-white;
 
-  bottom: 50px;
+  bottom: 51px;
   right: 8.5vw;
   left: 8.5vw;
 }

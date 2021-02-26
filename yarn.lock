@@ -1108,6 +1108,13 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.0.0":
+  version "7.13.7"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/@babel/runtime/-/runtime-7.13.7.tgz#d494e39d198ee9ca04f4dcb76d25d9d7a1dc961a"
+  integrity sha1-1JTjnRmO6coE9Ny3bSXZ16Hclho=
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.0", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.5", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   version "7.12.13"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/@babel/runtime/-/runtime-7.12.13.tgz#0a21452352b02542db0ffb928ac2d3ca7cb6d66d"
@@ -3675,6 +3682,11 @@ caseless@~0.12.0:
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
   integrity sha1-G2gcIf+EAzyCZUMJBolCDRhxUdw=
 
+ccount@^1.0.0:
+  version "1.1.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/ccount/-/ccount-1.1.0.tgz#246687debb6014735131be8abab2d93898f8d043"
+  integrity sha1-JGaH3rtgFHNRMb6KurLZOJj40EM=
+
 chalk@2.4.2, chalk@^2.0.0, chalk@^2.4.1, chalk@^2.4.2:
   version "2.4.2"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
@@ -3860,7 +3872,7 @@ clone-response@^1.0.2:
   dependencies:
     mimic-response "^1.0.0"
 
-clsx@^1.1.0:
+clsx@^1.1.0, clsx@^1.1.1:
   version "1.1.1"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/clsx/-/clsx-1.1.1.tgz#98b3134f9abbdf23b2663491ace13c5c03a73188"
   integrity sha1-mLMTT5q73yOyZjSRrOE8XAOnMYg=
@@ -5179,6 +5191,11 @@ escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
+
+escape-string-regexp@^4.0.0:
+  version "4.0.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz#14ba83a5d373e3d311e5afca29cf5bfad965bf34"
+  integrity sha1-FLqDpdNz49MR5a/KKc9b+tllvzQ=
 
 escodegen@^1.14.1:
   version "1.14.3"
@@ -8189,6 +8206,11 @@ long@^4.0.0:
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/long/-/long-4.0.0.tgz#9a7b71cfb7d361a194ea555241c92f7468d5bf28"
   integrity sha1-mntxz7fTYaGU6lVSQckvdGjVvyg=
 
+longest-streak@^2.0.0:
+  version "2.0.4"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/longest-streak/-/longest-streak-2.0.4.tgz#b8599957da5b5dab64dee3fe316fa774597d90e4"
+  integrity sha1-uFmZV9pbXatk3uP+MW+ndFl9kOQ=
+
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
   version "1.4.0"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
@@ -8250,6 +8272,11 @@ magic-string@^0.25.0, magic-string@^0.25.7:
   dependencies:
     sourcemap-codec "^1.4.4"
 
+make-cancellable-promise@^1.0.0:
+  version "1.0.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/make-cancellable-promise/-/make-cancellable-promise-1.0.0.tgz#826214115b0827ca7a45ba204df7c31546243870"
+  integrity sha1-gmIUEVsIJ8p6RbogTffDFUYkOHA=
+
 make-dir@^2.0.0, make-dir@^2.1.0:
   version "2.1.0"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/make-dir/-/make-dir-2.1.0.tgz#5f0310e18b8be898cc07009295a30ae41e91e6f5"
@@ -8264,6 +8291,11 @@ make-dir@^3.0.0, make-dir@^3.0.2:
   integrity sha1-QV6WcEazp/HRhSd9hKpYIDcmoT8=
   dependencies:
     semver "^6.0.0"
+
+make-event-props@^1.1.0:
+  version "1.2.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/make-event-props/-/make-event-props-1.2.0.tgz#96b87d88919533b8f8934b58b4c3d5679459a0cf"
+  integrity sha1-lrh9iJGVM7j4k0tYtMPVZ5RZoM8=
 
 makeerror@1.0.x:
   version "1.0.11"
@@ -8284,6 +8316,13 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+markdown-table@^2.0.0:
+  version "2.0.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/markdown-table/-/markdown-table-2.0.0.tgz#194a90ced26d31fe753d8b9434430214c011865b"
+  integrity sha1-GUqQztJtMf51PYuUNEMCFMARhls=
+  dependencies:
+    repeat-string "^1.0.0"
+
 md5.js@^1.3.4:
   version "1.3.5"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/md5.js/-/md5.js-1.3.5.tgz#b5d07b8e3216e3e27cd728d72f70d1e6a342005f"
@@ -8300,6 +8339,15 @@ mdast-add-list-metadata@1.0.1:
   dependencies:
     unist-util-visit-parents "1.1.2"
 
+mdast-util-find-and-replace@^1.1.0:
+  version "1.1.1"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/mdast-util-find-and-replace/-/mdast-util-find-and-replace-1.1.1.tgz#b7db1e873f96f66588c321f1363069abf607d1b5"
+  integrity sha1-t9sehz+W9mWIwyHxNjBpq/YH0bU=
+  dependencies:
+    escape-string-regexp "^4.0.0"
+    unist-util-is "^4.0.0"
+    unist-util-visit-parents "^3.0.0"
+
 mdast-util-from-markdown@^0.8.0:
   version "0.8.5"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/mdast-util-from-markdown/-/mdast-util-from-markdown-0.8.5.tgz#d1ef2ca42bc377ecb0463a987910dae89bd9a28c"
@@ -8310,6 +8358,60 @@ mdast-util-from-markdown@^0.8.0:
     micromark "~2.11.0"
     parse-entities "^2.0.0"
     unist-util-stringify-position "^2.0.0"
+
+mdast-util-gfm-autolink-literal@^0.1.0:
+  version "0.1.3"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/mdast-util-gfm-autolink-literal/-/mdast-util-gfm-autolink-literal-0.1.3.tgz#9c4ff399c5ddd2ece40bd3b13e5447d84e385fb7"
+  integrity sha1-nE/zmcXd0uzkC9OxPlRH2E44X7c=
+  dependencies:
+    ccount "^1.0.0"
+    mdast-util-find-and-replace "^1.1.0"
+    micromark "^2.11.3"
+
+mdast-util-gfm-strikethrough@^0.2.0:
+  version "0.2.3"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/mdast-util-gfm-strikethrough/-/mdast-util-gfm-strikethrough-0.2.3.tgz#45eea337b7fff0755a291844fbea79996c322890"
+  integrity sha1-Re6jN7f/8HVaKRhE++p5mWwyKJA=
+  dependencies:
+    mdast-util-to-markdown "^0.6.0"
+
+mdast-util-gfm-table@^0.1.0:
+  version "0.1.6"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/mdast-util-gfm-table/-/mdast-util-gfm-table-0.1.6.tgz#af05aeadc8e5ee004eeddfb324b2ad8c029b6ecf"
+  integrity sha1-rwWurcjl7gBO7d+zJLKtjAKbbs8=
+  dependencies:
+    markdown-table "^2.0.0"
+    mdast-util-to-markdown "~0.6.0"
+
+mdast-util-gfm-task-list-item@^0.1.0:
+  version "0.1.6"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/mdast-util-gfm-task-list-item/-/mdast-util-gfm-task-list-item-0.1.6.tgz#70c885e6b9f543ddd7e6b41f9703ee55b084af10"
+  integrity sha1-cMiF5rn1Q93X5rQflwPuVbCErxA=
+  dependencies:
+    mdast-util-to-markdown "~0.6.0"
+
+mdast-util-gfm@^0.1.0:
+  version "0.1.2"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/mdast-util-gfm/-/mdast-util-gfm-0.1.2.tgz#8ecddafe57d266540f6881f5c57ff19725bd351c"
+  integrity sha1-js3a/lfSZlQPaIH1xX/xlyW9NRw=
+  dependencies:
+    mdast-util-gfm-autolink-literal "^0.1.0"
+    mdast-util-gfm-strikethrough "^0.2.0"
+    mdast-util-gfm-table "^0.1.0"
+    mdast-util-gfm-task-list-item "^0.1.0"
+    mdast-util-to-markdown "^0.6.1"
+
+mdast-util-to-markdown@^0.6.0, mdast-util-to-markdown@^0.6.1, mdast-util-to-markdown@~0.6.0:
+  version "0.6.5"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/mdast-util-to-markdown/-/mdast-util-to-markdown-0.6.5.tgz#b33f67ca820d69e6cc527a93d4039249b504bebe"
+  integrity sha1-sz9nyoINaebMUnqT1AOSSbUEvr4=
+  dependencies:
+    "@types/unist" "^2.0.0"
+    longest-streak "^2.0.0"
+    mdast-util-to-string "^2.0.0"
+    parse-entities "^2.0.0"
+    repeat-string "^1.0.0"
+    zwitch "^1.0.0"
 
 mdast-util-to-string@^2.0.0:
   version "2.0.0"
@@ -8347,10 +8449,20 @@ memory-fs@^0.5.0:
     errno "^0.1.3"
     readable-stream "^2.0.1"
 
+merge-class-names@^1.1.1:
+  version "1.4.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/merge-class-names/-/merge-class-names-1.4.0.tgz#02edcdd5ff677fbb03b47ecd4586df89d697b81b"
+  integrity sha1-Au3N1f9nf7sDtH7NRYbfidaXuBs=
+
 merge-descriptors@1.0.1:
   version "1.0.1"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/merge-descriptors/-/merge-descriptors-1.0.1.tgz#b00aaa556dd8b44568150ec9d1b953f3f90cbb61"
   integrity sha1-sAqqVW3YtEVoFQ7J0blT8/kMu2E=
+
+merge-refs@^1.0.0:
+  version "1.0.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/merge-refs/-/merge-refs-1.0.0.tgz#388348bce22e623782c6df9d3c4fc55888276120"
+  integrity sha1-OINIvOIuYjeCxt+dPE/FWIgnYSA=
 
 merge-stream@^2.0.0:
   version "2.0.0"
@@ -8382,7 +8494,52 @@ microevent.ts@~0.1.1:
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/microevent.ts/-/microevent.ts-0.1.1.tgz#70b09b83f43df5172d0205a63025bce0f7357fa0"
   integrity sha1-cLCbg/Q99RctAgWmMCW84Pc1f6A=
 
-micromark@~2.11.0:
+micromark-extension-gfm-autolink-literal@~0.5.0:
+  version "0.5.6"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/micromark-extension-gfm-autolink-literal/-/micromark-extension-gfm-autolink-literal-0.5.6.tgz#406a58914d7a9cc6fb4cfafccc61a8ca36d7a12a"
+  integrity sha1-QGpYkU16nMb7TPr8zGGoyjbXoSo=
+  dependencies:
+    micromark "~2.11.3"
+
+micromark-extension-gfm-strikethrough@~0.6.0:
+  version "0.6.3"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/micromark-extension-gfm-strikethrough/-/micromark-extension-gfm-strikethrough-0.6.3.tgz#b46cc7ee6c21940dd35e46aa49a11a24f92aedd5"
+  integrity sha1-tGzH7mwhlA3TXkaqSaEaJPkq7dU=
+  dependencies:
+    micromark "~2.11.0"
+
+micromark-extension-gfm-table@~0.4.0:
+  version "0.4.2"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/micromark-extension-gfm-table/-/micromark-extension-gfm-table-0.4.2.tgz#24384ee9f9af1575295a0adf106d2e93f967a71f"
+  integrity sha1-JDhO6fmvFXUpWgrfEG0uk/lnpx8=
+  dependencies:
+    micromark "~2.11.0"
+
+micromark-extension-gfm-tagfilter@~0.3.0:
+  version "0.3.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/micromark-extension-gfm-tagfilter/-/micromark-extension-gfm-tagfilter-0.3.0.tgz#d9f26a65adee984c9ccdd7e182220493562841ad"
+  integrity sha1-2fJqZa3umEyczdfhgiIEk1YoQa0=
+
+micromark-extension-gfm-task-list-item@~0.3.0:
+  version "0.3.3"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/micromark-extension-gfm-task-list-item/-/micromark-extension-gfm-task-list-item-0.3.3.tgz#d90c755f2533ed55a718129cee11257f136283b8"
+  integrity sha1-2Qx1XyUz7VWnGBKc7hElfxNig7g=
+  dependencies:
+    micromark "~2.11.0"
+
+micromark-extension-gfm@^0.3.0:
+  version "0.3.2"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/micromark-extension-gfm/-/micromark-extension-gfm-0.3.2.tgz#def1fa3b743baee88a140a6821e12b09ed832563"
+  integrity sha1-3vH6O3Q7ruiKFApoIeErCe2DJWM=
+  dependencies:
+    micromark "~2.11.0"
+    micromark-extension-gfm-autolink-literal "~0.5.0"
+    micromark-extension-gfm-strikethrough "~0.6.0"
+    micromark-extension-gfm-table "~0.4.0"
+    micromark-extension-gfm-tagfilter "~0.3.0"
+    micromark-extension-gfm-task-list-item "~0.3.0"
+
+micromark@^2.11.3, micromark@~2.11.0, micromark@~2.11.3:
   version "2.11.4"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/micromark/-/micromark-2.11.4.tgz#d13436138eea826383e822449c9a5c50ee44665a"
   integrity sha1-0TQ2E47qgmOD6CJEnJpcUO5EZlo=
@@ -9329,6 +9486,11 @@ pbkdf2@^3.0.3:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+pdfjs-dist@2.5.207:
+  version "2.5.207"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/pdfjs-dist/-/pdfjs-dist-2.5.207.tgz#b5e8c19627be64269cd3fb6df3eaaf45ddffe7b6"
+  integrity sha1-tejBlie+ZCac0/tt8+qvRd3/57Y=
+
 performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
@@ -9799,7 +9961,7 @@ postcss-modules-values@^3.0.0:
     icss-utils "^4.0.0"
     postcss "^7.0.6"
 
-postcss-nested@^4:
+postcss-nested@4.2.3, postcss-nested@^4:
   version "4.2.3"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/postcss-nested/-/postcss-nested-4.2.3.tgz#c6f255b0a720549776d220d00c4b70cd244136f6"
   integrity sha1-xvJVsKcgVJd20iDQDEtwzSRBNvY=
@@ -10584,6 +10746,20 @@ react-paginate@7.1.0:
   dependencies:
     prop-types "^15.6.1"
 
+react-pdf@5.2.0:
+  version "5.2.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/react-pdf/-/react-pdf-5.2.0.tgz#a0c3b8fb953eb3aaad58d7cb35aba2dc71a0cc9e"
+  integrity sha1-oMO4+5U+s6qtWNfLNaui3HGgzJ4=
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    make-cancellable-promise "^1.0.0"
+    make-event-props "^1.1.0"
+    merge-class-names "^1.1.1"
+    merge-refs "^1.0.0"
+    pdfjs-dist "2.5.207"
+    prop-types "^15.6.2"
+    worker-loader "^3.0.0"
+
 react-refresh@^0.8.3:
   version "0.8.3"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
@@ -10684,6 +10860,11 @@ react-scripts@4.0.2:
   optionalDependencies:
     fsevents "^2.1.3"
 
+react-table-sticky@1.1.3:
+  version "1.1.3"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/react-table-sticky/-/react-table-sticky-1.1.3.tgz#af27c0afb2c4a32c292d486b21d9a896d354ba70"
+  integrity sha1-ryfAr7LEoywpLUhrIdmoltNUunA=
+
 react-table@^7.6.3:
   version "7.6.3"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/react-table/-/react-table-7.6.3.tgz#76434392b3f62344bdb704f5b227c2f29c1ffb14"
@@ -10696,6 +10877,13 @@ react-tabs@3.2.0:
   dependencies:
     clsx "^1.1.0"
     prop-types "^15.5.0"
+
+react-toastify@7.0.3:
+  version "7.0.3"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/react-toastify/-/react-toastify-7.0.3.tgz#93804c777ecf918872ba3b5be9c654db14547f85"
+  integrity sha1-k4BMd37PkYhyujtb6cZU2xRUf4U=
+  dependencies:
+    clsx "^1.1.1"
 
 react-tooltip@^4.2.13:
   version "4.2.14"
@@ -10917,6 +11105,14 @@ relateurl@^0.2.7:
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/relateurl/-/relateurl-0.2.7.tgz#54dbf377e51440aca90a4cd274600d3ff2d888a9"
   integrity sha1-VNvzd+UUQKypCkzSdGANP/LYiKk=
 
+remark-gfm@1.0.0:
+  version "1.0.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/remark-gfm/-/remark-gfm-1.0.0.tgz#9213643001be3f277da6256464d56fd28c3b3c0d"
+  integrity sha1-khNkMAG+Pyd9piVkZNVv0ow7PA0=
+  dependencies:
+    mdast-util-gfm "^0.1.0"
+    micromark-extension-gfm "^0.3.0"
+
 remark-parse@^9.0.0:
   version "9.0.0"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/remark-parse/-/remark-parse-9.0.0.tgz#4d20a299665880e4f4af5d90b7c7b8a935853640"
@@ -10950,7 +11146,7 @@ repeat-element@^1.1.2:
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/repeat-element/-/repeat-element-1.1.3.tgz#782e0d825c0c5a3bb39731f84efee6b742e6b1ce"
   integrity sha1-eC4NglwMWjuzlzH4Tv7mt0Lmsc4=
 
-repeat-string@^1.6.1:
+repeat-string@^1.0.0, repeat-string@^1.6.1:
   version "1.6.1"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/repeat-string/-/repeat-string-1.6.1.tgz#8dcae470e1c88abc2d600fff4a776286da75e637"
   integrity sha1-jcrkcOHIirwtYA//Sndihtp15jc=
@@ -13211,6 +13407,14 @@ worker-farm@^1.7.0:
   dependencies:
     errno "~0.1.7"
 
+worker-loader@^3.0.0:
+  version "3.0.8"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/worker-loader/-/worker-loader-3.0.8.tgz#5fc5cda4a3d3163d9c274a4e3a811ce8b60dbb37"
+  integrity sha1-X8XNpKPTFj2cJ0pOOoEc6LYNuzc=
+  dependencies:
+    loader-utils "^2.0.0"
+    schema-utils "^3.0.0"
+
 worker-rpc@^0.1.0:
   version "0.1.1"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/worker-rpc/-/worker-rpc-0.1.1.tgz#cb565bd6d7071a8f16660686051e969ad32f54d5"
@@ -13393,3 +13597,8 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha1-ApTrPe4FAo0x7hpfosVWpqrxChs=
+
+zwitch@^1.0.0:
+  version "1.0.5"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/zwitch/-/zwitch-1.0.5.tgz#d11d7381ffed16b742f6af7b3f223d5cd9fe9920"
+  integrity sha1-0R1zgf/tFrdC9q97PyI9XNn+mSA=

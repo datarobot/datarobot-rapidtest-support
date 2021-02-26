@@ -1,5 +1,5 @@
 .header {
-  @apply fixed top-0 right-0 left-0 grid bg-white py-4 z-10 shadow;
+  @apply fixed top-0 right-0 left-0 grid bg-white py-2 z-10 shadow;
 
   grid-template-columns: 1fr 50% 1fr;
   grid-template-rows: 1fr;

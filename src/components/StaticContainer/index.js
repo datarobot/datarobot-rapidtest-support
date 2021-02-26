@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
-
+import gfm from 'remark-gfm';
 import './StaticContainer.css';
 
 const StaticContainer = ({ headline, content }) => (
@@ -8,7 +8,9 @@ const StaticContainer = ({ headline, content }) => (
     <h1 className="headline text-blue">{headline}</h1>
 
     <section className="static-content my-12">
-      <ReactMarkdown>{content}</ReactMarkdown>
+      <ReactMarkdown plugins={[gfm]} allowDangerousHtml>
+        {content}
+      </ReactMarkdown>
     </section>
   </section>
 );

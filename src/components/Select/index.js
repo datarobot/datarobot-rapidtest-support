@@ -35,6 +35,7 @@ const Select = forwardRef(
         id={name}
         className={cls(className, 'select')}
         value={value || 'DEFAULT'}
+        name={name}
         {...rest}
       >
         <option value="DEFAULT" disabled>

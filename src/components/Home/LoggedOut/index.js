@@ -33,7 +33,7 @@ const LoggedOut = () => {
               Join an existing program
             </Link>
             <Link to={ROUTES.JOIN} className="btn-clear py-3" role="button">
-              Learn how to Start a program in your state
+              Learn how to start a program in your state
             </Link>
           </div>
         </section>
