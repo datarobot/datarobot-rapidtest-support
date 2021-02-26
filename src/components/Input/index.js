@@ -44,7 +44,6 @@ export const ControlledInput = forwardRef(
       label,
       type,
       value,
-      onChange,
       placeholder,
       className,
       rounded,
@@ -70,7 +69,6 @@ export const ControlledInput = forwardRef(
         type={type}
         value={value}
         placeholder={placeholder}
-        onChange={onChange}
         {...rest}
       />
     </>

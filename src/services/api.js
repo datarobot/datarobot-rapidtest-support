@@ -80,9 +80,9 @@ export const editAccount = async (id, payload) => {
 };
 
 export const getAccount = async (id) => {
-  const { data } = await http.get(`${serverUrl}/proctor/${id}`);
+  const { data } = await http.get(`/proctor/${id}`);
 
-  return data;
+  return data[0];
 };
 
 export const getAccountList = async () => {

@@ -1,6 +1,9 @@
 // @ts-nocheck
 import React, { useContext, Suspense } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.min.css';
 
 import Header from 'components/Header';
 import Footer from 'components/Footer';
@@ -33,6 +36,7 @@ const App = () => {
           </Suspense>
         </main>
         <Footer />
+        <ToastContainer position="bottom-center" autoClose={2500} />
       </div>
     </Router>
   );

@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 // @ts-nocheck
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import ReactTooltip from 'react-tooltip';
@@ -80,12 +80,6 @@ const Accounts = () => {
     setAccountsToApprove((prevState) => [...prevState, target.value]);
   };
 
-  const handleEditRow = useCallback((account) => {
-    setCurrentAccount(account);
-    // setAccountId(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const columns = useMemo(
     () => [
       {
@@ -136,12 +130,12 @@ const Accounts = () => {
         id: 'edit',
         Cell: ({ row }) => (
           <Link
-            to={ROUTES.EDIT_ACCOUNT}
-            onClick={() => handleEditRow(row.original)}
+            to={`${ROUTES.EDIT_ACCOUNT}/${row.original.id}`}
             className="flex justify-center"
           >
             <Icon
               iconName="pencil-alt"
+              type="fal"
               color="#5282cc"
               className="cursor-pointer"
             />

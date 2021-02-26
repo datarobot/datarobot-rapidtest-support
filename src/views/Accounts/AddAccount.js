@@ -126,7 +126,7 @@ const AddAccount = () => {
 
         <div className="w-1/4">
           <div className="leading-8 text-blue">
-            <Icon iconName="question-circle" />
+            <Icon iconName="question-circle" type="fal" />
           </div>
           <p className="font-bold text-blue my-4">Account requirements</p>
           <p>

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
@@ -72,7 +73,7 @@ const getAwesomeIcon = (
   // the Font Awesome Icon name
   iconName,
   // the Font Awesome library type
-  type,
+  type = typeSolid,
   // the name of class in './icons.module.css' (in case you need to change the color or font-size of icon)
   iconClassName
 ) => {
@@ -118,6 +119,7 @@ const getAwesomeIcon = (
 
 const Icon = ({
   iconName,
+  type = typeSolid,
   fontSize,
   size,
   className,
@@ -137,7 +139,7 @@ const Icon = ({
         className={className}
         size={size}
         color={color || fill}
-        icon={iconName}
+        icon={[type, iconName]}
         data-cy={dataCy}
         fixedWidth={fixedWidth}
         {...awesomeProps}
@@ -147,7 +149,6 @@ const Icon = ({
 };
 
 Icon.defaultProps = {
-  type: typeRegular,
   size: '1x',
   fixedWidth: false,
 };

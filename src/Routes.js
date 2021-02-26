@@ -73,7 +73,7 @@ export const Routes = ({ authenticated }) => (
     />
     <PrivateRoute
       authenticated={authenticated}
-      path={ROUTES.EDIT_ACCOUNT}
+      path={`${ROUTES.EDIT_ACCOUNT}/:id`}
       component={EditAccount}
     />
     <PrivateRoute
