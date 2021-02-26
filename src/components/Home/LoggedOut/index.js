@@ -21,8 +21,7 @@ const LoggedOut = () => {
 
           <p className="my-6 text-lg">
             Reopen your schools. Rollout a COVID-19 testing program using
-            RapidTest and send reports to the relevant health
-            authorities.
+            RapidTest and send reports to the relevant health authorities.
           </p>
 
           <div className="btn-row my-6">
@@ -56,9 +55,7 @@ const LoggedOut = () => {
       </div>
 
       <article className="my-12">
-        <h3 className="font-bold text-blue text-2xl mb-4">
-          About
-        </h3>
+        <h3 className="font-bold text-blue text-2xl mb-4">About</h3>
         <section className="two-column">
           As the COVID-19 pandemic continues, finding ways to safely reopen
           schools for in-person learning is a pressing need. Schools provide a
