@@ -3,9 +3,9 @@
     "title": "Agregar un sitio"
   },
   "buttons": {
+    "activate": "Activar",
     "addAccount": "Agregar una cuenta nueva",
     "addSite": "Agregar un sitio nuevo",
-    "activate": "Activar",
     "approveAll": "Aprobar todo",
     "deactivate": "Desactivar",
     "next": "Próximo",
@@ -17,14 +17,14 @@
   },
   "common": {
     "table": {
+      "addedOn": "Añadido",
       "address": "Dirección",
       "approvedBy": "Aprobado por",
       "contact": "Contacto",
       "email": "Correo electrónico",
       "name": "Nombre",
       "phone": "Teléfono",
-      "status": "Estado",
-      "addedOn": "Añadido"
+      "status": "Estado"
     }
   },
   "editSite": {
@@ -33,6 +33,9 @@
   "errorMessages": {
     "common": {
       "required": "Este campo es obligatorio."
+    },
+    "email": {
+      "invalid": "Dirección de correo electrónico no válida."
     },
     "zip": {
       "invalid": "Ingrese un código postal válido."

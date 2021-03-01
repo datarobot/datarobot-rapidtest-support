@@ -4,7 +4,7 @@ import { Document, Page } from 'react-pdf/dist/esm/entry.webpack';
 
 import Icon from 'components/Icon';
 
-import trainingMaterials from 'static/TrainingMaterials.pdf';
+import trainingMaterials from 'assets/static/TrainingMaterials.pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 
 import './TrainingMaterials.css';

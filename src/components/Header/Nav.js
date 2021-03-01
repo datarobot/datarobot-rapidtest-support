@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { ROUTES } from 'rt-constants';
+import trainingMaterials from 'assets/static/TrainingMaterials.pdf';
 
 const Nav = () => (
   <ul className="nav">
@@ -24,15 +25,15 @@ const Nav = () => (
       </NavLink>
     </li>
     <li>
-      <NavLink exact className="nav-link" to={ROUTES.TRAINING_MATERIALS}>
+      <a
+        href={trainingMaterials}
+        className="nav-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         Training Materials
-      </NavLink>
+      </a>
     </li>
-    {/* <li>
-      <NavLink exact className="nav-link" to={ROUTES.LANDING_PAGE}>
-        Board
-      </NavLink>
-    </li> */}
   </ul>
 );
 

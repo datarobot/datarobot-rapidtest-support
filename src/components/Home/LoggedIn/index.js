@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import Icon from 'components/Icon';
 import { ROUTES } from 'rt-constants';
-import trainingMaterials from 'static/TrainingMaterials.pdf';
+import trainingMaterials from 'assets/static/TrainingMaterials.pdf';
 
 const LoggedIn = () => (
   <>
@@ -46,9 +46,9 @@ const LoggedIn = () => (
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae quisque
           urna q uam mauris quis.
         </p>
-        <a href="/" className="learn-more-link">
+        <Link to={ROUTES.FAQ} className="learn-more-link">
           Learn more <Icon iconName="long-arrow-right" className="ml-2" />
-        </a>
+        </Link>
       </div>
       <div className="w-1/4 mr-4">
         <h3 className="font-bold">Training Materials</h3>
@@ -66,9 +66,9 @@ const LoggedIn = () => (
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae quisque
           urna q uam mauris quis.
         </p>
-        <a href="/" className="learn-more-link">
+        <Link to={ROUTES.CONTACT} className="learn-more-link">
           Learn more <Icon iconName="long-arrow-right" className="ml-2" />
-        </a>
+        </Link>
       </div>
       <div className="w-1/4 mr-4">
         <h3 className="font-bold">Data and Dashboard</h3>
@@ -76,9 +76,9 @@ const LoggedIn = () => (
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae quisque
           urna q uam mauris quis.
         </p>
-        <a href="/" className="learn-more-link">
+        <Link to={ROUTES.DASHBOARD} className="learn-more-link">
           Learn more <Icon iconName="long-arrow-right" className="ml-2" />
-        </a>
+        </Link>
       </div>
     </section>
   </>

@@ -11,9 +11,15 @@ import './FileUpload.css';
 
 const UploadLabel = () => (
   <>
-    <Icon iconName="cloud-upload-alt" />
+    <Icon iconName="cloud-upload-alt" size="2x" color="#00528D" type="far" />
     <p>Drop files here to upload or</p>
-    <p className="text-blue py-1 px-4 underline">Choose a file</p>
+    <p className="text-blue underline">Choose a file</p>
+    <p className="absolute bottom-0 pb-2">
+      Accepted formats:{' '}
+      <span className="font-mono inline-block px-1 rounded-full bg-gray-200 border border-gray-300 text-sm">
+        .csv
+      </span>
+    </p>
   </>
 );
 
@@ -26,6 +32,7 @@ const FileUpload = ({ validator }) => {
   const onDrop = useCallback((acceptedFiles) => {
     setFiles(acceptedFiles);
   }, []);
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: 'text/csv',
@@ -81,7 +88,12 @@ const FileUpload = ({ validator }) => {
                   <span className="font-mono">{files[0].name}</span>
                 </p>
                 <div className="btn-row">
-                  <button className="btn-clear mr-2">Cancel</button>
+                  <button
+                    className="btn-clear mr-2"
+                    onClick={() => setFiles([])}
+                  >
+                    Cancel
+                  </button>
                   <button className="btn-primary">Upload</button>
                 </div>
               </section>

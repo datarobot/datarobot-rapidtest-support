@@ -126,7 +126,7 @@ const EditAccount = ({ history }) => {
                 },
               })}
             />
-            <ErrorMessage errors={errors} errorKey="email_addresss" />
+            <ErrorMessage errors={errors} errorKey="email_address" />
 
             <ControlledInput
               name="phone_number_office"

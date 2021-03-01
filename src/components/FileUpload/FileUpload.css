@@ -1,5 +1,5 @@
 .upload-container {
-  @apply flex flex-col items-center justify-center rounded border-2 border-dashed border-gray-400 p-8 cursor-pointer max-w-md;
+  @apply relative flex flex-col items-center justify-center rounded border-2 border-dashed border-gray-400 py-16 h-56 cursor-pointer max-w-lg;
 }
 
 .error-msg {
