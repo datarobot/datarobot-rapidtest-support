@@ -17,9 +17,10 @@ const Table = ({
   data = [],
   addButtonText,
   uploadButtonText,
-  onUploadClick,
   tableName,
   addRoute,
+  uploadRoute,
+  tableOnly = false,
 }) => {
   const [filterInput, setFilterInput] = useState('');
   const {
@@ -83,31 +84,33 @@ const Table = ({
 
   return (
     <>
-      <div className="grid grid-cols-2 my-6">
-        <div className="flex flex-0 flex-col justify-center">
-          {tableName && (
-            <h1 className="headline text-blue mb-4">{tableName}</h1>
-          )}
-          <div className="flex items-center">
-            <Icon iconName="search" type="fal" />
-            <Input
-              value={filterInput || ''}
-              onChange={handleFilterChange}
-              placeholder="Search..."
-              className="self-center search"
-              rounded
-            />
+      {!tableOnly && (
+        <div className="grid grid-cols-2 my-6">
+          <div className="flex flex-0 flex-col justify-center">
+            {tableName && (
+              <h1 className="headline text-blue mb-4">{tableName}</h1>
+            )}
+            <div className="flex items-center">
+              <Icon iconName="search" type="fal" />
+              <Input
+                value={filterInput || ''}
+                onChange={handleFilterChange}
+                placeholder="Search..."
+                className="self-center search"
+                rounded
+              />
+            </div>
+          </div>
+          <div className="table-buttons flex justify-end items-center">
+            <Link to={uploadRoute} className="btn-clear text-blue mr-2">
+              {uploadButtonText}
+            </Link>
+            <Link to={addRoute} className="btn-primary">
+              {addButtonText}
+            </Link>
           </div>
         </div>
-        <div className="table-buttons flex justify-end items-center">
-          <button className="btn-clear text-blue mr-2" onClick={onUploadClick}>
-            {uploadButtonText}
-          </button>
-          <Link to={addRoute} className="btn-primary">
-            {addButtonText}
-          </Link>
-        </div>
-      </div>
+      )}
       <div className="tableWrapper">
         {page.length === 0 ? (
           <Loading
@@ -177,7 +180,7 @@ const Table = ({
           </table>
         )}
       </div>
-      {rows.length > pageSize && (
+      {rows.length > pageSize && !tableOnly && (
         <Pagination
           gotoPage={gotoPage}
           pageCount={pageCount}

@@ -103,6 +103,7 @@ const Sites = () => {
         addButtonText={t('buttons.addSite')}
         uploadButtonText={`+ ${t('buttons.uploadList')}`}
         addRoute={ROUTES.ADD_SITE}
+        uploadRoute={ROUTES.UPLOAD_SITES}
       />
       <AddSiteModal
         showModal={showAddModal}
