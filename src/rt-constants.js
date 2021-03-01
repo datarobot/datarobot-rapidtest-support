@@ -9,13 +9,41 @@ export const ROUTES = {
   SITES: '/sites',
   ADD_SITE: '/sites/new',
   EDIT_SITE: '/sites/edit',
+  UPLOAD_SITES: '/sites/upload',
   ACCOUNTS: '/accounts',
   ADD_ACCOUNT: '/accounts/new',
   EDIT_ACCOUNT: '/accounts/edit',
+  UPLOAD_ACCOUNTS: '/accounts/upload',
   FAQ: '/faq',
   DASHBOARD: '/dashboard',
   LOG_IN: '/login',
   TRAINING_MATERIALS: '/training-materials',
+};
+
+export const VALID_SITE_COLUMNS = {
+  REQUIRED: [
+    'site_name',
+    'street',
+    'city',
+    'county',
+    'state',
+    'zip',
+    'site_type',
+    'district',
+    'clia',
+  ],
+  OPTIONAL: [
+    'contact_name',
+    'contact_phone',
+    'contact_email',
+    'latitude',
+    'longitude',
+  ],
+};
+
+export const VALID_ACCOUNT_COLUMNS = {
+  REQUIRED: ['first_name', 'last_name', 'email_address'],
+  OPTIONAL: ['phone_number_office'],
 };
 
 export const FIREBASE_CONFIG = {

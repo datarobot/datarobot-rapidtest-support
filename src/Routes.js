@@ -10,9 +10,11 @@ const Other = lazy(() => import('views/Other'));
 const Sites = lazy(() => import('views/Sites'));
 const AddSite = lazy(() => import('views/Sites/AddSite'));
 const EditSite = lazy(() => import('views/Sites/EditSite'));
+const UploadSites = lazy(() => import('views/Sites/UploadSites'));
 const Accounts = lazy(() => import('views/Accounts'));
 const AddAccount = lazy(() => import('views/Accounts/AddAccount'));
 const EditAccount = lazy(() => import('views/Accounts/EditAccount'));
+const UploadAccounts = lazy(() => import('views/Accounts/UploadAccounts'));
 const Faq = lazy(() => import('views/Faq'));
 const LogIn = lazy(() => import('views/LogIn'));
 const Dashboard = lazy(() => import('views/Dashboard'));
@@ -63,6 +65,11 @@ export const Routes = ({ authenticated }) => (
     />
     <PrivateRoute
       authenticated={authenticated}
+      path={ROUTES.UPLOAD_SITES}
+      component={UploadSites}
+    />
+    <PrivateRoute
+      authenticated={authenticated}
       exact
       path={ROUTES.ACCOUNTS}
       component={Accounts}
@@ -76,6 +83,11 @@ export const Routes = ({ authenticated }) => (
       authenticated={authenticated}
       path={`${ROUTES.EDIT_ACCOUNT}/:id`}
       component={EditAccount}
+    />
+    <PrivateRoute
+      authenticated={authenticated}
+      path={ROUTES.UPLOAD_ACCOUNTS}
+      component={UploadAccounts}
     />
     <PrivateRoute
       authenticated={authenticated}

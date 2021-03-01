@@ -2983,6 +2983,11 @@ atob@^2.1.2:
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha1-bZUX654DDSQ2ZmZR6GvZ9vE1M8k=
 
+attr-accept@^2.2.1:
+  version "2.2.2"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/attr-accept/-/attr-accept-2.2.2.tgz#646613809660110749e92f2c10833b70968d929b"
+  integrity sha1-ZGYTgJZgEQdJ6S8sEIM7cJaNkps=
+
 autoprefixer@^9, autoprefixer@^9.6.1:
   version "9.8.6"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/autoprefixer/-/autoprefixer-9.8.6.tgz#3b73594ca1bf9266320c5acf1588d74dea74210f"
@@ -5765,10 +5770,22 @@ file-loader@6.1.1:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
 
+file-selector@^0.2.2:
+  version "0.2.4"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/file-selector/-/file-selector-0.2.4.tgz#7b98286f9dbb9925f420130ea5ed0a69238d4d80"
+  integrity sha1-e5gob527mSX0IBMOpe0KaSONTYA=
+  dependencies:
+    tslib "^2.0.3"
+
 file-uri-to-path@1.0.0:
   version "1.0.0"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/file-uri-to-path/-/file-uri-to-path-1.0.0.tgz#553a7b8446ff6f684359c445f1e37a05dacc33dd"
   integrity sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=
+
+filepond@4.25.1:
+  version "4.25.1"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/filepond/-/filepond-4.25.1.tgz#426e7cce3d0cdccb2d5623bedc5a8db772ae167b"
+  integrity sha1-Qm58zj0M3MstViO+3FqNt3KuFns=
 
 filesize@6.1.0:
   version "6.1.0"
@@ -9311,6 +9328,11 @@ pako@~1.0.5:
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/pako/-/pako-1.0.11.tgz#6c9599d340d54dfd3946380252a35705a6b992bf"
   integrity sha1-bJWZ00DVTf05RjgCUqNXBaa5kr8=
 
+papaparse@5.3.0:
+  version "5.3.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/papaparse/-/papaparse-5.3.0.tgz#ab1702feb96e79ab4309652f36db9536563ad05a"
+  integrity sha1-qxcC/rlueatDCWUvNtuVNlY60Fo=
+
 parallel-transform@^1.1.0:
   version "1.2.0"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/parallel-transform/-/parallel-transform-1.2.0.tgz#9049ca37d6cb2182c3b1d2c720be94d14a5814fc"
@@ -10673,10 +10695,24 @@ react-dragswitch@1.0.1:
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/react-dragswitch/-/react-dragswitch-1.0.1.tgz#dbf5a128a39f833490fd8620cdade4e2d386762e"
   integrity sha1-2/WhKKOfgzSQ/YYgza3k4tOGdi4=
 
+react-dropzone@11.3.1:
+  version "11.3.1"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/react-dropzone/-/react-dropzone-11.3.1.tgz#a3115e728b32b33e89f03d691b5b3b44b7f9072f"
+  integrity sha1-oxFecosysz6J8D1pG1s7RLf5By8=
+  dependencies:
+    attr-accept "^2.2.1"
+    file-selector "^0.2.2"
+    prop-types "^15.7.2"
+
 react-error-overlay@^6.0.9:
   version "6.0.9"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/react-error-overlay/-/react-error-overlay-6.0.9.tgz#3c743010c9359608c375ecd6bc76f35d93995b0a"
   integrity sha1-PHQwEMk1lgjDdezWvHbzXZOZWwo=
+
+react-filepond@7.1.1:
+  version "7.1.1"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/react-filepond/-/react-filepond-7.1.1.tgz#467aa45051da5dbbca03a2ce58d2aacbbcfbb0e9"
+  integrity sha1-RnqkUFHaXbvKA6LOWNKqy7z7sOk=
 
 react-hook-form@^6.15.1:
   version "6.15.1"
