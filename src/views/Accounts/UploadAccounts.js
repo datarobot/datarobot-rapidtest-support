@@ -1,5 +1,15 @@
-import React from 'react';
+import FileUpload from 'components/FileUpload';
+import PageHeader from 'components/PageHeader';
+import { isValidAccountsList } from 'utils/validate';
 
-const UploadAccounts = () => <div>UPLOAD</div>;
+const UploadSites = () => (
+  <>
+    <PageHeader headline="Upload a list of accounts" />
 
-export default UploadAccounts;
+    {/* <section className="w-2/5"> */}
+    <FileUpload validator={isValidAccountsList} />
+    {/* </section> */}
+  </>
+);
+
+export default UploadSites;

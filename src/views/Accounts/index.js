@@ -162,10 +162,9 @@ const Accounts = () => {
         columns={columns}
         data={accounts}
         addButtonText={t('buttons.addAccount')}
-        // "+ Add a new account"
         uploadButtonText={`+ ${t('buttons.uploadList')}`}
-        // onAddClick={handleToggleModal}
         addRoute={ROUTES.ADD_ACCOUNT}
+        uploadRoute={ROUTES.UPLOAD_ACCOUNTS}
       />
     </div>
   );

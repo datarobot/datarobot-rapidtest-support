@@ -1,4 +1,4 @@
-import { VALID_SITE_COLUMNS } from 'rt-constants';
+import { VALID_SITE_COLUMNS, VALID_ACCOUNT_COLUMNS } from 'rt-constants';
 
 const isEqual = (a, b) =>
   a.length === b.length && a.every((v, i) => v === b[i]);
@@ -12,4 +12,7 @@ export const isValidSitesList = (list) => {
 
 export const getSiteError = (list) => difference(list, VALID_SITE_COLUMNS);
 
-export const validAccountsList = () => {};
+export const isValidAccountsList = (list) => {
+  const { REQUIRED, OPTIONAL } = VALID_ACCOUNT_COLUMNS;
+  return isEqual(list, [...REQUIRED, ...OPTIONAL]);
+};

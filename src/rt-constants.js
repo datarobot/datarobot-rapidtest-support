@@ -41,6 +41,11 @@ export const VALID_SITE_COLUMNS = {
   ],
 };
 
+export const VALID_ACCOUNT_COLUMNS = {
+  REQUIRED: ['first_name', 'last_name', 'email_address'],
+  OPTIONAL: ['phone_number_office'],
+};
+
 export const FIREBASE_CONFIG = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: 'pennrapidtest.firebaseapp.com',
