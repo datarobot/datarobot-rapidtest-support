@@ -20,6 +20,27 @@ export const ROUTES = {
   TRAINING_MATERIALS: '/training-materials',
 };
 
+export const VALID_SITE_COLUMNS = {
+  REQUIRED: [
+    'site_name',
+    'street',
+    'city',
+    'county',
+    'state',
+    'zip',
+    'site_type',
+    'district',
+    'clia',
+  ],
+  OPTIONAL: [
+    'contact_name',
+    'contact_phone',
+    'contact_email',
+    'latitude',
+    'longitude',
+  ],
+};
+
 export const FIREBASE_CONFIG = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: 'pennrapidtest.firebaseapp.com',
