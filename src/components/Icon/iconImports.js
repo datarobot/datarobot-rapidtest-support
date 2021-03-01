@@ -2,13 +2,13 @@ import {
   faCheckCircle,
   faChevronLeft,
   faChevronRight,
+  faFileCsv,
   faHourglassHalf,
   faSort,
   faSortUp,
   faSortDown,
   faTimes,
   faTimesCircle,
-  faCloudUploadAlt,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -16,6 +16,8 @@ import {
   faChevronDoubleRight,
   faLongArrowRight,
 } from '@fortawesome/pro-solid-svg-icons';
+
+import { faCloudUploadAlt } from '@fortawesome/pro-regular-svg-icons';
 
 import {
   faPencilAlt,
@@ -32,6 +34,7 @@ library.add(
   faChevronDoubleRight,
   faChevronLeft,
   faChevronRight,
+  faFileCsv,
   faHourglassHalf,
   faLongArrowRight,
   faPencilAlt,

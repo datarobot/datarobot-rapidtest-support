@@ -1,7 +1,12 @@
-import React from 'react';
+import cls from 'classnames';
 
-const ComingSoon = () => (
-  <div className="full-height flex justify-center items-center">
+const ComingSoon = ({ fullHeight }) => (
+  <div
+    className={cls(
+      { 'full-height': fullHeight },
+      'flex justify-center items-center'
+    )}
+  >
     <p className="headline">Coming soon!</p>
   </div>
 );

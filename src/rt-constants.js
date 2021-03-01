@@ -1,4 +1,5 @@
-// eslint-disable-next-line import/prefer-default-export
+import trainingMaterials from 'assets/static/TrainingMaterials.pdf';
+
 export const ENABLE_I18N_LOGGING = process.env.REACT_APP_ENABLE_I18N_LOGGING;
 
 export const ROUTES = {
@@ -9,15 +10,19 @@ export const ROUTES = {
   SITES: '/sites',
   ADD_SITE: '/sites/new',
   EDIT_SITE: '/sites/edit',
+  REQUEST_SITE: '/sites/request',
   UPLOAD_SITES: '/sites/upload',
   ACCOUNTS: '/accounts',
   ADD_ACCOUNT: '/accounts/new',
   EDIT_ACCOUNT: '/accounts/edit',
+  REQUEST_ACCOUNT: '/accounts/request',
   UPLOAD_ACCOUNTS: '/accounts/upload',
   FAQ: '/faq',
   DASHBOARD: '/dashboard',
   LOG_IN: '/login',
   TRAINING_MATERIALS: '/training-materials',
+  SUGGEST_IMPROVEMENT: '/suggestions',
+  CONTACT: '/contact',
 };
 
 export const VALID_SITE_COLUMNS = {
@@ -57,12 +62,20 @@ export const FIREBASE_CONFIG = {
 
 export const LANDING_PAGE_LINKS = {
   TESTING_OTHERS: [
-    { text: 'Request a user account', url: ROUTES.ADD_ACCOUNT },
-    { text: 'Request a site', url: ROUTES.ADD_SITE },
-    { text: 'Report an issue', url: '' },
-    { text: 'Training materials', url: ROUTES.TRAINING_MATERIALS },
-    { text: 'FAQ', url: ROUTES.FAQ },
-    { text: 'Contact support', url: '' },
+    {
+      text: 'Request a user account',
+      url: ROUTES.REQUEST_ACCOUNT,
+      useRouter: true,
+    },
+    { text: 'Request a site', url: ROUTES.REQUEST_SITE, useRouter: true },
+    {
+      text: 'Suggest an improvement',
+      url: ROUTES.SUGGEST_IMPROVEMENT,
+      useRouter: true,
+    },
+    { text: 'Training materials', url: trainingMaterials },
+    { text: 'FAQ', url: ROUTES.FAQ, useRouter: true },
+    { text: 'Contact support', url: ROUTES.CONTACT, useRouter: true },
   ],
   GETTING_TESTED: [
     {

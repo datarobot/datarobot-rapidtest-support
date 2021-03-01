@@ -36,3 +36,7 @@
 
   min-width: 100%;
 }
+
+form {
+  @apply -mt-2;
+}

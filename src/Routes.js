@@ -10,15 +10,19 @@ const Other = lazy(() => import('views/Other'));
 const Sites = lazy(() => import('views/Sites'));
 const AddSite = lazy(() => import('views/Sites/AddSite'));
 const EditSite = lazy(() => import('views/Sites/EditSite'));
+const RequestSite = lazy(() => import('views/Sites/Request'));
 const UploadSites = lazy(() => import('views/Sites/UploadSites'));
 const Accounts = lazy(() => import('views/Accounts'));
 const AddAccount = lazy(() => import('views/Accounts/AddAccount'));
 const EditAccount = lazy(() => import('views/Accounts/EditAccount'));
+const RequestAccount = lazy(() => import('views/Accounts/Request'));
 const UploadAccounts = lazy(() => import('views/Accounts/UploadAccounts'));
 const Faq = lazy(() => import('views/Faq'));
 const LogIn = lazy(() => import('views/LogIn'));
 const Dashboard = lazy(() => import('views/Dashboard'));
 const TrainingMaterials = lazy(() => import('views/TrainingMaterials'));
+const SuggestImprovement = lazy(() => import('views/SuggestImprovement'));
+const Contact = lazy(() => import('views/Contact'));
 
 export const PrivateRoute = ({
   component: Component,
@@ -94,9 +98,22 @@ export const Routes = ({ authenticated }) => (
       path={ROUTES.DASHBOARD}
       component={Dashboard}
     />
+    <Route path={ROUTES.REQUEST_ACCOUNT} component={RequestAccount} />
+    <Route path={ROUTES.REQUEST_SITE} component={RequestSite} />
     <Route path={ROUTES.FAQ} component={Faq} />
-    <Route path={ROUTES.TRAINING_MATERIALS} component={TrainingMaterials} />
-    <Route exact path={ROUTES.LANDING_PAGE} component={Home} />
+    <Route
+      exact
+      path={ROUTES.TRAINING_MATERIALS}
+      component={TrainingMaterials}
+    />
+    <PrivateRoute
+      authenticated={authenticated}
+      path={ROUTES.SUGGEST_IMPROVEMENT}
+      component={SuggestImprovement}
+    />
+    <Route exact path={ROUTES.CONTACT} component={Contact} />
     <Route exact path={ROUTES.LOG_IN} component={LogIn} />
+
+    <Route exact path={ROUTES.LANDING_PAGE} component={Home} />
   </Switch>
 );

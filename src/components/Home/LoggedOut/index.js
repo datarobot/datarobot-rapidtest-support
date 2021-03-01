@@ -41,14 +41,14 @@ const LoggedOut = () => {
 
       <div className="flex mt-12">
         <HomePageCard
-          text="I'm testing others"
-          subText="Information for health workers and school personnel"
+          title="I'm testing others"
+          subTitle="Information for health workers and school personnel"
           icon={testingOthers}
           links={TESTING_OTHERS}
         />
         <HomePageCard
-          text="I'm getting tested"
-          subText="Information for Parents and Students"
+          title="I'm getting tested"
+          subTitle="Information for Parents and Students"
           icon={gettingTested}
           links={GETTING_TESTED}
         />
