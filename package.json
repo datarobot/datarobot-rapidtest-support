@@ -62,8 +62,6 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "server": "./node_modules/.bin/json-server --port 4000 --watch ./db.json --routes routes.json",
-    "dev": "concurrently \"yarn server\" \"yarn start\"",
     "translate": "NODE_ENV=development yarn run babel --quiet --ignore 'node_modules/**','src/__tests__/**' -f .babelrc 'src/**/*.js' > /dev/null 2>&1"
   },
   "eslintConfig": {
@@ -89,7 +87,6 @@
     "babel-plugin-i18next-extract": "^0.8.2",
     "concurrently": "^5.3.0",
     "http-proxy-middleware": "1.0.6",
-    "json-server": "^0.16.3",
     "prettier": "^2.2.1"
   }
 }

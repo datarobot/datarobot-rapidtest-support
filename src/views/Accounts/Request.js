@@ -143,7 +143,7 @@ const RequestAccount = () => {
 
               <div className="btn-row mt-4">
                 <button className="btn-primary mr-2" type="submit">
-                  Save Info
+                  Request Account
                 </button>
 
                 <button className="btn-clear" type="button" onClick={() => {}}>
