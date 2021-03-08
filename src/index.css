@@ -58,6 +58,14 @@ body {
     @apply shadow-lg bg-blue text-white;
   }
 
+  .btn-link {
+    @apply text-blue underline outline-none;
+  }
+
+  .btn-link:focus {
+    @apply outline-none;
+  }
+
   a:not([role="button"]):not([class*="btn-"]):not(.nav-link)
    {
     @apply underline text-blue;
