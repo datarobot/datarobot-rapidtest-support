@@ -34,3 +34,7 @@ select {
 
   @apply font-bold text-dark-red ml-1;
 }
+
+.select option:disabled {
+  @apply text-opacity-10;
+}
