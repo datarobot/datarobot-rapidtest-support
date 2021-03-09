@@ -216,7 +216,7 @@ const RequestSite = () => {
                     message: t('errorMessages.common.required'),
                   },
                 }}
-                render={({ onChange, value, ref }) => (
+                render={({ onChange, value }) => (
                   <Select
                     name="state"
                     label="State"
@@ -224,7 +224,6 @@ const RequestSite = () => {
                     isRequired
                     onChange={onChange}
                     value={value}
-                    ref={ref}
                     className="mt-0"
                   />
                 )}
@@ -306,17 +305,17 @@ const RequestSite = () => {
             )}
           />
 
-          <div className="btn-row mt-4">
-            <button className="btn-primary mr-2" type="submit">
-              Request Site
-            </button>
-
+          <div className="btn-row end mt-4">
             <button
               className="btn-clear"
               type="button"
               onClick={handleClearState}
             >
               Cancel
+            </button>
+
+            <button className="btn-primary mr-2" type="submit">
+              Request Site
             </button>
           </div>
         </form>

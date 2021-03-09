@@ -19,7 +19,7 @@ body {
   }
 
   .btn-primary {
-    @apply bg-light-blue text-white rounded px-4 py-2 font-bold shadow outline-none focus:outline-none text-sm;
+    @apply bg-blue-light text-white rounded px-4 py-2 font-bold shadow outline-none focus:outline-none text-sm;
   }
 
   .btn-primary:hover {
@@ -31,7 +31,7 @@ body {
   }
 
   .btn-outline-primary {
-    @apply border border-light-blue text-light-blue rounded px-4 py-2 font-bold outline-none focus:outline-none text-sm;
+    @apply border border-blue-light text-blue-light rounded px-4 py-2 font-bold outline-none focus:outline-none text-sm;
   }
 
   .btn-outline-primary:hover {
@@ -51,7 +51,7 @@ body {
   }
 
   .btn-white {
-    @apply bg-white text-dark-blue rounded px-4 py-2 font-bold shadow outline-none focus:outline-none text-sm;
+    @apply bg-white text-blue-dark rounded px-4 py-2 font-bold shadow outline-none focus:outline-none text-sm;
   }
 
   .btn-white:hover {
@@ -64,6 +64,14 @@ body {
 
   .btn-link:focus {
     @apply outline-none;
+  }
+
+  .btn-row {
+    @apply flex;
+  }
+
+  .btn-row.end {
+    @apply justify-end;
   }
 
   a:not([role="button"]):not([class*="btn-"]):not(.nav-link)
@@ -102,4 +110,8 @@ body {
 
 .Toastify__toast-container {
   width: fit-content !important;
+}
+
+.rt-toast.Toastify__toast--success {
+  @apply bg-dark-green;
 }

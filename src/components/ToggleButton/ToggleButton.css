@@ -52,7 +52,7 @@
 }
 
 .toggle-container.checked {
-  @apply bg-light-blue;
+  @apply bg-blue-light;
 }
 
 .toggle-circle {

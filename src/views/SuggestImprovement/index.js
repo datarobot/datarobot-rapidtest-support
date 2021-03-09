@@ -54,13 +54,13 @@ const SuggestImprovement = () => {
           />
           <ErrorMessage errors={errors} errorKey="suggestion" />
 
-          <div className="btn-row mt-4">
-            <button className="btn-primary mr-2" type="submit">
-              Save Info
-            </button>
-
+          <div className="btn-row end mt-4">
             <button className="btn-clear" type="button" onClick={() => {}}>
               Cancel
+            </button>
+
+            <button className="btn-primary mr-2" type="submit">
+              Submit
             </button>
           </div>
         </form>

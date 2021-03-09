@@ -33,7 +33,7 @@ const Other = () => {
               placeholder="I’m looking for..."
               className="border-r-0 rounded-l"
             />
-            <button className="px-4 py-2 rounded-r bg-blue text-white font-bold border-dark-blue border border-l-0">
+            <button className="px-4 py-2 rounded-r bg-blue text-white font-bold border-blue-dark border border-l-0">
               <Icon iconName="search" />
             </button>
           </section>
@@ -70,7 +70,7 @@ const Other = () => {
             </p>
             <p className="pt-4 font-bold">What's this?</p>
           </div>
-          <div className="card bg-light-blue">
+          <div className="card bg-blue-light">
             <p className="text-xl font-bold pb-4">View the FAQ</p>
             <p>You gotta go through it to see there ain't nothing to it.</p>
             <p className="pt-4 font-bold">What's this?</p>

@@ -38,3 +38,21 @@ select {
 .select option:disabled {
   @apply text-opacity-10;
 }
+
+.select-dropdown {
+  @apply max-h-64 overflow-y-scroll;
+}
+
+.select-button {
+  @apply px-4 py-2 border border-blue-dark border-l-0 rounded-r focus:outline-none bg-blue-light text-white;
+}
+
+.select-button svg {
+  @apply ease-in-out duration-300;
+  
+  transform: rotate(0deg);
+}
+
+.select-button.isOpen svg {
+  transform: rotate(180deg);
+}

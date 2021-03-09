@@ -82,7 +82,7 @@ const FileUpload = ({ validator }) => {
         <>
           {isValid ? (
             <>
-              <section className="flex justify-between items-center border-b border-dark-blue pb-2 mb-2">
+              <section className="flex justify-between items-center border-b border-blue-dark pb-2 mb-2">
                 <p className="text-xl">
                   <span className="text-blue font-bold">Preview of</span>{' '}
                   <span className="font-mono">{files[0].name}</span>

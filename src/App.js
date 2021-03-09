@@ -36,7 +36,11 @@ const App = () => {
           </Suspense>
         </main>
         <Footer />
-        <ToastContainer position="bottom-center" autoClose={2500} />
+        <ToastContainer
+          position="bottom-center"
+          toastClassName="rt-toast"
+          autoClose={2500}
+        />
       </div>
     </Router>
   );

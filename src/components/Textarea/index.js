@@ -13,6 +13,7 @@ const Textarea = ({
   className,
   rounded,
   isRequired,
+  rows = 3,
   ...rest
 }) => (
   <>
@@ -31,6 +32,7 @@ const Textarea = ({
       type={type}
       placeholder={placeholder}
       onChange={onChange}
+      rows={rows}
       {...rest}
     >
       {value}
@@ -49,6 +51,7 @@ export const ControlledTextarea = forwardRef(
       className,
       rounded,
       isRequired,
+      rows = 3,
       ...rest
     },
     ref
@@ -69,6 +72,7 @@ export const ControlledTextarea = forwardRef(
         className={cls(className, 'input', { isRounded: rounded })}
         type={type}
         placeholder={placeholder}
+        rows={rows}
         {...rest}
       >
         {value}

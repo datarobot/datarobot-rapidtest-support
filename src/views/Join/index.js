@@ -42,7 +42,7 @@ const Join = () => {
           </div>
           <p
             className={cls('w-1/2 flex items-center', {
-              'text-light-blue': currentState,
+              'text-blue-light': currentState,
             })}
           >
             {currentState

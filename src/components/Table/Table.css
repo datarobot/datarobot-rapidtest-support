@@ -16,7 +16,7 @@
 }
 
 .pagination .active {
-  @apply text-light-blue font-bold;
+  @apply text-blue-light font-bold;
 }
 
 .pagination .disabled a {
@@ -43,7 +43,7 @@
 }
 
 .pagingButton:hover {
-  @apply text-light-blue;
+  @apply text-blue-light;
 }
 
 .pagingButton:disabled {

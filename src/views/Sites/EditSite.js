@@ -7,6 +7,7 @@ import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
 
 import { ControlledInput } from 'components/Input';
+import ErrorMessage from 'components/ErrorMessage';
 import Loading from 'components/Loading';
 import PageHeader from 'components/PageHeader';
 import Select from 'components/Select';
@@ -28,8 +29,8 @@ const Edit = ({ history }) => {
 
   const [currentSite, setCurrentSite] = useAtom(currentSiteAtom);
 
-  const onSubmit = () => {
-    editSite(currentSite.id, currentSite)
+  const onSubmit = (data) => {
+    editSite(id, data)
       .then(() => {
         toast.success('Success!', {
           onClose: () => {
@@ -58,7 +59,7 @@ const Edit = ({ history }) => {
         setCurrentSite(site[0]);
       })
       .catch((err) => {
-        console.error(err.message);
+        toast.error(err.message);
       })
       .finally(() => {
         setIsLoading(false);
@@ -118,11 +119,7 @@ const Edit = ({ history }) => {
                   ref={register}
                 />
 
-                {errors && errors.county && (
-                  <p className="text-dark-red font-bold text-xs uppercase">
-                    {errors.county.message}
-                  </p>
-                )}
+                <ErrorMessage errors={errors} errorKey="county" />
               </div>
 
               <div className="w-1/4 mr-2">
@@ -150,11 +147,7 @@ const Edit = ({ history }) => {
                   ref={register}
                 />
 
-                {errors && errors.zip && (
-                  <p className="text-dark-red font-bold text-xs uppercase">
-                    {errors.zip.message}
-                  </p>
-                )}
+                <ErrorMessage errors={errors} errorKey="zip" />
               </div>
             </fieldset>
 
@@ -191,13 +184,13 @@ const Edit = ({ history }) => {
 
             {errors.email && <span>This field is required</span>}
 
-            <div className="btn-row mt-4">
-              <button className="btn-primary mr-2" type="submit">
-                Save Info
-              </button>
-
+            <div className="btn-row end mt-4">
               <button className="btn-clear" type="button">
                 Cancel
+              </button>
+
+              <button className="btn-primary mr-2" type="submit">
+                Save Info
               </button>
             </div>
           </form>

@@ -10,16 +10,10 @@ h2 {
   @apply mt-12 w-3/5;
 }
 
-.static-content ul {
-  list-style: disc;
-}
-
 .static-content ul li {
-  @apply font-bold text-lg pt-2;
+  @apply font-bold text-lg;
 }
 
 .static-content ul li ul li {
   @apply ml-4 font-normal text-base py-1;
-
-  list-style: circle;
 }

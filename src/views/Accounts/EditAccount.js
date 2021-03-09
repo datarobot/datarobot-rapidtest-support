@@ -158,13 +158,13 @@ const EditAccount = ({ history }) => {
 
             {errors.email && <span>This field is required</span>}
 
-            <div className="btn-row mt-4">
-              <button className="btn-primary mr-2" type="submit">
-                Save Info
-              </button>
-
+            <div className="btn-row end mt-4">
               <button className="btn-clear" onClick={() => {}}>
                 Cancel
+              </button>
+
+              <button className="btn-primary mr-2" type="submit">
+                Save Info
               </button>
             </div>
           </form>
