@@ -80,14 +80,24 @@ const AddSite = ({ history }) => {
     setSchools([]);
     setCurrentSchool(school);
 
-    setValue('name', school.name, {
+    setValue('site_name', school.name, {
       shouldValidate: true,
       shouldDirty: true,
     });
 
-    for (const key in school) {
-      if ({}.hasOwnProperty.call(school, key)) {
-        setValue(key, school[key], {
+    setValue('street', school.address.address, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+
+    setValue('county', school.county, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
+
+    for (const key in school.address) {
+      if ({}.hasOwnProperty.call(school.address, key)) {
+        setValue(key, school.address[key], {
           shouldValidate: true,
           shouldDirty: true,
         });
@@ -97,15 +107,24 @@ const AddSite = ({ history }) => {
     setMapZoom(16);
   };
 
-  const handleClearSite = () => {
-    setCurrentSchool();
-    setSearchTerm('');
+  const clearForm = () => {
+    const fields = ['site_name', 'street', 'city', 'county', 'state', 'zip'];
+
+    for (let i = 0; i < fields.length; i += 1) {
+      const field = fields[i];
+
+      setValue(field, '', {
+        // shouldValidate: true,
+        shouldDirty: true,
+      });
+    }
   };
 
   const handleClearState = () => {
     setCurrentSchool();
     setSearchTerm('');
     setSchools([]);
+    clearForm();
     setMapCenter();
     setMapZoom();
   };
@@ -148,7 +167,7 @@ const AddSite = ({ history }) => {
                 inputRef={ref}
                 listValues={schools}
                 onItemClick={handleListItemClick}
-                onClearClick={handleClearSite}
+                onClearClick={handleClearState}
                 isRequired
               />
             )}

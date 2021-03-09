@@ -1,0 +1,11 @@
+.form-grid {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-template-rows: 1fr;
+  gap: 0 1rem;
+  grid-template-areas:
+    "form info";
+}
+
+.form { grid-area: form; }
+.info { grid-area: info; }

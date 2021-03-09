@@ -23,6 +23,7 @@ const Dashboard = lazy(() => import('views/Dashboard'));
 const TrainingMaterials = lazy(() => import('views/TrainingMaterials'));
 const SuggestImprovement = lazy(() => import('views/SuggestImprovement'));
 const Contact = lazy(() => import('views/Contact'));
+const FourOhFour = lazy(() => import('views/404'));
 
 export const PrivateRoute = ({
   component: Component,
@@ -115,5 +116,6 @@ export const Routes = ({ authenticated }) => (
     <Route exact path={ROUTES.LOG_IN} component={LogIn} />
 
     <Route exact path={ROUTES.LANDING_PAGE} component={Home} />
+    <Route component={FourOhFour} />
   </Switch>
 );

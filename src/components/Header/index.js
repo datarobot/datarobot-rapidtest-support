@@ -1,12 +1,11 @@
 // @ts-nocheck
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import Icon from 'components/Icon';
 import Logo from 'components/Logo';
 import Nav from 'components/Header/Nav';
-import LoginModal from 'components/Modals/LogIn';
 import { AuthContext } from 'components/AuthProvider';
 
 import { ROUTES } from 'rt-constants';
@@ -17,8 +16,7 @@ import './Header.css';
 
 const Header = () => {
   const { t } = useTranslation();
-  const { authenticated } = useContext(AuthContext);
-  const [showLoginModal, setShowLoginModal] = useState(false);
+  const { authenticated, user } = useContext(AuthContext);
 
   return (
     <>
@@ -31,15 +29,20 @@ const Header = () => {
 
         <section className="links">
           {authenticated ? (
-            <Link
-              to={ROUTES.LANDING_PAGE}
-              className="login-btn btn-clear p-0"
-              onClick={() => {
-                signOut();
-              }}
-            >
-              <Icon iconName="sign-out" type="fal" size="lg" />
-            </Link>
+            <div className="flex items-center">
+              <p className="font-bold text-xs">
+                {user?.displayName || user?.email}
+              </p>
+              <Link
+                to={ROUTES.LANDING_PAGE}
+                className="login-btn btn-clear p-0"
+                onClick={() => {
+                  signOut();
+                }}
+              >
+                <Icon iconName="sign-out" type="fal" size="lg" />
+              </Link>
+            </div>
           ) : (
             <>
               <Link to={ROUTES.LOG_IN} className="login-btn btn-clear mr-2">
@@ -53,13 +56,6 @@ const Header = () => {
           )}
         </section>
       </div>
-
-      <LoginModal
-        showModal={showLoginModal}
-        handleClose={() => {
-          setShowLoginModal(!showLoginModal);
-        }}
-      />
     </>
   );
 };

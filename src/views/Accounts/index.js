@@ -1,22 +1,22 @@
-/* eslint-disable no-unused-vars */
 // @ts-nocheck
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import ReactTooltip from 'react-tooltip';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 import { getAccountList, editAccount } from 'services/api';
 import { ROUTES } from 'rt-constants';
-import { accountsAtom, currentAccountAtom } from 'store';
+import { accountsAtom } from 'store';
 
 import Icon from 'components/Icon';
+import Loading from 'components/Loading';
 import Table from 'components/Table';
 
 const StatusCell = ({ val }) => {
   const { t } = useTranslation();
-  // const [, setAccounts] = useAtom(accountsAtom);
-  const { id, archive } = val;
+  const { archive } = val;
 
   const isDisabled = archive;
   const cellText = isDisabled ? 'Inactive' : 'Active';
@@ -41,12 +41,19 @@ const StatusCell = ({ val }) => {
 const ActivateButton = ({ val }) => {
   const { t } = useTranslation();
   const { id, archive } = val;
-  const [accounts, setAccounts] = useAtom(accountsAtom);
+  const [, setAccounts] = useAtom(accountsAtom);
+  const [isLoading, setIsLoading] = useState(false);
 
   const toggleAccountActive = () => {
+    setIsLoading(true);
     editAccount(id, { ...val, archive: !archive }).then(async () => {
-      // const data = await getAccountList();
-      setAccounts([...accounts, { ...val, archive: !archive }]);
+      const data = await getAccountList();
+      toast.success('Successfully updated account!', {
+        onClose: () => {
+          setAccounts(data);
+          setIsLoading(false);
+        },
+      });
     });
   };
 
@@ -54,10 +61,14 @@ const ActivateButton = ({ val }) => {
     <>
       <button
         onClick={toggleAccountActive}
-        className="text-light-blue py-0 px-2"
+        className="text-light-blue py-0 px-2 focus:outline-none"
         type="button"
       >
-        {!archive ? t('buttons.deactivate') : t('buttons.activate')}
+        {isLoading ? (
+          <Loading size={24} />
+        ) : (
+          <>{!archive ? t('buttons.deactivate') : t('buttons.activate')}</>
+        )}
       </button>
     </>
   );
@@ -66,35 +77,9 @@ const ActivateButton = ({ val }) => {
 const Accounts = () => {
   const { t } = useTranslation();
   const [accounts, setAccounts] = useAtom(accountsAtom);
-  const [, setCurrentAccount] = useAtom(currentAccountAtom);
-  const [accountsToApprove, setAccountsToApprove] = useState([]);
-
-  // const handleSaveAccount = () => {
-  //   getAccountList()
-  //     .then((data) => {
-  //       setAccounts(data);
-  //     })
-  // };
-
-  const handleCheckAccount = ({ target }) => {
-    setAccountsToApprove((prevState) => [...prevState, target.value]);
-  };
 
   const columns = useMemo(
     () => [
-      {
-        Header: () => null,
-        id: 'approve-check',
-        Cell: ({ row }) => (
-          <div className="flex justify-center">
-            <input
-              type="checkbox"
-              value={row.original.id}
-              onChange={handleCheckAccount}
-            />
-          </div>
-        ),
-      },
       {
         Header: t('common.table.name'),
         id: 'name',
@@ -113,6 +98,11 @@ const Accounts = () => {
       },
       {
         Header: t('common.table.status'),
+        sortType: (rowA, rowB) => {
+          if (rowA.original.archive > rowB.original.archive) return -1;
+          if (rowB.original.archive > rowA.original.archive) return 1;
+          return 0;
+        },
         accessor: (val) => <StatusCell val={val} />,
       },
       {
@@ -144,7 +134,7 @@ const Accounts = () => {
       },
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [accounts]
   );
 
   useEffect(() => {
