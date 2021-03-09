@@ -3,6 +3,7 @@ import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
+import ErrorMessage from 'components/ErrorMessage';
 import InfoBox from 'components/InfoBox';
 import Input from 'components/Input';
 import PageHeader from 'components/PageHeader';
@@ -53,7 +54,9 @@ const AddAccount = ({ history }) => {
                   />
                 )}
               />
+              <ErrorMessage errors={errors} errorKey="first_name" />
             </div>
+
             <div className="w-1/2">
               <Controller
                 name="last_name"
@@ -70,6 +73,7 @@ const AddAccount = ({ history }) => {
                   />
                 )}
               />
+              <ErrorMessage errors={errors} errorKey="last_name" />
             </div>
           </fieldset>
 
@@ -90,7 +94,7 @@ const AddAccount = ({ history }) => {
               />
             )}
           />
-          {errors.email && <span>This field is required</span>}
+          <ErrorMessage errors={errors} errorKey="first_name" />
 
           <Controller
             name="phone_number_office"
@@ -117,13 +121,12 @@ const AddAccount = ({ history }) => {
             )}
           />
 
-          <div className="btn-row mt-4">
-            <button className="btn-primary mr-2" type="submit">
-              Save Info
-            </button>
-
+          <div className="btn-row end mt-4">
             <button className="btn-clear" onClick={() => {}}>
               Cancel
+            </button>
+            <button className="btn-primary mr-2" type="submit">
+              Save Info
             </button>
           </div>
         </form>

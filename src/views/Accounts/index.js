@@ -61,7 +61,7 @@ const ActivateButton = ({ val }) => {
     <>
       <button
         onClick={toggleAccountActive}
-        className="text-light-blue py-0 px-2 focus:outline-none"
+        className="text-blue-light py-0 px-2 focus:outline-none"
         type="button"
       >
         {isLoading ? (

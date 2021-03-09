@@ -2,10 +2,11 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
-import { useAtom } from 'jotai';
+
 import { toast } from 'react-toastify';
 
 import Autocomplete from 'components/Autocomplete';
+import ErrorMessage from 'components/ErrorMessage';
 import Input from 'components/Input';
 import PageHeader from 'components/PageHeader';
 import Select from 'components/Select';
@@ -13,10 +14,8 @@ import Map from 'components/Map';
 
 import { ROUTES, STATE_OPTIONS } from 'rt-constants';
 
-import { sitesAtom } from 'store';
 import { useDebounce } from 'hooks';
 
-// eslint-disable-next-line no-unused-vars
 import { addSite, searchSchool, getSchool } from 'services/api';
 
 const AddSite = ({ history }) => {
@@ -27,8 +26,6 @@ const AddSite = ({ history }) => {
   const [currentSchool, setCurrentSchool] = useState();
   const [mapCenter, setMapCenter] = useState();
   const [mapZoom, setMapZoom] = useState();
-  // eslint-disable-next-line no-unused-vars
-  const [sites, setSites] = useAtom(sitesAtom);
 
   const onSubmit = (data) => {
     addSite(data)
@@ -66,7 +63,6 @@ const AddSite = ({ history }) => {
   useEffect(
     () => {
       if (debouncedSearchTerm) {
-        // setIsSearching(true);
         doSearch(debouncedSearchTerm);
       } else {
         setSchools([]);
@@ -114,7 +110,6 @@ const AddSite = ({ history }) => {
       const field = fields[i];
 
       setValue(field, '', {
-        // shouldValidate: true,
         shouldDirty: true,
       });
     }
@@ -172,17 +167,8 @@ const AddSite = ({ history }) => {
               />
             )}
           />
-          {errors && errors.site_name && (
-            <p className="text-dark-red font-bold text-xs uppercase">
-              {errors.site_name.message}
-            </p>
-          )}
+          <ErrorMessage errors={errors} errorKey="site_name" />
 
-          {errors && errors.street && (
-            <p className="text-dark-red font-bold text-xs uppercase">
-              {errors.street.message}
-            </p>
-          )}
           <fieldset className="flex">
             <div className="w-1/2 mr-2">
               <Controller
@@ -211,6 +197,7 @@ const AddSite = ({ history }) => {
                   />
                 )}
               />
+              <ErrorMessage errors={errors} errorKey="street" />
             </div>
 
             <div className="w-1/2">
@@ -238,11 +225,7 @@ const AddSite = ({ history }) => {
                   />
                 )}
               />
-              {errors && errors.city && (
-                <p className="text-dark-red font-bold text-xs uppercase">
-                  {errors.city.message}
-                </p>
-              )}
+              <ErrorMessage errors={errors} errorKey="city" />
             </div>
           </fieldset>
 
@@ -274,37 +257,35 @@ const AddSite = ({ history }) => {
                   />
                 )}
               />
-              {errors && errors.county && (
-                <p className="text-dark-red font-bold text-xs uppercase">
-                  {errors.county.message}
-                </p>
-              )}
+              <ErrorMessage errors={errors} errorKey="county" />
             </div>
 
             <div className="w-1/4 mr-2">
               <Controller
-                name="state"
                 control={control}
-                defaultValue=""
-                onChange={(value) => value}
-                as={Select}
-                options={STATE_OPTIONS}
-                value={currentSchool?.state ? currentSchool?.state : ''}
-                label={t('site.label.state')}
-                className="mt-1"
-                isRequired
+                name="state"
+                label="State"
+                defaultValue={currentSchool?.state || ''}
                 rules={{
                   required: {
                     value: true,
                     message: t('errorMessages.common.required'),
                   },
                 }}
+                render={({ onChange, value }) => (
+                  <Select
+                    name="state"
+                    label="State"
+                    options={STATE_OPTIONS}
+                    isRequired
+                    onChange={onChange}
+                    value={currentSchool?.state || value}
+                    className="mt-1"
+                    placeholder="State"
+                  />
+                )}
               />
-              {errors && errors.state && (
-                <p className="text-dark-red font-bold text-xs uppercase">
-                  {errors.state.message}
-                </p>
-              )}
+              <ErrorMessage errors={errors} errorKey="state" />
             </div>
 
             <div className="w-1/4">
@@ -336,11 +317,7 @@ const AddSite = ({ history }) => {
                   />
                 )}
               />
-              {errors && errors.zip && (
-                <p className="text-dark-red font-bold text-xs uppercase">
-                  {errors.zip.message}
-                </p>
-              )}
+              <ErrorMessage errors={errors} errorKey="zip" />
             </div>
           </fieldset>
 
@@ -399,19 +376,15 @@ const AddSite = ({ history }) => {
               />
             )}
           />
-          {errors && errors.clia && (
-            <p className="text-dark-red font-bold text-xs uppercase">
-              {errors.clia.message}
-            </p>
-          )}
+          <ErrorMessage errors={errors} errorKey="clia" />
 
-          <div className="btn-row mt-4">
-            <button className="btn-primary mr-2" type="submit">
-              Save Info
-            </button>
-
+          <div className="btn-row end mt-4">
             <button className="btn-clear" onClick={handleClearState}>
               Cancel
+            </button>
+
+            <button className="btn-primary mr-2" type="submit">
+              Save Info
             </button>
           </div>
         </form>

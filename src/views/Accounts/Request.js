@@ -17,7 +17,9 @@ import './Accounts.css';
 
 const RequestAccount = () => {
   const [showSuccessMsg, setShowSuccessMsg] = useState(false);
-  const { handleSubmit, errors, register, control } = useForm();
+  const { handleSubmit, errors, register, control } = useForm({
+    defaultValues: {},
+  });
   const { t } = useTranslation();
 
   const onSubmit = (data) => {
@@ -47,16 +49,18 @@ const RequestAccount = () => {
                 message: t('errorMessages.common.required'),
               },
             }}
-            render={({ onChange, value, ref }) => (
+            render={({ onChange, value }) => (
               <Select
                 name="state"
                 placeholder="Select a program"
                 options={STATE_OPTIONS_FULL}
                 isRequired
-                onChange={onChange}
+                onChange={(e) => {
+                  onChange(e);
+                }}
                 value={value}
-                ref={ref}
                 className="w-2/5"
+                showToggle
               />
             )}
           />
@@ -66,8 +70,8 @@ const RequestAccount = () => {
 
           <div className="form-grid">
             <fieldset
-              className={cls('bg-lightest-blue p-8 mr-4 form', {
-                'col-span-2': !showSuccessMsg,
+              className={cls('bg-blue-lightest p-8 mr-4 form', {
+                // 'col-span-2': !showSuccessMsg,
               })}
             >
               <ControlledInput
@@ -141,13 +145,13 @@ const RequestAccount = () => {
                 )}
               />
 
-              <div className="btn-row mt-4">
-                <button className="btn-primary mr-2" type="submit">
-                  Request Account
-                </button>
-
+              <div className="btn-row end mt-4">
                 <button className="btn-clear" type="button" onClick={() => {}}>
                   Cancel
+                </button>
+
+                <button className="btn-primary mr-2" type="submit">
+                  Request Account
                 </button>
               </div>
             </fieldset>
@@ -160,7 +164,7 @@ const RequestAccount = () => {
                 />
               </div>
             ) : (
-              <section className="success flex justify-center">
+              <section className="success info flex justify-center">
                 <p className="sub-heading text-blue text-center">
                   Thanks for submitting your request! <br />
                   Someone will contact you shortly.

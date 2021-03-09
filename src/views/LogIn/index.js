@@ -40,9 +40,11 @@ const LogIn = ({ location, history }) => {
           ref={register}
         />
 
-        <button type="submit" className="btn-primary mt-8">
-          Log In
-        </button>
+        <div className="btn-row end">
+          <button type="submit" className="btn-primary mt-8">
+            Log In
+          </button>
+        </div>
       </form>
       {errors && errors.email && <p>ERROR!!!</p>}
     </>

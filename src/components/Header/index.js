@@ -29,13 +29,13 @@ const Header = () => {
 
         <section className="links">
           {authenticated ? (
-            <div className="flex items-center">
-              <p className="font-bold text-xs">
+            <div className="flex items-center justify-end">
+              <p className="font-bold text-xs mr-3">
                 {user?.displayName || user?.email}
               </p>
               <Link
                 to={ROUTES.LANDING_PAGE}
-                className="login-btn btn-clear p-0"
+                className="logout-btn inline-block -mb-1"
                 onClick={() => {
                   signOut();
                 }}

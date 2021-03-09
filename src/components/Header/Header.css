@@ -47,7 +47,7 @@
 }
 
 .nav-link.active {
-  @apply text-opacity-100 border-b-2 border-dark-blue;
+  @apply text-opacity-100 border-b-2 border-blue-dark;
 }
 
 .nav-link:hover {
