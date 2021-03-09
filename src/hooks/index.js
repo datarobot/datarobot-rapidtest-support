@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+// @ts-nocheck
+import { useEffect, useState, useCallback, useRef } from 'react';
 
 // eslint-disable-next-line import/prefer-default-export
 export const useDebounce = (value, delay) => {
@@ -16,4 +17,22 @@ export const useDebounce = (value, delay) => {
   }, [value]);
 
   return debouncedValue;
+};
+
+export const useTimeout = (callback = () => {}, timeout = 0) => {
+  const timeoutIdRef = useRef();
+  const cancel = useCallback(() => {
+    const timeoutId = timeoutIdRef.current;
+    if (timeoutId) {
+      timeoutIdRef.current = undefined;
+      clearTimeout(timeoutId);
+    }
+  }, [timeoutIdRef]);
+
+  useEffect(() => {
+    timeoutIdRef.current = setTimeout(callback, timeout);
+    return cancel;
+  }, [callback, timeout, cancel]);
+
+  return cancel;
 };

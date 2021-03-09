@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import ErrorMessage from 'components/ErrorMessage';
 import Loading from 'components/Loading';
 import { ControlledCheckbox } from 'components/Checkbox';
-import Icon from 'components/Icon';
+import InfoBox from 'components/InfoBox';
 import { ControlledInput } from 'components/Input';
 import PageHeader from 'components/PageHeader';
 
@@ -170,14 +170,7 @@ const EditAccount = ({ history }) => {
           </form>
 
           <div className="w-1/4">
-            <div className="leading-8 text-blue">
-              <Icon iconName="question-circle" type="fal" />
-            </div>
-            <p className="font-bold text-blue my-4">Account requirements</p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae
-              quisque urna quam mauris quis.
-            </p>
+            <InfoBox heading="Account requirements" />
           </div>
         </section>
       )}

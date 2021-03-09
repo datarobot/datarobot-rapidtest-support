@@ -1,8 +1,9 @@
 // @ts-nocheck
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
+import { toast } from 'react-toastify';
 
 import { getSiteList, editSite } from 'services/api';
 import { ROUTES } from 'rt-constants';
@@ -15,12 +16,40 @@ import Table from 'components/Table';
 import { sitesAtom, currentSiteAtom } from 'store';
 
 const SiteStatus = ({ values, row }) => {
+  const [, setSites] = useAtom(sitesAtom);
+  const [selected, setSelected] = useState(!values);
+
+  // eslint-disable-next-line no-unused-vars
   const updateSite = (e) => {
-    const site = { ...row.original, archive: !e };
-    editSite(site.id, site);
+    const site = { ...row.original, archive: e };
+    editSite(site.id, site)
+      .then(async () => {
+        const data = await getSiteList();
+        toast.success('Site updated successfully!', {
+          onClose: () => {
+            setSites(data);
+          },
+        });
+      })
+      .catch(() => {
+        setSelected(!selected);
+        toast.error('There was a problem updating the site.', {
+          onClose: () => {
+            setSelected(!selected);
+          },
+        });
+      });
   };
 
-  return <ToggleButton selected={!values} toggleSelected={updateSite} />;
+  return (
+    <ToggleButton
+      defaultChecked={selected}
+      onChange={() => {
+        updateSite(!selected);
+        setSelected(!selected);
+      }}
+    />
+  );
 };
 
 const Sites = () => {
@@ -79,7 +108,9 @@ const Sites = () => {
         Header: t('common.table.status'),
         accessor: 'archive',
         Cell: ({ row, cell: { value } }) => (
-          <SiteStatus values={value} row={row} />
+          <div className="flex items-center">
+            <SiteStatus values={value} row={row} />
+          </div>
         ),
       },
     ],
@@ -104,6 +135,7 @@ const Sites = () => {
         uploadButtonText={`+ ${t('buttons.uploadList')}`}
         addRoute={ROUTES.ADD_SITE}
         uploadRoute={ROUTES.UPLOAD_SITES}
+        columnFilter="site_name"
       />
       <AddSiteModal
         showModal={showAddModal}

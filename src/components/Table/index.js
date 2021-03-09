@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 // @ts-nocheck
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import cls from 'classnames';
 import { useTable, useFilters, useSortBy, usePagination } from 'react-table';
@@ -20,9 +20,11 @@ const Table = ({
   tableName,
   addRoute,
   uploadRoute,
+  columnFilter = 'name',
   tableOnly = false,
 }) => {
   const [filterInput, setFilterInput] = useState('');
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -39,6 +41,7 @@ const Table = ({
       columns,
       data,
       initialState: { pageIndex: 0 },
+      autoResetPage: false,
     },
     useFilters,
     useSortBy,
@@ -78,7 +81,7 @@ const Table = ({
 
   const handleFilterChange = (e) => {
     const value = e.target.value || undefined;
-    setFilter('name', value);
+    setFilter(columnFilter, value);
     setFilterInput(value);
   };
 
@@ -113,11 +116,19 @@ const Table = ({
       )}
       <div className="tableWrapper">
         {page.length === 0 ? (
-          <Loading
-            color="#00528D"
-            size={128}
-            containerClassName="full-height -mt-12"
-          />
+          <>
+            {!filterInput ? (
+              <Loading
+                color="#00528D"
+                size={128}
+                containerClassName="full-height -mt-12"
+              />
+            ) : (
+              <div className="flex flex-1 h-full justify-center items-center">
+                <p className="sub-heading">No data to display</p>
+              </div>
+            )}
+          </>
         ) : (
           <table {...getTableProps()} className="table border-collapse w-full">
             <thead>

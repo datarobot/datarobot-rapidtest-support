@@ -3,7 +3,7 @@ import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
-import Icon from 'components/Icon';
+import InfoBox from 'components/InfoBox';
 import Input from 'components/Input';
 import PageHeader from 'components/PageHeader';
 import { ROUTES } from 'rt-constants';
@@ -129,14 +129,7 @@ const AddAccount = ({ history }) => {
         </form>
 
         <div className="w-1/4">
-          <div className="leading-8 text-blue">
-            <Icon iconName="question-circle" type="fal" />
-          </div>
-          <p className="font-bold text-blue my-4">Account requirements</p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vitae
-            quisque urna quam mauris quis.
-          </p>
+          <InfoBox heading="Account Requirements" />
         </div>
       </section>
     </>

@@ -1,25 +1,77 @@
-.toggle-container {
-  @apply rounded-full bg-light-blue py-2 w-8;
+.toggle {
+  @apply inline-block relative cursor-pointer bg-transparent p-0 border-0;
 
-  cursor: pointer;
+  touch-action: pan-x;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
   user-select: none;
-  /* height: 32px; */
-  position: relative;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: transparent;
 }
 
-.dialog-button {
-  @apply rounded-full bg-white p-2 -mt-2;
-
-  cursor: pointer;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  min-width: unset;
-
-  box-sizing: border-box;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
-  position: absolute;
-  transition: all 250ms ease;
+.toggle-input {
+  @apply border-0 overflow-hidden p-0 absolute;
+  
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  width: 1px;
 }
 
-.selected .dialog-button {
-  @apply right-0;
+.toggle-check, .toggle-uncheck {
+  @apply absolute -inset-y-0 my-auto opacity-0;
+
+  width: 10px;
+  height: 10px;
+  line-height: 0;
+  transition: opacity 300ms ease;
+}
+
+.toggle-check {
+  left: 8px;
+}
+.toggle-uncheck {
+  opacity: 1;
+  right: 10px;
+}
+
+.toggle-uncheck span, 
+.toggle-check span {
+  @apply flex items-center justify-center relative;
+
+  height: 10px;
+  width: 10px;
+}
+
+.toggle-container {
+  width: 36px;
+  height: 18px;
+  
+  @apply bg-gray-500 p-0 rounded-full;
+}
+
+.toggle-container.checked {
+  @apply bg-light-blue;
+}
+
+.toggle-circle {
+  @apply absolute bg-white box-border rounded-full border border-gray-500;
+
+  transition: all 500ms cubic-bezier(.23,1,.32,1);
+  top: 1px;
+  left: 1px;
+  width: 16px;
+  height: 16px;
+}
+
+.toggle--checked .toggle-circle {
+  left: 19px;
+}
+
+.toggle--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.25s;
+  transition: opacity 0.25s;
 }
