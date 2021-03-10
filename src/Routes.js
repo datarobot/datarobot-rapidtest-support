@@ -19,6 +19,7 @@ const RequestAccount = lazy(() => import('views/Accounts/Request'));
 const UploadAccounts = lazy(() => import('views/Accounts/UploadAccounts'));
 const Faq = lazy(() => import('views/Faq'));
 const LogIn = lazy(() => import('views/LogIn'));
+const SignUp = lazy(() => import('views/SignUp'));
 const Dashboard = lazy(() => import('views/Dashboard'));
 const TrainingMaterials = lazy(() => import('views/TrainingMaterials'));
 const SuggestImprovement = lazy(() => import('views/SuggestImprovement'));
@@ -114,7 +115,7 @@ export const Routes = ({ authenticated }) => (
     />
     <Route exact path={ROUTES.CONTACT} component={Contact} />
     <Route exact path={ROUTES.LOG_IN} component={LogIn} />
-
+    <Route exact path={ROUTES.SIGN_UP} component={SignUp} />
     <Route exact path={ROUTES.LANDING_PAGE} component={Home} />
     <Route component={FourOhFour} />
   </Switch>

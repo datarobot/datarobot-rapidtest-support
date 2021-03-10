@@ -22,6 +22,8 @@ import {
 import { faCloudUploadAlt } from '@fortawesome/pro-regular-svg-icons';
 
 import {
+  faEye,
+  faEyeSlash,
   faPencilAlt,
   faSearch,
   faSignOut,
@@ -38,6 +40,8 @@ library.add(
   faChevronLeft,
   faChevronRight,
   faChevronUp,
+  faEye,
+  faEyeSlash,
   faFileCsv,
   faHourglassHalf,
   faLongArrowRight,

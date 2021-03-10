@@ -1,5 +1,5 @@
 .header {
-  @apply fixed top-0 right-0 left-0 grid bg-white py-2 z-10 shadow;
+  @apply fixed top-0 right-0 left-0 grid bg-white z-10 shadow;
 
   grid-template-columns: 1fr 45% 1fr;
   grid-template-rows: 1fr;
@@ -24,32 +24,54 @@
 }
 
 .logo {
+  @apply py-2;
+
   max-width: 200px;
   grid-area: logo;
 }
 
 .links {
-  @apply flex justify-end py-1;
+  @apply flex justify-end items-center;
 
   grid-area: links;
 }
 
 .nav {
-  @apply flex w-full items-center justify-between;
+  @apply flex w-full h-full items-center justify-between;
 
   grid-area: nav;
 }
 
+.nav li {
+  @apply h-full flex items-center;
+}
+
 .nav-link {
-  @apply font-bold text-sm text-blue text-opacity-75 py-2 px-4;
+  @apply flex items-center relative font-bold text-sm text-blue text-opacity-75 p-4 inline-block h-full;
 
   transition: all 250ms ease;
 }
 
 .nav-link.active {
-  @apply text-opacity-100 border-b-2 border-blue-dark;
+  @apply text-opacity-100;
+}
+
+.nav-link::before {
+  @apply bg-blue absolute w-full bottom-0 left-0 invisible;
+
+  content: "";
+  height: 1px;
+  transform: scaleX(0);
+  transition: all 0.3s ease-in-out;
 }
 
 .nav-link:hover {
   @apply text-opacity-100;
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+  @apply visible;
+
+  transform: scaleX(1);
 }

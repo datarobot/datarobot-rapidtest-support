@@ -44,15 +44,15 @@ const Header = () => {
               </Link>
             </div>
           ) : (
-            <>
+            <div>
               <Link to={ROUTES.LOG_IN} className="login-btn btn-clear mr-2">
                 {t('buttons.signin')}
               </Link>
 
-              <button className="btn-primary" type="button">
+              <Link to={ROUTES.SIGN_UP} className="btn-primary py-3">
                 {t('buttons.signup')}
-              </button>
-            </>
+              </Link>
+            </div>
           )}
         </section>
       </div>

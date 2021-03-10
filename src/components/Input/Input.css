@@ -40,3 +40,15 @@
 form {
   @apply -mt-2;
 }
+
+.show-password-toggle {
+  @apply absolute px-1;
+
+  top: 50%;
+  transform: translateY(-50%);
+  right: 10px;
+}
+
+.show-password-toggle:focus {
+  @apply outline-none;
+}
