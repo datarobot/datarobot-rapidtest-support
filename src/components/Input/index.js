@@ -39,7 +39,7 @@ const Input = ({
           {label}
         </label>
       )}
-      <span className="relative">
+      <span className={cls('w-full', { relative: type === 'password' })}>
         <input
           name={name}
           id={name}
@@ -104,7 +104,7 @@ export const ControlledInput = forwardRef(
             {label}
           </label>
         )}
-        <span className="relative">
+        <span className={cls('w-full', { relative: type === 'password' })}>
           <input
             ref={ref}
             name={name}

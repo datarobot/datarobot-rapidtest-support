@@ -5,23 +5,19 @@ const serverUrl =
     ? process.env.REACT_APP_SERVER_URL
     : '/api/maintenance/v1';
 
-// const autocompleteUrl =
-//   process.env.NODE_ENV === 'production' ? 'http://localhost:1337/api' : '';
-
 const defaultOptions = {
   baseURL: serverUrl,
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
-    'CF-Access-Client-Id': process.env.REACT_APP_API_CLIENT,
-    'CF-Access-Client-Secret': process.env.REACT_APP_API_SECRET,
+    Authorization: `Bearer: ${localStorage.getItem('token')}`,
   },
 };
 
 // Set up axios with default options and interceptors
 const http = axios.create(defaultOptions);
 
-export const requestAccess = async ({
+export const addAccount = async ({
   first_name,
   last_name,
   email_address,

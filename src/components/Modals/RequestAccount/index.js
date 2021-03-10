@@ -5,12 +5,12 @@ import { useForm, Controller } from 'react-hook-form';
 import Input from 'components/Input';
 import Modal from 'components/Modal';
 
-import { requestAccess } from 'services/api';
+import { addAccount } from 'services/api';
 
 const RequestAccountModal = ({ showModal, handleClose }) => {
   const { control, handleSubmit, errors } = useForm();
   const onSubmit = (data) => {
-    requestAccess(data)
+    addAccount(data)
       .then(() => {
         // Do stuff
       })

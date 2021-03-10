@@ -8,13 +8,13 @@ import InfoBox from 'components/InfoBox';
 import Input from 'components/Input';
 import PageHeader from 'components/PageHeader';
 import { ROUTES } from 'rt-constants';
-import { requestAccess } from 'services/api';
+import { addAccount } from 'services/api';
 
 const AddAccount = ({ history }) => {
   const { control, handleSubmit, errors } = useForm();
 
   const onSubmit = (data) => {
-    requestAccess(data)
+    addAccount(data)
       .then(() => {
         toast.success('Success!', {
           onClose: () => {

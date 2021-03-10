@@ -1,5 +1,4 @@
 // @ts-nocheck
-/* eslint-disable import/prefer-default-export */
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { FIREBASE_CONFIG } from 'rt-constants';
@@ -17,4 +16,19 @@ export const signIn = async (email, pwd) => {
   return authed;
 };
 
-export const signOut = () => firebase.auth().signOut();
+export const signOut = () => {
+  localStorage.removeItem('token');
+  firebase.auth().signOut();
+};
+
+export const getUser = async () => {
+  const user = await firebase.auth().currentUser?.getIdTokenResult();
+
+  return user;
+};
+
+export const getUserToken = async () => {
+  const userToken = await firebase.auth().currentUser?.getIdTokenResult();
+
+  return userToken.token;
+};
