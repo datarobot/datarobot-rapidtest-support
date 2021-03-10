@@ -60,7 +60,6 @@ const RequestAccount = () => {
                 }}
                 value={value}
                 className="w-2/5"
-                showToggle
               />
             )}
           />
