@@ -1,6 +1,9 @@
 // @ts-nocheck
-import { forwardRef } from 'react';
+import { forwardRef, useState } from 'react';
 import cls from 'classnames';
+
+import Icon from 'components/Icon';
+
 import './Input.css';
 
 const Input = ({
@@ -11,31 +14,59 @@ const Input = ({
   onChange,
   placeholder,
   className,
+  labelClass,
   rounded,
   isRequired,
   ...rest
-}) => (
-  <>
-    {label && (
-      <label
-        className={cls('input-label', { required: isRequired })}
-        htmlFor={name}
-      >
-        {label}
-      </label>
-    )}
-    <input
-      name={name}
-      id={name}
-      className={cls(className, 'input', { isRounded: rounded })}
-      type={type}
-      value={value}
-      placeholder={placeholder}
-      onChange={onChange}
-      {...rest}
-    />
-  </>
-);
+}) => {
+  const [showPasswordText, setShowPasswordText] = useState(false);
+
+  const getInputType = () => {
+    if (type === 'password' && showPasswordText) {
+      return 'text';
+    }
+
+    return type;
+  };
+
+  return (
+    <>
+      {label && (
+        <label
+          className={cls('input-label', labelClass, { required: isRequired })}
+          htmlFor={name}
+        >
+          {label}
+        </label>
+      )}
+      <span className="relative">
+        <input
+          name={name}
+          id={name}
+          className={cls(className, 'input', { isRounded: rounded })}
+          type={getInputType()}
+          value={value}
+          placeholder={placeholder}
+          onChange={onChange}
+          {...rest}
+        />
+        {type === 'password' && (
+          <button
+            type="button"
+            onClick={() => setShowPasswordText(!showPasswordText)}
+            tabIndex={-1}
+            className="show-password-toggle"
+          >
+            <Icon
+              type="fal"
+              iconName={showPasswordText ? 'eye-slash' : 'eye'}
+            />
+          </button>
+        )}
+      </span>
+    </>
+  );
+};
 
 export const ControlledInput = forwardRef(
   (
@@ -46,33 +77,62 @@ export const ControlledInput = forwardRef(
       value,
       placeholder,
       className,
+      labelClass,
       rounded,
       isRequired,
       ...rest
     },
     ref
-  ) => (
-    <>
-      {label && (
-        <label
-          className={cls('input-label', { required: isRequired })}
-          htmlFor={name}
-        >
-          {label}
-        </label>
-      )}
-      <input
-        ref={ref}
-        name={name}
-        id={name}
-        className={cls(className, 'input', { isRounded: rounded })}
-        type={type}
-        value={value}
-        placeholder={placeholder}
-        {...rest}
-      />
-    </>
-  )
+  ) => {
+    const [showPasswordText, setShowPasswordText] = useState(false);
+
+    const getInputType = () => {
+      if (type === 'password' && showPasswordText) {
+        return 'text';
+      }
+
+      return type;
+    };
+
+    return (
+      <>
+        {label && (
+          <label
+            className={cls('input-label', labelClass, { required: isRequired })}
+            htmlFor={name}
+          >
+            {label}
+          </label>
+        )}
+        <span className="relative">
+          <input
+            ref={ref}
+            name={name}
+            id={name}
+            className={cls(className, 'input', { isRounded: rounded })}
+            type={getInputType()}
+            value={value}
+            placeholder={placeholder}
+            {...rest}
+          />
+
+          {type === 'password' && (
+            <button
+              type="button"
+              onClick={() => setShowPasswordText(!showPasswordText)}
+              tabIndex={-1}
+              className="show-password-toggle"
+            >
+              <Icon
+                type="fal"
+                iconName={showPasswordText ? 'eye-slash' : 'eye'}
+              />
+            </button>
+          )}
+        </span>
+      </>
+    );
+  }
 );
 
 export default Input;

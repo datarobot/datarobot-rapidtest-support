@@ -20,6 +20,7 @@ export const ROUTES = {
   FAQ: '/faq',
   DASHBOARD: '/dashboard',
   LOG_IN: '/login',
+  SIGN_UP: '/sign-up',
   TRAINING_MATERIALS: '/training-materials',
   SUGGEST_IMPROVEMENT: '/suggestions',
   CONTACT: '/contact',

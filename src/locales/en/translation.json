@@ -37,6 +37,14 @@
     "email": {
       "invalid": "Invalid email address."
     },
+    "password": {
+      "invalid": "Passwords must be at least 8 characters.",
+      "invalidPattern": "Password must contain at least one uppercase letter, one lowercase letter, and one number."
+    },
+    "passwordConfirmation": {
+      "blank": "Please confirm your password.",
+      "noMatch": "Both passwords must match."
+    },
     "zip": {
       "invalid": "Enter a valid Zip Code."
     }
