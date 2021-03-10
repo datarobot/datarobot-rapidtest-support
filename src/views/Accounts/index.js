@@ -140,6 +140,11 @@ const Accounts = () => {
   useEffect(() => {
     (async () => {
       const data = await getAccountList();
+
+      if (!Array.isArray(data)) {
+        return setAccounts([]);
+      }
+
       setAccounts(data);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps

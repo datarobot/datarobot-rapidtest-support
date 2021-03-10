@@ -12,7 +12,7 @@ export const isValidSitesList = (list) => {
 
 export const getSiteError = (list) => difference(list, VALID_SITE_COLUMNS);
 
-export const isValidAccountsList = (list) => {
+export const isValidAccountList = (list) => {
   const { REQUIRED, OPTIONAL } = VALID_ACCOUNT_COLUMNS;
   return isEqual(list, [...REQUIRED, ...OPTIONAL]);
 };

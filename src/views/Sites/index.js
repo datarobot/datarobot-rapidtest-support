@@ -121,6 +121,11 @@ const Sites = () => {
   useEffect(() => {
     (async () => {
       const data = await getSiteList();
+
+      if (!Array.isArray(data)) {
+        return setSites([]);
+      }
+
       setSites(data);
     })();
   }, [setSites]);

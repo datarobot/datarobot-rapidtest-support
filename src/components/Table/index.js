@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 // @ts-nocheck
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -8,13 +7,12 @@ import { useTable, useFilters, useSortBy, usePagination } from 'react-table';
 import Icon from 'components/Icon';
 import Input from 'components/Input';
 import Pagination from 'components/Table/Pagination';
-import Loading from 'components/Loading';
 
 import './Table.css';
 
 const Table = ({
   columns = [],
-  data = [],
+  data,
   addButtonText,
   uploadButtonText,
   tableName,
@@ -55,6 +53,7 @@ const Table = ({
     { min = 1, total = rows.length, length = pageCount } = {}
   ) => {
     if (length > total) {
+      // eslint-disable-next-line no-param-reassign
       length = total;
     }
 
@@ -116,19 +115,9 @@ const Table = ({
       )}
       <div className="tableWrapper">
         {page.length === 0 ? (
-          <>
-            {!filterInput ? (
-              <Loading
-                color="#00528D"
-                size={128}
-                containerClassName="full-height -mt-12"
-              />
-            ) : (
-              <div className="flex flex-1 h-full justify-center items-center">
-                <p className="sub-heading">No data to display</p>
-              </div>
-            )}
-          </>
+          <div className="flex flex-1 h-full justify-center items-center">
+            <p className="sub-heading">No data to display</p>
+          </div>
         ) : (
           <table {...getTableProps()} className="table border-collapse w-full">
             <thead>

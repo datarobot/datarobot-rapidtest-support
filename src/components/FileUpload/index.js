@@ -7,6 +7,8 @@ import Papa from 'papaparse';
 import Icon from 'components/Icon';
 import Table from 'components/Table';
 
+import { isEqual } from 'utils';
+
 import './FileUpload.css';
 
 const UploadLabel = () => (
@@ -23,9 +25,10 @@ const UploadLabel = () => (
   </>
 );
 
-const FileUpload = ({ validator }) => {
+const FileUpload = ({ validator, handleUpload }) => {
   const [files, setFiles] = useState([]);
   const [tableColumns, setTableColumns] = useState([]);
+  const [tableDataDisplay, setTableDataDisplay] = useState([]);
   const [tableData, setTableData] = useState([]);
   const [, setIsSitesUpload] = useState(true);
   const [isValid, setIsValid] = useState(true);
@@ -41,7 +44,7 @@ const FileUpload = ({ validator }) => {
   const parseConfig = {
     header: true,
     complete(results) {
-      const header = Object.keys(results.data[0]);
+      const header = results.meta.fields;
       const valid = validator(header);
       if (!header.includes('site_name')) {
         setIsSitesUpload(false);
@@ -51,7 +54,13 @@ const FileUpload = ({ validator }) => {
         return setIsValid(valid);
       }
 
-      setTableData(results.data.slice(0, 10));
+      if (isEqual({ [header[0]]: '' }, results.data[results.data.length - 1])) {
+        results.data.pop();
+      }
+
+      setTableDataDisplay(results.data.slice(0, 10));
+      setTableData(results.data);
+
       for (let i = 0; i < header.length; i += 1) {
         const col = header[i];
         setTableColumns((prevState) => [
@@ -94,10 +103,19 @@ const FileUpload = ({ validator }) => {
                   >
                     Cancel
                   </button>
-                  <button className="btn-primary">Upload</button>
+                  <button
+                    className="btn-primary"
+                    onClick={() => handleUpload(tableData)}
+                  >
+                    Upload
+                  </button>
                 </div>
               </section>
-              <Table tableOnly={true} columns={tableColumns} data={tableData} />
+              <Table
+                tableOnly={true}
+                columns={tableColumns}
+                data={tableDataDisplay}
+              />
             </>
           ) : (
             <section className="error-msg">
