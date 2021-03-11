@@ -1,44 +1,63 @@
 // @ts-nocheck
-// import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-import Icon from 'components/Icon';
+import InfoBox from 'components/InfoBox';
 import Tabs from 'components/Tabs';
 
 import ProgramAdminForm from 'components/JoinForm/ProgramAdminForm';
 import TestAdminForm from 'components/JoinForm/TestAdminForm';
 
+import { addAccount } from 'services/api';
+
+import { ROUTES } from 'rt-constants';
+
 import './JoinForm.css';
 
-const Joinform = ({ currentState }) => (
-  // const { t } = useTranslation();
+const Joinform = ({ currentState }) => {
+  const handleSubmit = (data) => {
+    addAccount(data)
+      .then(() => {
+        toast.success('Request submitted!');
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
 
-  <>
-    <p className="sub-heading text-blue">Join a program in {currentState}</p>
-    <div className="flex">
-      <section className="join-form mt-8 w-1/2">
-        <Tabs
-          listClassName="mb-8"
-          labels={['Test Admin', 'Program Admin']}
-          panels={[<TestAdminForm />, <ProgramAdminForm />]}
-        />
-        <p className="mt-6">
-          Need help with creating account?{' '}
-          <a href="#contact">Contact support</a>
-        </p>
-      </section>
-      <section className="mt-8 w-1/4 p-12">
-        <p className="font-bold text-blue">
-          Test admins <Icon iconName="question-circle" />
-        </p>{' '}
-        are responsible for conducting tests, but are not running training
-        programs across multiple sites.
-        <p className="font-bold text-blue mt-8">
-          Program admins <Icon iconName="question-circle" />
-        </p>
-        are responsible for signing up new users, and running training programs.
-        They are managing the rollout across multiple schools.
-      </section>
-    </div>
-  </>
-);
+  return (
+    <>
+      <p className="sub-heading text-blue">Join a program in {currentState}</p>
+      <div className="flex">
+        <section className="join-form mt-8 w-1/2">
+          <Tabs
+            listClassName="mb-8"
+            labels={['Test Admin', 'Program Admin']}
+            panels={[
+              <TestAdminForm onSubmit={handleSubmit} />,
+              <ProgramAdminForm onSubmit={handleSubmit} />,
+            ]}
+          />
+          <p className="mt-6">
+            Need help with creating account?{' '}
+            <Link to={ROUTES.CONTACT}>Contact support</Link>
+          </p>
+        </section>
+        <section className="mt-8 w-1/4 p-12 pt-0">
+          <InfoBox
+            className="mb-4"
+            heading="Test admins"
+            subtext="are responsible for conducting tests, but are not running training
+        programs across multiple sites."
+          />
+          <InfoBox
+            heading="Program admins"
+            subtext="are responsible for signing up new users, and running training programs.
+        They are managing the rollout across multiple schools."
+          />
+        </section>
+      </div>
+    </>
+  );
+};
 export default Joinform;

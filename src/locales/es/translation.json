@@ -31,6 +31,10 @@
     "title": "Edición "
   },
   "errorMessages": {
+    "clia": {
+      "length": "El número CLIA debe tener exactamente 10 caracteres.",
+      "pattern": "El número CLIA solo puede constar de letras y números."
+    },
     "common": {
       "required": "Este campo es obligatorio."
     },

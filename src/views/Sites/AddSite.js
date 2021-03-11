@@ -28,7 +28,9 @@ const AddSite = ({ history }) => {
   const [mapZoom, setMapZoom] = useState();
 
   const onSubmit = (data) => {
-    addSite(data)
+    const { lat, lng } = currentSchool;
+
+    addSite({ ...data, latitude: lat, longitude: lng })
       .then(() => {
         toast.success('Success!', {
           onClose: () => {
@@ -362,6 +364,18 @@ const AddSite = ({ history }) => {
               required: {
                 value: true,
                 message: t('errorMessages.common.required'),
+              },
+              pattern: {
+                value: /^[A-Za-z0-9]*$/gi,
+                message: t('errorMessages.clia.pattern'),
+              },
+              minLength: {
+                value: 10,
+                message: t('errorMessages.clia.length'),
+              },
+              maxLength: {
+                value: 10,
+                message: t('errorMessages.clia.length'),
               },
             }}
             render={({ onChange, value }) => (

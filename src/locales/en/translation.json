@@ -31,6 +31,10 @@
     "title": "Editing "
   },
   "errorMessages": {
+    "clia": {
+      "length": "CLIA number must be exactly 10 characters.",
+      "pattern": "CLIA number can only consist of letters and numbers."
+    },
     "common": {
       "required": "This field is required."
     },

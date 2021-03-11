@@ -23,8 +23,8 @@ const Edit = ({ history }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
   const { handleSubmit, errors, register } = useForm();
-  const [mapCenter] = useState();
-  const [mapZoom] = useState();
+  const [mapCenter, setMapCenter] = useState();
+  const [mapZoom, setMapZoom] = useState();
   const { id } = useParams();
 
   const [currentSite, setCurrentSite] = useAtom(currentSiteAtom);
@@ -57,6 +57,11 @@ const Edit = ({ history }) => {
     getSite(id)
       .then((site) => {
         setCurrentSite(site[0]);
+
+        if (site[0].latitude && site[0].longitude) {
+          setMapCenter({ lat: site[0].latitude, lng: site[0].longitude });
+          setMapZoom(16);
+        }
       })
       .catch((err) => {
         toast.error(err.message);
@@ -128,6 +133,7 @@ const Edit = ({ history }) => {
                   label={t('site.label.state')}
                   options={STATE_OPTIONS}
                   value={currentSite?.state || ''}
+                  isRequired
                   onChange={({ target }) =>
                     handleOnChange('state', target.value)
                   }
@@ -179,7 +185,26 @@ const Edit = ({ history }) => {
               placeholder={t('site.label.cliaNumber')}
               onChange={({ target }) => handleOnChange('clia', target.value)}
               value={currentSite?.clia || ''}
-              ref={register}
+              ref={register({
+                rules: {
+                  required: {
+                    value: true,
+                    message: t('errorMessages.common.required'),
+                  },
+                  pattern: {
+                    value: /^[A-Za-z0-9]*$/gi,
+                    message: t('errorMessages.clia.pattern'),
+                  },
+                  minLength: {
+                    value: 10,
+                    message: t('errorMessages.clia.length'),
+                  },
+                  maxLength: {
+                    value: 10,
+                    message: t('errorMessages.clia.length'),
+                  },
+                },
+              })}
             />
 
             {errors.email && <span>This field is required</span>}

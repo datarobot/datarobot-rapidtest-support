@@ -1,4 +1,7 @@
+import axios from 'axios';
 import { http, authHttp } from 'services/http';
+
+const isProd = process.env.NODE_ENV === 'production';
 
 export const addSite = async (payload) => {
   const zip = parseInt(payload.zip, 10);
@@ -71,13 +74,17 @@ export const getAccountList = async () => {
 };
 
 export const searchSchool = async (name) => {
-  const { data } = await http.post('/schools', { name });
+  const { data } = isProd
+    ? await http.post('/schools', { name })
+    : await axios.post('/schools', { name });
 
   return data;
 };
 
 export const getSchool = async (id) => {
-  const { data } = await http.get(`/schools/${id}`);
+  const { data } = isProd
+    ? await http.get(`/schools/${id}`)
+    : await axios.get(`/schools/${id}`);
 
   return data;
 };

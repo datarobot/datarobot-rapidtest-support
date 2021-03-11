@@ -49,7 +49,7 @@ const Header = () => {
                 {t('buttons.signin')}
               </Link>
 
-              <Link to={ROUTES.SIGN_UP} className="btn-primary py-3">
+              <Link to={ROUTES.JOIN} className="btn-primary py-3">
                 {t('buttons.signup')}
               </Link>
             </div>

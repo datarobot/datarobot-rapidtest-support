@@ -1,6 +1,8 @@
 // @ts-nocheck
 import { useState } from 'react';
 import cls from 'classnames';
+import { Element, scroller } from 'react-scroll';
+
 import Select from 'components/Select';
 import JoinForm from 'components/JoinForm';
 import { STATE_OPTIONS_FULL } from 'rt-constants';
@@ -13,6 +15,14 @@ const Join = () => {
 
   const getStateFullName = (val) =>
     STATE_OPTIONS_FULL.filter(({ value }) => val === value);
+
+  const scrollToForm = () => {
+    scroller.scrollTo('join-form', {
+      duration: 500,
+      delay: 100,
+      smooth: true,
+    });
+  };
 
   return (
     <>
@@ -36,6 +46,7 @@ const Join = () => {
               onChange={({ target }) => {
                 setCurrentState(target.value);
                 setCurrentStateName(getStateFullName(target.value)[0].label);
+                scrollToForm();
               }}
               value={currentState}
             />
@@ -51,9 +62,11 @@ const Join = () => {
           </p>
         </div>
       </section>
-      <section className="mt-24 mb-12">
-        {currentState && <JoinForm currentState={currentStateName} />}
-      </section>
+      <Element name="join-form">
+        <section className="mt-12 mb-12">
+          {currentState && <JoinForm currentState={currentStateName} />}
+        </section>
+      </Element>
     </>
   );
 };
