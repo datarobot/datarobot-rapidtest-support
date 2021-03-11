@@ -1,4 +1,4 @@
-.header {
+.rt-header {
   @apply fixed top-0 right-0 left-0 grid bg-white z-10 shadow;
 
   grid-template-columns: 1fr 45% 1fr;
@@ -11,7 +11,7 @@
   padding-right: 8.5vw
 }
 
-.isLandingPage .header {
+.isLandingPage .rt-header {
   @apply bg-transparent border-b-0 shadow-none;
 }
 

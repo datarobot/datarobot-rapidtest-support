@@ -1,4 +1,5 @@
 // @ts-nocheck
+import Button, { KIND } from 'components/Button';
 import Input from 'components/Input';
 import Icon from 'components/Icon';
 
@@ -27,9 +28,12 @@ const Autocomplete = ({
       isRequired={isRequired}
     />
 
-    <button type="button" className="btn-clear clearIcon">
-      <Icon iconName="times" onClick={onClearClick} />
-    </button>
+    <Button
+      kind={KIND.CLEAR}
+      className="clearIcon"
+      onClick={onClearClick}
+      label={<Icon iconName="times" />}
+    />
 
     {listValues?.length > 0 && (
       <ul className="absolute bg-white w-full p-4 shadow">

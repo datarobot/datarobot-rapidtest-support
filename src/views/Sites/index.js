@@ -59,6 +59,7 @@ const Sites = () => {
   const [siteId, setSiteId] = useState();
   const [sites, setSites] = useAtom(sitesAtom);
   const [, setCurrentSite] = useAtom(currentSiteAtom);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleToggleModal = (modal) => {
     if (modal === 'add') {
@@ -120,13 +121,16 @@ const Sites = () => {
 
   useEffect(() => {
     (async () => {
+      setIsLoading(true);
       const data = await getSiteList();
 
       if (!Array.isArray(data)) {
+        setIsLoading(false);
         return setSites([]);
       }
 
       setSites(data);
+      setIsLoading(false);
     })();
   }, [setSites]);
 
@@ -141,6 +145,7 @@ const Sites = () => {
         addRoute={ROUTES.ADD_SITE}
         uploadRoute={ROUTES.UPLOAD_SITES}
         columnFilter="site_name"
+        isLoading={isLoading}
       />
       <AddSiteModal
         showModal={showAddModal}

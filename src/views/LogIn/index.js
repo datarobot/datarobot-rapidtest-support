@@ -4,12 +4,14 @@ import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
+import Button, { KIND } from 'components/Button';
 import { ControlledInput } from 'components/Input';
 import ErrorMessage from 'components/ErrorMessage';
 import PageHeader from 'components/PageHeader';
 
 import { signIn, getUser } from 'services/firebase';
 import { userAtom } from 'store';
+import { setAccessToken, setRefreshToken } from 'utils';
 
 const LogIn = ({ location, history }) => {
   const { handleSubmit, register, errors } = useForm();
@@ -21,7 +23,8 @@ const LogIn = ({ location, history }) => {
       .then(async (info) => {
         const user = await getUser();
 
-        localStorage.setItem('token', user.token);
+        setAccessToken(user.token);
+        setRefreshToken(info.user.refreshToken);
 
         setUserInfo(info);
         if (location?.state?.from) {
@@ -74,9 +77,12 @@ const LogIn = ({ location, history }) => {
         <ErrorMessage errors={errors} errorKey="password" />
 
         <div className="btn-row end">
-          <button type="submit" className="btn-primary mt-8">
-            Log In
-          </button>
+          <Button
+            btnType="submit"
+            kind={KIND.PRIMARY}
+            className="mt-8"
+            label="Log In"
+          />
         </div>
       </form>
     </>

@@ -62,6 +62,12 @@ export const FIREBASE_CONFIG = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
+export const SESSION_STORAGE_ITEMS = {
+  ACCESS_TOKEN: 'access-token',
+  REFRESH_TOKEN: 'refresh-token',
+  MAIN: 'contagionnet',
+};
+
 export const LANDING_PAGE_LINKS = {
   TESTING_OTHERS: [
     {

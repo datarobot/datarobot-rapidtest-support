@@ -2,6 +2,7 @@
 import { forwardRef, useState } from 'react';
 import cls from 'classnames';
 
+import Button, { KIND } from 'components/Button';
 import Icon from 'components/Icon';
 
 import './Input.css';
@@ -51,17 +52,18 @@ const Input = ({
           {...rest}
         />
         {type === 'password' && (
-          <button
-            type="button"
+          <Button
+            kind={KIND.DEFAULT}
             onClick={() => setShowPasswordText(!showPasswordText)}
             tabIndex={-1}
             className="show-password-toggle"
-          >
-            <Icon
-              type="fal"
-              iconName={showPasswordText ? 'eye-slash' : 'eye'}
-            />
-          </button>
+            label={
+              <Icon
+                type="fal"
+                iconName={showPasswordText ? 'eye-slash' : 'eye'}
+              />
+            }
+          />
         )}
       </span>
     </>
@@ -117,17 +119,18 @@ export const ControlledInput = forwardRef(
           />
 
           {type === 'password' && (
-            <button
-              type="button"
+            <Button
+              kind={KIND.DEFAULT}
               onClick={() => setShowPasswordText(!showPasswordText)}
               tabIndex={-1}
               className="show-password-toggle"
-            >
-              <Icon
-                type="fal"
-                iconName={showPasswordText ? 'eye-slash' : 'eye'}
-              />
-            </button>
+              label={
+                <Icon
+                  type="fal"
+                  iconName={showPasswordText ? 'eye-slash' : 'eye'}
+                />
+              }
+            />
           )}
         </span>
       </>

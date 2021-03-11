@@ -20,7 +20,7 @@ const Header = () => {
 
   return (
     <>
-      <div className="header">
+      <div className="rt-header">
         <Link className="logo" to={ROUTES.LANDING_PAGE}>
           <Logo color="#00528D" />
         </Link>

@@ -77,6 +77,7 @@ const ActivateButton = ({ val }) => {
 const Accounts = () => {
   const { t } = useTranslation();
   const [accounts, setAccounts] = useAtom(accountsAtom);
+  const [isLoading, setIsLoading] = useState(false);
 
   const columns = useMemo(
     () => [
@@ -139,13 +140,16 @@ const Accounts = () => {
 
   useEffect(() => {
     (async () => {
+      setIsLoading(true);
       const data = await getAccountList();
 
       if (!Array.isArray(data)) {
+        setIsLoading(false);
         return setAccounts([]);
       }
 
       setAccounts(data);
+      setIsLoading(false);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -160,6 +164,7 @@ const Accounts = () => {
         uploadButtonText={`+ ${t('buttons.uploadList')}`}
         addRoute={ROUTES.ADD_ACCOUNT}
         uploadRoute={ROUTES.UPLOAD_ACCOUNTS}
+        isLoading={isLoading}
       />
     </div>
   );

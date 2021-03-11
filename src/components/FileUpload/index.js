@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Papa from 'papaparse';
 
+import Button, { KIND } from 'components/Button';
 import Icon from 'components/Icon';
 import Table from 'components/Table';
 
@@ -97,18 +98,18 @@ const FileUpload = ({ validator, handleUpload }) => {
                   <span className="font-mono">{files[0].name}</span>
                 </p>
                 <div className="btn-row">
-                  <button
-                    className="btn-clear mr-2"
+                  <Button
+                    kind={KIND.CLEAR}
+                    className="mr-2"
                     onClick={() => setFiles([])}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    className="btn-primary"
+                    label="Cancel"
+                  />
+
+                  <Button
+                    kind={KIND.PRIMARY}
                     onClick={() => handleUpload(tableData)}
-                  >
-                    Upload
-                  </button>
+                    label="Upload"
+                  />
                 </div>
               </section>
               <Table

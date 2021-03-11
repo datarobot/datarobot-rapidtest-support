@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import cls from 'classnames';
 import { useTable, useFilters, useSortBy, usePagination } from 'react-table';
 
+import Empty from 'components/Table/Empty';
 import Icon from 'components/Icon';
 import Input from 'components/Input';
 import Pagination from 'components/Table/Pagination';
@@ -20,6 +21,7 @@ const Table = ({
   uploadRoute,
   columnFilter = 'name',
   tableOnly = false,
+  isLoading,
 }) => {
   const [filterInput, setFilterInput] = useState('');
 
@@ -114,10 +116,8 @@ const Table = ({
         </div>
       )}
       <div className="tableWrapper">
-        {page.length === 0 ? (
-          <div className="flex flex-1 h-full justify-center items-center">
-            <p className="sub-heading">No data to display</p>
-          </div>
+        {page.length === 0 || isLoading ? (
+          <Empty isLoading={isLoading} />
         ) : (
           <table {...getTableProps()} className="table border-collapse w-full">
             <thead>

@@ -2,6 +2,7 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { FIREBASE_CONFIG } from 'rt-constants';
+import { clearStorage } from 'utils';
 
 firebase.initializeApp(FIREBASE_CONFIG);
 firebase.auth();
@@ -17,7 +18,7 @@ export const signIn = async (email, pwd) => {
 };
 
 export const signOut = () => {
-  localStorage.removeItem('token');
+  clearStorage();
   firebase.auth().signOut();
 };
 
@@ -25,6 +26,12 @@ export const getUser = async () => {
   const user = await firebase.auth().currentUser?.getIdTokenResult();
 
   return user;
+};
+
+export const getUserRefreshToken = async () => {
+  const refreshToken = await firebase.auth().currentUser?.getIdToken();
+
+  return refreshToken;
 };
 
 export const getUserToken = async () => {
