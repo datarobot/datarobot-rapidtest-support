@@ -393,7 +393,14 @@ const AddSite = ({ history }) => {
           <ErrorMessage errors={errors} errorKey="clia" />
 
           <div className="btn-row end mt-4">
-            <button className="btn-clear" onClick={handleClearState}>
+            <button
+              className="btn-clear mr-1"
+              type="button"
+              onClick={() => {
+                handleClearState();
+                history.goBack();
+              }}
+            >
               Cancel
             </button>
 
