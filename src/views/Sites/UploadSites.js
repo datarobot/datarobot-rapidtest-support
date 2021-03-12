@@ -9,6 +9,8 @@ import { isValidSitesList } from 'utils/validate';
 
 import { ROUTES } from 'rt-constants';
 
+import fileTemplate from 'assets/static/rapidtest_accounts_template.csv';
+
 const UploadSites = ({ history }) => {
   const [hasErrors, setHasErrors] = useState(false);
   const toastId = useRef(null);
@@ -52,7 +54,11 @@ const UploadSites = ({ history }) => {
 
   return (
     <>
-      <PageHeader headline="Upload a list of sites" />
+      <PageHeader
+        headline="Upload a list of sites"
+        templateFile={fileTemplate}
+        templateName="rapidtest_sites_template.csv"
+      />
       <FileUpload validator={isValidSitesList} handleUpload={handleUpload} />
     </>
   );

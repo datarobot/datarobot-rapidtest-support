@@ -26,7 +26,12 @@ const UploadLabel = () => (
   </>
 );
 
-const FileUpload = ({ validator, handleUpload }) => {
+const FileUpload = ({
+  validator,
+  handleUpload,
+  templateFile,
+  templateName,
+}) => {
   const [files, setFiles] = useState([]);
   const [tableColumns, setTableColumns] = useState([]);
   const [tableDataDisplay, setTableDataDisplay] = useState([]);
@@ -82,7 +87,16 @@ const FileUpload = ({ validator, handleUpload }) => {
     <>
       {files.length === 0 ? (
         <>
-          <p className="sub-heading text-blue mb-6">Select Files</p>
+          <section className="flex justify-between items-center max-w-lg mb-4">
+            <p className="sub-heading text-blue">Select Files</p>
+            <a
+              href={templateFile}
+              download={templateName}
+              className="btn-clear"
+            >
+              Download a template file.
+            </a>
+          </section>
           <div className="upload-container" {...getRootProps()}>
             <input {...getInputProps()} />
             {isDragActive ? <p>Drop the files here ...</p> : <UploadLabel />}

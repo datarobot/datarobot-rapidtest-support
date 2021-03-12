@@ -15,6 +15,7 @@ const Button = ({
   kind = KIND.DEFAULT,
   label,
   onClick,
+  icon,
   ...rest
 }) => (
   <button
@@ -23,6 +24,7 @@ const Button = ({
     onClick={onClick}
     {...rest}
   >
+    {icon && <span className="mr-1">{icon}</span>}
     {label}
   </button>
 );

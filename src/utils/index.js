@@ -1,3 +1,5 @@
+import { format } from 'date-fns';
+import Papa from 'papaparse';
 import { SESSION_STORAGE_ITEMS } from 'rt-constants';
 
 export const isEqual = (a, b) => {
@@ -59,6 +61,25 @@ const setRefreshToken = (refreshToken) => {
   ls.setItem(SESSION_STORAGE_ITEMS.REFRESH_TOKEN, refreshToken);
 };
 
+const download = ({ name, ext, data }) => {
+  const el = document.createElement('a');
+  const filenameAndDate = `${name}-${format(new Date(), 'yyyy-MM-dd')}.${ext}`;
+  el.setAttribute(
+    'href',
+    `data:text/plain;charset=utf-8,${encodeURIComponent(data)}`
+  );
+  el.setAttribute('download', filenameAndDate);
+
+  el.style.display = 'none';
+  document.body.appendChild(el);
+
+  el.click();
+
+  document.body.removeChild(el);
+};
+
+const toCsv = (data) => Papa.unparse(data);
+
 export {
   get,
   set,
@@ -67,4 +88,6 @@ export {
   setAccessToken,
   getRefreshToken,
   setRefreshToken,
+  download,
+  toCsv,
 };

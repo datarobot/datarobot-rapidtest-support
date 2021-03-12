@@ -13,6 +13,8 @@ import ToggleButton from 'components/ToggleButton';
 import Icon from 'components/Icon';
 import Table from 'components/Table';
 
+import { download, toCsv } from 'utils';
+
 import { sitesAtom, currentSiteAtom } from 'store';
 
 const SiteStatus = ({ values, row }) => {
@@ -75,6 +77,10 @@ const Sites = () => {
     setCurrentSite(site);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handleExportData = () => {
+    download({ name: 'rapidtest_sites', ext: 'csv', data: toCsv(sites) });
+  };
 
   const columns = useMemo(
     () => [
@@ -146,6 +152,7 @@ const Sites = () => {
         uploadRoute={ROUTES.UPLOAD_SITES}
         columnFilter="site_name"
         isLoading={isLoading}
+        onExportData={handleExportData}
       />
       <AddSiteModal
         showModal={showAddModal}

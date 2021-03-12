@@ -24,6 +24,7 @@ import { faCloudUploadAlt } from '@fortawesome/pro-regular-svg-icons';
 import {
   faEye,
   faEyeSlash,
+  faFileExport,
   faPencilAlt,
   faSearch,
   faSignOut,
@@ -43,6 +44,7 @@ library.add(
   faEye,
   faEyeSlash,
   faFileCsv,
+  faFileExport,
   faHourglassHalf,
   faLongArrowRight,
   faPencilAlt,

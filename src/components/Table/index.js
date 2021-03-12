@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import cls from 'classnames';
 import { useTable, useFilters, useSortBy, usePagination } from 'react-table';
 
+import Button, { KIND } from 'components/Button';
 import Empty from 'components/Table/Empty';
 import Icon from 'components/Icon';
 import Input from 'components/Input';
@@ -22,6 +23,7 @@ const Table = ({
   columnFilter = 'name',
   tableOnly = false,
   isLoading,
+  onExportData,
 }) => {
   const [filterInput, setFilterInput] = useState('');
 
@@ -106,10 +108,17 @@ const Table = ({
             </div>
           </div>
           <div className="table-buttons flex justify-end items-center">
-            <Link to={uploadRoute} className="btn-clear text-blue mr-2">
+            <Link to={uploadRoute} className="btn-clear text-blue mr-1 px-2">
               {uploadButtonText}
             </Link>
-            <Link to={addRoute} className="btn-primary">
+            <Button
+              kind={KIND.CLEAR}
+              label="Export data"
+              className="mr-3 px-2"
+              icon={<Icon iconName="file-export" type="fal" />}
+              onClick={onExportData}
+            />
+            <Link to={addRoute} className="btn-primary px-2">
               {addButtonText}
             </Link>
           </div>
