@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 // @ts-nocheck
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -13,6 +14,8 @@ import { accountsAtom } from 'store';
 import Icon from 'components/Icon';
 import Loading from 'components/Loading';
 import Table from 'components/Table';
+
+import { download, toCsv } from 'utils';
 
 const StatusCell = ({ val }) => {
   const { t } = useTranslation();
@@ -78,6 +81,19 @@ const Accounts = () => {
   const { t } = useTranslation();
   const [accounts, setAccounts] = useAtom(accountsAtom);
   const [isLoading, setIsLoading] = useState(false);
+
+  const handleExportData = () => {
+    const sanitizedAccounts = accounts.map((account) => {
+      delete account.last_login_ip;
+      delete account.welcome_email_sent;
+      return account;
+    });
+    download({
+      name: 'rapidtest_accounts',
+      ext: 'csv',
+      data: toCsv(sanitizedAccounts),
+    });
+  };
 
   const columns = useMemo(
     () => [
@@ -165,6 +181,7 @@ const Accounts = () => {
         addRoute={ROUTES.ADD_ACCOUNT}
         uploadRoute={ROUTES.UPLOAD_ACCOUNTS}
         isLoading={isLoading}
+        onExportData={handleExportData}
       />
     </div>
   );

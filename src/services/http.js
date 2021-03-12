@@ -49,7 +49,10 @@ const refreshTokenHelper = async (error) => {
 
 // Set the AUTH token for any request
 http.interceptors.request.use((cfg) => interceptorSetup(cfg));
-http.interceptors.response.use((cfg) => interceptorSetup(cfg));
+http.interceptors.response.use(
+  (cfg) => interceptorSetup(cfg),
+  (err) => refreshTokenHelper(err)
+);
 
 const fetchAuth = async (url, method, data, options) => {
   const httpMethodMap = {
@@ -72,7 +75,8 @@ const fetchAuth = async (url, method, data, options) => {
     const response = err.response || {};
     if (response.status === 403) {
       try {
-        await refreshTokenHelper(err);
+        const tokenHelper = await refreshTokenHelper(err);
+        return tokenHelper;
       } catch (refreshErr) {
         clearStorage();
 
