@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 import Button, { KIND } from 'components/Button';
 import { ControlledInput } from 'components/Input';
@@ -12,6 +13,8 @@ import PageHeader from 'components/PageHeader';
 import { signIn, getUser } from 'services/firebase';
 import { userAtom } from 'store';
 import { setAccessToken, setRefreshToken } from 'utils';
+
+import { ROUTES } from 'rt-constants';
 
 const LogIn = ({ location, history }) => {
   const { handleSubmit, register, errors } = useForm();
@@ -40,14 +43,20 @@ const LogIn = ({ location, history }) => {
 
   return (
     <>
-      <PageHeader headline="Log In" />
+      <PageHeader
+        headline="Log In"
+        subtext={
+          <p>
+            Don't have an account? <Link to={ROUTES.JOIN}>Sign up!</Link>
+          </p>
+        }
+      />
       <form onSubmit={handleSubmit(onSubmit)} className="w-2/5">
         <ControlledInput
           name="email"
           label="Email address"
           placeholder="you@example.com"
           labelClass="mt-0"
-          isRequired
           autoFocus
           ref={register({
             required: {
@@ -64,7 +73,7 @@ const LogIn = ({ location, history }) => {
 
         <ControlledInput
           label="Password"
-          placeholder="Shhhh..."
+          placeholder="••••••••"
           type="password"
           name="password"
           ref={register({

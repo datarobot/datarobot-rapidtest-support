@@ -21,7 +21,7 @@ const Contact = () => {
       <PageHeader headline="Contact support" />
 
       <form
-        className="bg-lightest-blue px-8 py-4 rounded w-2/5"
+        className="bg-blue-lightest px-8 py-4 rounded w-2/5"
         onSubmit={handleSubmit(onSubmit)}
       >
         <ControlledInput

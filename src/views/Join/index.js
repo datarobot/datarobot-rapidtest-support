@@ -5,13 +5,14 @@ import { Element, scroller } from 'react-scroll';
 
 import Select from 'components/Select';
 import JoinForm from 'components/JoinForm';
-import { STATE_OPTIONS_FULL } from 'rt-constants';
+import { STATE_OPTIONS_FULL, CURRENT_PROGRAMS } from 'rt-constants';
 
 import './Join.css';
 
 const Join = () => {
   const [currentState, setCurrentState] = useState('');
   const [currentStateName, setCurrentStateName] = useState('');
+  const [hasProgram, setHasProgram] = useState();
 
   const getStateFullName = (val) =>
     STATE_OPTIONS_FULL.filter(({ value }) => val === value);
@@ -22,6 +23,13 @@ const Join = () => {
       delay: 100,
       smooth: true,
     });
+  };
+
+  const handleStateSelect = ({ value }) => {
+    setCurrentState(value);
+    setCurrentStateName(getStateFullName(value)[0].label);
+    setHasProgram(CURRENT_PROGRAMS.includes(value));
+    scrollToForm();
   };
 
   return (
@@ -44,27 +52,32 @@ const Join = () => {
               placeholder="Select your state"
               options={STATE_OPTIONS_FULL}
               onChange={({ target }) => {
-                setCurrentState(target.value);
-                setCurrentStateName(getStateFullName(target.value)[0].label);
-                scrollToForm();
+                handleStateSelect(target);
               }}
               value={currentState}
             />
           </div>
           <p
             className={cls('w-1/2 flex items-center', {
-              'text-blue-light': currentState,
+              'text-blue-light': hasProgram && currentState,
+              'text-yellow': !hasProgram && currentState,
             })}
           >
-            {currentState
-              ? 'There is an existing program'
-              : 'Check if there is a program in your state.'}
+            {!hasProgram &&
+              currentState &&
+              `There is no existing program in ${currentStateName}`}
+            {hasProgram &&
+              currentState &&
+              `There is an existing program in ${currentStateName}`}
+            {!currentState && 'Check if there is a program in your state.'}
           </p>
         </div>
       </section>
       <Element name="join-form">
         <section className="mt-12 mb-12">
-          {currentState && <JoinForm currentState={currentStateName} />}
+          {currentState && (
+            <JoinForm currentState={currentStateName} hasProgram={hasProgram} />
+          )}
         </section>
       </Element>
     </>
