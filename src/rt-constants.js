@@ -109,6 +109,8 @@ export const LANDING_PAGE_LINKS = {
   ],
 };
 
+export const CURRENT_PROGRAMS = ['PA', 'TX', 'WA'];
+
 export const STATE_OPTIONS = [
   { value: 'AL', label: 'AL' },
   { value: 'AK', label: 'AK' },
