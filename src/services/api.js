@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { http, authHttp } from 'services/http';
+import { http } from 'services/http';
 
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -10,7 +10,7 @@ export const addSite = async (payload) => {
   // eslint-disable-next-line no-param-reassign
   payload.site_type = 'School';
 
-  const { data } = await authHttp.post('/site', {
+  const { data } = await http.post('/site', {
     ...payload,
   });
 
@@ -18,7 +18,7 @@ export const addSite = async (payload) => {
 };
 
 export const editSite = async (id, payload) => {
-  const { data } = await authHttp.patch(`/site/${id}`, {
+  const { data } = await http.patch(`/site/${id}`, {
     ...payload,
   });
 
@@ -26,13 +26,13 @@ export const editSite = async (id, payload) => {
 };
 
 export const getSiteList = async () => {
-  const { data } = await authHttp.get('/sites');
+  const { data } = await http.get('/sites');
 
   return data;
 };
 
 export const getSite = async (id) => {
-  const { data } = await authHttp.get(`/site/${id}`);
+  const { data } = await http.get(`/site/${id}`);
 
   return data;
 };
@@ -54,7 +54,7 @@ export const addAccount = async ({
 };
 
 export const editAccount = async (id, payload) => {
-  const { data } = await authHttp.patch(`/proctor/${id}`, {
+  const { data } = await http.patch(`/proctor/${id}`, {
     ...payload,
   });
 
@@ -62,13 +62,13 @@ export const editAccount = async (id, payload) => {
 };
 
 export const getAccount = async (id) => {
-  const { data } = await authHttp.get(`/proctor/${id}`);
+  const { data } = await http.get(`/proctor/${id}`);
 
   return data[0];
 };
 
 export const getAccountList = async () => {
-  const { data } = await authHttp.get('/proctors');
+  const { data } = await http.get('/proctors');
 
   return data;
 };

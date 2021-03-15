@@ -1,8 +1,8 @@
-/* eslint-disable no-underscore-dangle */
 import axios from 'axios';
+import createAuthRefreshInterceptor from 'axios-auth-refresh';
 
 import { getUserRefreshToken } from 'services/firebase';
-import { getAccessToken, setAccessToken, clearStorage } from 'utils';
+import { getAccessToken, setAccessToken } from 'utils';
 
 const serverUrl =
   process.env.NODE_ENV === 'production'
@@ -31,73 +31,25 @@ const interceptorSetup = (cfg) => {
   return config;
 };
 
-const refreshTokenHelper = async (error) => {
-  const originalRequest = error.config;
-  if (error.response.status === 403 && !originalRequest._retry) {
-    originalRequest._retry = true;
-
-    const token = await getUserRefreshToken();
-    if (token) {
-      setAccessToken(token);
-      axios.defaults.headers.common.Authorization = `Bearer ${getAccessToken()}`;
-
-      return axios(originalRequest);
-    }
-  }
-  return Promise.reject(error);
-};
-
 // Set the AUTH token for any request
 http.interceptors.request.use((cfg) => interceptorSetup(cfg));
-http.interceptors.response.use(
-  (cfg) => interceptorSetup(cfg),
-  (err) => refreshTokenHelper(err)
-);
+http.interceptors.response.use((cfg) => interceptorSetup(cfg));
 
-const fetchAuth = async (url, method, data, options) => {
-  const httpMethodMap = {
-    GET: http.get,
-    PATCH: http.patch,
-    POST: http.post,
-    PUT: http.put,
-    DELETE: http.delete,
-  };
-  const fetch = httpMethodMap[method];
-
-  if (!fetch) {
-    throw new Error('Unknown HTTP method in auth fetch!');
-  }
-
-  let result;
-  try {
-    result = await fetch(url, data, options);
-  } catch (err) {
-    const response = err.response || {};
-    if (response.status === 403) {
-      try {
-        const tokenHelper = await refreshTokenHelper(err);
-        return tokenHelper;
-      } catch (refreshErr) {
-        clearStorage();
-
-        window.history.pushState({}, '', '/login');
-        throw refreshErr;
-      }
-      result = fetch(url, data);
-    } else {
-      throw err;
+const refreshAuthLogic = (failedRequest) =>
+  getUserRefreshToken().then((token) => {
+    if (token) {
+      setAccessToken(token);
+      // eslint-disable-next-line no-param-reassign
+      failedRequest.response.config.headers.Authorization = `Bearer ${getAccessToken()}`;
+      return Promise.resolve();
     }
-  }
 
-  return result;
-};
+    return Promise.reject(failedRequest);
+  });
 
-const authHttp = {
-  get: (url, options) => fetchAuth(url, 'GET', null, options),
-  delete: (url, options) => fetchAuth(url, 'DELETE', null, options),
-  post: (url, data, options) => fetchAuth(url, 'POST', data, options),
-  put: (url, data, options) => fetchAuth(url, 'PUT', data, options),
-  patch: (url, data, options) => fetchAuth(url, 'PATCH', data, options),
-};
+createAuthRefreshInterceptor(http, refreshAuthLogic, {
+  statusCodes: [403],
+});
 
-export { http, authHttp };
+// eslint-disable-next-line import/prefer-default-export
+export { http };

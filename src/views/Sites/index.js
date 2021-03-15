@@ -20,13 +20,16 @@ import { sitesAtom, currentSiteAtom } from 'store';
 const SiteStatus = ({ values, row }) => {
   const [, setSites] = useAtom(sitesAtom);
   const [selected, setSelected] = useState(!values);
+  const [isLoading, setIsLoading] = useState(false);
 
   // eslint-disable-next-line no-unused-vars
   const updateSite = (e) => {
+    setIsLoading(true);
     const site = { ...row.original, archive: e };
     editSite(site.id, site)
       .then(async () => {
         const data = await getSiteList();
+        setIsLoading(false);
         toast.success('Site updated successfully!', {
           onClose: () => {
             setSites(data);
@@ -38,6 +41,7 @@ const SiteStatus = ({ values, row }) => {
         toast.error('There was a problem updating the site.', {
           onClose: () => {
             setSelected(!selected);
+            setIsLoading(false);
           },
         });
       });
@@ -46,6 +50,7 @@ const SiteStatus = ({ values, row }) => {
   return (
     <ToggleButton
       defaultChecked={selected}
+      disabled={isLoading}
       onChange={() => {
         updateSite(!selected);
         setSelected(!selected);

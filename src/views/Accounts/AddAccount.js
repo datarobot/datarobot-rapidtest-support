@@ -132,7 +132,10 @@ const AddAccount = ({ history }) => {
         </form>
 
         <div className="w-1/4">
-          <InfoBox heading="Account Requirements" />
+          <InfoBox
+            heading="Account Requirements"
+            subtext="To create an account, first name, last name, and email are required."
+          />
         </div>
       </section>
     </>
