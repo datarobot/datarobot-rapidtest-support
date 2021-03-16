@@ -11,7 +11,7 @@ const Subtext = ({ history }) => {
       <p>If you entered a web address, check it was entered correctly.</p>
       <p>
         You can more information on the{' '}
-        <Link to={ROUTES.LANDING_PAGE}>home page</Link>.
+        <Link to={ROUTES.LANDING_PAGE.path}>home page</Link>.
       </p>
       <p className="mt-8">
         Or, you can{' '}

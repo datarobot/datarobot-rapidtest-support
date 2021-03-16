@@ -47,7 +47,7 @@ const Joinform = ({ currentState, hasProgram }) => {
               />
               <p className="mt-6">
                 Need help with creating account?{' '}
-                <Link to={ROUTES.CONTACT}>Contact support</Link>
+                <Link to={ROUTES.CONTACT.path}>Contact support</Link>
               </p>
             </>
           )}

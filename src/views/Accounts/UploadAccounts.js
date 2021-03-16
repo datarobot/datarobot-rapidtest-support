@@ -43,7 +43,7 @@ const UploadAccounts = ({ history }) => {
       type: toast.TYPE.SUCCESS,
       autoClose: 5000,
       onClose: () => {
-        history.push(ROUTES.ACCOUNTS);
+        history.push(ROUTES.ACCOUNTS.path);
       },
     });
   };

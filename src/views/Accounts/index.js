@@ -88,7 +88,7 @@ const Accounts = () => {
         },
         accessor: (val) => (
           <>
-            <Link to={`${ROUTES.EDIT_ACCOUNT}/${val.id}`} className="mr-2">
+            <Link to={`${ROUTES.EDIT_ACCOUNT.path}/${val.id}`} className="mr-2">
               <Icon
                 iconName="pencil-alt"
                 type="fal"
@@ -135,7 +135,7 @@ const Accounts = () => {
       //   id: 'edit',
       //   Cell: ({ row }) => (
       //     <Link
-      //       to={`${ROUTES.EDIT_ACCOUNT}/${row.original.id}`}
+      //       to={`${ROUTES.EDIT_ACCOUNT.path}/${row.original.id}`}
       //       className="flex justify-center"
       //     >
       //       <Icon
@@ -176,8 +176,8 @@ const Accounts = () => {
         data={accounts}
         addButtonText={t('buttons.addAccount')}
         uploadButtonText={`+ ${t('buttons.uploadList')}`}
-        addRoute={ROUTES.ADD_ACCOUNT}
-        uploadRoute={ROUTES.UPLOAD_ACCOUNTS}
+        addRoute={ROUTES.ADD_ACCOUNT.path}
+        uploadRoute={ROUTES.UPLOAD_ACCOUNTS.path}
         isLoading={isLoading}
         onExportData={handleExportData}
         sortBy="name"

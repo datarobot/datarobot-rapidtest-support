@@ -40,7 +40,7 @@ const UploadSites = ({ history }) => {
       type: toast.TYPE.SUCCESS,
       autoClose: 5000,
       onClose: () => {
-        history.push(ROUTES.SITES);
+        history.push(ROUTES.SITES.path);
       },
     });
   };

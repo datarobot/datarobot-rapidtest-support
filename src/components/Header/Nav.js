@@ -5,22 +5,22 @@ import trainingMaterials from 'assets/static/TrainingMaterials.pdf';
 const Nav = () => (
   <ul className="nav">
     <li>
-      <NavLink exact className="nav-link" to={ROUTES.SITES}>
+      <NavLink exact className="nav-link" to={ROUTES.SITES.path}>
         Sites
       </NavLink>
     </li>
     <li>
-      <NavLink exact className="nav-link" to={ROUTES.ACCOUNTS}>
+      <NavLink exact className="nav-link" to={ROUTES.ACCOUNTS.path}>
         Testers
       </NavLink>
     </li>
     <li>
-      <NavLink exact className="nav-link" to={ROUTES.DASHBOARD}>
+      <NavLink exact className="nav-link" to={ROUTES.DASHBOARD.path}>
         Dashboard
       </NavLink>
     </li>
     <li>
-      <NavLink exact className="nav-link" to={ROUTES.FAQ}>
+      <NavLink exact className="nav-link" to={ROUTES.FAQ.path}>
         FAQ
       </NavLink>
     </li>

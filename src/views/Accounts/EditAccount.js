@@ -31,7 +31,7 @@ const EditAccount = ({ history }) => {
         toast.success('Success!', {
           onClose: () => {
             setCurrentAccount({});
-            history.push(ROUTES.ACCOUNTS);
+            history.push(ROUTES.ACCOUNTS.path);
           },
           closeButton: false,
           hideProgressBar: true,
@@ -66,6 +66,10 @@ const EditAccount = ({ history }) => {
         setIsLoading(false);
       });
   }, [id, setCurrentAccount]);
+
+  // useEffect(() => {
+  //   console.log(currentAccount.archive);
+  // }, [currentAccount]);
 
   return (
     <section className="mb-12">
@@ -151,7 +155,7 @@ const EditAccount = ({ history }) => {
             <ControlledCheckbox
               name="archive"
               ref={register}
-              isChecked={!currentAccount?.archive}
+              isChecked={!currentAccount?.archive || false}
               onChange={({ target }) => {
                 handleOnChange('archive', !target.checked);
               }}
@@ -159,11 +163,10 @@ const EditAccount = ({ history }) => {
               labelClass="mt-4"
             />
 
-            {errors.email && <span>This field is required</span>}
-
             <div className="btn-row end mt-4">
               <button
                 className="btn-clear mr-1"
+                type="button"
                 onClick={() => history.goBack()}
               >
                 Cancel

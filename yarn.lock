@@ -1862,6 +1862,11 @@
     schema-utils "^2.6.5"
     source-map "^0.7.3"
 
+"@polka/url@^1.0.0-next.9":
+  version "1.0.0-next.11"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/@polka/url/-/url-1.0.0-next.11.tgz#aeb16f50649a91af79dbe36574b66d0f9e4d9f71"
+  integrity sha1-rrFvUGSaka952+NldLZtD55Nn3E=
+
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/@protobufjs/aspromise/-/aspromise-1.1.2.tgz#9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf"
@@ -2722,6 +2727,11 @@ acorn-walk@^7.0.0, acorn-walk@^7.1.1:
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/acorn-walk/-/acorn-walk-7.2.0.tgz#0de889a601203909b0fbe07b8938dc21d2e967bc"
   integrity sha1-DeiJpgEgOQmw++B7iTjcIdLpZ7w=
 
+acorn-walk@^8.0.0:
+  version "8.0.2"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/acorn-walk/-/acorn-walk-8.0.2.tgz#d4632bfc63fd93d0f15fd05ea0e984ffd3f5a8c3"
+  integrity sha1-1GMr/GP9k9DxX9BeoOmE/9P1qMM=
+
 acorn@^6.4.1:
   version "6.4.2"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/acorn/-/acorn-6.4.2.tgz#35866fd710528e92de10cf06016498e47e39e1e6"
@@ -2731,6 +2741,11 @@ acorn@^7.0.0, acorn@^7.1.0, acorn@^7.1.1, acorn@^7.4.0:
   version "7.4.1"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/acorn/-/acorn-7.4.1.tgz#feaed255973d2e77555b83dbc08851a6c63520fa"
   integrity sha1-/q7SVZc9LndVW4PbwIhRpsY1IPo=
+
+acorn@^8.0.4:
+  version "8.1.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/acorn/-/acorn-8.1.0.tgz#52311fd7037ae119cbb134309e901aa46295b3fe"
+  integrity sha1-UjEf1wN64RnLsTQwnpAapGKVs/4=
 
 address@1.1.2, address@^1.0.1:
   version "1.1.2"
@@ -3769,18 +3784,18 @@ chalk@2.4.2, chalk@^2.0.0, chalk@^2.4.1, chalk@^2.4.2:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
-chalk@^3.0.0:
-  version "3.0.0"
-  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/chalk/-/chalk-3.0.0.tgz#3f73c2bf526591f574cc492c51e2456349f844e4"
-  integrity sha1-P3PCv1JlkfV0zEksUeJFY0n4ROQ=
+chalk@4.1.0, chalk@^4.0.0, chalk@^4.1.0:
+  version "4.1.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/chalk/-/chalk-4.1.0.tgz#4e14870a618d9e2edd97dd8345fd9d9dc315646a"
+  integrity sha1-ThSHCmGNni7dl92DRf2dncMVZGo=
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
-chalk@^4.0.0, chalk@^4.1.0:
-  version "4.1.0"
-  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/chalk/-/chalk-4.1.0.tgz#4e14870a618d9e2edd97dd8345fd9d9dc315646a"
-  integrity sha1-ThSHCmGNni7dl92DRf2dncMVZGo=
+chalk@^3.0.0:
+  version "3.0.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/chalk/-/chalk-3.0.0.tgz#3f73c2bf526591f574cc492c51e2456349f844e4"
+  integrity sha1-P3PCv1JlkfV0zEksUeJFY0n4ROQ=
   dependencies:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
@@ -4018,7 +4033,7 @@ commander@^4.0.1, commander@^4.1.1:
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
   integrity sha1-n9YCvZNilOnp70aj9NaWQESxgGg=
 
-commander@^6.0.0:
+commander@^6.0.0, commander@^6.2.0:
   version "6.2.1"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/commander/-/commander-6.2.1.tgz#0792eb682dfbc325999bb2b84fddddba110ac73c"
   integrity sha1-B5LraC37wyWZm7K4T93duhEKxzw=
@@ -4948,7 +4963,7 @@ downshift@6.1.0:
     prop-types "^15.7.2"
     react-is "^17.0.1"
 
-duplexer@^0.1.1:
+duplexer@^0.1.1, duplexer@^0.1.2:
   version "0.1.2"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/duplexer/-/duplexer-0.1.2.tgz#3abe43aef3835f8ae077d136ddce0f276b0400e6"
   integrity sha1-Or5DrvODX4rgd9E23c4PJ2sEAOY=
@@ -6242,6 +6257,13 @@ gzip-size@5.1.1:
   dependencies:
     duplexer "^0.1.1"
     pify "^4.0.1"
+
+gzip-size@^6.0.0:
+  version "6.0.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/gzip-size/-/gzip-size-6.0.0.tgz#065367fd50c239c0671cbcbad5be3e2eeb10e462"
+  integrity sha1-BlNn/VDCOcBnHLy61b4+LusQ5GI=
+  dependencies:
+    duplexer "^0.1.2"
 
 handle-thing@^2.0.0:
   version "2.0.1"
@@ -8458,6 +8480,11 @@ mime@1.6.0:
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/mime/-/mime-1.6.0.tgz#32cd9e5c64553bd58d19a568af452acff04981b1"
   integrity sha1-Ms2eXGRVO9WNGaVor0Uqz/BJgbE=
 
+mime@^2.3.1:
+  version "2.5.2"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/mime/-/mime-2.5.2.tgz#6e3dc6cc2b9510643830e5f19d5cb753da5eeabe"
+  integrity sha1-bj3GzCuVEGQ4MOXxnVy3U9pe6r4=
+
 mime@^2.4.4:
   version "2.5.0"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/mime/-/mime-2.5.0.tgz#2b4af934401779806ee98026bb42e8c1ae1876b1"
@@ -8991,6 +9018,11 @@ open@^7.0.2:
   dependencies:
     is-docker "^2.0.0"
     is-wsl "^2.1.1"
+
+opener@^1.5.2:
+  version "1.5.2"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/opener/-/opener-1.5.2.tgz#5d37e1f35077b9dcac4301372271afdeb2a13598"
+  integrity sha1-XTfh81B3udysQwE3InGv3rKhNZg=
 
 opn@^5.5.0:
   version "5.5.0"
@@ -10178,7 +10210,15 @@ process@^0.11.10:
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/process/-/process-0.11.10.tgz#7332300e840161bda3e69a1d1d91a7d4bc16f182"
   integrity sha1-czIwDoQBYb2j5podHZGn1LwW8YI=
 
-progress@^2.0.0:
+progress-bar-webpack-plugin@2.1.0:
+  version "2.1.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/progress-bar-webpack-plugin/-/progress-bar-webpack-plugin-2.1.0.tgz#f7f8c8c461f40b87a8ff168443f494289b07ee65"
+  integrity sha1-9/jIxGH0C4eo/xaEQ/SUKJsH7mU=
+  dependencies:
+    chalk "^3.0.0"
+    progress "^2.0.3"
+
+progress@^2.0.0, progress@^2.0.3:
   version "2.0.3"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha1-foz42PW48jnBvGi+tOt4Vn1XLvg=
@@ -11492,6 +11532,15 @@ simple-swizzle@^0.2.2:
   dependencies:
     is-arrayish "^0.3.1"
 
+sirv@^1.0.7:
+  version "1.0.11"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/sirv/-/sirv-1.0.11.tgz#81c19a29202048507d6ec0d8ba8910fda52eb5a4"
+  integrity sha1-gcGaKSAgSFB9bsDYuokQ/aUutaQ=
+  dependencies:
+    "@polka/url" "^1.0.0-next.9"
+    mime "^2.3.1"
+    totalist "^1.0.0"
+
 sisteransi@^1.0.5:
   version "1.0.5"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/sisteransi/-/sisteransi-1.0.5.tgz#134d681297756437cc05ca01370d3a7a571075ed"
@@ -12220,6 +12269,11 @@ toidentifier@1.0.0:
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/toidentifier/-/toidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha1-fhvjRw8ed5SLxD2Uo8j013UrpVM=
 
+totalist@^1.0.0:
+  version "1.1.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/totalist/-/totalist-1.1.0.tgz#a4d65a3e546517701e3e5c37a47a70ac97fe56df"
+  integrity sha1-pNZaPlRlF3AePlw3pHpwrJf+Vt8=
+
 tough-cookie@^2.3.3, tough-cookie@~2.5.0:
   version "2.5.0"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/tough-cookie/-/tough-cookie-2.5.0.tgz#cd9fb2a0aa1d5a12b473bd9fb96fa3dcff65ade2"
@@ -12771,6 +12825,21 @@ webidl-conversions@^6.1.0:
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/webidl-conversions/-/webidl-conversions-6.1.0.tgz#9111b4d7ea80acd40f5270d666621afa78b69514"
   integrity sha1-kRG01+qArNQPUnDWZmIa+ni2lRQ=
 
+webpack-bundle-analyzer@4.4.0:
+  version "4.4.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/webpack-bundle-analyzer/-/webpack-bundle-analyzer-4.4.0.tgz#74013106e7e2b07cbd64f3a5ae847f7e814802c7"
+  integrity sha1-dAExBufisHy9ZPOlroR/foFIAsc=
+  dependencies:
+    acorn "^8.0.4"
+    acorn-walk "^8.0.0"
+    chalk "^4.1.0"
+    commander "^6.2.0"
+    gzip-size "^6.0.0"
+    lodash "^4.17.20"
+    opener "^1.5.2"
+    sirv "^1.0.7"
+    ws "^7.3.1"
+
 webpack-dev-middleware@^3.7.2:
   version "3.7.3"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/webpack-dev-middleware/-/webpack-dev-middleware-3.7.3.tgz#0639372b143262e2b84ab95d3b91a7597061c2c5"
@@ -13178,6 +13247,11 @@ ws@^7.2.3:
   version "7.4.3"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/ws/-/ws-7.4.3.tgz#1f9643de34a543b8edb124bdcbc457ae55a6e5cd"
   integrity sha1-H5ZD3jSlQ7jtsSS9y8RXrlWm5c0=
+
+ws@^7.3.1:
+  version "7.4.4"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/ws/-/ws-7.4.4.tgz#383bc9742cb202292c9077ceab6f6047b17f2d59"
+  integrity sha1-ODvJdCyyAikskHfOq29gR7F/LVk=
 
 xml-name-validator@^3.0.0:
   version "3.0.0"

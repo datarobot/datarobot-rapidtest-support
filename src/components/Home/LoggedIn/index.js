@@ -31,7 +31,7 @@ const LoggedIn = () => {
           <p className="my-8">
             Add, remove, and edit sites from your state’s RapidTest application.
           </p>
-          <Link to={ROUTES.SITES} className="btn-primary">
+          <Link to={ROUTES.SITES.path} className="btn-primary">
             View site list
           </Link>
         </div>
@@ -41,7 +41,7 @@ const LoggedIn = () => {
             Approve, add, and disable test administrator accounts from your
             state's RapidTest application.
           </p>
-          <Link to={ROUTES.ACCOUNTS} className="btn-primary">
+          <Link to={ROUTES.ACCOUNTS.path} className="btn-primary">
             View proctor list
           </Link>
         </div>
@@ -51,7 +51,7 @@ const LoggedIn = () => {
         <div className="w-1/4 mr-4">
           <h3 className="font-bold">FAQ</h3>
           <p className="my-2 text-sm">Frequently asked questions</p>
-          <Link to={ROUTES.FAQ} className="learn-more-link">
+          <Link to={ROUTES.FAQ.path} className="learn-more-link">
             Learn more <Icon iconName="long-arrow-right" className="ml-2" />
           </Link>
         </div>
@@ -67,14 +67,14 @@ const LoggedIn = () => {
         <div className="w-1/4 mr-4">
           <h3 className="font-bold">Contact Support</h3>
           <p className="my-2 text-sm">Send a message to our support team</p>
-          <Link to={ROUTES.CONTACT} className="learn-more-link">
+          <Link to={ROUTES.CONTACT.path} className="learn-more-link">
             Learn more <Icon iconName="long-arrow-right" className="ml-2" />
           </Link>
         </div>
         <div className="w-1/4 mr-4">
           <h3 className="font-bold">Data and Dashboard</h3>
           <p className="my-2 text-sm">View test result data</p>
-          <Link to={ROUTES.DASHBOARD} className="learn-more-link">
+          <Link to={ROUTES.DASHBOARD.path} className="learn-more-link">
             Learn more <Icon iconName="long-arrow-right" className="ml-2" />
           </Link>
         </div>
