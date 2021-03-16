@@ -11,7 +11,7 @@ const TestAdminForm = ({ onSubmit }) => {
   return (
     <form className="w-full mr-2" onSubmit={handleSubmit(onSubmit)}>
       <Controller
-        name="firstName"
+        name="first_name"
         control={control}
         defaultValue=""
         rules={{
@@ -22,7 +22,7 @@ const TestAdminForm = ({ onSubmit }) => {
         }}
         render={({ onChange, value }) => (
           <Input
-            name="firstName"
+            name="first_name"
             placeholder="First Name"
             onChange={onChange}
             value={value}
@@ -33,7 +33,7 @@ const TestAdminForm = ({ onSubmit }) => {
       <ErrorMessage errors={errors} errorKey="firstName" />
 
       <Controller
-        name="lastName"
+        name="last_name"
         control={control}
         defaultValue=""
         rules={{
@@ -44,7 +44,7 @@ const TestAdminForm = ({ onSubmit }) => {
         }}
         render={({ onChange, value }) => (
           <Input
-            name="lastName"
+            name="last_name"
             placeholder="Last Name"
             onChange={onChange}
             value={value}
@@ -56,7 +56,7 @@ const TestAdminForm = ({ onSubmit }) => {
       <ErrorMessage errors={errors} errorKey="lastName" />
 
       <Controller
-        name="email"
+        name="email_address"
         control={control}
         defaultValue=""
         rules={{
@@ -67,7 +67,7 @@ const TestAdminForm = ({ onSubmit }) => {
         }}
         render={({ onChange, value }) => (
           <Input
-            name="email"
+            name="email_address"
             placeholder="Email address"
             onChange={onChange}
             value={value}
@@ -79,14 +79,23 @@ const TestAdminForm = ({ onSubmit }) => {
       <ErrorMessage errors={errors} errorKey="email" />
 
       <Controller
-        name="phone"
+        name="phone_number_office"
         control={control}
         defaultValue=""
         render={({ onChange, value }) => (
           <Input
-            name="phone"
+            name="phone_number_office"
             placeholder="Phone Number"
-            onChange={onChange}
+            onChange={({ target }) => {
+              const x = target.value
+                .replace(/\D/g, '')
+                .match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+              // eslint-disable-next-line no-param-reassign
+              target.value = !x[2]
+                ? x[1]
+                : `(${x[1]}) ${x[2]}${x[3] ? `-${x[3]}` : ''}`;
+              onChange(target.value);
+            }}
             value={value}
             className="mt-2"
           />

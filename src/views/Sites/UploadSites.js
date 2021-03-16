@@ -7,9 +7,24 @@ import PageHeader from 'components/PageHeader';
 import { addSite } from 'services/api';
 import { isValidSitesList, getSiteError } from 'utils/validate';
 
-import { ROUTES } from 'rt-constants';
+import { ROUTES, VALID_SITE_COLUMNS } from 'rt-constants';
 
-import fileTemplate from 'assets/static/rapidtest_accounts_template.csv';
+import fileTemplate from 'assets/static/rapidtest_sites_template.csv';
+
+const HeaderText = () => {
+  const { REQUIRED, OPTIONAL } = VALID_SITE_COLUMNS;
+  return (
+    <>
+      <p>Upload a CSV file with a list of sites to add to your program.</p>
+      <div className="mt-2">
+        Valid column names are:
+        <aside className="font-mono text-xs">
+          {[...REQUIRED, ...OPTIONAL].join(', ')}
+        </aside>
+      </div>
+    </>
+  );
+};
 
 const UploadSites = ({ history }) => {
   const [hasErrors, setHasErrors] = useState(false);
@@ -54,7 +69,7 @@ const UploadSites = ({ history }) => {
 
   return (
     <>
-      <PageHeader headline="Upload a list of sites" />
+      <PageHeader headline="Upload a list of sites" subtext={<HeaderText />} />
       <FileUpload
         validator={isValidSitesList}
         handleError={(e) => getSiteError(e)}

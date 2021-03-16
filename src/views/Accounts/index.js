@@ -182,6 +182,7 @@ const Accounts = () => {
         uploadRoute={ROUTES.UPLOAD_ACCOUNTS}
         isLoading={isLoading}
         onExportData={handleExportData}
+        sortBy="name"
       />
     </div>
   );

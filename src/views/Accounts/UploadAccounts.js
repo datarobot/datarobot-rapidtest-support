@@ -7,9 +7,27 @@ import PageHeader from 'components/PageHeader';
 import { addAccount } from 'services/api';
 import { isValidAccountList, getAccountError } from 'utils/validate';
 
-import { ROUTES } from 'rt-constants';
+import { ROUTES, VALID_ACCOUNT_COLUMNS } from 'rt-constants';
 
 import fileTemplate from 'assets/static/rapidtest_accounts_template.csv';
+
+const HeaderText = () => {
+  const { REQUIRED, OPTIONAL } = VALID_ACCOUNT_COLUMNS;
+  return (
+    <>
+      <p>
+        Upload a CSV file with a list of test operator accounts to add to your
+        program.
+      </p>
+      <div className="mt-2">
+        Valid column names are:
+        <aside className="font-mono text-xs">
+          {[...REQUIRED, ...OPTIONAL].join(', ')}
+        </aside>
+      </div>
+    </>
+  );
+};
 
 const UploadAccounts = ({ history }) => {
   const [hasErrors, setHasErrors] = useState(false);
@@ -54,7 +72,10 @@ const UploadAccounts = ({ history }) => {
 
   return (
     <>
-      <PageHeader headline="Upload a list of accounts" />
+      <PageHeader
+        headline="Upload a list of accounts"
+        subtext={<HeaderText />}
+      />
       <FileUpload
         validator={isValidAccountList}
         handleError={(e) => getAccountError(e)}

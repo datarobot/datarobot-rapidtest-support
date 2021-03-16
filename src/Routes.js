@@ -5,8 +5,6 @@ import { ROUTES } from 'rt-constants';
 
 const Home = lazy(() => import('views/Home'));
 const Join = lazy(() => import('views/Join'));
-const ProgramAdmin = lazy(() => import('views/ProgramAdmin'));
-const Other = lazy(() => import('views/Other'));
 const Sites = lazy(() => import('views/Sites'));
 const AddSite = lazy(() => import('views/Sites/AddSite'));
 const EditSite = lazy(() => import('views/Sites/EditSite'));
@@ -49,9 +47,7 @@ export const PrivateRoute = ({
 
 export const Routes = ({ authenticated }) => (
   <Switch>
-    <Route path={ROUTES.PROGRAM_ADMIN} component={ProgramAdmin} />
     <Route path={ROUTES.JOIN} component={Join} />
-    <Route path={ROUTES.OTHER} component={Other} />
     <PrivateRoute
       authenticated={authenticated}
       exact

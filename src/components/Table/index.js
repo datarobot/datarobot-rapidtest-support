@@ -21,6 +21,7 @@ const Table = ({
   addRoute,
   uploadRoute,
   columnFilter = 'name',
+  sortBy,
   tableOnly = false,
   isLoading,
   onExportData,
@@ -42,7 +43,7 @@ const Table = ({
     {
       columns,
       data,
-      initialState: { pageIndex: 0 },
+      initialState: { pageIndex: 0, sortBy: [{ id: sortBy }] },
       autoResetPage: false,
     },
     useFilters,
