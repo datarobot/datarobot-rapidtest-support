@@ -25,7 +25,7 @@ RUN NODE_OPTIONS='--max_old_space_size=8192' yarn build
 # with the static web content we built. It also adds some labels
 # which are used by our Apps infra.
 #####################################################################
-FROM docker.hq.datarobot.com/datarobot/covid-rhel8-base:2021-01-04 as prod
+FROM docker.hq.datarobot.com/datarobot/covid-rhel8-base:2021-03-15 as prod
 
 ENV IS_PROD=true
 
