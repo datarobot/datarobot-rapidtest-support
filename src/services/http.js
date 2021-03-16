@@ -18,7 +18,7 @@ const defaultOptions = {
 };
 
 const autocompleteOptions = {
-  baseURL: '/api',
+  baseURL: '/',
 };
 
 // Set up axios with default options and interceptors

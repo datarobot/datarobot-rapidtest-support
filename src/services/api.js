@@ -1,7 +1,4 @@
-import axios from 'axios';
 import { http, autocompleteHttp } from 'services/http';
-
-const isProd = process.env.NODE_ENV === 'production';
 
 export const addSite = async (payload) => {
   const zip = parseInt(payload.zip, 10);
@@ -74,17 +71,13 @@ export const getAccountList = async () => {
 };
 
 export const searchSchool = async (name) => {
-  const { data } = isProd
-    ? await autocompleteHttp.post('/schools', { name })
-    : await axios.post('/schools', { name });
+  const { data } = await autocompleteHttp.post('/schools', { name });
 
   return data;
 };
 
 export const getSchool = async (id) => {
-  const { data } = isProd
-    ? await autocompleteHttp.get(`/schools/${id}`)
-    : await axios.get(`/schools/${id}`);
+  const { data } = await autocompleteHttp.get(`/schools/${id}`);
 
   return data;
 };
