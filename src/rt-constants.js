@@ -2,25 +2,55 @@ import trainingMaterials from 'assets/static/TrainingMaterials.pdf';
 
 export const ENABLE_I18N_LOGGING = process.env.REACT_APP_ENABLE_I18N_LOGGING;
 
+export const USER_ROLES = {
+  dashboard: 'dashboard_user',
+  siteAdmin: 'site_admin',
+  proctorAdmin: 'proctor_admin',
+};
+
 export const ROUTES = {
-  LANDING_PAGE: '/',
-  JOIN: '/join',
-  SITES: '/sites',
-  ADD_SITE: '/sites/new',
-  EDIT_SITE: '/sites/edit',
-  REQUEST_SITE: '/sites/request',
-  UPLOAD_SITES: '/sites/upload',
-  ACCOUNTS: '/accounts',
-  ADD_ACCOUNT: '/accounts/new',
-  EDIT_ACCOUNT: '/accounts/edit',
-  REQUEST_ACCOUNT: '/accounts/request',
-  UPLOAD_ACCOUNTS: '/accounts/upload',
-  FAQ: '/faq',
-  DASHBOARD: '/dashboard',
-  LOG_IN: '/login',
-  TRAINING_MATERIALS: '/training-materials',
-  SUGGEST_IMPROVEMENT: '/suggestions',
-  CONTACT: '/contact',
+  LANDING_PAGE: { path: '/' },
+  JOIN: { path: '/join' },
+  SITES: {
+    path: '/sites',
+    roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
+  },
+  ADD_SITE: {
+    path: '/sites/new',
+    roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
+  },
+  EDIT_SITE: {
+    path: '/sites/edit',
+    roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
+  },
+  REQUEST_SITE: { path: '/sites/request' },
+  UPLOAD_SITES: {
+    path: '/sites/upload',
+    roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
+  },
+  ACCOUNTS: {
+    path: '/accounts',
+    roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
+  },
+  ADD_ACCOUNT: {
+    path: '/accounts/new',
+    roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
+  },
+  EDIT_ACCOUNT: {
+    path: '/accounts/edit',
+    roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
+  },
+  REQUEST_ACCOUNT: { path: '/accounts/request' },
+  UPLOAD_ACCOUNTS: {
+    path: '/accounts/upload',
+    roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
+  },
+  FAQ: { path: '/faq' },
+  DASHBOARD: { path: '/dashboard' },
+  LOG_IN: { path: '/login' },
+  TRAINING_MATERIALS: { path: '/training-materials' },
+  SUGGEST_IMPROVEMENT: { path: '/suggestions', roles: [{ ...USER_ROLES }] },
+  CONTACT: { path: '/contact' },
 };
 
 export const VALID_SITE_COLUMNS = {
@@ -69,18 +99,22 @@ export const LANDING_PAGE_LINKS = {
   TESTING_OTHERS: [
     {
       text: 'Request a user account',
-      url: ROUTES.REQUEST_ACCOUNT,
+      url: ROUTES.REQUEST_ACCOUNT.path,
       useRouter: true,
     },
-    { text: 'Request a site', url: ROUTES.REQUEST_SITE, useRouter: true },
+    {
+      text: 'Request a site',
+      url: ROUTES.REQUEST_SITE.path,
+      useRouter: true,
+    },
     {
       text: 'Suggest an improvement',
-      url: ROUTES.SUGGEST_IMPROVEMENT,
+      url: ROUTES.SUGGEST_IMPROVEMENT.path,
       useRouter: true,
     },
     { text: 'Training materials', url: trainingMaterials },
-    { text: 'FAQ', url: ROUTES.FAQ, useRouter: true },
-    { text: 'Contact support', url: ROUTES.CONTACT, useRouter: true },
+    { text: 'FAQ', url: ROUTES.FAQ.path, useRouter: true },
+    { text: 'Contact support', url: ROUTES.CONTACT.path, useRouter: true },
   ],
   GETTING_TESTED: [
     {

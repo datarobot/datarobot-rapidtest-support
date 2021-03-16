@@ -18,7 +18,7 @@ const AddAccount = ({ history }) => {
       .then(() => {
         toast.success('Success!', {
           onClose: () => {
-            history.push(ROUTES.ACCOUNTS);
+            history.push(ROUTES.ACCOUNTS.path);
           },
           closeButton: false,
           hideProgressBar: true,

@@ -21,7 +21,7 @@ const Header = () => {
   return (
     <>
       <div className="rt-header">
-        <Link className="logo" to={ROUTES.LANDING_PAGE}>
+        <Link className="logo" to={ROUTES.LANDING_PAGE.path}>
           <Logo color="#00528D" />
         </Link>
 
@@ -34,7 +34,7 @@ const Header = () => {
                 {user?.displayName || user?.email}
               </p>
               <Link
-                to={ROUTES.LANDING_PAGE}
+                to={ROUTES.LANDING_PAGE.path}
                 className="logout-btn inline-block -mb-1"
                 onClick={() => {
                   signOut();
@@ -45,11 +45,14 @@ const Header = () => {
             </div>
           ) : (
             <div>
-              <Link to={ROUTES.LOG_IN} className="login-btn btn-clear mr-2">
+              <Link
+                to={ROUTES.LOG_IN.path}
+                className="login-btn btn-clear mr-2"
+              >
                 {t('buttons.signin')}
               </Link>
 
-              <Link to={ROUTES.JOIN} className="btn-primary py-3">
+              <Link to={ROUTES.JOIN.path} className="btn-primary py-3">
                 {t('buttons.signup')}
               </Link>
             </div>

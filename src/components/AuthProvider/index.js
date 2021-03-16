@@ -11,6 +11,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     auth().onAuthStateChanged(async (u) => {
       if (!u) {
+        setLoadingAuthState(false);
         return setUser(null);
       }
 
@@ -21,9 +22,9 @@ export const AuthProvider = ({ children }) => {
         setUser({
           ...u,
           roles: {
-            dashboard: dashboard_user,
-            proctor: proctor_admin,
-            site: site_admin,
+            dashboard_user,
+            proctor_admin,
+            site_admin,
           },
         });
 

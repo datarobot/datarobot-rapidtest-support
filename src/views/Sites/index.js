@@ -79,7 +79,7 @@ const Sites = () => {
         accessor: 'site_name',
         Cell: ({ row }) => (
           <>
-            <Link to={`${ROUTES.EDIT_SITE}/${row.original.id}`}>
+            <Link to={`${ROUTES.EDIT_SITE.path}/${row.original.id}`}>
               <Icon
                 iconName="pencil-alt"
                 type="fal"
@@ -138,8 +138,8 @@ const Sites = () => {
         data={sites}
         addButtonText={t('buttons.addSite')}
         uploadButtonText={`+ ${t('buttons.uploadList')}`}
-        addRoute={ROUTES.ADD_SITE}
-        uploadRoute={ROUTES.UPLOAD_SITES}
+        addRoute={ROUTES.ADD_SITE.path}
+        uploadRoute={ROUTES.UPLOAD_SITES.path}
         columnFilter="site_name"
         isLoading={isLoading}
         onExportData={handleExportData}

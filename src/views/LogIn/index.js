@@ -47,7 +47,7 @@ const LogIn = ({ location, history }) => {
         headline="Log In"
         subtext={
           <p>
-            Don't have an account? <Link to={ROUTES.JOIN}>Sign up!</Link>
+            Don't have an account? <Link to={ROUTES.JOIN.path}>Sign up!</Link>
           </p>
         }
       />

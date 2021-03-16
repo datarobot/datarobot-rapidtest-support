@@ -16,7 +16,7 @@ import { Routes } from 'Routes';
 import './App.css';
 
 const App = () => {
-  const { authenticated } = useContext(AuthContext);
+  const { authenticated, loadingAuthState, user } = useContext(AuthContext);
 
   return (
     <Router>
@@ -32,7 +32,15 @@ const App = () => {
               />
             }
           >
-            <Routes authenticated={authenticated} />
+            {loadingAuthState ? (
+              <Loading
+                color="#00528D"
+                size={256}
+                containerClassName="full-height"
+              />
+            ) : (
+              <Routes authenticated={authenticated} roles={user?.roles} />
+            )}
           </Suspense>
         </main>
         <Footer />

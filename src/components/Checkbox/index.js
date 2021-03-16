@@ -62,7 +62,7 @@ export const ControlledCheckbox = forwardRef(
             disabled={isDisabled}
           />
           <svg
-            className="fill-current hidden w-4 h-4 text-green-500 pointer-events-none"
+            className="fill-current w-4 h-4 text-green-500 pointer-events-none"
             viewBox="0 0 20 20"
           >
             <path

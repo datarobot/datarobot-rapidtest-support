@@ -12,7 +12,7 @@ const Footer = () => (
       &copy;{year} <span className="font-bold ml-1">rapid</span>test
     </p>
     <div className="footer-links flex">
-      <Link to={ROUTES.CONTACT} className="text-gray-500 no-underline">
+      <Link to={ROUTES.CONTACT.path} className="text-gray-500 no-underline">
         Support
       </Link>
     </div>

@@ -1,5 +1,9 @@
+.checkbox + svg {
+  @apply hidden;
+}
+
 .checkbox:checked + svg {
-  display: block;
+  @apply block;
 }
 
 .checkboxDisabled .labelText, .checkboxDisabled .checkbox {
