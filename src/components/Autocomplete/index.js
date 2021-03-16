@@ -36,7 +36,7 @@ const Autocomplete = ({
     />
 
     {listValues?.length > 0 && (
-      <ul className="absolute bg-white w-full p-4 shadow">
+      <ul className="absolute bg-white w-full p-4 shadow-md max-h-80 overflow-y-scroll">
         {listValues.map(({ address, id, name }) => {
           const { city, state } = address;
           return (

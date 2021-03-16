@@ -60,7 +60,7 @@ func getSchoolList(w http.ResponseWriter, r *http.Request) {
 
 	for _, school := range allSchools {
 
-		if len(schoolList) > 9 {
+		if len(schoolList) > 100 {
 			break
 		}
 
