@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
+import ReactTooltip from 'react-tooltip';
 
 import { getSiteList, editSite } from 'services/api';
 import { ROUTES } from 'rt-constants';
@@ -46,14 +47,19 @@ const SiteStatus = ({ values, row }) => {
   };
 
   return (
-    <ToggleButton
-      defaultChecked={selected}
-      disabled={isLoading}
-      onChange={() => {
-        updateSite(!selected);
-        setSelected(!selected);
-      }}
-    />
+    <>
+      <ReactTooltip id="toggle" effect="solid" />
+      <span data-tip={selected ? 'Deactivate' : 'Activate'} data-for="toggle">
+        <ToggleButton
+          defaultChecked={selected}
+          disabled={isLoading}
+          onChange={() => {
+            updateSite(!selected);
+            setSelected(!selected);
+          }}
+        />
+      </span>
+    </>
   );
 };
 

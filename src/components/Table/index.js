@@ -51,6 +51,8 @@ const Table = ({
     usePagination
   );
 
+  const [searchFocused, setSearchFocused] = useState(false);
+
   const pageButtons = [];
 
   const getPagingRange = (
@@ -103,8 +105,11 @@ const Table = ({
                 value={filterInput || ''}
                 onChange={handleFilterChange}
                 placeholder="Search..."
-                className="self-center search"
-                rounded
+                onFocus={() => setSearchFocused(true)}
+                onBlur={() => setSearchFocused(false)}
+                className={cls('self-center search', {
+                  'rounded-r-none': !searchFocused,
+                })}
               />
             </div>
           </div>

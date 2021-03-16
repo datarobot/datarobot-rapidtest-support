@@ -3,7 +3,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
-import ReactTooltip from 'react-tooltip';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
@@ -18,27 +17,9 @@ import Table from 'components/Table';
 import { download, toCsv } from 'utils';
 
 const StatusCell = ({ val }) => {
-  const { t } = useTranslation();
   const { archive } = val;
 
-  const isDisabled = archive;
-  const cellText = isDisabled ? 'Inactive' : 'Active';
-
-  return (
-    <span>
-      {cellText}
-
-      <ReactTooltip effect="solid" id="enable">
-        {t('tooltips.enableAccount')}
-      </ReactTooltip>
-      <ReactTooltip effect="solid" id="disable">
-        {t('tooltips.disableAccount')}
-      </ReactTooltip>
-      <ReactTooltip effect="solid" id="pending">
-        {t('tooltips.requestPending')}
-      </ReactTooltip>
-    </span>
-  );
+  return archive ? 'Inactive' : 'Active';
 };
 
 const ActivateButton = ({ val }) => {
@@ -100,7 +81,24 @@ const Accounts = () => {
       {
         Header: t('common.table.name'),
         id: 'name',
-        accessor: (val) => `${val.last_name}, ${val.first_name}`,
+        sortType: (rowA, rowB) => {
+          if (rowA.original.last_name > rowB.original.last_name) return 1;
+          if (rowB.original.last_name > rowA.original.last_name) return -1;
+          return 0;
+        },
+        accessor: (val) => (
+          <>
+            <Link to={`${ROUTES.EDIT_ACCOUNT}/${val.id}`} className="mr-2">
+              <Icon
+                iconName="pencil-alt"
+                type="fal"
+                color="#5282cc"
+                className="cursor-pointer"
+              />
+            </Link>
+            {val.last_name}, {val.first_name}
+          </>
+        ),
       },
       {
         Header: t('common.table.email'),
@@ -132,23 +130,23 @@ const Accounts = () => {
           </div>
         ),
       },
-      {
-        Header: () => null,
-        id: 'edit',
-        Cell: ({ row }) => (
-          <Link
-            to={`${ROUTES.EDIT_ACCOUNT}/${row.original.id}`}
-            className="flex justify-center"
-          >
-            <Icon
-              iconName="pencil-alt"
-              type="fal"
-              color="#5282cc"
-              className="cursor-pointer"
-            />
-          </Link>
-        ),
-      },
+      // {
+      //   Header: () => null,
+      //   id: 'edit',
+      //   Cell: ({ row }) => (
+      //     <Link
+      //       to={`${ROUTES.EDIT_ACCOUNT}/${row.original.id}`}
+      //       className="flex justify-center"
+      //     >
+      //       <Icon
+      //         iconName="pencil-alt"
+      //         type="fal"
+      //         color="#5282cc"
+      //         className="cursor-pointer"
+      //       />
+      //     </Link>
+      //   ),
+      // },
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [accounts]
