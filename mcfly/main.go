@@ -10,6 +10,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/gorilla/mux"
 	"github.com/lithammer/fuzzysearch/fuzzy"
@@ -38,6 +39,10 @@ func homeLink(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Welcome home!")
 }
 
+func Contains(name string, matcher string) bool {
+	return strings.Contains(strings.ToLower(matcher), strings.ToLower(name))
+}
+
 func getSchoolList(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 
@@ -54,14 +59,14 @@ func getSchoolList(w http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(reqBody, &newSchool)
 
 	for _, school := range allSchools {
+
 		if len(schoolList) > 9 {
 			break
 		}
 
-		isMatch := fuzzy.MatchFold(newSchool.Name, school.Name)
-		rankScore := fuzzy.RankMatchFold(newSchool.Name, school.Name) < 15
+		isMatch := Contains(newSchool.Name, school.Name)
 
-		if isMatch && rankScore {
+		if isMatch {
 			schoolList = append(schoolList, school)
 		}
 	}

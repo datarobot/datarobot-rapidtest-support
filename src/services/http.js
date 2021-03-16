@@ -17,8 +17,13 @@ const defaultOptions = {
   },
 };
 
+const autocompleteOptions = {
+  baseURL: '/api',
+};
+
 // Set up axios with default options and interceptors
 const http = axios.create(defaultOptions);
+const autocompleteHttp = axios.create(autocompleteOptions);
 
 const interceptorSetup = (cfg) => {
   const config = cfg;
@@ -52,4 +57,4 @@ createAuthRefreshInterceptor(http, refreshAuthLogic, {
 });
 
 // eslint-disable-next-line import/prefer-default-export
-export { http };
+export { http, autocompleteHttp };
