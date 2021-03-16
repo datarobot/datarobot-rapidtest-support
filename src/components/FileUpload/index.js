@@ -28,6 +28,7 @@ const UploadLabel = () => (
 
 const FileUpload = ({
   validator,
+  handleError,
   handleUpload,
   templateFile,
   templateName,
@@ -38,6 +39,9 @@ const FileUpload = ({
   const [tableData, setTableData] = useState([]);
   const [, setIsSitesUpload] = useState(true);
   const [isValid, setIsValid] = useState(true);
+  const [errorType, setErrorType] = useState();
+  const [invalidColumns, setInvalidColumns] = useState();
+  const [numInvalidColumns, setNumInvalidColumns] = useState(0);
   const onDrop = useCallback((acceptedFiles) => {
     setFiles(acceptedFiles);
   }, []);
@@ -57,6 +61,10 @@ const FileUpload = ({
       }
 
       if (!valid) {
+        const { type, cols } = handleError(header);
+        setInvalidColumns(cols.join(', '));
+        setNumInvalidColumns(cols.length);
+        setErrorType(type);
         return setIsValid(valid);
       }
 
@@ -134,10 +142,44 @@ const FileUpload = ({
             </>
           ) : (
             <section className="error-msg">
-              <p className="sub-heading text-dark-red">
-                <em>{files[0].name}</em> is invalid.
-              </p>
-              <p>Please check the file and try again.</p>
+              <div className="max-w-3xl text-center">
+                <p className="sub-heading text-dark-red">
+                  <em>{files[0].name}</em> is invalid.
+                </p>
+                <div className="my-4">
+                  <p className="font-mono text-sm">{invalidColumns}</p>{' '}
+                  <p className="mt-4">
+                    {errorType === 'invalid' ? (
+                      <>
+                        {numInvalidColumns === 1
+                          ? 'is not a valid column name'
+                          : 'are not valid column names'}
+                      </>
+                    ) : (
+                      <>
+                        {numInvalidColumns === 1
+                          ? 'is a required column'
+                          : 'are required columns'}
+                      </>
+                    )}
+                    .
+                  </p>
+                </div>
+                <div>
+                  Please check the file and{' '}
+                  <button
+                    className="btn-link"
+                    type="button"
+                    onClick={() => {
+                      setFiles([]);
+                      setIsValid(true);
+                    }}
+                  >
+                    try again
+                  </button>
+                  .
+                </div>
+              </div>
             </section>
           )}
         </>

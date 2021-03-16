@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import FileUpload from 'components/FileUpload';
 import PageHeader from 'components/PageHeader';
 import { addSite } from 'services/api';
-import { isValidSitesList } from 'utils/validate';
+import { isValidSitesList, getSiteError } from 'utils/validate';
 
 import { ROUTES } from 'rt-constants';
 
@@ -54,12 +54,14 @@ const UploadSites = ({ history }) => {
 
   return (
     <>
-      <PageHeader
-        headline="Upload a list of sites"
+      <PageHeader headline="Upload a list of sites" />
+      <FileUpload
+        validator={isValidSitesList}
+        handleError={(e) => getSiteError(e)}
+        handleUpload={handleUpload}
         templateFile={fileTemplate}
         templateName="rapidtest_sites_template.csv"
       />
-      <FileUpload validator={isValidSitesList} handleUpload={handleUpload} />
     </>
   );
 };

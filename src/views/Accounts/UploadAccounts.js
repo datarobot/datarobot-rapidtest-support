@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import FileUpload from 'components/FileUpload';
 import PageHeader from 'components/PageHeader';
 import { addAccount } from 'services/api';
-import { isValidAccountList } from 'utils/validate';
+import { isValidAccountList, getAccountError } from 'utils/validate';
 
 import { ROUTES } from 'rt-constants';
 
@@ -57,6 +57,7 @@ const UploadAccounts = ({ history }) => {
       <PageHeader headline="Upload a list of accounts" />
       <FileUpload
         validator={isValidAccountList}
+        handleError={(e) => getAccountError(e)}
         handleUpload={handleUpload}
         templateFile={fileTemplate}
         templateName="rapidtest_accounts_template.csv"

@@ -3,5 +3,5 @@
 }
 
 .error-msg {
-  @apply flex flex-col items-center py-24;
+  @apply flex flex-col justify-center items-center py-24;
 }

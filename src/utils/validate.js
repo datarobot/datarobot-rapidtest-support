@@ -6,13 +6,33 @@ const isEqual = (a, b) =>
 const difference = (a, b) => a.filter((x) => !b.includes(x));
 
 export const isValidSitesList = (list) => {
-  const { REQUIRED, OPTIONAL } = VALID_SITE_COLUMNS;
-  return isEqual(list, [...REQUIRED, ...OPTIONAL]);
+  const { REQUIRED } = VALID_SITE_COLUMNS;
+  return isEqual(list, [...REQUIRED]);
 };
 
-export const getSiteError = (list) => difference(list, VALID_SITE_COLUMNS);
+export const getSiteError = (list) => {
+  const { REQUIRED, OPTIONAL } = VALID_SITE_COLUMNS;
+  const diff = difference(list, [...REQUIRED, ...OPTIONAL]);
+
+  if (diff.length > 0) {
+    return { type: 'invalid', cols: diff };
+  }
+
+  return { type: 'required', cols: difference([...REQUIRED], list) };
+};
 
 export const isValidAccountList = (list) => {
+  const { REQUIRED } = VALID_ACCOUNT_COLUMNS;
+  return isEqual(list, [...REQUIRED]);
+};
+
+export const getAccountError = (list) => {
   const { REQUIRED, OPTIONAL } = VALID_ACCOUNT_COLUMNS;
-  return isEqual(list, [...REQUIRED, ...OPTIONAL]);
+  const diff = difference(list, [...REQUIRED, ...OPTIONAL]);
+
+  if (diff.length > 0) {
+    return { type: 'invalid', cols: diff };
+  }
+
+  return { type: 'required', cols: difference([...REQUIRED], list) };
 };
