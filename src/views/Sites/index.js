@@ -1,21 +1,20 @@
 // @ts-nocheck
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
+import ReactTooltip from 'react-tooltip';
 
 import { getSiteList, editSite } from 'services/api';
 import { ROUTES } from 'rt-constants';
-import AddSiteModal from 'components/Modals/AddSite';
-import EditSiteModal from 'components/Modals/EditSite';
 import ToggleButton from 'components/ToggleButton';
 import Icon from 'components/Icon';
 import Table from 'components/Table';
 
 import { download, toCsv } from 'utils';
 
-import { sitesAtom, currentSiteAtom } from 'store';
+import { sitesAtom } from 'store';
 
 const SiteStatus = ({ values, row }) => {
   const [, setSites] = useAtom(sitesAtom);
@@ -48,40 +47,26 @@ const SiteStatus = ({ values, row }) => {
   };
 
   return (
-    <ToggleButton
-      defaultChecked={selected}
-      disabled={isLoading}
-      onChange={() => {
-        updateSite(!selected);
-        setSelected(!selected);
-      }}
-    />
+    <>
+      <ReactTooltip id="toggle" effect="solid" />
+      <span data-tip={selected ? 'Deactivate' : 'Activate'} data-for="toggle">
+        <ToggleButton
+          defaultChecked={selected}
+          disabled={isLoading}
+          onChange={() => {
+            updateSite(!selected);
+            setSelected(!selected);
+          }}
+        />
+      </span>
+    </>
   );
 };
 
 const Sites = () => {
   const { t } = useTranslation();
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [siteId, setSiteId] = useState();
   const [sites, setSites] = useAtom(sitesAtom);
-  const [, setCurrentSite] = useAtom(currentSiteAtom);
   const [isLoading, setIsLoading] = useState(false);
-
-  const handleToggleModal = (modal) => {
-    if (modal === 'add') {
-      return setShowAddModal(!showAddModal);
-    }
-
-    return setShowEditModal(!showEditModal);
-  };
-
-  const handleEditRow = useCallback((site) => {
-    setSiteId(site.id);
-    handleToggleModal('edit');
-    setCurrentSite(site);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const handleExportData = () => {
     download({ name: 'rapidtest_sites', ext: 'csv', data: toCsv(sites) });
@@ -127,7 +112,7 @@ const Sites = () => {
       },
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [handleEditRow]
+    []
   );
 
   useEffect(() => {
@@ -158,15 +143,7 @@ const Sites = () => {
         columnFilter="site_name"
         isLoading={isLoading}
         onExportData={handleExportData}
-      />
-      <AddSiteModal
-        showModal={showAddModal}
-        handleClose={() => handleToggleModal('add')}
-      />
-      <EditSiteModal
-        showModal={showEditModal}
-        handleClose={() => handleToggleModal('edit')}
-        siteId={siteId}
+        sortBy="site_name"
       />
     </div>
   );

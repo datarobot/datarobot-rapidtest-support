@@ -96,6 +96,7 @@ const EditAccount = ({ history }) => {
                   message: t('errorMessages.common.required'),
                 },
               })}
+              isRequired
             />
             <ErrorMessage errors={errors} errorKey="first_name" />
 
@@ -107,6 +108,7 @@ const EditAccount = ({ history }) => {
                 handleOnChange('last_name', target.value)
               }
               value={currentAccount?.last_name || ''}
+              isRequired
             />
             <ErrorMessage errors={errors} errorKey="last_name" />
 
@@ -125,6 +127,7 @@ const EditAccount = ({ history }) => {
                   message: t('errorMessages.common.required'),
                 },
               })}
+              isRequired
             />
             <ErrorMessage errors={errors} errorKey="email_address" />
 
@@ -159,7 +162,10 @@ const EditAccount = ({ history }) => {
             {errors.email && <span>This field is required</span>}
 
             <div className="btn-row end mt-4">
-              <button className="btn-clear" onClick={() => {}}>
+              <button
+                className="btn-clear mr-1"
+                onClick={() => history.goBack()}
+              >
                 Cancel
               </button>
 
@@ -170,7 +176,10 @@ const EditAccount = ({ history }) => {
           </form>
 
           <div className="w-1/4">
-            <InfoBox heading="Account requirements" />
+            <InfoBox
+              heading="Account requirements"
+              subtext="First name, last name, and email are required."
+            />
           </div>
         </section>
       )}

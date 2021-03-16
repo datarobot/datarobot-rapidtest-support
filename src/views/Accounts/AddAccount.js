@@ -122,7 +122,11 @@ const AddAccount = ({ history }) => {
           />
 
           <div className="btn-row end mt-4">
-            <button className="btn-clear" onClick={() => {}}>
+            <button
+              className="btn-clear mr-1"
+              onClick={() => history.goBack()}
+              type="button"
+            >
               Cancel
             </button>
             <button className="btn-primary mr-2" type="submit">

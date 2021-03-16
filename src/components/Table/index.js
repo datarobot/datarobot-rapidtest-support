@@ -21,6 +21,7 @@ const Table = ({
   addRoute,
   uploadRoute,
   columnFilter = 'name',
+  sortBy,
   tableOnly = false,
   isLoading,
   onExportData,
@@ -42,13 +43,15 @@ const Table = ({
     {
       columns,
       data,
-      initialState: { pageIndex: 0 },
+      initialState: { pageIndex: 0, sortBy: [{ id: sortBy }] },
       autoResetPage: false,
     },
     useFilters,
     useSortBy,
     usePagination
   );
+
+  const [searchFocused, setSearchFocused] = useState(false);
 
   const pageButtons = [];
 
@@ -102,8 +105,11 @@ const Table = ({
                 value={filterInput || ''}
                 onChange={handleFilterChange}
                 placeholder="Search..."
-                className="self-center search"
-                rounded
+                onFocus={() => setSearchFocused(true)}
+                onBlur={() => setSearchFocused(false)}
+                className={cls('self-center search', {
+                  'rounded-r-none': !searchFocused,
+                })}
               />
             </div>
           </div>
