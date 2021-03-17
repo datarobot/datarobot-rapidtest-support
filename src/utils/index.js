@@ -99,6 +99,9 @@ const getUserRole = (roles) => {
   return userRole;
 };
 
+const getIndex = (arr, accessor, matcher) =>
+  arr.findIndex((a) => a[accessor] === matcher);
+
 export {
   get,
   set,
@@ -111,4 +114,5 @@ export {
   toCsv,
   isEqual,
   getUserRole,
+  getIndex,
 };

@@ -127,6 +127,7 @@ export const Routes = ({ authenticated, roles }) => (
       authenticated={authenticated}
       path={ROUTES.DASHBOARD.path}
       route={ROUTES.DASHBOARD}
+      roles={roles}
       component={Dashboard}
     />
     <Route path={ROUTES.REQUEST_ACCOUNT.path} component={RequestAccount} />
@@ -141,6 +142,7 @@ export const Routes = ({ authenticated, roles }) => (
       authenticated={authenticated}
       path={ROUTES.SUGGEST_IMPROVEMENT.path}
       route={ROUTES.SUGGEST_IMPROVEMENT}
+      roles={roles}
       component={SuggestImprovement}
     />
     <Route exact path={ROUTES.CONTACT.path} component={Contact} />

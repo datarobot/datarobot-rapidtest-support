@@ -49,7 +49,14 @@ export const ROUTES = {
   DASHBOARD: { path: '/dashboard' },
   LOG_IN: { path: '/login' },
   TRAINING_MATERIALS: { path: '/training-materials' },
-  SUGGEST_IMPROVEMENT: { path: '/suggestions', roles: [{ ...USER_ROLES }] },
+  SUGGEST_IMPROVEMENT: {
+    path: '/suggestions',
+    roles: [
+      USER_ROLES.dashboard,
+      USER_ROLES.proctorAdmin,
+      USER_ROLES.siteAdmin,
+    ],
+  },
   CONTACT: { path: '/contact' },
 };
 

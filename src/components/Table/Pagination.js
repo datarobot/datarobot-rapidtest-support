@@ -46,7 +46,7 @@ const Pagination = ({ gotoPage, pageCount, pageIndex, pageSize, rows }) => {
         breakClassName={'break-me'}
         pageCount={pageCount}
         marginPagesDisplayed={2}
-        pageRangeDisplayed={3}
+        pageRangeDisplayed={2}
         onPageChange={handlePageClick}
         containerClassName={'pagination'}
         subContainerClassName={'pages pagination'}

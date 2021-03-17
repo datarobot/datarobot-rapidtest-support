@@ -79,7 +79,8 @@ body {
     @apply underline text-blue;
   }
 
-  a:not([role="button"]):not([class*="btn-"]):not(.nav-link):hover {
+  a:not([role="button"]):not([class*="btn-"]):not(.nav-link):hover,
+  .btn-link:hover {
 
     text-shadow:
       -.25px -.25px 0 rgba(0, 82, 141, 0.25),

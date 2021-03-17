@@ -16,7 +16,7 @@
 }
 
 .pagination .active {
-  @apply text-blue-light font-bold;
+  @apply text-white bg-blue-light font-bold rounded;
 }
 
 .pagination .disabled a {
@@ -27,7 +27,7 @@
 }
 
 .pagination a {
-  @apply px-4;
+  @apply px-3;
 }
 
 .pagination a:focus {

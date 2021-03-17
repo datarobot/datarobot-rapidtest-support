@@ -23,55 +23,74 @@ const SuggestImprovement = () => {
   return (
     <>
       <PageHeader headline="Suggest an improvement" />
+
       <section className="flex">
-        <form className="w-2/5 mr-8" onSubmit={handleSubmit(onSubmit)}>
-          <ControlledInput
-            name="title"
-            label="Title"
-            placeholder="Name of new feautre"
-            isRequired
-            ref={register({
-              required: {
-                value: true,
-                message: t('errorMessages.common.required'),
-              },
-            })}
-          />
-          <ErrorMessage errors={errors} errorKey="title" />
+        {process.env.REACT_APP_ENABLE_CONTACT_FORM === 'false' ? (
+          <section className="w-full flex flex-col place-items-center">
+            <p className="headline pt-32 pb-12">Coming Soon</p>
+            <div className="text-lg text-center">
+              <p className="pb-4">We're working hard to enable this feature.</p>
+              <p>
+                In the mean time, you can{' '}
+                <a href="mailto:mack.heiser@datarobot.com?subject=rapidtestingapp.org%20Improvement%20Suggestion">
+                  email support directly
+                </a>
+                .
+              </p>
+            </div>
+          </section>
+        ) : (
+          <>
+            <form className="w-2/5 mr-8" onSubmit={handleSubmit(onSubmit)}>
+              <ControlledInput
+                name="title"
+                label="Title"
+                placeholder="Name of new feautre"
+                isRequired
+                ref={register({
+                  required: {
+                    value: true,
+                    message: t('errorMessages.common.required'),
+                  },
+                })}
+              />
+              <ErrorMessage errors={errors} errorKey="title" />
 
-          <ControlledTextarea
-            name="suggestion"
-            label="Suggestion"
-            placeholder="I'd like to see..."
-            isRequired
-            rows={6}
-            ref={register({
-              required: {
-                value: true,
-                message: t('errorMessages.common.required'),
-              },
-            })}
-          />
-          <ErrorMessage errors={errors} errorKey="suggestion" />
+              <ControlledTextarea
+                name="suggestion"
+                label="Suggestion"
+                placeholder="I'd like to see..."
+                isRequired
+                rows={6}
+                ref={register({
+                  required: {
+                    value: true,
+                    message: t('errorMessages.common.required'),
+                  },
+                })}
+              />
+              <ErrorMessage errors={errors} errorKey="suggestion" />
 
-          <div className="btn-row end mt-4">
-            <button className="btn-clear" type="button" onClick={() => {}}>
-              Cancel
-            </button>
+              <div className="btn-row end mt-4">
+                <button className="btn-clear" type="button" onClick={() => {}}>
+                  Cancel
+                </button>
 
-            <button className="btn-primary mr-2" type="submit">
-              Submit
-            </button>
-          </div>
-        </form>
+                <button className="btn-primary mr-2" type="submit">
+                  Submit
+                </button>
+              </div>
+            </form>
 
-        <section className="w-3/5 flex justify-center items-center">
-          {showSuccessMsg && (
-            <p className="sub-heading text-blue">
-              Thanks for submitting your request! 🥳
-            </p>
-          )}
-        </section>
+            <section className="w-3/5 flex justify-center items-center">
+              {showSuccessMsg && (
+                <p className="sub-heading text-blue">
+                  Thanks for submitting your request!
+                </p>
+              )}
+            </section>
+          </>
+        )}
       </section>
     </>
   );
