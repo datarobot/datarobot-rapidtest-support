@@ -1,7 +1,8 @@
 // @ts-nocheck
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import ReactTooltip from 'react-tooltip';
 
 import Icon from 'components/Icon';
 import Logo from 'components/Logo';
@@ -17,6 +18,23 @@ import './Header.css';
 const Header = () => {
   const { t } = useTranslation();
   const { authenticated, user } = useContext(AuthContext);
+  const [roleType, setRoleType] = useState('');
+
+  useEffect(() => {
+    const role = user?.role;
+
+    if (role?.includes('dashboard')) {
+      return setRoleType('Program Admin');
+    }
+
+    if (role?.includes('site')) {
+      return setRoleType('Site Admin');
+    }
+
+    if (role?.includes('proctor')) {
+      return setRoleType('Proctor Admin');
+    }
+  }, [user]);
 
   return (
     <>
@@ -30,15 +48,22 @@ const Header = () => {
         <section className="links">
           {authenticated ? (
             <div className="flex items-center justify-end">
-              <p className="font-bold text-xs mr-3">
-                {user?.displayName || user?.email}
-              </p>
+              <span>
+                <p className="font-bold text-xs mr-3">
+                  {user?.displayName || user?.email}
+                </p>
+                {roleType && (
+                  <p className="text-gray-500 text-xs">{roleType}</p>
+                )}
+              </span>
               <Link
                 to={ROUTES.LANDING_PAGE.path}
                 className="logout-btn inline-block -mb-1"
                 onClick={() => {
                   signOut();
                 }}
+                data-tip="Sign Out"
+                data-for="sign-out"
               >
                 <Icon iconName="sign-out" type="fal" size="lg" />
               </Link>
@@ -59,6 +84,7 @@ const Header = () => {
           )}
         </section>
       </div>
+      <ReactTooltip id="sign-out" effect="solid" />
     </>
   );
 };

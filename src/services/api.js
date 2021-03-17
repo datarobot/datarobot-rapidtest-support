@@ -1,3 +1,4 @@
+// @ts-nocheck
 import axios from 'axios';
 import { http } from 'services/http';
 
@@ -35,18 +36,8 @@ export const getSite = async (id) => {
   return data;
 };
 
-export const addAccount = async ({
-  first_name,
-  last_name,
-  email_address,
-  phone_office,
-}) => {
-  const { data } = await http.post('/proctor', {
-    first_name,
-    last_name,
-    email_address,
-    phone_office,
-  });
+export const addAccount = async (payload) => {
+  const { data } = await http.post('/proctor', { ...payload });
 
   return data;
 };

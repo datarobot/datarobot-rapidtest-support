@@ -1,7 +1,8 @@
 // @ts-nocheck
 import { lazy } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { ROUTES, USER_ROLES } from 'rt-constants';
+import { ROUTES } from 'rt-constants';
+import { getUserRole } from 'utils';
 
 import Unauthorized from 'components/Unauthorized';
 
@@ -25,25 +26,6 @@ const SuggestImprovement = lazy(() => import('views/SuggestImprovement'));
 const Contact = lazy(() => import('views/Contact'));
 const FourOhFour = lazy(() => import('views/404'));
 
-const getRole = (roles) => {
-  let userRole;
-
-  if (roles && roles[USER_ROLES.dashboard]) {
-    userRole = USER_ROLES.dashboard;
-  } else {
-    for (const role in roles) {
-      if (Object.hasOwnProperty.call(roles, role)) {
-        const r = roles[role];
-        if (r) {
-          userRole = role;
-        }
-      }
-    }
-  }
-
-  return userRole;
-};
-
 export const PrivateRoute = ({
   component: Component,
   authenticated,
@@ -57,7 +39,7 @@ export const PrivateRoute = ({
       return true;
     }
 
-    return route.roles.includes(getRole(roles));
+    return route.roles.includes(getUserRole(roles));
   };
 
   return (

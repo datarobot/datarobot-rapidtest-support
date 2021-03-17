@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { createContext, useEffect, useState } from 'react';
 import { auth, getUser } from 'services/firebase';
+import { getUserRole } from 'utils';
 
 export const AuthContext = createContext({});
 
@@ -26,6 +27,7 @@ export const AuthProvider = ({ children }) => {
             proctor_admin,
             site_admin,
           },
+          role: getUserRole({ dashboard_user, proctor_admin, site_admin }),
         });
 
         setLoadingAuthState(false);

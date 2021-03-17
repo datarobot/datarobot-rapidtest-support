@@ -30,6 +30,7 @@ const HeaderText = () => {
 };
 
 const UploadAccounts = ({ history }) => {
+  // eslint-disable-next-line no-unused-vars
   const [hasErrors, setHasErrors] = useState(false);
   const toastId = useRef(null);
 
@@ -52,9 +53,11 @@ const UploadAccounts = ({ history }) => {
     notify();
 
     for (let i = 0; i < data.length; i += 1) {
-      const site = data[i];
-      addAccount(site).catch((err) => {
-        const resp = err.response.data.errors;
+      const account = data[i];
+      try {
+        addAccount(account);
+      } catch (err) {
+        const resp = err.response?.data.errors;
         setHasErrors(true);
         for (const key in resp) {
           if (Object.hasOwnProperty.call(resp, key)) {
@@ -62,7 +65,8 @@ const UploadAccounts = ({ history }) => {
             toast.error(msg, { autoClose: 10000 });
           }
         }
-      });
+        break;
+      }
     }
 
     if (!hasErrors) {

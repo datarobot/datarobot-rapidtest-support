@@ -1,8 +1,8 @@
 import { format } from 'date-fns';
 import Papa from 'papaparse';
-import { SESSION_STORAGE_ITEMS } from 'rt-constants';
+import { SESSION_STORAGE_ITEMS, USER_ROLES } from 'rt-constants';
 
-export const isEqual = (a, b) => {
+const isEqual = (a, b) => {
   const aProps = Object.getOwnPropertyNames(a);
   const bProps = Object.getOwnPropertyNames(b);
 
@@ -80,6 +80,25 @@ const download = ({ name, ext, data }) => {
 
 const toCsv = (data) => Papa.unparse(data);
 
+const getUserRole = (roles) => {
+  let userRole;
+
+  if (roles && roles[USER_ROLES.dashboard]) {
+    userRole = USER_ROLES.dashboard;
+  } else {
+    for (const role in roles) {
+      if (Object.hasOwnProperty.call(roles, role)) {
+        const r = roles[role];
+        if (r) {
+          userRole = role;
+        }
+      }
+    }
+  }
+
+  return userRole;
+};
+
 export {
   get,
   set,
@@ -90,4 +109,6 @@ export {
   setRefreshToken,
   download,
   toCsv,
+  isEqual,
+  getUserRole,
 };

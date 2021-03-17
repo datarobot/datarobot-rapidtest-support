@@ -10,6 +10,7 @@ import { getSiteList, editSite } from 'services/api';
 import { ROUTES } from 'rt-constants';
 import ToggleButton from 'components/ToggleButton';
 import Icon from 'components/Icon';
+import SuccessCheck from 'components/Notifications/SuccessCheck';
 import Table from 'components/Table';
 
 import { download, toCsv } from 'utils';
@@ -20,20 +21,26 @@ const SiteStatus = ({ values, row }) => {
   const [, setSites] = useAtom(sitesAtom);
   const [selected, setSelected] = useState(!values);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
 
-  // eslint-disable-next-line no-unused-vars
+  useEffect(() => {
+    if (isSuccess) {
+      const timer = setTimeout(() => {
+        setIsSuccess(false);
+      }, 1900);
+      return () => clearTimeout(timer);
+    }
+  }, [isSuccess]);
+
   const updateSite = (e) => {
     setIsLoading(true);
-    const site = { ...row.original, archive: e };
+    const site = { ...row.original, archive: !e };
     editSite(site.id, site)
       .then(async () => {
         const data = await getSiteList();
         setIsLoading(false);
-        toast.success('Site updated successfully!', {
-          onClose: () => {
-            setSites(data);
-          },
-        });
+        setIsSuccess(true);
+        setSites(data);
       })
       .catch(() => {
         setSelected(!selected);
@@ -49,16 +56,24 @@ const SiteStatus = ({ values, row }) => {
   return (
     <>
       <ReactTooltip id="toggle" effect="solid" />
-      <span data-tip={selected ? 'Deactivate' : 'Activate'} data-for="toggle">
-        <ToggleButton
-          defaultChecked={selected}
-          disabled={isLoading}
-          onChange={() => {
-            updateSite(!selected);
-            setSelected(!selected);
-          }}
-        />
-      </span>
+      <div
+        className="flex items-center"
+        data-tip={selected ? 'Deactivate' : 'Activate'}
+        data-for="toggle"
+      >
+        {isSuccess ? (
+          <SuccessCheck />
+        ) : (
+          <ToggleButton
+            defaultChecked={selected}
+            disabled={isLoading}
+            onChange={() => {
+              updateSite(!selected);
+              setSelected(!selected);
+            }}
+          />
+        )}
+      </div>
     </>
   );
 };

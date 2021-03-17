@@ -15,6 +15,7 @@ import Loading from 'components/Loading';
 import Table from 'components/Table';
 
 import { download, toCsv } from 'utils';
+import SuccessCheck from 'components/Notifications/SuccessCheck';
 
 const StatusCell = ({ val }) => {
   const { archive } = val;
@@ -27,33 +28,59 @@ const ActivateButton = ({ val }) => {
   const { id, archive } = val;
   const [, setAccounts] = useAtom(accountsAtom);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  useEffect(() => {
+    if (isSuccess) {
+      const timer = setTimeout(() => {
+        setIsSuccess(false);
+      }, 1900);
+      return () => clearTimeout(timer);
+    }
+  }, [isSuccess]);
 
   const toggleAccountActive = () => {
     setIsLoading(true);
-    editAccount(id, { ...val, archive: !archive }).then(async () => {
-      const data = await getAccountList();
-      toast.success('Successfully updated account!', {
-        onClose: () => {
+    editAccount(id, { ...val, archive: !archive })
+      .then(async () => {
+        setIsSuccess(true);
+        setIsLoading(false);
+        const data = await getAccountList();
+
+        try {
           setAccounts(data);
-          setIsLoading(false);
-        },
+        } catch {
+          toast.error(
+            'There was a problem updating the account list. Please refresh the page to see the latest data'
+          );
+        }
+      })
+      .catch(() => {
+        toast.error('There was a problem updating the account.', {
+          onClose: () => {
+            setIsLoading(false);
+          },
+        });
       });
-    });
   };
 
   return (
     <>
-      <button
-        onClick={toggleAccountActive}
-        className="text-blue-light py-0 px-2 focus:outline-none"
-        type="button"
-      >
-        {isLoading ? (
-          <Loading size={24} />
-        ) : (
-          <>{!archive ? t('buttons.deactivate') : t('buttons.activate')}</>
-        )}
-      </button>
+      {isSuccess ? (
+        <SuccessCheck />
+      ) : (
+        <button
+          onClick={toggleAccountActive}
+          className="text-blue-light py-0 px-2 focus:outline-none"
+          type="button"
+        >
+          {isLoading ? (
+            <Loading size={24} />
+          ) : (
+            <>{!archive ? t('buttons.deactivate') : t('buttons.activate')}</>
+          )}
+        </button>
+      )}
     </>
   );
 };
