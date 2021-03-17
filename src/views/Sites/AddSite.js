@@ -28,9 +28,11 @@ const AddSite = ({ history }) => {
   const [mapZoom, setMapZoom] = useState();
 
   const onSubmit = (data) => {
-    const { lat, lng } = currentSchool;
-
-    addSite({ ...data, latitude: lat, longitude: lng })
+    addSite({
+      ...data,
+      latitude: currentSchool?.lat,
+      longitude: currentSchool?.lng,
+    })
       .then(() => {
         toast.success('Success!', {
           onClose: () => {
