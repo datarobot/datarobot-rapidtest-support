@@ -55,25 +55,29 @@ const SiteStatus = ({ values, row }) => {
 
   return (
     <>
-      <ReactTooltip id="toggle" effect="solid" />
-      <div
-        className="flex items-center"
-        data-tip={selected ? 'Deactivate' : 'Activate'}
-        data-for="toggle"
-      >
-        {isSuccess ? (
-          <SuccessCheck />
-        ) : (
-          <ToggleButton
-            defaultChecked={selected}
-            disabled={isLoading}
-            onChange={() => {
-              updateSite(!selected);
-              setSelected(!selected);
-            }}
-          />
-        )}
-      </div>
+      {row.original.id !== 3 && (
+        <>
+          <ReactTooltip id="toggle" effect="solid" />
+          <div
+            className="flex items-center"
+            data-tip={selected ? 'Deactivate' : 'Activate'}
+            data-for="toggle"
+          >
+            {isSuccess ? (
+              <SuccessCheck />
+            ) : (
+              <ToggleButton
+                defaultChecked={selected}
+                disabled={isLoading}
+                onChange={() => {
+                  updateSite(!selected);
+                  setSelected(!selected);
+                }}
+              />
+            )}
+          </div>
+        </>
+      )}
     </>
   );
 };
@@ -94,15 +98,21 @@ const Sites = () => {
         accessor: 'site_name',
         Cell: ({ row }) => (
           <>
-            <Link to={`${ROUTES.EDIT_SITE.path}/${row.original.id}`}>
-              <Icon
-                iconName="pencil-alt"
-                type="fal"
-                color="#5282cc"
-                className="mr-2"
-              />
-            </Link>
-            {row.values.site_name}
+            {row.original.id !== 3 ? (
+              <>
+                <Link to={`${ROUTES.EDIT_SITE.path}/${row.original.id}`}>
+                  <Icon
+                    iconName="pencil-alt"
+                    type="fal"
+                    color="#5282cc"
+                    className="mr-2"
+                  />
+                </Link>
+                {row.values.site_name}
+              </>
+            ) : (
+              <span className="ml-6">{row.values.site_name}</span>
+            )}
           </>
         ),
       },
