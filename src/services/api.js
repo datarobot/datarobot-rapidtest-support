@@ -1,4 +1,5 @@
-import { http, autocompleteHttp } from 'services/http';
+import axios from 'axios';
+import { http } from 'services/http';
 
 export const addSite = async (payload) => {
   const zip = parseInt(payload.zip, 10);
@@ -71,13 +72,13 @@ export const getAccountList = async () => {
 };
 
 export const searchSchool = async (name) => {
-  const { data } = await autocompleteHttp.post('/schools', { name });
+  const { data } = await axios.post('/schools', { name });
 
   return data;
 };
 
 export const getSchool = async (id) => {
-  const { data } = await autocompleteHttp.get(`/schools/${id}`);
+  const { data } = await axios.get(`/schools/${id}`);
 
   return data;
 };
