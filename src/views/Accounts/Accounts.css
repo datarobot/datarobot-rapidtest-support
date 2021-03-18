@@ -9,3 +9,17 @@
 
 .form { grid-area: form; }
 .info { grid-area: info; }
+
+.request-form.isSuccess {
+  @apply hidden;
+}
+
+.request-success {
+  @apply flex justify-center pt-24 opacity-0 h-0 w-0;
+}
+
+.request-success.isSuccess {
+  @apply opacity-100 h-full w-full;
+
+  transition: opacity 500ms ease-in-out;
+}

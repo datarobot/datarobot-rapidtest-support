@@ -148,6 +148,12 @@ export const LANDING_PAGE_LINKS = {
 
 export const CURRENT_PROGRAMS = ['PA', 'TX', 'WA'];
 
+export const CURRENT_PROGRAMS_FULL = [
+  { value: 'PA', label: 'Pennsylvania' },
+  { value: 'TX', label: 'Texas' },
+  { value: 'WA', label: 'Washington' },
+];
+
 export const STATE_OPTIONS = [
   { value: 'AL', label: 'AL' },
   { value: 'AK', label: 'AK' },
