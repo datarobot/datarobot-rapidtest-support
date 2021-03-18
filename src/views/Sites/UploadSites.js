@@ -27,6 +27,7 @@ const HeaderText = () => {
 };
 
 const UploadSites = ({ history }) => {
+  // eslint-disable-next-line no-unused-vars
   const [hasErrors, setHasErrors] = useState(false);
   const toastId = useRef(null);
 
@@ -51,7 +52,7 @@ const UploadSites = ({ history }) => {
     for (let i = 0; i < data.length; i += 1) {
       const site = data[i];
       addSite(site).catch((err) => {
-        const resp = err.response.data.errors;
+        const resp = err.response?.data.errors;
         setHasErrors(true);
         for (const key in resp) {
           if (Object.hasOwnProperty.call(resp, key)) {

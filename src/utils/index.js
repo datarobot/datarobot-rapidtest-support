@@ -102,6 +102,20 @@ const getUserRole = (roles) => {
 const getIndex = (arr, accessor, matcher) =>
   arr.findIndex((a) => a[accessor] === matcher);
 
+const emptyToNull = (obj) => {
+  for (const key in obj) {
+    if (Object.hasOwnProperty.call(obj, key)) {
+      const el = obj[key];
+      if (el === '') {
+        // eslint-disable-next-line no-param-reassign
+        obj[key] = null;
+      }
+    }
+  }
+
+  return obj;
+};
+
 export {
   get,
   set,
@@ -115,4 +129,5 @@ export {
   isEqual,
   getUserRole,
   getIndex,
+  emptyToNull,
 };

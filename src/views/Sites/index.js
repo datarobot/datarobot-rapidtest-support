@@ -34,8 +34,7 @@ const SiteStatus = ({ values, row }) => {
 
   const updateSite = (e) => {
     setIsLoading(true);
-    const site = { ...row.original, archive: !e };
-    editSite(site.id, site)
+    editSite(row.original.id, { archive: !e })
       .then(async () => {
         const data = await getSiteList();
         setIsLoading(false);

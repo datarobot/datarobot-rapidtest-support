@@ -1,16 +1,19 @@
 // @ts-nocheck
 import axios from 'axios';
 import { http } from 'services/http';
+import { emptyToNull } from 'utils';
 
 export const addSite = async (payload) => {
-  const zip = parseInt(payload.zip, 10);
-  // eslint-disable-next-line no-param-reassign
-  payload.zip = zip;
-  // eslint-disable-next-line no-param-reassign
-  payload.site_type = 'School';
+  // Change empty strings to null, since the API validates against an empty string
+  const newPayload = emptyToNull(payload);
+
+  // // eslint-disable-next-line no-param-reassign
+  newPayload.zip = parseInt(payload.zip, 10);
+  // // eslint-disable-next-line no-param-reassign
+  newPayload.site_type = 'School';
 
   const { data } = await http.post('/site', {
-    ...payload,
+    ...newPayload,
   });
 
   return data;
