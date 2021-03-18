@@ -1,4 +1,6 @@
-# This is the repo for the rapid test dashboard app.
+# [RapidTest](https://rapidtestapp.org) dashboard.
+
+![Doc-Brown](https://user-images.githubusercontent.com/45003409/111694926-e0595980-8808-11eb-9cfa-1be473a54083.jpeg)
 
 ## Dockerizing the app
 - Log in with docker
