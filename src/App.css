@@ -1,13 +1,7 @@
 .App {
   min-height: calc(100vh - 80px);
-  display: flex;
-  flex-direction: column;
   margin-top: 80px;
   padding-left: 8.5vw;
   padding-right: 8.5vw;
   overflow-y: scroll;
-}
-
-.content {
-  flex: 1;
 }

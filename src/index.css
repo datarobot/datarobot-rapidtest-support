@@ -9,8 +9,11 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   color: #565663;
+}
+
+html, body, .App, #root, .content {
+  height: 100%;
 }
 
 @layer components {

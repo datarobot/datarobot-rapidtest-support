@@ -18,6 +18,7 @@ const SuccessCheck = ({ persist, size = 26 }) => (
     />
     <path
       className="success-check__check"
+      onAnimationEnd={onAnimationEnd}
       fill="none"
       d="M14.1 27.2l7.1 7.2 16.7-16.8"
     />

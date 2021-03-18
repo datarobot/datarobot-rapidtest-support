@@ -2765,6 +2765,18 @@ adjust-sourcemap-loader@3.0.0:
     loader-utils "^2.0.0"
     regex-parser "^2.2.11"
 
+ag-grid-community@25.1.0:
+  version "25.1.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/ag-grid-community/-/ag-grid-community-25.1.0.tgz#7e132835789586900e0dd24d18cb71d68e09106f"
+  integrity sha1-fhMoNXiVhpAODdJNGMtx1o4JEG8=
+
+ag-grid-react@25.1.0:
+  version "25.1.0"
+  resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/ag-grid-react/-/ag-grid-react-25.1.0.tgz#a045071802eabf426a0a652558f7f2e508e63a26"
+  integrity sha1-oEUHGALqv0JqCmUlWPfy5QjmOiY=
+  dependencies:
+    prop-types "^15.6.2"
+
 agent-base@6:
   version "6.0.2"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/agent-base/-/agent-base-6.0.2.tgz#49fff58577cfee3f37176feab4c22e00f86d7f77"

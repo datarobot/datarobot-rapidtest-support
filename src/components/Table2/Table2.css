@@ -1,0 +1,28 @@
+.ag-theme-rt {
+  color: rgba(31, 41, 55, 1);
+
+  .ag-header-cell {
+    @apply font-bold text-left text-sm uppercase border-b border-gray-400 text-gray-500;
+  }
+
+  .ag-row {
+    @apply bg-white;
+  }
+
+  .ag-row:hover {
+    @apply bg-gray-200;
+  }
+
+  .ag-cell {
+    @apply border-b border-gray-400 flex items-center;
+  }
+
+  * {
+    @apply outline-none;
+  }
+
+  .ag-react-container {
+    @apply w-full;
+  }
+
+}
