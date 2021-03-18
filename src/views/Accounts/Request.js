@@ -11,11 +11,12 @@ import ErrorMessage from 'components/ErrorMessage';
 import PageHeader from 'components/PageHeader';
 import Select from 'components/Select';
 
-import { STATE_OPTIONS_FULL } from 'rt-constants';
+import { CURRENT_PROGRAMS_FULL } from 'rt-constants';
+// import { addAccount } from 'services/api';
 
 import './Accounts.css';
 
-const RequestAccount = () => {
+const RequestAccount = ({ history }) => {
   const [showSuccessMsg, setShowSuccessMsg] = useState(false);
   const { handleSubmit, errors, register, control } = useForm({
     defaultValues: {},
@@ -24,7 +25,21 @@ const RequestAccount = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    toast.success('Your request was submitted successfully.');
+    toast.success('Your request was submitted successfully.', {
+      onClose: () => {
+        history.goBack();
+      },
+      autoClose: 5000,
+    });
+    // addAccount(data)
+    //   .then(() => {
+    //     toast.success('Your request was submitted successfully.', {
+    //       onClose: history.goBack(),
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.error(err);
+    //   });
     setShowSuccessMsg(true);
   };
 
@@ -33,7 +48,7 @@ const RequestAccount = () => {
       <PageHeader headline="Request an account" />
       <section className="flex mb-4">
         <form
-          className={cls('w-full', { isSuccess: showSuccessMsg })}
+          className={cls('w-full request-form', { isSuccess: showSuccessMsg })}
           onSubmit={handleSubmit(onSubmit)}
         >
           <p className="sub-heading text-blue mb-2">What program are you in?</p>
@@ -53,7 +68,7 @@ const RequestAccount = () => {
               <Select
                 name="state"
                 placeholder="Select a program"
-                options={STATE_OPTIONS_FULL}
+                options={CURRENT_PROGRAMS_FULL}
                 isRequired
                 onChange={(e) => {
                   onChange(e);
@@ -155,23 +170,24 @@ const RequestAccount = () => {
               </div>
             </fieldset>
 
-            {!showSuccessMsg ? (
-              <div className="info w-1/4">
-                <InfoBox
-                  heading="Why do we need this?"
-                  subtext="Information for health workers and school personnel"
-                />
-              </div>
-            ) : (
-              <section className="success info flex justify-center">
-                <p className="sub-heading text-blue text-center">
-                  Thanks for submitting your request! <br />
-                  Someone will contact you shortly.
-                </p>
-              </section>
-            )}
+            <div className="info w-1/4">
+              <InfoBox
+                heading="Why do we need this?"
+                subtext="Information for health workers and school personnel"
+              />
+            </div>
           </div>
         </form>
+        <section
+          className={cls('request-success', { isSuccess: showSuccessMsg })}
+        >
+          <div className="text-center">
+            <p className="sub-heading text-blue mb-6">
+              Thanks for submitting your request!
+            </p>
+            <p>Someone will contact you shortly.</p>
+          </div>
+        </section>
       </section>
     </>
   );

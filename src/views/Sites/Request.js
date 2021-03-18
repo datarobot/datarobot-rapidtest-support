@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
+import cls from 'classnames';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
@@ -18,7 +19,9 @@ import { searchSchool, getSchool } from 'services/api';
 
 import { STATE_OPTIONS } from 'rt-constants';
 
-const RequestSite = () => {
+import './Sites.css';
+
+const RequestSite = ({ history }) => {
   const [showSuccessMsg, setShowSuccessMsg] = useState(false);
   const [schools, setSchools] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -30,7 +33,13 @@ const RequestSite = () => {
 
   // eslint-disable-next-line no-unused-vars
   const onSubmit = (data) => {
-    toast.success('Your request was submitted successfully.');
+    console.log(data);
+    toast.success('Your request was submitted successfully.', {
+      onClose: () => {
+        history.goBack();
+      },
+      autoClose: 5000,
+    });
     setShowSuccessMsg(true);
   };
 
@@ -114,7 +123,10 @@ const RequestSite = () => {
     <>
       <PageHeader headline="Request a site" />
       <section className="flex mb-4">
-        <form className="w-2/5 mr-8" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className={cls('request-site-form', { isSuccess: showSuccessMsg })}
+          onSubmit={handleSubmit(onSubmit)}
+        >
           <Controller
             name="site_name"
             control={control}
@@ -320,15 +332,21 @@ const RequestSite = () => {
           </div>
         </form>
 
-        <section className="w-3/5 flex justify-center items-center">
-          {showSuccessMsg ? (
-            <p className="sub-heading text-blue text-center">
-              Thanks for submitting your request! <br />
-              Someone will contact you shortly.
-            </p>
-          ) : (
+        {!showSuccessMsg && (
+          <section className="w-3/5 flex justify-center items-center">
             <Map center={mapCenter} zoom={mapZoom} />
-          )}
+          </section>
+        )}
+
+        <section
+          className={cls('request-site-success', { isSuccess: showSuccessMsg })}
+        >
+          <div className="text-center">
+            <p className="sub-heading text-blue mb-6">
+              Thanks for submitting your request!
+            </p>
+            <p>Someone will contact you shortly.</p>
+          </div>
         </section>
       </section>
     </>
