@@ -25,8 +25,10 @@
 -  Installed & configured things so I can deploy the site to production
 
 
-
 ## v0.0.13
+- Botched deploy 😬
+
+## v0.0.14
 
 - Added geocoding to update map when address is typed in
   - ![yay](https://media.giphy.com/media/xTiN0CNHgoRf1Ha7CM/giphy.gif)	
