@@ -87,7 +87,12 @@ const UploadSites = ({ history }) => {
           for (const key in resp) {
             if (Object.hasOwnProperty.call(resp, key)) {
               const msg = resp[key];
-              toast.error(`${site.site_name}: ${msg}`, { autoClose: 5000 });
+              toast.error(
+                <>
+                  <strong>{site.site_name}</strong>: {msg}
+                </>,
+                { autoClose: 10000 }
+              );
             }
           }
         });

@@ -29,16 +29,11 @@
 ## v0.0.13
 
 - Added geocoding to update map when address is typed in
-
   - ![yay](https://media.giphy.com/media/xTiN0CNHgoRf1Ha7CM/giphy.gif)	
-
-- Fixed Cancel button does nothing in Edit Sites, if you didn’t hit Save Info button - [RSS-24](https://datarobot.atlassian.net/browse/RSS-24)
-
+- Fixed "Cancel button does nothing in Edit Sites, if you didn’t hit Save Info button" - [RSS-24](https://datarobot.atlassian.net/browse/RSS-24)
 - Fixed "Uploading sites… message doesn’t disappear after getting errors" - [RSS-23](https://datarobot.atlassian.net/browse/RSS-23)
-
 - Added CAPTCHA to request account page - [RSS-20](https://datarobot.atlassian.net/browse/RSS-20)  
-
   - ![](https://user-images.githubusercontent.com/45003409/111834816-84efa000-88ca-11eb-8a27-e450afa0d55c.gif)
-
-    
+- Fixed "Upload a list of accounts shows Uploaded 2 accounts! message despite getting errors in response" - [RSS-26](https://datarobot.atlassian.net/browse/RSS-26)
+- Fixed "Each string is repeated many times in .csv preview" - [RSS-25](https://datarobot.atlassian.net/browse/RSS-25)
 
