@@ -76,3 +76,17 @@ export const getSchool = async (id) => {
 
   return data;
 };
+
+export const verifyCaptcha = async (token) => {
+  const { data, status } = await axios.post('/captcha', { token });
+
+  return { data, status };
+};
+
+export const getPrograms = async () => {
+  const { data } = await axios.get(
+    'https://rapidtest.stracdata.org/sites.json'
+  );
+
+  return data;
+};

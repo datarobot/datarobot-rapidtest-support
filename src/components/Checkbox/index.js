@@ -14,7 +14,7 @@ const Checkbox = ({
 }) => (
   <div>
     <label
-      className={cls('flex justify-start items-start', labelClass, {
+      className={cls('flex justify-start items-start', {
         checkboxDisabled: isDisabled,
       })}
     >
@@ -38,7 +38,7 @@ const Checkbox = ({
           />
         </svg>
       </div>
-      <div className="labelText select-none cursor-pointer">{label}</div>
+      <div className={cls('labelText', labelClass)}>{label}</div>
     </label>
   </div>
 );

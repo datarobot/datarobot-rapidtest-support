@@ -26,6 +26,10 @@ body {
     @apply shadow-lg bg-blue;
   }
 
+  .btn-primary:disabled {
+    @apply bg-opacity-50 cursor-not-allowed;
+  }
+
   .btn-clear {
     @apply bg-transparent font-bold rounded px-6 py-2 text-sm outline-none focus:outline-none;
   }

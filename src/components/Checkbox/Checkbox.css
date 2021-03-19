@@ -13,3 +13,7 @@
 .checkboxDisabled .checkboxWrapper {
   @apply border-gray-300;
 }
+
+.labelText {
+  @apply select-none cursor-pointer;
+}
