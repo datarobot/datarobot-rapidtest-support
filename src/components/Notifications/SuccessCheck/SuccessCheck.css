@@ -15,6 +15,10 @@
   animation: fill 400ms ease-in-out 500ms forwards, scale 300ms ease-in-out 1300ms both;
 }
 
+.success-check.persist {
+  animation: fill 400ms ease-in-out 500ms forwards, scalePersistent 300ms ease-in-out 1300ms both;
+}
+
 .success-check__circle {
   stroke-dasharray: 166;
   stroke-dashoffset: 166;
@@ -47,6 +51,15 @@
   }
   100% {
     transform: scale3d(0, 0, 0);
+  }
+}
+
+@keyframes scalePersistent {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
   }
 }
 

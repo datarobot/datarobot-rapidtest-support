@@ -8,9 +8,12 @@ import (
 	"io"
 	"io/ioutil"
 	"log"
+	"mclfy/captcha"
 	"net/http"
 	"os"
 	"strings"
+
+	// "mcfly/captcha"
 
 	"github.com/gorilla/mux"
 	"github.com/lithammer/fuzzysearch/fuzzy"
@@ -161,6 +164,7 @@ func main() {
 	router.HandleFunc("/", homeLink)
 	router.HandleFunc("/api/schools", getSchoolList).Methods("POST")
 	router.HandleFunc("/api/schools/{id}", getSchool).Methods("GET")
+	router.HandleFunc("/api/captcha", captcha.Captcha).Methods("POST")
 	log.Fatal(http.ListenAndServe(":1337", router))
 
 	fmt.Print("McFly is listening on port 1337")

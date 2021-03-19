@@ -38,9 +38,9 @@ RUN yum -y update && \
   yum -y clean all
 
 WORKDIR /mcfly
-COPY ./mcfly/go.mod ./mcfly/go.sum ./mcfly/schools.csv ./
+# COPY ./mcfly/go.mod ./mcfly/go.sum ./mcfly/schools.csv ./mcfly/captcha/captcha.go ./
+COPY ./mcfly/.env ./mcfly ./
 RUN go mod download
-COPY ./mcfly .
 RUN go build -o main .
 
 WORKDIR /

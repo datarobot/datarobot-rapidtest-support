@@ -1,47 +1,71 @@
 // @ts-nocheck
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import cls from 'classnames';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
+import Captcha from 'components/Captcha';
 import InfoBox from 'components/InfoBox';
 import Input, { ControlledInput } from 'components/Input';
 import ErrorMessage from 'components/ErrorMessage';
 import PageHeader from 'components/PageHeader';
 import Select from 'components/Select';
 
-import { CURRENT_PROGRAMS_FULL } from 'rt-constants';
-// import { addAccount } from 'services/api';
+import { addAccount, getPrograms } from 'services/api';
+import { sortArrayOfObjects } from 'utils';
 
 import './Accounts.css';
 
 const RequestAccount = ({ history }) => {
   const [showSuccessMsg, setShowSuccessMsg] = useState(false);
+  const [programList, setProgramList] = useState([]);
+  const [captchaVerified, setCaptchaVerified] = useState(false);
+
   const { handleSubmit, errors, register, control } = useForm({
     defaultValues: {},
   });
   const { t } = useTranslation();
 
   const onSubmit = (data) => {
-    console.log(data);
-    toast.success('Your request was submitted successfully.', {
-      onClose: () => {
-        history.goBack();
-      },
-      autoClose: 5000,
-    });
-    // addAccount(data)
-    //   .then(() => {
-    //     toast.success('Your request was submitted successfully.', {
-    //       onClose: history.goBack(),
-    //     });
-    //   })
-    //   .catch((err) => {
-    //     console.error(err);
-    //   });
-    setShowSuccessMsg(true);
+    addAccount(data)
+      .then(() => {
+        setShowSuccessMsg(true);
+        toast.success('Your request was submitted successfully.', {
+          onClose: history.goBack(),
+        });
+      })
+      .catch(() => {
+        toast.error('Something went wrong!');
+      });
   };
+
+  const handleCaptchaSuccess = () => {
+    setCaptchaVerified(true);
+  };
+
+  const handleCaptchaError = () => {
+    toast.error('CAPTCHA challenge failed.');
+  };
+
+  const buildProgramList = async () => {
+    const programs = await getPrograms();
+
+    const programArr = [];
+
+    for (const key in programs) {
+      if (Object.hasOwnProperty.call(programs, key)) {
+        const prog = programs[key][0];
+        programArr.push({ value: key, label: prog.name });
+      }
+    }
+
+    setProgramList(programArr.sort(sortArrayOfObjects('label')));
+  };
+
+  useEffect(() => {
+    buildProgramList();
+  }, []);
 
   return (
     <>
@@ -68,7 +92,7 @@ const RequestAccount = ({ history }) => {
               <Select
                 name="state"
                 placeholder="Select a program"
-                options={CURRENT_PROGRAMS_FULL}
+                options={programList}
                 isRequired
                 onChange={(e) => {
                   onChange(e);
@@ -159,12 +183,23 @@ const RequestAccount = ({ history }) => {
                 )}
               />
 
+              <div className="mt-4">
+                <Captcha
+                  handleSuccess={handleCaptchaSuccess}
+                  handleError={handleCaptchaError}
+                />
+              </div>
+
               <div className="btn-row end mt-4">
                 <button className="btn-clear" type="button" onClick={() => {}}>
                   Cancel
                 </button>
 
-                <button className="btn-primary mr-2" type="submit">
+                <button
+                  className="btn-primary mr-2"
+                  type="submit"
+                  disabled={!captchaVerified}
+                >
                   Request Account
                 </button>
               </div>

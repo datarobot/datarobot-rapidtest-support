@@ -2,16 +2,17 @@ import cls from 'classnames';
 
 import './SuccessCheck.css';
 
-const SuccessCheck = ({ isShown }) => (
+const SuccessCheck = ({ persist, size = 26 }) => (
   <svg
-    className={cls('success-check', { isShown })}
+    className={cls('success-check', { persist })}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 52 52"
+    style={{ width: size, height: size }}
   >
     <circle
       className="success-check__circle"
-      cx={26}
-      cy={26}
+      cx={size}
+      cy={size}
       r={25}
       fill="none"
     />

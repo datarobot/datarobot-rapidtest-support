@@ -1,0 +1,7 @@
+.captcha-container {
+  @apply w-full bg-white rounded p-4;
+}
+
+.captcha-loader {
+  width: unset;
+}
