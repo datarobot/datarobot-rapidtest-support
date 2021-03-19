@@ -62,9 +62,12 @@ const AddSite = ({ history }) => {
   };
 
   const doGeocoding = (address) => {
+    console.log(address, geocoder);
     geocoder.geocode({ address }, (results, status) => {
+      console.log(results, status);
       if (status === 'OK') {
         const { lat, lng } = results[0].geometry.location;
+        console.log({ lat: lat(), lng: lng() });
         setMapCenter({ lat: lat(), lng: lng() });
         setMapZoom(16);
       } else {
@@ -102,7 +105,7 @@ const AddSite = ({ history }) => {
 
   useEffect(() => {
     const { street, city, state, zip } = formValues;
-    if (street && city && state && zip && mapZoom < 16) {
+    if (street && city && state && zip) {
       const address = `${street} ${city}, ${state}, ${zip}`;
       doGeocoding(address);
     }
