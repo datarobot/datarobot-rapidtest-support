@@ -4,7 +4,7 @@ const difference = (a, b) => a.filter((x) => !b.includes(x));
 
 export const isValidSitesList = (list) => {
   const { REQUIRED } = VALID_SITE_COLUMNS;
-  return list.some((a) => REQUIRED.includes(a));
+  return REQUIRED.every((a) => list.includes(a));
 };
 
 export const getSiteError = (list) => {
@@ -21,7 +21,7 @@ export const getSiteError = (list) => {
 export const isValidAccountList = (list) => {
   const { REQUIRED } = VALID_ACCOUNT_COLUMNS;
 
-  return list.some((a) => REQUIRED.includes(a));
+  return REQUIRED.every((a) => list.includes(a));
 };
 
 export const getAccountError = (list) => {

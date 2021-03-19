@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useRef, useState } from 'react';
+import { Fragment, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import FileUpload from 'components/FileUpload';
@@ -11,6 +11,8 @@ import { ROUTES, VALID_SITE_COLUMNS } from 'rt-constants';
 
 import fileTemplate from 'assets/static/rapidtest_sites_template.csv';
 
+import './Sites.css';
+
 const HeaderText = () => {
   const { REQUIRED, OPTIONAL } = VALID_SITE_COLUMNS;
   return (
@@ -18,8 +20,22 @@ const HeaderText = () => {
       <p>Upload a CSV file with a list of sites to add to your program.</p>
       <div className="mt-2">
         Valid column names are:
-        <aside className="font-mono text-xs">
-          {[...REQUIRED, ...OPTIONAL].join(', ')}
+        <aside className="font-mono text-xs column-list">
+          {REQUIRED.map((reqCol, i) => (
+            <span key={i}>
+              {reqCol}
+              <sup>*</sup>,{' '}
+            </span>
+          ))}
+          {OPTIONAL.map((optCol, i) => (
+            <Fragment key={i}>
+              {i !== OPTIONAL.length - 1 ? (
+                <span>{optCol}, </span>
+              ) : (
+                <span>{optCol}</span>
+              )}
+            </Fragment>
+          ))}
         </aside>
       </div>
     </>
@@ -35,36 +51,50 @@ const UploadSites = ({ history }) => {
     toastId.current = toast.info('Uploading sites...', { autoClose: false });
   };
 
-  const update = (msg) => {
+  const dismiss = () => toast.dismiss(toastId.current);
+
+  const update = (msg, type, ...rest) => {
     toast.update(toastId.current, {
       render: msg,
-      type: toast.TYPE.SUCCESS,
+      type,
       autoClose: 5000,
       onClose: () => {
         history.push(ROUTES.SITES.path);
       },
+      ...rest,
     });
   };
 
   const handleUpload = (data) => {
     notify();
+    let uploaded = 0;
 
     for (let i = 0; i < data.length; i += 1) {
       const site = data[i];
-      addSite(site).catch((err) => {
-        const resp = err.response?.data.errors;
-        setHasErrors(true);
-        for (const key in resp) {
-          if (Object.hasOwnProperty.call(resp, key)) {
-            const msg = resp[key];
-            toast.error(msg, { autoClose: 10000 });
+      if (hasErrors) {
+        break;
+      }
+
+      addSite(site)
+        // eslint-disable-next-line no-loop-func
+        .then(() => {
+          uploaded += 1;
+        })
+        .catch((err) => {
+          const resp = err.response?.data.errors;
+          setHasErrors(true);
+          dismiss();
+          for (const key in resp) {
+            if (Object.hasOwnProperty.call(resp, key)) {
+              const msg = resp[key];
+              toast.error(`${site.site_name}: ${msg}`, { autoClose: 5000 });
+            }
           }
-        }
-      });
+        });
     }
 
-    if (!hasErrors) {
-      update(`Uploaded ${data.length} sites!`);
+    if (!hasErrors && uploaded === data.length) {
+      update(`Uploaded ${data.length} sites!`, toast.TYPE.SUCCESS);
     }
   };
 

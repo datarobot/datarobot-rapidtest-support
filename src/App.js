@@ -48,6 +48,7 @@ const App = () => {
           position="bottom-center"
           toastClassName="rt-toast"
           autoClose={2500}
+          limit={2}
         />
       </div>
     </Router>
