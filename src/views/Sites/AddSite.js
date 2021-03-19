@@ -2,7 +2,6 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
-
 import { toast } from 'react-toastify';
 
 import Autocomplete from 'components/Autocomplete';
@@ -15,7 +14,7 @@ import Map from 'components/Map';
 import { ROUTES, STATE_OPTIONS } from 'rt-constants';
 
 import { useDebounce } from 'hooks';
-
+import { loadGoogleScript } from 'utils';
 import { addSite, searchSchool, getSchool } from 'services/api';
 
 const AddSite = ({ history }) => {
@@ -26,6 +25,14 @@ const AddSite = ({ history }) => {
   const [currentSchool, setCurrentSchool] = useState();
   const [mapCenter, setMapCenter] = useState();
   const [mapZoom, setMapZoom] = useState();
+  const [formValues, setFormValues] = useState({});
+  const [geocoder, setGeocoder] = useState();
+
+  useEffect(() => {
+    if (!geocoder) {
+      loadGoogleScript(() => setGeocoder(new window.google.maps.Geocoder()));
+    }
+  }, []);
 
   const onSubmit = (data) => {
     addSite({
@@ -54,6 +61,18 @@ const AddSite = ({ history }) => {
       });
   };
 
+  const doGeocoding = (address) => {
+    geocoder.geocode({ address }, (results, status) => {
+      if (status === 'OK') {
+        const { lat, lng } = results[0].geometry.location;
+        setMapCenter({ lat: lat(), lng: lng() });
+        setMapZoom(16);
+      } else {
+        console.error(`Geocode failed: ${status}`);
+      }
+    });
+  };
+
   const doSearch = async (val) => {
     if (val.length > 2) {
       const list = await searchSchool(val);
@@ -74,6 +93,20 @@ const AddSite = ({ history }) => {
     },
     [debouncedSearchTerm] // Only call effect if debounced search term changes
   );
+
+  const updateForm = ({ target }) => {
+    const { name, value } = target;
+
+    setFormValues((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  useEffect(() => {
+    const { street, city, state, zip } = formValues;
+    if (street && city && state && zip && mapZoom < 16) {
+      const address = `${street} ${city}, ${state}, ${zip}`;
+      doGeocoding(address);
+    }
+  }, [formValues]);
 
   const handleListItemClick = async (id) => {
     const school = await getSchool(id);
@@ -144,7 +177,7 @@ const AddSite = ({ history }) => {
                 message: t('errorMessages.common.required'),
               },
             }}
-            render={({ onChange, value, ref }) => (
+            render={({ onChange, value }) => (
               <Autocomplete
                 inputName="site_name"
                 label={t('site.label.name')} // "Site Name"
@@ -163,7 +196,6 @@ const AddSite = ({ history }) => {
                     ? currentSchool?.site_name
                     : value || ''
                 }
-                inputRef={ref}
                 listValues={schools}
                 onItemClick={handleListItemClick}
                 onClearClick={handleClearState}
@@ -198,6 +230,7 @@ const AddSite = ({ history }) => {
                     }
                     className="mt-1"
                     isRequired
+                    onBlur={updateForm}
                   />
                 )}
               />
@@ -226,6 +259,7 @@ const AddSite = ({ history }) => {
                     }
                     className="mt-1"
                     isRequired
+                    onBlur={updateForm}
                   />
                 )}
               />
@@ -286,6 +320,7 @@ const AddSite = ({ history }) => {
                     value={currentSchool?.state || value}
                     className="mt-1"
                     placeholder="State"
+                    onBlur={updateForm}
                   />
                 )}
               />
@@ -318,6 +353,7 @@ const AddSite = ({ history }) => {
                     }
                     className="mt-1"
                     isRequired
+                    onBlur={updateForm}
                   />
                 )}
               />

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { format } from 'date-fns';
 import Papa from 'papaparse';
 import { SESSION_STORAGE_ITEMS, USER_ROLES } from 'rt-constants';
@@ -116,6 +117,25 @@ const emptyToNull = (obj) => {
   return obj;
 };
 
+const loadGoogleScript = (callback) => {
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+
+  if (script.readyState) {
+    script.onreadystatechange = () => {
+      if (script.readyState === 'loaded' || script.readyState === 'complete') {
+        script.onreadystatechange = null;
+        callback();
+      }
+    };
+  } else {
+    script.onload = () => callback();
+  }
+
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_API_KEY}`;
+  document.getElementsByTagName('head')[0].appendChild(script);
+};
+
 export {
   get,
   set,
@@ -130,4 +150,5 @@ export {
   getUserRole,
   getIndex,
   emptyToNull,
+  loadGoogleScript,
 };
