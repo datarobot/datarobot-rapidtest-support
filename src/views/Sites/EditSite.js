@@ -207,10 +207,12 @@ const Edit = ({ history }) => {
               })}
             />
 
-            {errors.email && <span>This field is required</span>}
-
             <div className="btn-row end mt-4">
-              <button className="btn-clear" type="button">
+              <button
+                className="btn-clear mr-1"
+                type="button"
+                onClick={() => history.goBack()}
+              >
                 Cancel
               </button>
 

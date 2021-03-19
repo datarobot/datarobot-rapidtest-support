@@ -85,6 +85,13 @@ const FileUpload = ({
     },
   };
 
+  const clearState = () => {
+    setFiles([]);
+    setTableColumns([]);
+    setTableDataDisplay([]);
+    setTableData([]);
+  };
+
   useEffect(() => {
     files.forEach((file) => {
       Papa.parse(file, parseConfig);
@@ -123,7 +130,7 @@ const FileUpload = ({
                   <Button
                     kind={KIND.CLEAR}
                     className="mr-2"
-                    onClick={() => setFiles([])}
+                    onClick={clearState}
                     label="Cancel"
                   />
 

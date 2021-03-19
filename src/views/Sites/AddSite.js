@@ -407,7 +407,7 @@ const AddSite = ({ history }) => {
             </button>
 
             <button className="btn-primary mr-2" type="submit">
-              Save Info
+              Add site
             </button>
           </div>
         </form>
