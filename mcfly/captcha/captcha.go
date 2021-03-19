@@ -28,7 +28,7 @@ func Captcha(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var (
-		secretKey = os.Getenv("HCAPTCHA_DEV_SECRET")
+		secretKey = os.Getenv("HCAPTCHA_SECRET")
 		client    = hcaptcha.New(secretKey)
 	)
 

@@ -39,7 +39,7 @@ const Captcha = ({ handleSuccess, handleError }) => {
   return (
     <section className="captcha-container">
       <HCaptcha
-        sitekey={process.env.REACT_APP_HCAPTCHA_DEV_KEY}
+        sitekey={process.env.REACT_APP_HCAPTCHA_KEY}
         onVerify={setCaptchaToken}
         onError={handleError}
         ref={captchaRef}
