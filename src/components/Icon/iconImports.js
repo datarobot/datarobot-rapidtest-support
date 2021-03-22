@@ -1,8 +1,6 @@
 import {
   faCheckCircle,
   faChevronDown,
-  faChevronLeft,
-  faChevronRight,
   faChevronUp,
   faFileCsv,
   faHourglassHalf,
@@ -12,15 +10,15 @@ import {
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 
-import {
-  faChevronDoubleLeft,
-  faChevronDoubleRight,
-  faLongArrowRight,
-} from '@fortawesome/pro-solid-svg-icons';
+import { faLongArrowRight } from '@fortawesome/pro-solid-svg-icons';
 
 import { faCloudUploadAlt } from '@fortawesome/pro-regular-svg-icons';
 
 import {
+  faChevronLeft,
+  faChevronRight,
+  faChevronDoubleLeft,
+  faChevronDoubleRight,
   faEye,
   faEyeSlash,
   faFileExport,

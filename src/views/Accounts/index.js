@@ -19,6 +19,7 @@ import Table2 from 'components/Table2';
 import { download, toCsv } from 'utils';
 import SuccessCheck from 'components/Notifications/SuccessCheck';
 import DisableAccountCell from 'components/Table2/DisableAccountCell';
+import AccountNameCell from 'components/Table2/AccountNameCell';
 
 const StatusCell = ({ val }) => {
   const { archive } = val;
@@ -186,10 +187,18 @@ const Accounts = () => {
     [accounts]
   );
 
+  const sortNames = (a, b) => {
+    if (a > b) return 1;
+    if (b > a) return -1;
+    return 0;
+  };
+
   const cols = [
     {
-      value: ({ data }) => `${data.last_name}, ${data.first_name}`,
+      renderer: 'accountNameCell',
       header: 'Name',
+      comparator: sortNames,
+      value: ({ data }) => `${data.last_name}, ${data.first_name}`,
     },
     { field: 'email_address', header: 'Email' },
     { field: 'phone_number_office', header: 'Phone' },
@@ -207,7 +216,10 @@ const Accounts = () => {
     },
   ];
 
-  const renderers = { disableAccountCell: DisableAccountCell };
+  const renderers = {
+    disableAccountCell: DisableAccountCell,
+    accountNameCell: AccountNameCell,
+  };
 
   useEffect(() => {
     (async () => {

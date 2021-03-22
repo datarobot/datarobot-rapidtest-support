@@ -25,4 +25,16 @@
     @apply w-full;
   }
 
+  .ag-paging-panel {
+    @apply flex justify-between;
+  }
+
+  .ag-paging-row-summary-panel-number {
+    @apply font-bold;
+  }
+
+  .pagination-panel {
+    @apply py-4 flex justify-between;
+  }
+
 }
