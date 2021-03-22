@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable react-hooks/exhaustive-deps */
 // @ts-nocheck
 import { useCallback, useEffect, useState } from 'react';
@@ -11,6 +12,7 @@ import Table from 'components/Table';
 import { isEqual } from 'utils';
 
 import './FileUpload.css';
+import { toast } from 'react-toastify';
 
 const UploadLabel = () => (
   <>
@@ -91,15 +93,17 @@ const FileUpload = ({
     setTableData([]);
   };
 
+  const isCsv = (file) => file.name.split('.').pop() === 'csv';
+
   useEffect(() => {
     files.forEach((file) => {
-      console.log(`
-name: ${file.name}
-type: ${file.type}
-
-`);
-
-      Papa.parse(file, parseConfig);
+      if (isCsv(file)) {
+        Papa.parse(file, parseConfig);
+      } else {
+        toast.error('Only CSV files are permitted.', {
+          onClose: () => setFiles([]),
+        });
+      }
     });
   }, [files]);
 
