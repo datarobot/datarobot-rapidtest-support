@@ -1,11 +1,12 @@
 // @ts-nocheck
-import { Fragment, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import FileUpload from 'components/FileUpload';
 import PageHeader from 'components/PageHeader';
 import { addSite } from 'services/api';
 import { isValidSitesList, getSiteError } from 'utils/validate';
+import { parseError } from 'utils/errors';
 
 import { ROUTES, VALID_SITE_COLUMNS } from 'rt-constants';
 
@@ -84,24 +85,29 @@ const UploadSites = ({ history }) => {
           const resp = err.response?.data.errors;
           setHasErrors(true);
           dismiss();
-          for (const key in resp) {
-            if (Object.hasOwnProperty.call(resp, key)) {
-              const msg = resp[key];
-              toast.error(
-                <>
-                  <strong>{site.site_name}</strong>: {msg}
-                </>,
-                { autoClose: 10000 }
-              );
+          toast.error(
+            <>
+              <strong>{site.site_name}</strong>: {parseError(resp)}
+            </>,
+            {
+              autoClose: 10000,
+              onClose: () => {
+                setHasErrors(false);
+              },
             }
-          }
+          );
         });
     }
 
     if (!hasErrors && uploaded === data.length) {
       update(`Uploaded ${data.length} sites!`, toast.TYPE.SUCCESS);
+      uploaded = 0;
     }
   };
+
+  useEffect(() => {
+    console.log(hasErrors);
+  }, [hasErrors]);
 
   return (
     <>
