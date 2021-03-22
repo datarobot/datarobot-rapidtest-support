@@ -12,7 +12,9 @@ import { ROUTES } from 'rt-constants';
 import ToggleButton from 'components/ToggleButton';
 import Icon from 'components/Icon';
 import SuccessCheck from 'components/Notifications/SuccessCheck';
-import Table from 'components/Table';
+import SiteNameCell from 'components/Table2/SiteNameCell';
+import DisableSiteCell from 'components/Table2/DisableSiteCell';
+import Table2 from 'components/Table2';
 import Modal from 'components/Modal';
 
 import { download, toCsv } from 'utils';
@@ -118,6 +120,7 @@ const Sites = () => {
     download({ name: 'rapidtest_sites', ext: 'csv', data: toCsv(sites) });
   };
 
+  // eslint-disable-next-line no-unused-vars
   const columns = useMemo(
     () => [
       {
@@ -167,6 +170,44 @@ const Sites = () => {
     []
   );
 
+  const sortNames = (a, b) => {
+    if (a > b) return 1;
+    if (b > a) return -1;
+    return 0;
+  };
+
+  const cols = [
+    {
+      renderer: 'siteNameCell',
+      header: 'Name',
+      comparator: sortNames,
+      value: ({ data }) => data.site_name,
+    },
+    {
+      header: 'Address',
+      value: ({ data }) =>
+        `${data.street}, ${data.city} ${data.state} ${data.zip}`,
+    },
+    {
+      field: 'phone_number_office',
+      header: 'Contact',
+      value: ({ data }) => data.contact_name || '-',
+      colWidth: 200,
+    },
+    {
+      field: 'archive',
+      renderer: 'disableSiteCell',
+      header: 'Status',
+      disableSort: true,
+      colWidth: 120,
+    },
+  ];
+
+  const renderers = {
+    siteNameCell: SiteNameCell,
+    disableSiteCell: DisableSiteCell,
+  };
+
   useEffect(() => {
     (async () => {
       setIsLoading(true);
@@ -184,7 +225,20 @@ const Sites = () => {
 
   return (
     <div>
-      <Table
+      <Table2
+        rows={sites}
+        cols={cols}
+        renderers={renderers}
+        tableName="Manage Sites"
+        addButtonText={t('buttons.addAccount')}
+        uploadButtonText={`+ ${t('buttons.uploadList')}`}
+        addRoute={ROUTES.ADD_SITE.path}
+        uploadRoute={ROUTES.UPLOAD_SITES.path}
+        isLoading={isLoading}
+        onExportData={handleExportData}
+        sortBy="name"
+      />
+      {/* <Table
         tableName="Manage Sites"
         columns={columns}
         data={sites}
@@ -196,7 +250,7 @@ const Sites = () => {
         isLoading={isLoading}
         onExportData={handleExportData}
         sortBy="site_name"
-      />
+      /> */}
     </div>
   );
 };

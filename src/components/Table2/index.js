@@ -54,6 +54,10 @@ const Table2 = ({
   const [rowCount, setRowCount] = useState(0);
   const [pageSize, setPageSize] = useState(0);
 
+  useEffect(() => {
+    console.log(gridColumnApi);
+  }, [gridColumnApi]);
+
   const onGridReady = (params) => {
     setGridApi(params.api);
     setGridColumnApi(params.columnApi);
@@ -152,6 +156,7 @@ const Table2 = ({
             onPaginationChanged={onPaginationChanged}
             suppressPaginationPanel={true}
             frameworkComponents={{ agColumnHeader: HeaderCell, ...renderers }}
+            animateRows={true}
           >
             {cols.map(
               ({
@@ -187,20 +192,20 @@ const Table2 = ({
             </div>
 
             <div className="flex">
-              <button onClick={() => onBtFirst()}>
+              <button className="px-2" onClick={() => onBtFirst()}>
                 <Icon iconName="chevron-double-left" type="fal" />
               </button>
-              <button className="ml-1" onClick={() => onBtPrevious()}>
+              <button className="px-2" onClick={() => onBtPrevious()}>
                 <Icon iconName="chevron-left" type="fal" />
               </button>
               <div className="mx-4">
                 Page <strong>{currentPage}</strong> of{' '}
                 <strong>{totalPages}</strong>
               </div>
-              <button className="mr-1" onClick={() => onBtNext()}>
+              <button className="px-2" onClick={() => onBtNext()}>
                 <Icon iconName="chevron-right" type="fal" />
               </button>
-              <button onClick={() => onBtLast()} id="btLast">
+              <button className="px-2" onClick={() => onBtLast()} id="btLast">
                 <Icon iconName="chevron-double-right" type="fal" />
               </button>
             </div>

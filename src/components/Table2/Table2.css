@@ -14,7 +14,7 @@
   }
 
   .ag-cell {
-    @apply border-b border-gray-400 flex items-center;
+    @apply border-b border-gray-400 flex items-center px-2;
   }
 
   * {
