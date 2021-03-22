@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import FileUpload from 'components/FileUpload';
@@ -104,10 +104,6 @@ const UploadSites = ({ history }) => {
       uploaded = 0;
     }
   };
-
-  useEffect(() => {
-    console.log(hasErrors);
-  }, [hasErrors]);
 
   return (
     <>

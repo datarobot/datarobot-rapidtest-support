@@ -48,7 +48,6 @@ const FileUpload = ({
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
-    accept: 'text/csv',
   });
 
   const parseConfig = {
@@ -94,6 +93,12 @@ const FileUpload = ({
 
   useEffect(() => {
     files.forEach((file) => {
+      console.log(`
+name: ${file.name}
+type: ${file.type}
+
+`);
+
       Papa.parse(file, parseConfig);
     });
   }, [files]);
