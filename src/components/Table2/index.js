@@ -152,7 +152,7 @@ const Table2 = ({
             defaultColDef={{
               flex: 1,
               sortable: true,
-              // resizable: true,
+              resizable: true,
               filter: true,
             }}
             pagination={true}

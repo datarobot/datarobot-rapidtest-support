@@ -39,9 +39,14 @@ const Sites = () => {
       header: 'Address',
       value: ({ data }) =>
         `${data.street}, ${data.city} ${data.state} ${data.zip}`,
+      colWidth: 650,
     },
     {
-      field: 'phone_number_office',
+      header: 'District',
+      value: ({ data }) => data.district || '-',
+      // colWidth: 200,
+    },
+    {
       header: 'Contact',
       value: ({ data }) => data.contact_name || '-',
       colWidth: 200,
