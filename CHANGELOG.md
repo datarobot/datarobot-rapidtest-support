@@ -39,3 +39,12 @@
 - Fixed "Upload a list of accounts shows Uploaded 2 accounts! message despite getting errors in response" - [RSS-26](https://datarobot.atlassian.net/browse/RSS-26)
 - Fixed "Each string is repeated many times in .csv preview" - [RSS-25](https://datarobot.atlassian.net/browse/RSS-25)
 
+## v0.0.15
+- Deployed debug code to help Seattle Children's
+
+## v0.0.16
+- Handling duplicate site errors - [RSS-31](https://datarobot.atlassian.net/browse/RSS-31)
+- Fixed the issue where Seattle Children's couldn't upload csv files.
+
+## v0.0.17
+- Added disable site confirmation - [RSS-1](https://datarobot.atlassian.net/browse/RSS-1)

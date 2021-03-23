@@ -16,17 +16,16 @@ const ToggleButton = ({
     setToggle(defaultChecked);
   }, [defaultChecked]);
 
-  const triggerToggle = () => {
-    if (disabled) {
-      return;
-    }
+  // const triggerToggle = () => {
+  //   if (disabled) {
+  //     return;
+  //   }
 
-    setToggle(!toggle);
-
-    if (typeof onChange === 'function') {
-      onChange(!toggle);
-    }
-  };
+  //   if (typeof onChange === 'function') {
+  //     onChange(!toggle);
+  //     setToggle(!toggle);
+  //   }
+  // };
 
   const toggleClasses = cls(
     'toggle',
@@ -38,7 +37,7 @@ const ToggleButton = ({
   );
 
   return (
-    <div onClick={triggerToggle} className={toggleClasses}>
+    <div onClick={onChange} className={toggleClasses}>
       <div className={cls('toggle-container', { checked: toggle })}>
         <div className="toggle-check" />
         <div className="toggle-uncheck" />
@@ -49,7 +48,7 @@ const ToggleButton = ({
         aria-label="Toggle Button"
         className="toggle-input"
         defaultChecked={defaultChecked || false}
-        onChange={triggerToggle}
+        onChange={onChange}
       />
     </div>
   );
