@@ -50,3 +50,4 @@
 - Added disable site confirmation - [RSS-1](https://datarobot.atlassian.net/browse/RSS-1)
 - Fixed "Upload a list of accounts shows Uploaded 2 accounts! message despite getting errors in response" - [RSS-26](https://datarobot.atlassian.net/browse/RSS-26)
 - Fixed "Validate that uploaded csv has at least one row" - [RSS-37](https://datarobot.atlassian.net/browse/RSS-37)
+- Converted table to new component, fixes [RSS-22](https://datarobot.atlassian.net/browse/RSS-22)
