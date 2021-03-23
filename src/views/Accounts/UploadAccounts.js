@@ -6,6 +6,7 @@ import FileUpload from 'components/FileUpload';
 import PageHeader from 'components/PageHeader';
 import { addAccount } from 'services/api';
 import { isValidAccountList, getAccountError } from 'utils/validate';
+import { parseError } from 'utils/errors';
 
 import { ROUTES, VALID_ACCOUNT_COLUMNS } from 'rt-constants';
 
@@ -38,39 +39,59 @@ const UploadAccounts = ({ history }) => {
     toastId.current = toast.info('Uploading accounts...', { autoClose: false });
   };
 
-  const update = (msg) => {
+  const dismiss = () => toast.dismiss(toastId.current);
+
+  const update = (msg, type, ...rest) => {
     toast.update(toastId.current, {
       render: msg,
-      type: toast.TYPE.SUCCESS,
+      type,
       autoClose: 5000,
       onClose: () => {
-        history.push(ROUTES.ACCOUNTS.path);
+        history.push(ROUTES.SITES.path);
       },
+      ...rest,
     });
   };
 
   const handleUpload = (data) => {
     notify();
+    let uploaded = 0;
 
     for (let i = 0; i < data.length; i += 1) {
       const account = data[i];
-      try {
-        addAccount(account);
-      } catch (err) {
-        const resp = err.response?.data.errors;
-        setHasErrors(true);
-        for (const key in resp) {
-          if (Object.hasOwnProperty.call(resp, key)) {
-            const msg = resp[key];
-            toast.error(msg, { autoClose: 10000 });
-          }
-        }
+      if (hasErrors) {
         break;
       }
+
+      addAccount(account)
+        // eslint-disable-next-line no-loop-func
+        .then(() => {
+          uploaded += 1;
+        })
+        .catch((err) => {
+          const resp = err.response?.data.errors;
+          setHasErrors(true);
+          dismiss();
+          toast.error(
+            <>
+              <strong>
+                {account.last_name}, {account.first_name}
+              </strong>
+              : {parseError(resp)}
+            </>,
+            {
+              autoClose: 10000,
+              onClose: () => {
+                setHasErrors(false);
+              },
+            }
+          );
+        });
     }
 
-    if (!hasErrors) {
-      update(`Uploaded ${data.length} accounts!`);
+    if (!hasErrors && uploaded === data.length) {
+      update(`Uploaded ${data.length} accounts!`, toast.TYPE.SUCCESS);
+      uploaded = 0;
     }
   };
 
