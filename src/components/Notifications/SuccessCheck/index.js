@@ -15,12 +15,12 @@ const SuccessCheck = ({ persist, size = 26, onAnimationEnd }) => (
       cy={size}
       r={25}
       fill="none"
-      onAnimationEnd={onAnimationEnd}
     />
     <path
       className="success-check__check"
       fill="none"
       d="M14.1 27.2l7.1 7.2 16.7-16.8"
+      onAnimationEnd={onAnimationEnd}
     />
   </svg>
 );

@@ -1,5 +1,4 @@
 // @ts-nocheck
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
@@ -44,31 +43,32 @@ const Table2 = ({
   uploadRoute,
   tableOnly = false,
   onExportData,
+  isLoading = false,
 }) => {
   const [gridApi, setGridApi] = useState(null);
-  const [gridColumnApi, setGridColumnApi] = useState(null);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [rowCount, setRowCount] = useState(0);
   const [pageSize, setPageSize] = useState(0);
+  const [isLastPage, setIsLastPage] = useState(false);
+  const [isFirstPage, setIsFirstPage] = useState(false);
 
   useEffect(() => {
-    console.log(gridColumnApi);
-  }, [gridColumnApi]);
+    if (gridApi) {
+      if (isLoading) {
+        return gridApi.showLoadingOverlay();
+      }
+    }
+  }, [isLoading]);
 
   const onGridReady = (params) => {
     setGridApi(params.api);
-    setGridColumnApi(params.columnApi);
   };
 
   const handleFilterChange = (event) => {
     gridApi.setQuickFilter(event.target.value);
-  };
-
-  const setLastButtonDisabled = (disabled) => {
-    document.querySelector('#btLast').disabled = disabled;
   };
 
   const onBtFirst = () => {
@@ -89,13 +89,17 @@ const Table2 = ({
 
   const onPaginationChanged = () => {
     if (gridApi) {
+      console.log(!gridApi.paginationIsLastPageFound());
       // setText('#lbPageSize', gridApi.paginationGetPageSize());
       setCurrentPage(gridApi.paginationGetCurrentPage() + 1);
       setTotalPages(gridApi.paginationGetTotalPages());
       setPageSize(gridApi.paginationGetPageSize());
       setRowCount(gridApi.paginationGetRowCount());
-
-      setLastButtonDisabled(!gridApi.paginationIsLastPageFound());
+      setIsLastPage(
+        gridApi.paginationGetCurrentPage() + 1 ===
+          gridApi.paginationGetTotalPages()
+      );
+      setIsFirstPage(gridApi.paginationGetCurrentPage() === 0);
     }
   };
 
@@ -137,7 +141,7 @@ const Table2 = ({
           </div>
         </div>
       )}
-      <div style={{ width: '100%', height: '100%' }}>
+      <div style={{ height: '100%', width: '100%' }}>
         <div className="ag-theme-rt" style={{ height: '100%', width: '100%' }}>
           <AgGridReact
             onGridReady={onGridReady}
@@ -157,6 +161,10 @@ const Table2 = ({
             suppressPaginationPanel={true}
             frameworkComponents={{ agColumnHeader: HeaderCell, ...renderers }}
             animateRows={true}
+            overlayLoadingTemplate={
+              '<span className="ag-overlay-loading-center">Please wait while your rows are loading</span>'
+            }
+            overlayNoRowsTemplate={'<span class="p-12">No data found.</span>'}
           >
             {cols.map(
               ({
@@ -192,20 +200,36 @@ const Table2 = ({
             </div>
 
             <div className="flex">
-              <button className="px-2" onClick={() => onBtFirst()}>
+              <button
+                className="paging-button"
+                onClick={() => onBtFirst()}
+                disabled={isFirstPage}
+              >
                 <Icon iconName="chevron-double-left" type="fal" />
               </button>
-              <button className="px-2" onClick={() => onBtPrevious()}>
+              <button
+                className="paging-button"
+                onClick={() => onBtPrevious()}
+                disabled={isFirstPage}
+              >
                 <Icon iconName="chevron-left" type="fal" />
               </button>
               <div className="mx-4">
                 Page <strong>{currentPage}</strong> of{' '}
                 <strong>{totalPages}</strong>
               </div>
-              <button className="px-2" onClick={() => onBtNext()}>
+              <button
+                className="paging-button"
+                onClick={() => onBtNext()}
+                disabled={isLastPage}
+              >
                 <Icon iconName="chevron-right" type="fal" />
               </button>
-              <button className="px-2" onClick={() => onBtLast()} id="btLast">
+              <button
+                className="paging-button"
+                onClick={() => onBtLast()}
+                disabled={isLastPage}
+              >
                 <Icon iconName="chevron-double-right" type="fal" />
               </button>
             </div>
