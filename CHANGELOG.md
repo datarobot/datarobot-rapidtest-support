@@ -48,3 +48,4 @@
 
 ## v0.0.17
 - Added disable site confirmation - [RSS-1](https://datarobot.atlassian.net/browse/RSS-1)
+- Fixed "Upload a list of accounts shows Uploaded 2 accounts! message despite getting errors in response" - [RSS-26](https://datarobot.atlassian.net/browse/RSS-26)
