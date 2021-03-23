@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
 // @ts-nocheck
 import React, { useEffect, useMemo, useState } from 'react';
@@ -12,10 +13,13 @@ import { accountsAtom } from 'store';
 
 import Icon from 'components/Icon';
 import Loading from 'components/Loading';
-import Table from 'components/Table';
+// import Table from 'components/Table';
+import Table2 from 'components/Table2';
 
 import { download, toCsv } from 'utils';
 import SuccessCheck from 'components/Notifications/SuccessCheck';
+import DisableAccountCell from 'components/Table2/DisableAccountCell';
+import AccountNameCell from 'components/Table2/AccountNameCell';
 
 const StatusCell = ({ val }) => {
   const { archive } = val;
@@ -113,6 +117,10 @@ const Accounts = () => {
           if (rowB.original.last_name > rowA.original.last_name) return -1;
           return 0;
         },
+        filterMethod: (filter, row) => {
+          console.log(row);
+          return row.last_name.indexOf(filter.value) >= 0;
+        },
         accessor: (val) => (
           <>
             <Link to={`${ROUTES.EDIT_ACCOUNT.path}/${val.id}`} className="mr-2">
@@ -179,6 +187,40 @@ const Accounts = () => {
     [accounts]
   );
 
+  const sortNames = (a, b) => {
+    if (a > b) return 1;
+    if (b > a) return -1;
+    return 0;
+  };
+
+  const cols = [
+    {
+      renderer: 'accountNameCell',
+      header: 'Name',
+      comparator: sortNames,
+      value: ({ data }) => `${data.last_name}, ${data.first_name}`,
+    },
+    { field: 'email_address', header: 'Email' },
+    { field: 'phone_number_office', header: 'Phone' },
+    {
+      value: ({ data }) => (data.archive ? 'Inactive' : 'Active'),
+      header: 'Active',
+      colWidth: 120,
+    },
+    {
+      field: 'archive',
+      renderer: 'disableAccountCell',
+      header: 'Action',
+      disableSort: true,
+      colWidth: 120,
+    },
+  ];
+
+  const renderers = {
+    disableAccountCell: DisableAccountCell,
+    accountNameCell: AccountNameCell,
+  };
+
   useEffect(() => {
     (async () => {
       setIsLoading(true);
@@ -196,20 +238,35 @@ const Accounts = () => {
   }, []);
 
   return (
-    <div>
-      <Table
-        tableName="Manage Accounts"
-        columns={columns}
-        data={accounts}
-        addButtonText={t('buttons.addAccount')}
-        uploadButtonText={`+ ${t('buttons.uploadList')}`}
-        addRoute={ROUTES.ADD_ACCOUNT.path}
-        uploadRoute={ROUTES.UPLOAD_ACCOUNTS.path}
-        isLoading={isLoading}
-        onExportData={handleExportData}
-        sortBy="name"
-      />
-    </div>
+    <Table2
+      rows={accounts}
+      cols={cols}
+      renderers={renderers}
+      tableName="Manage Accounts"
+      columns={columns}
+      data={accounts}
+      addButtonText={t('buttons.addAccount')}
+      uploadButtonText={`+ ${t('buttons.uploadList')}`}
+      addRoute={ROUTES.ADD_ACCOUNT.path}
+      uploadRoute={ROUTES.UPLOAD_ACCOUNTS.path}
+      isLoading={isLoading}
+      onExportData={handleExportData}
+      sortBy="name"
+    />
+    // <div>
+    //   <Table
+    //     tableName="Manage Accounts"
+    //     columns={columns}
+    //     data={accounts}
+    //     addButtonText={t('buttons.addAccount')}
+    //     uploadButtonText={`+ ${t('buttons.uploadList')}`}
+    //     addRoute={ROUTES.ADD_ACCOUNT.path}
+    //     uploadRoute={ROUTES.UPLOAD_ACCOUNTS.path}
+    //     isLoading={isLoading}
+    //     onExportData={handleExportData}
+    //     sortBy="name"
+    //   />
+    // </div>
   );
 };
 

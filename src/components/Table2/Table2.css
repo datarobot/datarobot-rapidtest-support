@@ -1,0 +1,51 @@
+.ag-theme-rt {
+  color: rgba(31, 41, 55, 1);
+
+  .ag-root-wrapper-body {
+    min-height: 24rem;
+  }
+
+  .ag-header-cell {
+    @apply font-bold text-left text-sm uppercase border-b border-gray-400 text-gray-500;
+  }
+
+  .ag-row {
+    @apply bg-white;
+  }
+
+  .ag-row:hover {
+    @apply bg-gray-200;
+  }
+
+  .ag-cell {
+    @apply border-b border-gray-400 flex items-center px-2;
+  }
+
+  * {
+    @apply outline-none;
+  }
+
+  .ag-react-container {
+    @apply w-full;
+  }
+
+  .ag-paging-panel {
+    @apply flex justify-between;
+  }
+
+  .ag-paging-row-summary-panel-number {
+    @apply font-bold;
+  }
+
+  .pagination-panel {
+    @apply py-4 flex justify-between;
+  }
+
+  .paging-button {
+    @apply px-2;
+  }
+
+  .paging-button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+}

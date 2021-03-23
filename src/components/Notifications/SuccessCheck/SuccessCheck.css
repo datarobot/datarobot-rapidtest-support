@@ -33,10 +33,13 @@
   transform-origin: 50% 50%;
   stroke-dasharray: 48;
   stroke-dashoffset: 48;
-  animation: stroke 300ms var(--curve) 800ms forwards;
+  animation: stroke 300ms var(--curve) 1000ms forwards;
 }
 
 @keyframes stroke {
+  55% {
+    stroke-dashoffset: 0;
+  }
   100% {
     stroke-dashoffset: 0;
   }

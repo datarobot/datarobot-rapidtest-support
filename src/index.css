@@ -9,8 +9,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
   color: #565663;
+}
+
+/* html, body, .App, #root {
+  height: 100%;
+} */
+
+.content {
+  @apply flex-1;
 }
 
 @layer components {
