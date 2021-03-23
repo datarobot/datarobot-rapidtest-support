@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useRef, useState } from 'react';
+import { Fragment, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 
 import FileUpload from 'components/FileUpload';
@@ -22,8 +22,22 @@ const HeaderText = () => {
       </p>
       <div className="mt-2">
         Valid column names are:
-        <aside className="font-mono text-xs">
-          {[...REQUIRED, ...OPTIONAL].join(', ')}
+        <aside className="font-mono text-xs column-list">
+          {REQUIRED.map((reqCol, i) => (
+            <span key={i}>
+              {reqCol}
+              <sup>*</sup>,{' '}
+            </span>
+          ))}
+          {OPTIONAL.map((optCol, i) => (
+            <Fragment key={i}>
+              {i !== OPTIONAL.length - 1 ? (
+                <span>{optCol}, </span>
+              ) : (
+                <span>{optCol}</span>
+              )}
+            </Fragment>
+          ))}
         </aside>
       </div>
     </>
