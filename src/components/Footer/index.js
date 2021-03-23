@@ -27,7 +27,7 @@ const Footer = () => {
       </p>
       <div className="footer-links flex">
         <Link to={ROUTES.CONTACT.path} className="text-gray-500 no-underline">
-          Support
+          Contact Support
         </Link>
       </div>
     </div>
