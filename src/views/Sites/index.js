@@ -87,26 +87,13 @@ const Sites = () => {
         cols={cols}
         renderers={renderers}
         tableName="Manage Sites"
-        addButtonText={t('buttons.addAccount')}
+        addButtonText={t('buttons.addSite')}
         uploadButtonText={`+ ${t('buttons.uploadList')}`}
         addRoute={ROUTES.ADD_SITE.path}
         uploadRoute={ROUTES.UPLOAD_SITES.path}
         isLoading={isLoading}
         onExportData={handleExportData}
       />
-      {/* <Table
-        tableName="Manage Sites"
-        columns={columns}
-        data={sites}
-        addButtonText={t('buttons.addSite')}
-        uploadButtonText={`+ ${t('buttons.uploadList')}`}
-        addRoute={ROUTES.ADD_SITE.path}
-        uploadRoute={ROUTES.UPLOAD_SITES.path}
-        columnFilter="site_name"
-        isLoading={isLoading}
-        onExportData={handleExportData}
-        sortBy="site_name"
-      /> */}
     </div>
   );
 };
