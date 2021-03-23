@@ -88,11 +88,13 @@ const SiteStatus = ({ values, row }) => {
             )}
             <Modal
               show={showModal}
-              handleClose={() => setShowModal(false)}
               title="Are you sure?"
               modalClassName="max-w-lg my-12"
               confirmButtonText="Yes, disable it"
               closeButtonText="No, keep it"
+              handleClose={() => {
+                setShowModal(false);
+              }}
               confirmationAction={() => updateSite(!selected)}
             >
               <p className="p-16 text-center">
