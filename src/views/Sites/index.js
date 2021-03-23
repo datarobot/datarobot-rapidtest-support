@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // @ts-nocheck
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +13,7 @@ import ToggleButton from 'components/ToggleButton';
 import Icon from 'components/Icon';
 import SuccessCheck from 'components/Notifications/SuccessCheck';
 import Table from 'components/Table';
+import Modal from 'components/Modal';
 
 import { download, toCsv } from 'utils';
 
@@ -22,6 +24,7 @@ const SiteStatus = ({ values, row }) => {
   const [selected, setSelected] = useState(!values);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (isSuccess) {
@@ -32,8 +35,20 @@ const SiteStatus = ({ values, row }) => {
     }
   }, [isSuccess]);
 
+  const handleToggle = (e) => {
+    if (selected) {
+      return setShowModal(true);
+    }
+
+    updateSite(e);
+  };
+
   const updateSite = (e) => {
     setIsLoading(true);
+    if (showModal) {
+      setShowModal(false);
+    }
+    setSelected(!selected);
     editSite(row.original.id, { archive: !e })
       .then(async () => {
         const data = await getSiteList();
@@ -68,12 +83,23 @@ const SiteStatus = ({ values, row }) => {
               <ToggleButton
                 defaultChecked={selected}
                 disabled={isLoading}
-                onChange={() => {
-                  updateSite(!selected);
-                  setSelected(!selected);
-                }}
+                onChange={handleToggle}
               />
             )}
+            <Modal
+              show={showModal}
+              handleClose={() => setShowModal(false)}
+              title="Are you sure?"
+              modalClassName="max-w-lg my-12"
+              confirmButtonText="Yes, disable it"
+              closeButtonText="No, keep it"
+              confirmationAction={() => updateSite(!selected)}
+            >
+              <p className="p-16 text-center">
+                Disabling this site will make it unavailable to users in the
+                RapidTest app
+              </p>
+            </Modal>
           </div>
         </>
       )}

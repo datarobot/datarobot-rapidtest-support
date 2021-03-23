@@ -2,6 +2,10 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import cls from 'classnames';
 
+import Icon from 'components/Icon';
+
+import './Modal.css';
+
 const Modal = ({
   show = false,
   handleClose,
@@ -35,40 +39,44 @@ const Modal = ({
           className={cls('relative w-auto my-6 mx-auto z-40', modalClassName)}
         >
           {/* content */}
-          <div className="border-0 rounded shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+          <div className="border-0 rounded shadow-lg relative flex flex-col w-full bg-blue-lightest outline-none focus:outline-none">
             {/* header */}
-            <div className="flex items-start justify-between p-6 rounded-t">
-              <h3 className="text-2xl font-semibold text-blue">{title}</h3>
+            <div className="flex items-start justify-between pt-16 px-6 rounded-t text-center">
+              <h3 className="text-2xl w-full font-semibold text-blue">
+                {title}
+              </h3>
               <button
                 className="p-1 ml-auto bg-transparent border-0 text-black opacity-75 float-right text-3xl leading-none outline-none focus:outline-none"
                 onClick={handleClose}
               >
-                <span className="bg-transparent -mt-1 text-blue font-bold opacity-1 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                  ×
+                <span className=" absolute top-10 right-10 bg-transparent -mt-1 text-blue font-bold opacity-1 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                  <Icon iconName="times-circle" type="fal" />
                 </span>
               </button>
             </div>
             {/* body */}
-            <div className="relative p-6 pt-0 flex-auto">{children}</div>
+            <div className="relative flex-auto">{children}</div>
             {/* footer */}
             {showFooter && (
-              <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
-                <button
-                  className="btn-clear mr-1 mb-1"
-                  type="button"
-                  style={{ transition: 'all .15s ease' }}
-                  onClick={handleClose}
-                >
-                  {closeButtonText}
-                </button>
-                <button
-                  className="btn-primary mr-1 mb-1"
-                  type="button"
-                  style={{ transition: 'all .15s ease' }}
-                  onClick={confirmationAction}
-                >
-                  {confirmButtonText}
-                </button>
+              <div className="modal-footer">
+                <span>
+                  <button
+                    className="btn-clear mr-1 mb-1"
+                    type="button"
+                    style={{ transition: 'all .15s ease' }}
+                    onClick={handleClose}
+                  >
+                    {closeButtonText}
+                  </button>
+                  <button
+                    className="btn-primary mr-1 mb-1"
+                    type="button"
+                    style={{ transition: 'all .15s ease' }}
+                    onClick={confirmationAction}
+                  >
+                    {confirmButtonText}
+                  </button>
+                </span>
               </div>
             )}
           </div>

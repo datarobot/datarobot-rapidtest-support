@@ -10,7 +10,6 @@ import {
   faSortUp,
   faSortDown,
   faTimes,
-  faTimesCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -30,6 +29,7 @@ import {
   faSearch,
   faSignOut,
   faQuestionCircle,
+  faTimesCircle,
 } from '@fortawesome/pro-light-svg-icons';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
