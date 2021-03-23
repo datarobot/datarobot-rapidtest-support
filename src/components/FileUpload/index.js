@@ -57,13 +57,14 @@ const FileUpload = ({
     complete(results) {
       const header = results.meta.fields;
       const valid = validator(header);
-      if (!header.includes('site_name')) {
-        setIsSitesUpload(false);
-      }
 
-      if (results.data.length === 0) {
+      if (results.data.length === 0 || header.length === 0) {
         setErrorType('empty');
         return setIsValid(false);
+      }
+
+      if (!header.includes('site_name')) {
+        setIsSitesUpload(false);
       }
 
       if (!valid) {
