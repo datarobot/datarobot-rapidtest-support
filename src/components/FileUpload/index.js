@@ -61,6 +61,11 @@ const FileUpload = ({
         setIsSitesUpload(false);
       }
 
+      if (results.data.length === 0) {
+        setErrorType('empty');
+        return setIsValid(false);
+      }
+
       if (!valid) {
         const { type, cols } = handleError(header);
         setInvalidColumns(cols.join(', '));
@@ -165,13 +170,17 @@ const FileUpload = ({
                 <div className="my-4">
                   <p className="font-mono text-sm">{invalidColumns}</p>{' '}
                   <p className="mt-4">
-                    {errorType === 'invalid' ? (
+                    {errorType === 'invalid' && (
                       <>
                         {numInvalidColumns === 1
                           ? 'is not a valid column name'
                           : 'are not valid column names'}
                       </>
-                    ) : (
+                    )}
+                    {errorType === 'empty' && (
+                      <>This file does not contain any data.</>
+                    )}
+                    {errorType === 'required' && (
                       <>
                         {numInvalidColumns === 1
                           ? 'is a required column'
