@@ -13,7 +13,11 @@ const Footer = () => {
   const [isTableView, setIsTableView] = useState(false);
 
   useEffect(() => {
-    if (location.pathname === '/accounts' || location.pathname === '/sites') {
+    if (
+      location.pathname === '/accounts' ||
+      location.pathname === '/sites' ||
+      location.pathname === '/'
+    ) {
       return setIsTableView(true);
     }
 

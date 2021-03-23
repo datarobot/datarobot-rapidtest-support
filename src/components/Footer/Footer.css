@@ -1,5 +1,5 @@
 .footer {
-  @apply text-blue border-t border-gray-400 flex justify-between items-center w-screen;
+  @apply fixed bottom-0 bg-white text-blue border-t border-gray-400 flex justify-between items-center w-screen;
 
   height: 50px;
   margin-left: -8.5vw;
