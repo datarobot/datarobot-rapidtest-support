@@ -39,9 +39,14 @@ const Sites = () => {
       header: 'Address',
       value: ({ data }) =>
         `${data.street}, ${data.city} ${data.state} ${data.zip}`,
+      colWidth: 650,
     },
     {
-      field: 'phone_number_office',
+      header: 'District',
+      value: ({ data }) => data.district || '-',
+      // colWidth: 200,
+    },
+    {
       header: 'Contact',
       value: ({ data }) => data.contact_name || '-',
       colWidth: 200,
@@ -82,26 +87,13 @@ const Sites = () => {
         cols={cols}
         renderers={renderers}
         tableName="Manage Sites"
-        addButtonText={t('buttons.addAccount')}
+        addButtonText={t('buttons.addSite')}
         uploadButtonText={`+ ${t('buttons.uploadList')}`}
         addRoute={ROUTES.ADD_SITE.path}
         uploadRoute={ROUTES.UPLOAD_SITES.path}
         isLoading={isLoading}
         onExportData={handleExportData}
       />
-      {/* <Table
-        tableName="Manage Sites"
-        columns={columns}
-        data={sites}
-        addButtonText={t('buttons.addSite')}
-        uploadButtonText={`+ ${t('buttons.uploadList')}`}
-        addRoute={ROUTES.ADD_SITE.path}
-        uploadRoute={ROUTES.UPLOAD_SITES.path}
-        columnFilter="site_name"
-        isLoading={isLoading}
-        onExportData={handleExportData}
-        sortBy="site_name"
-      /> */}
     </div>
   );
 };

@@ -87,7 +87,7 @@ const Edit = ({ history }) => {
         <Loading />
       ) : (
         <div className="flex">
-          <form className="mr-4" onSubmit={handleSubmit(onSubmit)}>
+          <form className="w-1/2 mr-4" onSubmit={handleSubmit(onSubmit)}>
             <ControlledInput
               name="site_name"
               label={t('site.label.name')}
@@ -97,17 +97,73 @@ const Edit = ({ history }) => {
               }
               value={currentSite?.site_name || ''}
               ref={register}
+              isRequired
+              rules={{
+                required: {
+                  value: true,
+                  message: t('errorMessages.common.required'),
+                },
+              }}
             />
 
             <ControlledInput
-              name="street"
-              label={t('site.label.street')}
-              placeholder={t('site.label.street')}
+              name="district"
+              label="District"
+              placeholder="District"
               onChange={({ target }) =>
-                handleOnChange('street', target.value, true)
+                handleOnChange('district', target.value, true)
               }
-              value={currentSite?.street || ''}
+              value={currentSite?.district || ''}
+              ref={register}
+              isRequired
+              rules={{
+                required: {
+                  value: true,
+                  message: t('errorMessages.common.required'),
+                },
+              }}
             />
+
+            <fieldset className="flex">
+              <div className="w-1/2 mr-2">
+                <ControlledInput
+                  name="street"
+                  label={t('site.label.street')}
+                  placeholder={t('site.label.street')}
+                  onChange={({ target }) =>
+                    handleOnChange('street', target.value, true)
+                  }
+                  value={currentSite?.street || ''}
+                  ref={register}
+                  isRequired
+                  rules={{
+                    required: {
+                      value: true,
+                      message: t('errorMessages.common.required'),
+                    },
+                  }}
+                />
+              </div>
+
+              <div className="w-1/2">
+                <ControlledInput
+                  name="city"
+                  label={t('site.label.city')}
+                  placeholder={t('site.label.city')}
+                  onChange={({ target }) =>
+                    handleOnChange('city', target.value, true)
+                  }
+                  value={currentSite?.city || ''}
+                  isRequired
+                  rules={{
+                    required: {
+                      value: true,
+                      message: t('errorMessages.common.required'),
+                    },
+                  }}
+                />
+              </div>
+            </fieldset>
 
             <fieldset className="flex">
               <div className="w-1/2 mr-2">
@@ -122,6 +178,12 @@ const Edit = ({ history }) => {
                   className="mt-1"
                   isRequired
                   ref={register}
+                  rules={{
+                    required: {
+                      value: true,
+                      message: t('errorMessages.common.required'),
+                    },
+                  }}
                 />
 
                 <ErrorMessage errors={errors} errorKey="county" />
@@ -138,6 +200,12 @@ const Edit = ({ history }) => {
                     handleOnChange('state', target.value)
                   }
                   ref={register}
+                  rules={{
+                    required: {
+                      value: true,
+                      message: t('errorMessages.common.required'),
+                    },
+                  }}
                 />
               </div>
 
@@ -151,6 +219,12 @@ const Edit = ({ history }) => {
                   className="mt-1"
                   isRequired
                   ref={register}
+                  rules={{
+                    required: {
+                      value: true,
+                      message: t('errorMessages.common.required'),
+                    },
+                  }}
                 />
 
                 <ErrorMessage errors={errors} errorKey="zip" />

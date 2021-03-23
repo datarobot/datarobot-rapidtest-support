@@ -208,6 +208,35 @@ const AddSite = ({ history }) => {
           />
           <ErrorMessage errors={errors} errorKey="site_name" />
 
+          <Controller
+            name="district"
+            control={control}
+            defaultValue=""
+            rules={{
+              required: {
+                value: true,
+                message: t('errorMessages.common.required'),
+              },
+            }}
+            render={({ onChange, value }) => (
+              <Input
+                name="district"
+                label="District"
+                placeholder="District"
+                onChange={onChange}
+                value={
+                  currentSchool?.district
+                    ? currentSchool?.district
+                    : value || ''
+                }
+                className="mt-1"
+                isRequired
+                onBlur={updateForm}
+              />
+            )}
+          />
+          <ErrorMessage errors={errors} errorKey="street" />
+
           <fieldset className="flex">
             <div className="w-1/2 mr-2">
               <Controller

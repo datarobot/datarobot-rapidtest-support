@@ -6,7 +6,7 @@
   }
 
   .ag-header-cell {
-    @apply font-bold text-left text-sm uppercase border-b border-gray-400 text-gray-500;
+    @apply font-bold text-left text-sm uppercase border-b border-gray-400 text-gray-500 px-2;
   }
 
   .ag-row {
@@ -19,6 +19,13 @@
 
   .ag-cell {
     @apply border-b border-gray-400 flex items-center px-2;
+  }
+
+  .ag-header-cell-resize {
+    @apply border-l border-gray-300;
+
+    height: 50%;
+    margin-top: 12px;
   }
 
   * {

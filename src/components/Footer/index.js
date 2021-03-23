@@ -1,4 +1,6 @@
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import cls from 'classnames';
 
 import { ROUTES } from 'rt-constants';
 
@@ -6,17 +8,30 @@ import './Footer.css';
 
 const year = new Date().getFullYear();
 
-const Footer = () => (
-  <div className="footer">
-    <p>
-      &copy;{year} <span className="font-bold ml-1">rapid</span>test
-    </p>
-    <div className="footer-links flex">
-      <Link to={ROUTES.CONTACT.path} className="text-gray-500 no-underline">
-        Support
-      </Link>
+const Footer = () => {
+  const location = useLocation();
+  const [isTableView, setIsTableView] = useState(false);
+
+  useEffect(() => {
+    if (location.pathname === '/accounts' || location.pathname === '/sites') {
+      return setIsTableView(true);
+    }
+
+    setIsTableView(false);
+  }, [location]);
+
+  return (
+    <div className={cls('footer', { 'fixed bottom-0': isTableView })}>
+      <p>
+        &copy;{year} <span className="font-bold ml-1">rapid</span>test
+      </p>
+      <div className="footer-links flex">
+        <Link to={ROUTES.CONTACT.path} className="text-gray-500 no-underline">
+          Support
+        </Link>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Footer;
