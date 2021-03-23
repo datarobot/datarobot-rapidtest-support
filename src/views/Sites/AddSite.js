@@ -62,12 +62,9 @@ const AddSite = ({ history }) => {
   };
 
   const doGeocoding = (address) => {
-    console.log(address, geocoder);
     geocoder.geocode({ address }, (results, status) => {
-      console.log(results, status);
       if (status === 'OK') {
         const { lat, lng } = results[0].geometry.location;
-        console.log({ lat: lat(), lng: lng() });
         setMapCenter({ lat: lat(), lng: lng() });
         setMapZoom(16);
       } else {

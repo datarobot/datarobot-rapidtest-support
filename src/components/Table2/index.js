@@ -89,7 +89,6 @@ const Table2 = ({
 
   const onPaginationChanged = () => {
     if (gridApi) {
-      console.log(!gridApi.paginationIsLastPageFound());
       // setText('#lbPageSize', gridApi.paginationGetPageSize());
       setCurrentPage(gridApi.paginationGetCurrentPage() + 1);
       setTotalPages(gridApi.paginationGetTotalPages());

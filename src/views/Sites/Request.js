@@ -33,7 +33,6 @@ const RequestSite = ({ history }) => {
 
   // eslint-disable-next-line no-unused-vars
   const onSubmit = (data) => {
-    console.log(data);
     toast.success('Your request was submitted successfully.', {
       onClose: () => {
         history.goBack();

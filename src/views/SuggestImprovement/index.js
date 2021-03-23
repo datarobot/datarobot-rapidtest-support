@@ -16,7 +16,6 @@ const SuggestImprovement = () => {
   const { t } = useTranslation();
   // eslint-disable-next-line no-unused-vars
   const onSubmit = (data) => {
-    console.log(data);
     setShowSuccessMsg(true);
   };
 
