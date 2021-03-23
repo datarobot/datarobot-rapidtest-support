@@ -3,7 +3,7 @@ export const parseError = (err) => {
   const regex = /.*\((.*)\)\./gi;
   if (err.originalError?.info?.message) {
     if (err.originalError.info.message.includes('The duplicate key value is')) {
-      return `Duplicate site name: ${
+      return `Duplicate record: ${
         regex.exec(err.originalError.info.message)[1]
       }`;
     }
