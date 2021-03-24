@@ -52,3 +52,8 @@
 - Fixed "Validate that uploaded csv has at least one row" - [RSS-37](https://datarobot.atlassian.net/browse/RSS-37)
 - Converted table to new component, fixes [RSS-22](https://datarobot.atlassian.net/browse/RSS-22)
 - Added "District" field to forms & table - [RSS-18](https://datarobot.atlassian.net/browse/RSS-18)
+
+## v0.0.18
+
+- Updated FAQ - [RSS-17](https://datarobot.atlassian.net/browse/RSS-35)
+- Fixed captcha telling people they're not real - [RSS-40](https://datarobot.atlassian.net/browse/RSS-40)
