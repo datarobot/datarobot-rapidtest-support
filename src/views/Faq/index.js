@@ -1,22 +1,43 @@
 // @ts-nocheck
-import { useEffect, useState } from 'react';
-
+import {
+  NavLink,
+  Switch,
+  Route,
+  Redirect,
+  useRouteMatch,
+} from 'react-router-dom';
 import StaticContainer from 'components/StaticContainer';
 
-import content from 'static/Faq.md';
+import './Faq.css';
 
 const Faq = () => {
-  const [staticText, setStaticText] = useState('');
+  const { path, url } = useRouteMatch();
 
-  useEffect(() => {
-    fetch(content)
-      .then((response) => response.text())
-      .then((text) => {
-        setStaticText(text);
-      });
-  }, []);
-
-  return <StaticContainer headline="FAQ" content={staticText} />;
+  return (
+    <section className="flex relative mb-8">
+      <aside className="faq-sidebar">
+        <NavLink className="nav-link" to={`${url}/general`}>
+          General FAQs
+        </NavLink>
+        <NavLink className="nav-link" to={`${url}/program`}>
+          Program Admin FAQs
+        </NavLink>
+        <NavLink className="nav-link" to={`${url}/test`}>
+          Test Operator FAQs
+        </NavLink>
+      </aside>
+      <section className="faq-content">
+        <Switch>
+          <Route exact path={path}>
+            <Redirect to={`${path}/general`} />
+          </Route>
+          <Route path={`${path}/:id`}>
+            <StaticContainer headline="FAQ" />
+          </Route>
+        </Switch>
+      </section>
+    </section>
+  );
 };
 
 export default Faq;

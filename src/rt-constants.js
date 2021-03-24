@@ -45,7 +45,19 @@ export const ROUTES = {
     path: '/accounts/upload',
     roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
   },
-  FAQ: { path: '/faq' },
+  FAQ: {
+    path: '/faq',
+
+    GENERAL: {
+      path: '/faq/general',
+    },
+    PROGRAM: {
+      path: '/faq/program',
+    },
+    TEST: {
+      path: '/faq/test',
+    },
+  },
   DASHBOARD: { path: '/dashboard' },
   LOG_IN: { path: '/login' },
   TRAINING_MATERIALS: { path: '/training-materials' },
