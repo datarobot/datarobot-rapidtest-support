@@ -17,7 +17,7 @@ body {
 } */
 
 .content {
-  @apply overflow-y-scroll mb-4;
+  @apply overflow-y-scroll mb-4 relative;
 }
 
 @layer components {
@@ -85,7 +85,7 @@ body {
     @apply justify-end;
   }
 
-  a:not([role="button"]):not([class*="btn-"]):not(.nav-link)
+  a:not([role="button"]):not([class*="btn-"]):not(.nav-link):not(.page-link)
    {
     @apply underline text-blue;
   }
@@ -104,6 +104,7 @@ body {
 
   .full-height {
     min-height: calc(100vh - 130px);
+    max-height: calc(100vh - 130px);
   }
 
   .headline {

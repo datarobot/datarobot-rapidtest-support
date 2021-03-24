@@ -48,8 +48,8 @@ const Header = () => {
         <section className="links">
           {authenticated ? (
             <div className="flex items-center justify-end">
-              <span>
-                <p className="font-bold text-xs mr-3">
+              <span className="mr-3">
+                <p className="font-bold text-xs">
                   {user?.displayName || user?.email}
                 </p>
                 {roleType && (

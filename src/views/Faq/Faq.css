@@ -1,0 +1,13 @@
+.faq-sidebar {
+  @apply fixed flex;
+
+  top: 80px;
+
+  a {
+    @apply mr-4 no-underline;
+  }
+
+  .nav-link {
+    @apply p-1;
+  }
+}
