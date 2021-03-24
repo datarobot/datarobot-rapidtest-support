@@ -1,13 +1,14 @@
 .faq-sidebar {
-  @apply fixed flex;
+  @apply fixed flex bg-white w-full;
 
-  top: 80px;
+  z-index: 9;
+  top: 64px;
 
   a {
     @apply mr-4 no-underline;
   }
 
   .nav-link {
-    @apply p-1;
+    @apply px-1 py-2;
   }
 }
