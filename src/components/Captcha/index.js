@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 // @ts-nocheck
 import { useEffect, useRef, useState } from 'react';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
@@ -23,18 +22,16 @@ const Captcha = ({ handleSuccess, handleError }) => {
 
   useEffect(() => {
     if (captchaToken) {
-      setIsSuccess(true);
-      handleSuccess();
-      // setIsLoading(true);
-      // verifyCaptcha(captchaToken)
-      //   .then((resp) => {
-      //     if (resp.status === 200) {
-      //       setIsLoading(false);
-      //       setIsSuccess(true);
-      //       handleSuccess();
-      //     }
-      //   })
-      //   .catch(() => handleError());
+      setIsLoading(true);
+      verifyCaptcha(captchaToken)
+        .then((resp) => {
+          if (resp.status === 200) {
+            setIsLoading(false);
+            setIsSuccess(true);
+            handleSuccess();
+          }
+        })
+        .catch(() => handleError());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [captchaToken]);
