@@ -5,6 +5,8 @@ import axios from 'axios';
 
 import FileUpload from 'components/FileUpload';
 import PageHeader from 'components/PageHeader';
+import Icon from 'components/Icon';
+
 import { addSite } from 'services/api';
 import { isValidSitesList, getSiteError } from 'utils/validate';
 import { parseError } from 'utils/errors';
@@ -15,8 +17,24 @@ import fileTemplate from 'assets/static/rapidtest_sites_template.csv';
 
 import './Sites.css';
 
-const HeaderText = () => {
+const HeaderText = ({ errors }) => {
   const { REQUIRED, OPTIONAL } = VALID_SITE_COLUMNS;
+
+  if (errors.length > 0) {
+    return (
+      <section className="bg-dark-red rounded px-4 py-2 w-full">
+        <p className="text-white font-black text-lg uppercase w-full mb-2 border-b border-white">
+          <Icon iconName="exclamation-circle" /> Error(s)
+        </p>
+        {errors.map((err, i) => (
+          <p className="upload-error-message" key={i}>
+            {err}
+          </p>
+        ))}
+      </section>
+    );
+  }
+
   return (
     <>
       <p>Upload a CSV file with a list of sites to add to your program.</p>
@@ -45,6 +63,8 @@ const HeaderText = () => {
 };
 
 const UploadSites = ({ history }) => {
+  const [hasErrors, setHasErrors] = useState(false);
+  const [errors, setErrors] = useState([]);
   const toastId = useRef(null);
 
   const notify = () => {
@@ -81,6 +101,10 @@ const UploadSites = ({ history }) => {
       .catch((err) => {
         const resp = err.response?.data.errors;
         dismiss();
+          const resp = err.response?.data.errors;
+          setErrors((prevState) => [...prevState, parseError(resp)]);
+          setHasErrors(true);
+          dismiss();
         update(parseError(resp), toast.TYPE.ERROR, {
           autoClose: 10000,
           onClose: () => {},
@@ -90,7 +114,10 @@ const UploadSites = ({ history }) => {
 
   return (
     <>
-      <PageHeader headline="Upload a list of sites" subtext={<HeaderText />} />
+      <PageHeader
+        headline="Upload a list of sites"
+        subtext={<HeaderText errors={errors} />}
+      />
       <FileUpload
         validator={isValidSitesList}
         handleError={(e) => getSiteError(e)}
