@@ -43,3 +43,5 @@ secrets:
     value: ""
   - name: react-app-firebase-api-key
     value: ""
+  - name: hcaptcha-secret
+    value: ""
