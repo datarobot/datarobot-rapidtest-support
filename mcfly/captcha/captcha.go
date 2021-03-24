@@ -43,6 +43,9 @@ func Captcha(w http.ResponseWriter, r *http.Request) {
 	verified := client.VerifyToken(challengeToken.TokenStr)
 
 	if !verified.Success {
+
+		log.Println(verified)
+
 		w.WriteHeader(http.StatusUnauthorized)
 		fmt.Fprint(w, "Are you a bot?")
 		return
