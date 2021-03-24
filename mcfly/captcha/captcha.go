@@ -24,7 +24,6 @@ func Captcha(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Println("Error loading .env file")
 		log.Println(err)
-		// log.Fatal("Error loading .env file")
 	}
 
 	var (
