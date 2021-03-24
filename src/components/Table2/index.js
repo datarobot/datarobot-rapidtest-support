@@ -153,6 +153,7 @@ const Table2 = ({
               sortable: true,
               resizable: true,
               filter: true,
+              headerComponentParams: { showCheck: false },
             }}
             pagination={true}
             paginationPageSize={10}
@@ -172,6 +173,7 @@ const Table2 = ({
                 disableSort,
                 field,
                 header,
+                headerParams,
                 renderer,
                 value,
               }) => (
@@ -185,6 +187,7 @@ const Table2 = ({
                   cellRenderer={renderer}
                   maxWidth={colWidth}
                   comparator={comparator}
+                  headerComponentParams={headerParams}
                 />
               )
             )}

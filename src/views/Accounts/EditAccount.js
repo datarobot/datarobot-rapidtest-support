@@ -15,7 +15,7 @@ import PageHeader from 'components/PageHeader';
 
 import { ROUTES } from 'rt-constants';
 
-import { currentAccountAtom } from 'store';
+import { currentAccountAtom } from 'rt-store';
 import { editAccount, getAccount } from 'services/api';
 
 const EditAccount = ({ history }) => {

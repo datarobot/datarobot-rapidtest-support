@@ -8,7 +8,7 @@ import Modal from 'components/Modal';
 import ToggleButton from 'components/ToggleButton';
 import SuccessCheck from 'components/Notifications/SuccessCheck';
 
-// import { sitesAtom } from 'store';
+// import { sitesAtom } from 'rt-store';
 import { editSite } from 'services/api';
 
 const DisableSiteCell = ({ value, data }) => {

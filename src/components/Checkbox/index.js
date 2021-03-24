@@ -11,6 +11,7 @@ const Checkbox = ({
   onChange,
   label,
   labelClass,
+  checkClass,
 }) => (
   <div>
     <label
@@ -18,7 +19,7 @@ const Checkbox = ({
         checkboxDisabled: isDisabled,
       })}
     >
-      <div className="checkboxWrapper bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
+      <div className={cls('checkboxWrapper', checkClass, { isChecked })}>
         <input
           type="checkbox"
           name={name}
@@ -28,14 +29,10 @@ const Checkbox = ({
           disabled={isDisabled}
         />
         <svg
-          className="fill-current hidden w-4 h-4 text-green-500 pointer-events-none"
+          className="fill-current w-2.5 h-2.5 text-green-500 pointer-events-none"
           viewBox="0 0 20 20"
         >
-          <path
-            fill="#5282cc"
-            stroke="#5282cc"
-            d="M0 11l2-2 5 5L18 3l2 2L7 18z"
-          />
+          <path fill="#fff" stroke="#fff" d="M0 11l2-2 5 5L18 3l2 2L7 18z" />
         </svg>
       </div>
       <div className={cls('labelText', labelClass)}>{label}</div>

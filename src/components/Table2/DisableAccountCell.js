@@ -1,15 +1,20 @@
 // @ts-nocheck
 /* eslint-disable no-unused-vars */
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
 
+import Icon from 'components/Icon';
+
 import Loading from 'components/Loading';
 import SuccessCheck from 'components/Notifications/SuccessCheck';
 
-import { accountsAtom } from 'store';
+import { accountsAtom } from 'rt-store';
 import { getAccountList, editAccount } from 'services/api';
+
+import { ROUTES } from 'rt-constants';
 
 const DisableAccountCell = ({ value, data }) => {
   const { t } = useTranslation();
@@ -52,7 +57,15 @@ const DisableAccountCell = ({ value, data }) => {
   };
 
   return (
-    <>
+    <span className="flex">
+      <Link to={`${ROUTES.EDIT_ACCOUNT.path}/${data.id}`} className="mr-2">
+        <Icon
+          iconName="pencil-alt"
+          type="fal"
+          color="#5282cc"
+          className="cursor-pointer"
+        />
+      </Link>
       {isSuccess ? (
         <div className="flex justify-center">
           <SuccessCheck onAnimationEnd={handleUpdateData} />
@@ -70,7 +83,7 @@ const DisableAccountCell = ({ value, data }) => {
           )}
         </button>
       )}
-    </>
+    </span>
   );
 };
 

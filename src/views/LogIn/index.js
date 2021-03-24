@@ -11,7 +11,7 @@ import ErrorMessage from 'components/ErrorMessage';
 import PageHeader from 'components/PageHeader';
 
 import { signIn, getUser } from 'services/firebase';
-import { userAtom } from 'store';
+import { userAtom } from 'rt-store';
 import { setAccessToken, setRefreshToken } from 'utils';
 
 import { ROUTES } from 'rt-constants';

@@ -11,7 +11,7 @@ import Table2 from 'components/Table2';
 
 import { download, toCsv } from 'utils';
 
-import { sitesAtom } from 'store';
+import { sitesAtom } from 'rt-store';
 
 const Sites = () => {
   const { t } = useTranslation();

@@ -1,11 +1,14 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from 'react';
 
+import Checkbox from 'components/Checkbox';
 import Icon from 'components/Icon';
 
 const HeaderCell = (props) => {
   const [, setAscSort] = useState('inactive');
   const [, setDescSort] = useState('inactive');
   const [, setNoSort] = useState('inactive');
+  const [isChecked, setIsChecked] = useState(false);
   const refButton = useRef(null);
 
   const onMenuClicked = () => {
@@ -71,9 +74,25 @@ const HeaderCell = (props) => {
   }
 
   return (
-    <div className="flex pr-4" onClick={onSortRequested}>
+    <div
+      className="flex pr-4 items-center"
+      onClick={() => !props.showCheck && onSortRequested}
+    >
       {menu}
-      <span className="flex justify-between w-full">
+      {props.showCheck && (
+        <Checkbox
+          checkClass="z-10"
+          onChange={() => {
+            setIsChecked(!isChecked);
+            props.handleCheckChange(props.api.getRenderedNodes());
+          }}
+          isChecked={isChecked}
+        />
+      )}
+      <span
+        className="flex justify-between w-full"
+        onClick={() => props.showCheck && onSortRequested}
+      >
         <div className="customHeaderLabel">{props.displayName}</div>
         {sort}
       </span>

@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import { getAccountList } from 'services/api';
 import { ROUTES } from 'rt-constants';
-import { accountsAtom } from 'store';
+import { accountsAtom, accountsToDisableAtom } from 'rt-store';
 
 import Table2 from 'components/Table2';
 
@@ -17,6 +17,12 @@ import AccountNameCell from 'components/Table2/AccountNameCell';
 const Accounts = () => {
   const { t } = useTranslation();
   const [accounts, setAccounts] = useAtom(accountsAtom);
+  // eslint-disable-next-line no-unused-vars
+  const [disabledAccounts, setDisabledAccounts] = useAtom(
+    accountsToDisableAtom
+  );
+  // eslint-disable-next-line no-unused-vars
+  const [accountsToDisable, setAccountsToDisable] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleExportData = () => {
@@ -38,10 +44,48 @@ const Accounts = () => {
     return 0;
   };
 
+  const handleCheckChange = (res) => {
+    for (const key in res) {
+      if (Object.hasOwnProperty.call(res, key)) {
+        const { data } = res[key];
+
+        if (!disabledAccounts.includes(data.id)) {
+          setDisabledAccounts((prevState) => [...prevState, data.id]);
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    if (disabledAccounts.length > 0) {
+      const accountsCopy = disabledAccounts;
+      for (const key in disabledAccounts) {
+        if (Object.hasOwnProperty.call(disabledAccounts, key)) {
+          const id = disabledAccounts[key];
+
+          if (disabledAccounts.includes(id)) {
+            const accountsReducer = accountsCopy.filter((acc) => acc !== id);
+
+            setAccountsToDisable((prevState) => {
+              console.log(prevState);
+              return [accountsReducer];
+            });
+          } else {
+            setDisabledAccounts((prevState) => [...prevState, id]);
+          }
+        }
+      }
+    }
+  }, [disabledAccounts]);
+
   const cols = [
     {
       renderer: 'accountNameCell',
       header: 'Name',
+      headerParams: {
+        showCheck: true,
+        handleCheckChange,
+      },
       comparator: sortNames,
       value: ({ data }) => `${data.last_name}, ${data.first_name}`,
     },
