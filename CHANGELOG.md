@@ -54,6 +54,10 @@
 - Added "District" field to forms & table - [RSS-18](https://datarobot.atlassian.net/browse/RSS-18)
 
 ## v0.0.18
-
-- Updated FAQ - [RSS-17](https://datarobot.atlassian.net/browse/RSS-35)
+- Updated FAQ - [RSS-35](https://datarobot.atlassian.net/browse/RSS-35)
 - Fixed captcha telling people they're not real - [RSS-40](https://datarobot.atlassian.net/browse/RSS-40)
+
+## v1.0.0  🥳
+- Updated to version 1, because why not?
+- Added batch activating/deactivating accounts and sites [RSS-17](https://datarobot.atlassian.net/browse/RSS-17)
+- Prevent non-program admin users from logging in.
