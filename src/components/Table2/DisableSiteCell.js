@@ -1,18 +1,15 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
 import ReactTooltip from 'react-tooltip';
-// import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
 
 import Modal from 'components/Modal';
 import ToggleButton from 'components/ToggleButton';
 import SuccessCheck from 'components/Notifications/SuccessCheck';
 
-// import { sitesAtom } from 'rt-store';
 import { editSite } from 'services/api';
 
 const DisableSiteCell = ({ value, data }) => {
-  // const [, setSites] = useAtom(sitesAtom);
   const [selected, setSelected] = useState(!value);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -70,42 +67,38 @@ const DisableSiteCell = ({ value, data }) => {
 
   return (
     <>
-      {data.id !== 3 && (
-        <>
-          <ReactTooltip id="toggle" effect="solid" />
-          <div
-            className="flex items-center"
-            data-tip={selected ? 'Deactivate' : 'Activate'}
-            data-for="toggle"
-          >
-            {isSuccess ? (
-              <SuccessCheck onAnimationEnd={handleUpdateData} />
-            ) : (
-              <ToggleButton
-                defaultChecked={selected}
-                disabled={isLoading}
-                onChange={handleToggle}
-              />
-            )}
-            <Modal
-              show={showModal}
-              title="Are you sure?"
-              modalClassName="max-w-lg my-12"
-              confirmButtonText="Yes, disable it"
-              closeButtonText="No, keep it"
-              handleClose={() => {
-                setShowModal(false);
-              }}
-              confirmationAction={() => updateSite(!selected)}
-            >
-              <p className="p-16 text-center">
-                Disabling this site will make it unavailable to users in the
-                RapidTest app
-              </p>
-            </Modal>
-          </div>
-        </>
-      )}
+      <ReactTooltip id="toggle" effect="solid" />
+      <div
+        className="flex items-center"
+        data-tip={selected ? 'Deactivate' : 'Activate'}
+        data-for="toggle"
+      >
+        {isSuccess ? (
+          <SuccessCheck onAnimationEnd={handleUpdateData} />
+        ) : (
+          <ToggleButton
+            defaultChecked={selected}
+            disabled={isLoading || data.id === 3}
+            onChange={handleToggle}
+          />
+        )}
+        <Modal
+          show={showModal}
+          title="Are you sure?"
+          modalClassName="max-w-lg my-12"
+          confirmButtonText="Yes, disable it"
+          closeButtonText="No, keep it"
+          handleClose={() => {
+            setShowModal(false);
+          }}
+          confirmationAction={() => updateSite(!selected)}
+        >
+          <p className="p-16 text-center">
+            Disabling this site will make it unavailable to users in the
+            RapidTest app
+          </p>
+        </Modal>
+      </div>
     </>
   );
 };

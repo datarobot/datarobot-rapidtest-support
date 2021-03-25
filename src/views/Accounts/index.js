@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 
 import { getAccountList, editAccount } from 'services/api';
 import { ROUTES } from 'rt-constants';
@@ -13,6 +14,8 @@ import Table2 from 'components/Table2';
 import { download, toCsv } from 'utils';
 import DisableAccountCell from 'components/Table2/DisableAccountCell';
 import AccountNameCell from 'components/Table2/AccountNameCell';
+import EditAccountCell from 'components/Table2/EditAccountCell';
+import { toast } from 'react-toastify';
 
 const Accounts = () => {
   const { t } = useTranslation();
@@ -35,16 +38,28 @@ const Accounts = () => {
     });
   };
 
+  const doBatch = (archive) => {
+    setIsLoading(true);
+    const batch = accountsToDisable.map((id) => editAccount(id, { archive }));
+    axios
+      .all(batch)
+      .then(async () => {
+        setAccounts(await getAccountList());
+        setAccountsToDisable([]);
+        setIsLoading(false);
+      })
+      .catch(() => {
+        toast.error('Something went wrong!');
+        setIsLoading(false);
+      });
+  };
+
   const handleBatchActivate = () => {
-    accountsToDisable.forEach((id) => {
-      editAccount(id, { archive: false });
-    });
+    doBatch(false);
   };
 
   const handleBatchDeactivate = () => {
-    accountsToDisable.forEach((id) => {
-      editAccount(id, { archive: true });
-    });
+    doBatch(true);
   };
 
   const sortNames = (a, b) => {
@@ -81,12 +96,21 @@ const Accounts = () => {
       header: 'Action',
       disableSort: true,
       colWidth: 120,
+      resizable: false,
+    },
+    {
+      renderer: 'editAccountCell',
+      header: 'Edit',
+      disableSort: true,
+      colWidth: 50,
+      resizable: false,
     },
   ];
 
   const renderers = {
     disableAccountCell: DisableAccountCell,
     accountNameCell: AccountNameCell,
+    editAccountCell: EditAccountCell,
   };
 
   useEffect(() => {

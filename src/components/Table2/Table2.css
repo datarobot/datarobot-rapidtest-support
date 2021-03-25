@@ -22,10 +22,15 @@
   }
 
   .ag-header-cell-resize {
-    @apply border-l border-gray-300;
-
     height: 50%;
     margin-top: 12px;
+    transition: all 250ms ease-in-out;
+  }
+
+  .ag-header-cell:hover {
+    .ag-header-cell-resize {
+      @apply border-l border-gray-300;
+    }
   }
 
   * {
@@ -54,5 +59,13 @@
 
   .paging-button:disabled {
     @apply opacity-50 cursor-not-allowed;
+  }
+
+  .ag-overlay-wrapper .ag-react-container {
+    @apply h-full;
+  }
+
+  .ag-overlay-loading-center {
+    @apply w-full h-full flex items-center justify-center bg-white bg-opacity-75;
   }
 }

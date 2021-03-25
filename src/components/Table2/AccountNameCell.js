@@ -11,6 +11,11 @@ const AccountNameCell = ({ data }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleSelectAccount = () => {
+    if (isChecked) {
+      const updatedSites = accounts.filter((s) => s !== data.id);
+      return setAccounts(updatedSites);
+    }
+
     setAccounts([...accounts, data.id]);
   };
 

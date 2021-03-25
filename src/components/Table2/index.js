@@ -8,6 +8,7 @@ import Button, { KIND } from 'components/Button';
 import Icon from 'components/Icon';
 import Input from 'components/Input';
 import HeaderCell from 'components/Table2/HeaderCell';
+import LoadingOverlay from 'components/Table2/LoadingOverlay';
 import Pagination from 'components/Table2/Pagination';
 
 import 'ag-grid-community';
@@ -40,10 +41,8 @@ const Table2 = ({
   const [isFirstPage, setIsFirstPage] = useState(false);
 
   useEffect(() => {
-    if (gridApi) {
-      if (isLoading) {
-        return gridApi.showLoadingOverlay();
-      }
+    if (gridApi && isLoading) {
+      gridApi.showLoadingOverlay();
     }
   }, [isLoading]);
 
@@ -127,11 +126,13 @@ const Table2 = ({
             paginationPageSize={10}
             onPaginationChanged={onPaginationChanged}
             suppressPaginationPanel={true}
-            frameworkComponents={{ agColumnHeader: HeaderCell, ...renderers }}
+            frameworkComponents={{
+              agColumnHeader: HeaderCell,
+              loadingOverlay: LoadingOverlay,
+              ...renderers,
+            }}
             animateRows={true}
-            overlayLoadingTemplate={
-              '<span className="ag-overlay-loading-center">Please wait while your rows are loading</span>'
-            }
+            loadingOverlayComponent={'loadingOverlay'}
             overlayNoRowsTemplate={'<span class="p-12">No data found.</span>'}
           >
             {cols.map(
@@ -144,6 +145,7 @@ const Table2 = ({
                   header,
                   headerParams,
                   renderer,
+                  resizable = true,
                   value,
                 },
                 i
@@ -153,6 +155,7 @@ const Table2 = ({
                   sortable={!disableSort}
                   filter={true}
                   field={field || null}
+                  resizable={resizable}
                   valueGetter={value || null}
                   headerName={header}
                   cellRenderer={renderer}

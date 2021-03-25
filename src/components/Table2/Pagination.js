@@ -1,5 +1,8 @@
 // @ts-nocheck
+import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Icon from 'components/Icon';
+import Modal from 'components/Modal';
 
 const CalculateCurrentView = ({ pageIndex, pageSize, rows }) => {
   const offset = pageIndex * pageSize + 1;
@@ -26,15 +29,25 @@ const Pagination = ({
   onDeactivate,
   // totalPages,
 }) => {
+  const { pathname } = useLocation();
+  const [showModal, setShowModal] = useState(false);
   const onBtnFirst = () => gridApi.paginationGoToFirstPage();
   const onBtnLast = () => gridApi.paginationGoToLastPage();
   const onBtnNext = () => gridApi.paginationGoToNextPage();
   const onBtnPrevious = () => gridApi.paginationGoToPreviousPage();
 
+  const handleDeactivate = () => {
+    pathname.includes('sites') ? setShowModal(true) : onDeactivate();
+  };
+
   return (
     <div className="pagination-panel flex justify-between">
       <span>
-        <button type="button" className="btn-clear mr-1" onClick={onDeactivate}>
+        <button
+          type="button"
+          className="btn-clear mr-1"
+          onClick={handleDeactivate}
+        >
           Deactivate
         </button>
         <button type="button" className="btn-primary" onClick={onActivate}>
@@ -77,6 +90,25 @@ const Pagination = ({
           <Icon iconName="chevron-double-right" type="fal" />
         </button>
       </div>
+      <Modal
+        show={showModal}
+        title="Are you sure?"
+        modalClassName="max-w-lg my-12"
+        confirmButtonText="Yes, disable them"
+        closeButtonText="No, keep them"
+        handleClose={() => {
+          setShowModal(false);
+        }}
+        confirmationAction={() => {
+          onDeactivate();
+          setShowModal(false);
+        }}
+      >
+        <p className="p-16 text-center">
+          Disabling these sites will make it unavailable to users in the
+          RapidTest app
+        </p>
+      </Modal>
     </div>
   );
 };

@@ -10,7 +10,7 @@ import {
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { faLongArrowRight } from '@fortawesome/pro-solid-svg-icons';
+import { faLongArrowRight, faPencil } from '@fortawesome/pro-solid-svg-icons';
 
 import { faCloudUploadAlt } from '@fortawesome/pro-regular-svg-icons';
 
@@ -46,6 +46,7 @@ library.add(
   faFileExport,
   faHourglassHalf,
   faLongArrowRight,
+  faPencil,
   faPencilAlt,
   faQuestionCircle,
   faRedo,

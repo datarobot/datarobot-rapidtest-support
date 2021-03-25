@@ -1,19 +1,14 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
-
-import Icon from 'components/Icon';
 
 import Loading from 'components/Loading';
 import SuccessCheck from 'components/Notifications/SuccessCheck';
 
 import { accountsAtom } from 'rt-store';
 import { getAccountList, editAccount } from 'services/api';
-
-import { ROUTES } from 'rt-constants';
 
 const DisableAccountCell = ({ value, data }) => {
   const { t } = useTranslation();
@@ -56,33 +51,27 @@ const DisableAccountCell = ({ value, data }) => {
   };
 
   return (
-    <span className="flex">
-      <Link to={`${ROUTES.EDIT_ACCOUNT.path}/${data.id}`} className="mr-2">
-        <Icon
-          iconName="pencil-alt"
-          type="fal"
-          color="#5282cc"
-          className="cursor-pointer"
-        />
-      </Link>
-      {isSuccess ? (
-        <div className="flex justify-center">
-          <SuccessCheck onAnimationEnd={handleUpdateData} />
-        </div>
-      ) : (
-        <button
-          onClick={toggleAccountActive}
-          className="text-blue-light py-0 px-2 flex justify-center focus:outline-none"
-          type="button"
-        >
-          {isLoading ? (
-            <Loading size={32} />
-          ) : (
+    <>
+      <span className="flex justify-center">
+        {isSuccess && !isLoading && (
+          <div className="flex justify-center">
+            <SuccessCheck onAnimationEnd={handleUpdateData} />
+          </div>
+        )}
+        {isLoading && <Loading size={32} />}
+      </span>
+      <>
+        {!isSuccess && !isLoading && (
+          <button
+            onClick={toggleAccountActive}
+            className="text-blue-light py-0 px-2 flex justify-center focus:outline-none"
+            type="button"
+          >
             <>{!value ? t('buttons.deactivate') : t('buttons.activate')}</>
-          )}
-        </button>
-      )}
-    </span>
+          </button>
+        )}
+      </>
+    </>
   );
 };
 

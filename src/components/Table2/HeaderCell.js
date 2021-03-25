@@ -41,7 +41,6 @@ const HeaderCell = (props) => {
   };
 
   const onSortRequested = (e) => {
-    console.log('sort changed');
     props.setSort(getSortOrder(), e.shiftKey);
   };
 

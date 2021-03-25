@@ -1,20 +1,38 @@
-import { Link } from 'react-router-dom';
-import { ROUTES } from 'rt-constants';
+// @ts-nocheck
+import { useEffect, useState } from 'react';
+import { useAtom } from 'jotai';
 
-import Icon from 'components/Icon';
+import Checkbox from 'components/Checkbox';
 
-const SiteNameCell = ({ data }) => (
-  <>
-    <Link to={`${ROUTES.EDIT_SITE.path}/${data.id}`} className="mr-2">
-      <Icon
-        iconName="pencil-alt"
-        type="fal"
-        color="#5282cc"
-        className="cursor-pointer"
+import { sitesToDisableAtom } from 'rt-store';
+
+const AccountNameCell = ({ data }) => {
+  const [sites, setSites] = useAtom(sitesToDisableAtom);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleSelectAccount = () => {
+    if (isChecked) {
+      const updatedSites = sites.filter((s) => s !== data.id);
+      return setSites(updatedSites);
+    }
+
+    setSites([...sites, data.id]);
+  };
+
+  useEffect(() => {
+    setIsChecked(sites.includes(data.id));
+  }, [sites]);
+
+  return (
+    <span className="flex items-center">
+      <Checkbox
+        onChange={handleSelectAccount}
+        isChecked={isChecked}
+        isDisabled={data.id === 3}
       />
-    </Link>{' '}
-    {data.site_name}
-  </>
-);
+      {data.site_name}
+    </span>
+  );
+};
 
-export default SiteNameCell;
+export default AccountNameCell;
