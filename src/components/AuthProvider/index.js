@@ -20,6 +20,10 @@ export const AuthProvider = ({ children }) => {
         const { claims } = await getUser();
         const { dashboard_user, proctor_admin, site_admin } = claims;
 
+        if (!dashboard_user || !proctor_admin || !site_admin) {
+          return;
+        }
+
         setUser({
           ...u,
           roles: {
