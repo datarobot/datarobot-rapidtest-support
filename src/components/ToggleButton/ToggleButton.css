@@ -52,7 +52,7 @@
 }
 
 .toggle-container.checked {
-  @apply bg-blue-light;
+  @apply bg-blue-lighter;
 }
 
 .toggle-circle {
@@ -66,6 +66,8 @@
 }
 
 .toggle--checked .toggle-circle {
+  @apply border-blue-lighter;
+
   left: 19px;
 }
 

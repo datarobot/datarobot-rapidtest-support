@@ -2,35 +2,18 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
-import { Trans } from 'react-i18next';
 import cls from 'classnames';
 
 import Button, { KIND } from 'components/Button';
 import Icon from 'components/Icon';
 import Input from 'components/Input';
 import HeaderCell from 'components/Table2/HeaderCell';
+import LoadingOverlay from 'components/Table2/LoadingOverlay';
+import Pagination from 'components/Table2/Pagination';
 
 import 'ag-grid-community';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import './Table2.css';
-
-const CalculateCurrentView = ({ pageIndex, pageSize, rows }) => {
-  const offset = pageIndex * pageSize + 1;
-  const totalOffset =
-    (pageIndex + 1) * pageSize < rows ? (pageIndex + 1) * pageSize : rows;
-  const totalEntries = rows;
-
-  return (
-    <Trans
-      i18nKey="pagination.showingEntries"
-      offset={offset}
-      total={totalOffset}
-      totalEntries={totalEntries}
-    >
-      {{ offset }} - {{ totalOffset }} of {{ totalEntries }}
-    </Trans>
-  );
-};
 
 const Table2 = ({
   rows,
@@ -44,6 +27,8 @@ const Table2 = ({
   tableOnly = false,
   onExportData,
   isLoading = false,
+  onActivate,
+  onDeactivate,
 }) => {
   const [gridApi, setGridApi] = useState(null);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -56,10 +41,8 @@ const Table2 = ({
   const [isFirstPage, setIsFirstPage] = useState(false);
 
   useEffect(() => {
-    if (gridApi) {
-      if (isLoading) {
-        return gridApi.showLoadingOverlay();
-      }
+    if (gridApi && isLoading) {
+      gridApi.showLoadingOverlay();
     }
   }, [isLoading]);
 
@@ -69,22 +52,6 @@ const Table2 = ({
 
   const handleFilterChange = (event) => {
     gridApi.setQuickFilter(event.target.value);
-  };
-
-  const onBtFirst = () => {
-    gridApi.paginationGoToFirstPage();
-  };
-
-  const onBtLast = () => {
-    gridApi.paginationGoToLastPage();
-  };
-
-  const onBtNext = () => {
-    gridApi.paginationGoToNextPage();
-  };
-
-  const onBtPrevious = () => {
-    gridApi.paginationGoToPreviousPage();
   };
 
   const onPaginationChanged = () => {
@@ -153,86 +120,64 @@ const Table2 = ({
               sortable: true,
               resizable: true,
               filter: true,
+              headerComponentParams: { showCheck: false },
             }}
             pagination={true}
             paginationPageSize={10}
             onPaginationChanged={onPaginationChanged}
             suppressPaginationPanel={true}
-            frameworkComponents={{ agColumnHeader: HeaderCell, ...renderers }}
+            frameworkComponents={{
+              agColumnHeader: HeaderCell,
+              loadingOverlay: LoadingOverlay,
+              ...renderers,
+            }}
             animateRows={true}
-            overlayLoadingTemplate={
-              '<span className="ag-overlay-loading-center">Please wait while your rows are loading</span>'
-            }
+            loadingOverlayComponent={'loadingOverlay'}
             overlayNoRowsTemplate={'<span class="p-12">No data found.</span>'}
           >
             {cols.map(
-              ({
-                colWidth,
-                comparator,
-                disableSort,
-                field,
-                header,
-                renderer,
-                value,
-              }) => (
+              (
+                {
+                  colWidth,
+                  comparator,
+                  disableSort,
+                  field,
+                  header,
+                  headerParams,
+                  renderer,
+                  resizable = true,
+                  value,
+                },
+                i
+              ) => (
                 <AgGridColumn
-                  key={header}
+                  key={i}
                   sortable={!disableSort}
                   filter={true}
                   field={field || null}
+                  resizable={resizable}
                   valueGetter={value || null}
                   headerName={header}
                   cellRenderer={renderer}
                   maxWidth={colWidth}
                   comparator={comparator}
+                  headerComponentParams={headerParams}
                 />
               )
             )}
           </AgGridReact>
-          <div className="pagination-panel flex justify-between">
-            <div>
-              <CalculateCurrentView
-                pageIndex={currentPage - 1}
-                pageSize={pageSize}
-                rows={rowCount}
-              />
-            </div>
 
-            <div className="flex">
-              <button
-                className="paging-button"
-                onClick={() => onBtFirst()}
-                disabled={isFirstPage}
-              >
-                <Icon iconName="chevron-double-left" type="fal" />
-              </button>
-              <button
-                className="paging-button"
-                onClick={() => onBtPrevious()}
-                disabled={isFirstPage}
-              >
-                <Icon iconName="chevron-left" type="fal" />
-              </button>
-              <div className="mx-4">
-                Page <strong>{currentPage}</strong> of{' '}
-                <strong>{totalPages}</strong>
-              </div>
-              <button
-                className="paging-button"
-                onClick={() => onBtNext()}
-                disabled={isLastPage}
-              >
-                <Icon iconName="chevron-right" type="fal" />
-              </button>
-              <button
-                className="paging-button"
-                onClick={() => onBtLast()}
-                disabled={isLastPage}
-              >
-                <Icon iconName="chevron-double-right" type="fal" />
-              </button>
-            </div>
-          </div>
+          <Pagination
+            currentPage={currentPage}
+            gridApi={gridApi}
+            isFirstPage={isFirstPage}
+            isLastPage={isLastPage}
+            totalPages={totalPages}
+            pageSize={pageSize}
+            rowCount={rowCount}
+            onActivate={onActivate}
+            onDeactivate={onDeactivate}
+          />
         </div>
       </div>
     </>

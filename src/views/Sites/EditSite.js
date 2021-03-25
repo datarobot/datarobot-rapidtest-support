@@ -15,7 +15,7 @@ import Map from 'components/Map';
 
 import { STATE_OPTIONS, ROUTES } from 'rt-constants';
 
-import { currentSiteAtom } from 'store';
+import { currentSiteAtom } from 'rt-store';
 
 import { editSite, getSite } from 'services/api';
 
