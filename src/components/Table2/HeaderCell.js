@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -40,6 +41,7 @@ const HeaderCell = (props) => {
   };
 
   const onSortRequested = (e) => {
+    console.log('sort changed');
     props.setSort(getSortOrder(), e.shiftKey);
   };
 
@@ -48,18 +50,18 @@ const HeaderCell = (props) => {
     onSortChanged();
   }, []);
 
-  let menu = null;
-  if (props.enableMenu) {
-    menu = (
-      <div
-        ref={refButton}
-        className="customHeaderMenuButton"
-        onClick={() => onMenuClicked()}
-      >
-        <i className={`fa ${props.menuIcon}`}></i>
-      </div>
-    );
-  }
+  const getIds = () => {
+    const ids = [];
+
+    for (const key in props.api.getRenderedNodes()) {
+      if (Object.hasOwnProperty.call(props.api.getRenderedNodes(), key)) {
+        const { data } = props.api.getRenderedNodes()[key];
+        ids.push(data.id);
+      }
+    }
+
+    return ids;
+  };
 
   let sort = null;
   if (props.enableSorting) {
@@ -74,25 +76,18 @@ const HeaderCell = (props) => {
   }
 
   return (
-    <div
-      className="flex pr-4 items-center"
-      onClick={() => !props.showCheck && onSortRequested}
-    >
-      {menu}
+    <div className="flex pr-4 items-center">
       {props.showCheck && (
         <Checkbox
           checkClass="z-10"
           onChange={() => {
             setIsChecked(!isChecked);
-            props.handleCheckChange(props.api.getRenderedNodes());
+            props.handleCheckChange(getIds(), isChecked);
           }}
           isChecked={isChecked}
         />
       )}
-      <span
-        className="flex justify-between w-full"
-        onClick={() => props.showCheck && onSortRequested}
-      >
+      <span className="flex justify-between w-full" onClick={onSortRequested}>
         <div className="customHeaderLabel">{props.displayName}</div>
         {sort}
       </span>

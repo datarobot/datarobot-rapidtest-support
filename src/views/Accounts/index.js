@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 
-import { getAccountList } from 'services/api';
+import { getAccountList, editAccount } from 'services/api';
 import { ROUTES } from 'rt-constants';
 import { accountsAtom, accountsToDisableAtom } from 'rt-store';
 
@@ -17,12 +17,9 @@ import AccountNameCell from 'components/Table2/AccountNameCell';
 const Accounts = () => {
   const { t } = useTranslation();
   const [accounts, setAccounts] = useAtom(accountsAtom);
-  // eslint-disable-next-line no-unused-vars
-  const [disabledAccounts, setDisabledAccounts] = useAtom(
+  const [accountsToDisable, setAccountsToDisable] = useAtom(
     accountsToDisableAtom
   );
-  // eslint-disable-next-line no-unused-vars
-  const [accountsToDisable, setAccountsToDisable] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleExportData = () => {
@@ -38,45 +35,27 @@ const Accounts = () => {
     });
   };
 
+  const handleBatchActivate = () => {
+    accountsToDisable.forEach((id) => {
+      editAccount(id, { archive: false });
+    });
+  };
+
+  const handleBatchDeactivate = () => {
+    accountsToDisable.forEach((id) => {
+      editAccount(id, { archive: true });
+    });
+  };
+
   const sortNames = (a, b) => {
     if (a > b) return 1;
     if (b > a) return -1;
     return 0;
   };
 
-  const handleCheckChange = (res) => {
-    for (const key in res) {
-      if (Object.hasOwnProperty.call(res, key)) {
-        const { data } = res[key];
-
-        if (!disabledAccounts.includes(data.id)) {
-          setDisabledAccounts((prevState) => [...prevState, data.id]);
-        }
-      }
-    }
+  const handleCheckChange = (res, isChecked) => {
+    setAccountsToDisable(isChecked ? [] : res);
   };
-
-  useEffect(() => {
-    if (disabledAccounts.length > 0) {
-      const accountsCopy = disabledAccounts;
-      for (const key in disabledAccounts) {
-        if (Object.hasOwnProperty.call(disabledAccounts, key)) {
-          const id = disabledAccounts[key];
-
-          if (disabledAccounts.includes(id)) {
-            const accountsReducer = accountsCopy.filter((acc) => acc !== id);
-
-            setAccountsToDisable((prevState) => {
-              console.log(prevState);
-              return [accountsReducer];
-            });
-          } else {
-            setDisabledAccounts((prevState) => [...prevState, id]);
-          }
-        }
-      }
-    }
-  }, [disabledAccounts]);
 
   const cols = [
     {
@@ -138,6 +117,8 @@ const Accounts = () => {
       uploadRoute={ROUTES.UPLOAD_ACCOUNTS.path}
       isLoading={isLoading}
       onExportData={handleExportData}
+      onActivate={handleBatchActivate}
+      onDeactivate={handleBatchDeactivate}
     />
   );
 };

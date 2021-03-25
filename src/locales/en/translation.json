@@ -58,7 +58,7 @@
     "welcome": "Welcome!"
   },
   "pagination": {
-    "showingEntries": "<strong>{{offset}}</strong> to <strong>{{totalOffset}}</strong> of <strong>{{totalEntries}}</strong>"
+    "showingEntries": "<strong>{{offset}}</strong> - <strong>{{totalOffset}}</strong> of <strong>{{totalEntries}}</strong>"
   },
   "site": {
     "label": {

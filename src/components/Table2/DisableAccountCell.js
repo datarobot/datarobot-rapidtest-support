@@ -1,6 +1,5 @@
 // @ts-nocheck
-/* eslint-disable no-unused-vars */
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
@@ -32,7 +31,7 @@ const DisableAccountCell = ({ value, data }) => {
           setIsSuccess(false);
           setAccounts(list);
         })
-        .catch((err) => {
+        .catch(() => {
           toast.error(
             'There was a problem updating the account list. Please refresh the page to see the latest data'
           );
