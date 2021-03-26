@@ -80,13 +80,11 @@ const DisableSiteCell = ({ value, data }) => {
           <SuccessCheck onAnimationEnd={handleUpdateData} />
         ) : (
           <>
-            <Link to={`${ROUTES.EDIT_SITE.path}/${data.id}`} className="mr-4">
-              <Icon
-                iconName="pencil-alt"
-                type="fal"
-                color="#5282cc"
-                className="cursor-pointer"
-              />
+            <Link
+              to={`${ROUTES.EDIT_SITE.path}/${data.id}`}
+              className="mr-4 text-blue-lighter"
+            >
+              <Icon iconName="pen" type="fas" className="cursor-pointer" />
             </Link>
             <ToggleButton
               defaultChecked={selected}

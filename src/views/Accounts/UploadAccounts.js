@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { Fragment, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 import FileUpload from 'components/FileUpload';
 import PageHeader from 'components/PageHeader';
@@ -50,63 +51,44 @@ const UploadAccounts = ({ history }) => {
   const toastId = useRef(null);
 
   const notify = () => {
-    toastId.current = toast.info('Uploading accounts...', { autoClose: false });
+    toastId.current = toast.info('Uploading accounts...', {
+      autoClose: false,
+      onClose: () => {
+        history.push(ROUTES.ACCOUNTS.path);
+      },
+    });
   };
 
   const dismiss = () => toast.dismiss(toastId.current);
 
-  const update = (msg, type, ...rest) => {
+  const update = (msg, type, { ...rest }) => {
     toast.update(toastId.current, {
       render: msg,
       type,
-      autoClose: 5000,
-      onClose: () => {
-        history.push(ROUTES.SITES.path);
-      },
       ...rest,
     });
   };
 
   const handleUpload = (data) => {
     notify();
-    let uploaded = 0;
 
-    for (let i = 0; i < data.length; i += 1) {
-      const account = data[i];
-      if (hasErrors) {
-        break;
-      }
+    const batch = data.map((account) => addAccount(account));
 
-      addAccount(account)
-        // eslint-disable-next-line no-loop-func
-        .then(() => {
-          uploaded += 1;
-        })
-        .catch((err) => {
-          const resp = err.response?.data.errors;
-          setHasErrors(true);
-          dismiss();
-          toast.error(
-            <>
-              <strong>
-                {account.last_name}, {account.first_name}
-              </strong>
-              : {parseError(resp)}
-            </>,
-            {
-              autoClose: 10000,
-              onClose: () => {
-                setHasErrors(false);
-              },
-            }
-          );
+    axios
+      .all(batch)
+      .then(() => {
+        update(`Uploaded ${data.length} accounts!`, toast.TYPE.SUCCESS, {
+          autoClose: 5000,
         });
-    }
-
-    if (!hasErrors && uploaded === data.length) {
-      update(`Uploaded ${data.length} accounts!`, toast.TYPE.SUCCESS);
-      uploaded = 0;
-    }
+      })
+      .catch((err) => {
+        const resp = err.response?.data.errors;
+        dismiss();
+        update(parseError(resp), toast.TYPE.ERROR, {
+          autoClose: 10000,
+          onClose: () => {},
+        });
+      });
   };
 
   return (
