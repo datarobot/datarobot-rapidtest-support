@@ -43,7 +43,6 @@ const set = (key, val) => {
 };
 
 const clearStorage = () => {
-  ls.removeItem(SESSION_STORAGE_ITEMS.MAIN);
   ls.removeItem(SESSION_STORAGE_ITEMS.REFRESH_TOKEN);
   ls.removeItem(SESSION_STORAGE_ITEMS.ACCESS_TOKEN);
 };
@@ -161,6 +160,9 @@ const sortArrayOfObjects = (key, order = 'asc') => {
   return innerSort;
 };
 
+const getServerUrl = () =>
+  process.env[`REACT_APP_${get('program')}_SERVER_URL`];
+
 export {
   get,
   set,
@@ -177,4 +179,5 @@ export {
   emptyToNull,
   loadGoogleScript,
   sortArrayOfObjects,
+  getServerUrl,
 };

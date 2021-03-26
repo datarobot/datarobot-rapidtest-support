@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
@@ -10,10 +10,12 @@ import Button, { KIND } from 'components/Button';
 import { ControlledInput } from 'components/Input';
 import ErrorMessage from 'components/ErrorMessage';
 import PageHeader from 'components/PageHeader';
+import Select from 'components/Select';
 
 import { signIn, getUser, signOut } from 'services/firebase';
+import { getPrograms } from 'services/api';
 import { userAtom } from 'rt-store';
-import { setAccessToken, setRefreshToken } from 'utils';
+import { get, set, setAccessToken, setRefreshToken } from 'utils';
 
 import { ROUTES } from 'rt-constants';
 
@@ -21,6 +23,8 @@ const LogIn = ({ location, history }) => {
   const { handleSubmit, register, errors } = useForm();
   const [, setUserInfo] = useAtom(userAtom);
   const [showLoginMessage, setShowLoginMessage] = useState(false);
+  const [programList, setProgramList] = useState([]);
+  const [selectedProgram, setSelectedProgram] = useState(get('program'));
   const { t } = useTranslation();
 
   const onSubmit = ({ email, password }) => {
@@ -30,6 +34,8 @@ const LogIn = ({ location, history }) => {
 
         const { claims } = await getUser();
         const { dashboard_user, proctor_admin, site_admin } = claims;
+
+        console.log(user);
 
         if (!dashboard_user || !proctor_admin || !site_admin) {
           setShowLoginMessage(true);
@@ -51,6 +57,30 @@ const LogIn = ({ location, history }) => {
       });
   };
 
+  const buildProgramList = async () => {
+    const programs = await getPrograms();
+
+    const programArr = [];
+
+    for (const key in programs) {
+      if (Object.hasOwnProperty.call(programs, key)) {
+        const prog = programs[key][0];
+        programArr.push({ value: key, label: `${key} - ${prog.name}` });
+      }
+    }
+
+    setProgramList(programArr);
+  };
+
+  const handleProgramChange = (state) => {
+    set('program', state);
+    setSelectedProgram(state);
+  };
+
+  useEffect(() => {
+    buildProgramList();
+  }, []);
+
   return (
     <>
       <PageHeader
@@ -69,12 +99,22 @@ const LogIn = ({ location, history }) => {
         </div>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="w-2/5">
+          <Select
+            name="state"
+            placeholder="Select a program"
+            label="Your program"
+            options={programList}
+            onChange={({ target }) => {
+              handleProgramChange(target.value);
+            }}
+            value={selectedProgram || get('program')}
+          />
+
           <ControlledInput
             name="email"
             label="Email address"
             placeholder="you@example.com"
-            labelClass="mt-0"
-            autoFocus
+            labelClass="mt-2"
             ref={register({
               required: {
                 value: true,
@@ -108,6 +148,7 @@ const LogIn = ({ location, history }) => {
               kind={KIND.PRIMARY}
               className="mt-8"
               label="Log In"
+              disabled={!selectedProgram}
             />
           </div>
         </form>

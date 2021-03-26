@@ -98,20 +98,34 @@ export const VALID_ACCOUNT_COLUMNS = {
   OPTIONAL: ['phone_number_office'],
 };
 
-export const FIREBASE_CONFIG = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
-};
-
 export const SESSION_STORAGE_ITEMS = {
   ACCESS_TOKEN: 'access-token',
   REFRESH_TOKEN: 'refresh-token',
+  MAIN: 'rapidtest',
 };
+
+export const FIREBASE_CONFIG = {
+  PA: {
+    apiKey: process.env.REACT_APP_PA_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_PA_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PA_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_PA_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_PA_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_PA_FIREBASE_APP_ID,
+    measurementId: process.env.REACT_APP_PA_FIREBASE_MEASUREMENT_ID,
+  },
+  WA: {
+    apiKey: process.env.REACT_APP_WA_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_WA_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_WA_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_WA_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_WA_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_WA_FIREBASE_APP_ID,
+    measurementId: process.env.REACT_APP_WA_FIREBASE_MEASUREMENT_ID,
+  },
+};
+
+export const FIREBASE_PA_CONFIG = {};
 
 export const LANDING_PAGE_LINKS = {
   TESTING_OTHERS: [

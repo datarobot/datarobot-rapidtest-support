@@ -2,12 +2,9 @@ import axios from 'axios';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 
 import { getUserRefreshToken } from 'services/firebase';
-import { getAccessToken, setAccessToken } from 'utils';
+import { getAccessToken, setAccessToken, getServerUrl } from 'utils';
 
-const serverUrl =
-  process.env.NODE_ENV === 'production'
-    ? process.env.REACT_APP_SERVER_URL
-    : '/api/maintenance/v1';
+const serverUrl = getServerUrl();
 
 const defaultOptions = {
   baseURL: serverUrl,

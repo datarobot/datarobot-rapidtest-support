@@ -16,12 +16,14 @@ const Button = ({
   label,
   onClick,
   icon,
+  isDisabled,
   ...rest
 }) => (
   <button
     className={cls(`btn-${kind}`, className)}
     type={btnType}
     onClick={onClick}
+    disabled={isDisabled}
     {...rest}
   >
     {icon && <span className="mr-1">{icon}</span>}
