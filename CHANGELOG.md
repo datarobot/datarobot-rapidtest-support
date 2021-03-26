@@ -61,3 +61,7 @@
 - Updated to version 1, because why not?
 - Added batch activating/deactivating accounts and sites [RSS-17](https://datarobot.atlassian.net/browse/RSS-17)
 - Prevent non-program admin users from logging in.
+
+## v1.0.1
+- Fixed site upload confirmation issue - [RSS-50](https://datarobot.atlassian.net/browse/RSS-50)
+- Added the "Edit site" button that I accidentally removed in the last release - [RSS-51](https://datarobot.atlassian.net/browse/RSS-51)
