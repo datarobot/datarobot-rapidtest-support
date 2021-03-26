@@ -6,14 +6,9 @@ import { ROUTES } from 'rt-constants';
 const EditAccountCell = ({ data }) => (
   <Link
     to={`${ROUTES.EDIT_ACCOUNT.path}/${data.id}`}
-    className="block w-full flex justify-center"
+    className="block w-full flex justify-center text-blue-lighter"
   >
-    <Icon
-      iconName="pencil-alt"
-      type="fal"
-      color="#5282cc"
-      className="cursor-pointer"
-    />
+    <Icon iconName="pen" type="fas" className="cursor-pointer" />
   </Link>
 );
 
