@@ -23,3 +23,9 @@
 
   transition: opacity 500ms ease-in-out;
 }
+
+.column-list {
+  sup {
+    @apply font-bold text-dark-red;
+  }
+}

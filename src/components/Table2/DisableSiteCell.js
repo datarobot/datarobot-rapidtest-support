@@ -1,12 +1,15 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import { toast } from 'react-toastify';
 
 import Modal from 'components/Modal';
 import ToggleButton from 'components/ToggleButton';
 import SuccessCheck from 'components/Notifications/SuccessCheck';
+import Icon from 'components/Icon';
 
+import { ROUTES } from 'rt-constants';
 import { editSite } from 'services/api';
 
 const DisableSiteCell = ({ value, data }) => {
@@ -76,11 +79,21 @@ const DisableSiteCell = ({ value, data }) => {
         {isSuccess ? (
           <SuccessCheck onAnimationEnd={handleUpdateData} />
         ) : (
-          <ToggleButton
-            defaultChecked={selected}
-            disabled={isLoading || data.id === 3}
-            onChange={handleToggle}
-          />
+          <>
+            <Link to={`${ROUTES.EDIT_SITE.path}/${data.id}`} className="mr-4">
+              <Icon
+                iconName="pencil-alt"
+                type="fal"
+                color="#5282cc"
+                className="cursor-pointer"
+              />
+            </Link>
+            <ToggleButton
+              defaultChecked={selected}
+              disabled={isLoading || data.id === 3}
+              onChange={handleToggle}
+            />
+          </>
         )}
         <Modal
           show={showModal}
