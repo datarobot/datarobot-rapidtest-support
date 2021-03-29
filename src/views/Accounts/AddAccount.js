@@ -2,6 +2,7 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 import ErrorMessage from 'components/ErrorMessage';
 import InfoBox from 'components/InfoBox';
@@ -12,6 +13,7 @@ import { addAccount } from 'services/api';
 
 const AddAccount = ({ history }) => {
   const { control, handleSubmit, errors } = useForm();
+  const { t } = useTranslation();
 
   const onSubmit = (data) => {
     addAccount(data)
@@ -81,6 +83,16 @@ const AddAccount = ({ history }) => {
             name="email_address"
             control={control}
             defaultValue=""
+            rules={{
+              required: {
+                value: true,
+                message: t('errorMessages.common.required'),
+              },
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: t('errorMessages.email.invalid'),
+              },
+            }}
             render={({ onChange, value }) => (
               <Input
                 name="email_address"

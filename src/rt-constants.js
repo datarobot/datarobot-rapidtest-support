@@ -180,6 +180,11 @@ export const CURRENT_PROGRAMS_FULL = [
   { value: 'WA', label: 'Washington' },
 ];
 
+export const YES_NO_RADIOS = [
+  { value: true, label: 'Yes' },
+  { value: false, label: 'No' },
+];
+
 export const STATE_OPTIONS = [
   { value: 'AL', label: 'AL' },
   { value: 'AK', label: 'AK' },
