@@ -1,21 +1,22 @@
 // @ts-nocheck
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
+import { AuthContext } from 'components/AuthProvider';
 import Button, { KIND } from 'components/Button';
 import { ControlledInput } from 'components/Input';
 import ErrorMessage from 'components/ErrorMessage';
 import PageHeader from 'components/PageHeader';
 import Select from 'components/Select';
 
-import { signIn, getUser, signOut } from 'services/firebase';
+import { app, signIn, getUser, signOut } from 'services/firebase';
 import { getPrograms } from 'services/api';
 import { userAtom } from 'rt-store';
-import { get, set, setAccessToken, setRefreshToken } from 'utils';
+import { get, set, getUserRole, setAccessToken, setRefreshToken } from 'utils';
 
 import { ROUTES } from 'rt-constants';
 
@@ -26,6 +27,7 @@ const LogIn = ({ location, history }) => {
   const [programList, setProgramList] = useState([]);
   const [selectedProgram, setSelectedProgram] = useState(get('program'));
   const { t } = useTranslation();
+  const { setUser } = useContext(AuthContext);
 
   const onSubmit = ({ email, password }) => {
     signIn(email, password)
@@ -35,7 +37,15 @@ const LogIn = ({ location, history }) => {
         const { claims } = await getUser();
         const { dashboard_user, proctor_admin, site_admin } = claims;
 
-        console.log(user);
+        setUser({
+          ...app[get('program')].auth().currentUser,
+          roles: {
+            dashboard_user,
+            proctor_admin,
+            site_admin,
+          },
+          role: getUserRole({ dashboard_user, proctor_admin, site_admin }),
+        });
 
         if (!dashboard_user || !proctor_admin || !site_admin) {
           setShowLoginMessage(true);
@@ -45,7 +55,7 @@ const LogIn = ({ location, history }) => {
         setAccessToken(user.token);
         setRefreshToken(info.user.refreshToken);
 
-        setUserInfo(info);
+        setUserInfo(user);
         if (location?.state?.from) {
           history.push(location.state.from);
         } else {
@@ -74,7 +84,9 @@ const LogIn = ({ location, history }) => {
 
   const handleProgramChange = (state) => {
     set('program', state);
+    set('api', process.env[`REACT_APP_${state}_SERVER_URL`]);
     setSelectedProgram(state);
+    window.location.reload(true);
   };
 
   useEffect(() => {

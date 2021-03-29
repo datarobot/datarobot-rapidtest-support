@@ -18,6 +18,8 @@ const Input = ({
   labelClass,
   rounded,
   isRequired,
+  isSearch,
+  wrapperClass,
   ...rest
 }) => {
   const [showPasswordText, setShowPasswordText] = useState(false);
@@ -40,7 +42,12 @@ const Input = ({
           {label}
         </label>
       )}
-      <span className={cls('w-full', { relative: type === 'password' })}>
+      <span
+        className={cls(wrapperClass, {
+          'w-full': !isSearch,
+          relative: type === 'password',
+        })}
+      >
         <input
           name={name}
           id={name}

@@ -7,11 +7,12 @@ export const AuthContext = createContext({});
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
+  const [loadingAuthState, setLoadingAuthState] = useState(true);
 
   useEffect(() => {
     app[get('program') || 'PA'].auth().onAuthStateChanged(async (u) => {
-      console.log(u);
       if (!u) {
+        setLoadingAuthState(false);
         return setUser(null);
       }
 
@@ -32,14 +33,12 @@ export const AuthProvider = ({ children }) => {
           },
           role: getUserRole({ dashboard_user, proctor_admin, site_admin }),
         });
+
+        setLoadingAuthState(false);
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
 
   return (
     <AuthContext.Provider
@@ -47,6 +46,7 @@ export const AuthProvider = ({ children }) => {
         user,
         authenticated: user !== null,
         setUser,
+        loadingAuthState,
       }}
     >
       {children}

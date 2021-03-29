@@ -160,9 +160,6 @@ const sortArrayOfObjects = (key, order = 'asc') => {
   return innerSort;
 };
 
-const getServerUrl = () =>
-  process.env[`REACT_APP_${get('program')}_SERVER_URL`];
-
 export {
   get,
   set,
@@ -179,5 +176,4 @@ export {
   emptyToNull,
   loadGoogleScript,
   sortArrayOfObjects,
-  getServerUrl,
 };

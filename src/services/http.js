@@ -2,12 +2,10 @@ import axios from 'axios';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
 
 import { getUserRefreshToken } from 'services/firebase';
-import { getAccessToken, setAccessToken, getServerUrl } from 'utils';
-
-const serverUrl = getServerUrl();
+import { get, getAccessToken, setAccessToken } from 'utils';
 
 const defaultOptions = {
-  baseURL: serverUrl,
+  baseURL: get('api'),
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json',
