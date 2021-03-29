@@ -1,6 +1,6 @@
 {
   "name": "doc-brown",
-  "version": "0.1.0",
+  "version": "1.0.3",
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.1",
@@ -78,7 +78,8 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "translate": "NODE_ENV=development yarn run babel --quiet --ignore 'node_modules/**','src/__tests__/**' -f .babelrc 'src/**/*.js' > /dev/null 2>&1"
+    "translate": "NODE_ENV=development yarn run babel --quiet --ignore 'node_modules/**','src/__tests__/**' -f .babelrc 'src/**/*.js' > /dev/null 2>&1",
+    "bumpVersion": "node ./scripts/release.js"
   },
   "eslintConfig": {
     "extends": [
@@ -106,6 +107,7 @@
     "http-proxy-middleware": "1.0.6",
     "prettier": "^2.2.1",
     "progress-bar-webpack-plugin": "2.1.0",
+    "replace-in-file": "6.2.0",
     "webpack-bundle-analyzer": "4.4.0"
   }
 }
