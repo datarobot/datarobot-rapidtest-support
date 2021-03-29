@@ -68,3 +68,6 @@
 
 ## v1.0.2
 - Multi-program login! [RSS-44](https://datarobot.atlassian.net/browse/RSS-44)
+
+## v1.0.3
+- Start a program page implemented [RSS-2](https://datarobot.atlassian.net/browse/RSS-2)
