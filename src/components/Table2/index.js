@@ -11,6 +11,9 @@ import HeaderCell from 'components/Table2/HeaderCell';
 import LoadingOverlay from 'components/Table2/LoadingOverlay';
 import Pagination from 'components/Table2/Pagination';
 
+import { get } from 'utils';
+import { getPrograms } from 'services/api';
+
 import 'ag-grid-community';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import './Table2.css';
@@ -39,6 +42,8 @@ const Table2 = ({
   const [pageSize, setPageSize] = useState(0);
   const [isLastPage, setIsLastPage] = useState(false);
   const [isFirstPage, setIsFirstPage] = useState(false);
+  // eslint-disable-next-line no-unused-vars
+  const [currentProgram, setCurrentProgram] = useState('');
 
   useEffect(() => {
     if (gridApi && isLoading) {
@@ -46,8 +51,12 @@ const Table2 = ({
     }
   }, [isLoading]);
 
-  const onGridReady = (params) => {
+  const onGridReady = async (params) => {
     setGridApi(params.api);
+
+    const programs = await getPrograms();
+
+    setCurrentProgram(programs[get('program')][0].name);
   };
 
   const handleFilterChange = (event) => {
@@ -72,8 +81,8 @@ const Table2 = ({
   return (
     <>
       {!tableOnly && (
-        <div className="grid grid-cols-2 my-6">
-          <div className="flex flex-0 flex-col justify-center">
+        <div className="grid grid-cols-3 my-6">
+          <div className="flex flex-0 flex-col justify-center col-span-2">
             {tableName && (
               <h1 className="headline text-blue mb-4">{tableName}</h1>
             )}
@@ -84,10 +93,17 @@ const Table2 = ({
                 placeholder="Search..."
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setIsSearchFocused(false)}
+                isSearch
+                wrapperClass="w-3/5"
                 className={cls('self-center search', {
                   'rounded-r-none': !isSearchFocused,
                 })}
               />
+              {!isSearchFocused && (
+                <span className="w-full truncate">
+                  Your program: <strong>{currentProgram}</strong>
+                </span>
+              )}
             </div>
           </div>
           <div className="table-buttons flex justify-end items-center">

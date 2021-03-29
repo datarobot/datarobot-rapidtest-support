@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { createContext, useEffect, useState } from 'react';
 import { app, getUser } from 'services/firebase';
-import { getUserRole } from 'utils';
+import { get, getUserRole } from 'utils';
 
 export const AuthContext = createContext({});
 
@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
   const [loadingAuthState, setLoadingAuthState] = useState(true);
 
   useEffect(() => {
-    app.auth().onAuthStateChanged(async (u) => {
+    app[get('program') || 'PA'].auth().onAuthStateChanged(async (u) => {
       if (!u) {
         setLoadingAuthState(false);
         return setUser(null);

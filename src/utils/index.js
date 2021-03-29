@@ -43,7 +43,6 @@ const set = (key, val) => {
 };
 
 const clearStorage = () => {
-  ls.removeItem(SESSION_STORAGE_ITEMS.MAIN);
   ls.removeItem(SESSION_STORAGE_ITEMS.REFRESH_TOKEN);
   ls.removeItem(SESSION_STORAGE_ITEMS.ACCESS_TOKEN);
 };
