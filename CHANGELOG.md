@@ -65,3 +65,6 @@
 ## v1.0.1
 - Fixed site upload confirmation issue - [RSS-50](https://datarobot.atlassian.net/browse/RSS-50)
 - Added the "Edit site" button that I accidentally removed in the last release - [RSS-51](https://datarobot.atlassian.net/browse/RSS-51)
+
+## v1.0.2
+- Multi-program login! [RSS-44](https://datarobot.atlassian.net/browse/RSS-44)
