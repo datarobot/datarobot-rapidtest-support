@@ -1,6 +1,8 @@
 .footer {
   @apply fixed bottom-0 bg-white text-blue border-t border-gray-400 flex justify-between items-center w-screen;
 
+  /* Map z-index is 400 */
+  z-index: 401;
   height: 50px;
   margin-left: -8.5vw;
   padding-left: 8.5vw;
