@@ -1,6 +1,8 @@
+// @ts-nocheck
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import cls from 'classnames';
+import pkg from 'package.alias.json';
 
 import { ROUTES } from 'rt-constants';
 
@@ -27,7 +29,8 @@ const Footer = () => {
   return (
     <div className={cls('footer', { 'fixed bottom-0': isTableView })}>
       <p>
-        &copy;{year} <span className="font-bold ml-1">rapid</span>test
+        &copy;{year} <span className="font-bold ml-1">rapid</span>test{' '}
+        <small>v{pkg.version}</small>
       </p>
       <div className="footer-links flex">
         <Link to={ROUTES.CONTACT.path} className="text-gray-500 no-underline">
