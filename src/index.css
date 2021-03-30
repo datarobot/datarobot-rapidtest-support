@@ -20,6 +20,10 @@ body {
   @apply overflow-y-scroll mb-4 relative;
 }
 
+.leaflet-top, .leaflet-bottom {
+  z-index: 400;
+}
+
 @layer components {
   [class*="btn-"] {
     transition: all 250ms ease;
