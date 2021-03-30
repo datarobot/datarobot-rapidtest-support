@@ -23,27 +23,31 @@ const EditAccount = ({ history }) => {
   const { t } = useTranslation();
   const { handleSubmit, errors, register } = useForm();
   const [currentAccount, setCurrentAccount] = useAtom(currentAccountAtom);
+  const [patchData, setPatchData] = useState();
   const { id } = useParams();
 
   const onSubmit = () => {
-    editAccount(currentAccount.id, currentAccount)
-      .then(() => {
-        toast.success('Success!', {
-          onClose: () => {
-            setCurrentAccount({});
-            history.push(ROUTES.ACCOUNTS.path);
-          },
-          closeButton: false,
-          hideProgressBar: true,
-          autoClose: 1500,
+    if (patchData) {
+      editAccount(currentAccount.id, patchData)
+        .then(() => {
+          toast.success('Success!', {
+            onClose: () => {
+              setCurrentAccount({});
+              history.push(ROUTES.ACCOUNTS.path);
+            },
+            closeButton: false,
+            hideProgressBar: true,
+            autoClose: 1500,
+          });
+        })
+        .catch((err) => {
+          toast.error(err.message);
         });
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
+    }
   };
 
   const handleOnChange = (prop, val) => {
+    setPatchData((prevState) => ({ ...prevState, [prop]: val }));
     setCurrentAccount((prevState) => ({ ...prevState, [prop]: val }));
   };
 
@@ -66,10 +70,6 @@ const EditAccount = ({ history }) => {
         setIsLoading(false);
       });
   }, [id, setCurrentAccount]);
-
-  // useEffect(() => {
-  //   console.log(currentAccount.archive);
-  // }, [currentAccount]);
 
   return (
     <section className="mb-12">
@@ -121,21 +121,8 @@ const EditAccount = ({ history }) => {
               label="Email address"
               placeholder="Email address"
               type="email"
-              onChange={({ target }) =>
-                handleOnChange('email_address', target.value)
-              }
+              disabled
               value={currentAccount?.email_address || ''}
-              ref={register({
-                required: {
-                  value: true,
-                  message: t('errorMessages.common.required'),
-                },
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: t('errorMessages.email.invalid'),
-                },
-              })}
-              isRequired
             />
             <ErrorMessage errors={errors} errorKey="email_address" />
 
@@ -176,7 +163,11 @@ const EditAccount = ({ history }) => {
                 Cancel
               </button>
 
-              <button className="btn-primary mr-2" type="submit">
+              <button
+                className="btn-primary mr-2"
+                type="submit"
+                disabled={!patchData}
+              >
                 Save Info
               </button>
             </div>

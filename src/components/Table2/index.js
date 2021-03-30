@@ -81,7 +81,7 @@ const Table2 = ({
   return (
     <>
       {!tableOnly && (
-        <div className="grid grid-cols-3 my-6">
+        <div className="grid grid-cols-3 lg:mb-4 xl:mb-4 mt-2">
           <div className="flex flex-0 flex-col justify-center col-span-2">
             {tableName && (
               <h1 className="headline text-blue mb-4">{tableName}</h1>
