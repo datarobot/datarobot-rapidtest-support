@@ -71,3 +71,7 @@
 
 ## v1.0.3
 - Start a program page implemented [RSS-2](https://datarobot.atlassian.net/browse/RSS-2)
+
+## v1.0.4
+- Make account emails disabled on edit account form - [RSS-54](https://datarobot.atlassian.net/browse/RSS-54)
+- Fix map overlapping footer on smaller screens - [RSS-53](https://datarobot.atlassian.net/browse/RSS-53)
