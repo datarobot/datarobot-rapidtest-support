@@ -1,6 +1,5 @@
 // @ts-nocheck
-/* eslint-disable no-unused-vars */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Checkbox from 'components/Checkbox';
 import Icon from 'components/Icon';
@@ -10,11 +9,6 @@ const HeaderCell = (props) => {
   const [, setDescSort] = useState('inactive');
   const [, setNoSort] = useState('inactive');
   const [isChecked, setIsChecked] = useState(false);
-  const refButton = useRef(null);
-
-  const onMenuClicked = () => {
-    props.showColumnMenu(refButton.current);
-  };
 
   const onSortChanged = () => {
     setAscSort(props.column.isSortAscending() ? 'active' : 'inactive');
