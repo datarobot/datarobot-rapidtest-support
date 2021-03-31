@@ -20,6 +20,7 @@ import {
   faChevronRight,
   faChevronDoubleLeft,
   faChevronDoubleRight,
+  faEnvelope,
   faEye,
   faEyeSlash,
   faFileExport,
@@ -30,6 +31,8 @@ import {
   faQuestionCircle,
   faTimes,
   faTimesCircle,
+  faUserPlus,
+  faUserSlash,
 } from '@fortawesome/pro-light-svg-icons';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -42,6 +45,8 @@ library.add(
   faChevronLeft,
   faChevronRight,
   faChevronUp,
+  faCloudUploadAlt,
+  faEnvelope,
   faExclamationCircle,
   faEye,
   faEyeSlash,
@@ -61,5 +66,6 @@ library.add(
   faSortDown,
   faTimes,
   faTimesCircle,
-  faCloudUploadAlt
+  faUserPlus,
+  faUserSlash
 );

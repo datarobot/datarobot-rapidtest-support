@@ -1,5 +1,6 @@
 // @ts-nocheck
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import cls from 'classnames';
 
 import Checkbox from 'components/Checkbox';
 import Icon from 'components/Icon';
@@ -80,7 +81,13 @@ const HeaderCell = (props) => {
           isChecked={isChecked}
         />
       )}
-      <span className="flex justify-between w-full" onClick={onSortRequested}>
+      <span
+        className={cls('flex w-full', {
+          'justify-between': !props.textEnd,
+          'justify-end': props.textEnd,
+        })}
+        onClick={onSortRequested}
+      >
         <div className="customHeaderLabel">{props.displayName}</div>
         {sort}
       </span>
