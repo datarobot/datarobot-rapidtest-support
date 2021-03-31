@@ -7,6 +7,7 @@ import { getUserRole } from 'utils';
 import Unauthorized from 'components/Unauthorized';
 
 const Home = lazy(() => import('views/Home'));
+const Admin = lazy(() => import('views/Admin'));
 const Join = lazy(() => import('views/Join'));
 const Sites = lazy(() => import('views/Sites'));
 const AddSite = lazy(() => import('views/Sites/AddSite'));
@@ -72,6 +73,14 @@ export const Routes = ({ authenticated, roles }) => (
       route={ROUTES.SITES}
       roles={roles}
       component={Sites}
+    />
+    <PrivateRoute
+      authenticated={authenticated}
+      exact
+      path={ROUTES.ADMIN.path}
+      route={ROUTES.ADMIN}
+      roles={roles}
+      component={Admin}
     />
     <PrivateRoute
       authenticated={authenticated}
