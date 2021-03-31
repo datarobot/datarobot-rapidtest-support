@@ -15,8 +15,8 @@ const Nav = () => (
       </NavLink>
     </li>
     <li>
-      <NavLink exact className="nav-link" to={ROUTES.DASHBOARD.path}>
-        Dashboard
+      <NavLink exact className="nav-link" to={ROUTES.ADMIN.path}>
+        Program Admin
       </NavLink>
     </li>
     <li>

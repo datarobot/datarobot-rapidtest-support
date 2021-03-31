@@ -15,6 +15,14 @@ export const ROUTES = {
     path: '/sites',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
   },
+  ADMIN: {
+    path: '/admin',
+    roles: [
+      USER_ROLES.dashboard,
+      USER_ROLES.proctorAdmin,
+      USER_ROLES.siteAdmin,
+    ],
+  },
   ADD_SITE: {
     path: '/sites/new',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
