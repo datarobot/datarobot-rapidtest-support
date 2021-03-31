@@ -59,7 +59,7 @@ const LogIn = ({ location, history }) => {
         if (location?.state?.from) {
           history.push(location.state.from);
         } else {
-          history.push('/');
+          history.push('/admin');
         }
       })
       .catch((err) => {

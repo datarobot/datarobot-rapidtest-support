@@ -16,6 +16,7 @@ import { dateComparator } from 'utils/table';
 import DisableAccountCell from 'components/Table2/AccountRenderers/DisableAccountCell';
 import AccountAddedCell from 'components/Table2/AccountRenderers/AccountAddedCell';
 import AccountNameCell from 'components/Table2/AccountRenderers/AccountNameCell';
+import AccountStatusCell from 'components/Table2/AccountRenderers/AccountStatusCell';
 import EditAccountCell from 'components/Table2/AccountRenderers/EditAccountCell';
 import AccountEmailCell from 'components/Table2/AccountRenderers/AccountEmailCell';
 import { toast } from 'react-toastify';
@@ -71,6 +72,23 @@ const Accounts = () => {
     return 0;
   };
 
+  const sortStatus = (a, b) => {
+    if (a > b) return 1;
+    if (b > a) return -1;
+    return 0;
+  };
+
+  const statusValueGetter = ({ data }) => {
+    if (data.archive) {
+      return 'Inactive';
+    }
+    if (!data.last_login_ip) {
+      return 'Email Sent';
+    }
+
+    return 'Active';
+  };
+
   const handleCheckChange = (res, isChecked) => {
     setAccountsToDisable(isChecked ? [] : res);
   };
@@ -101,9 +119,14 @@ const Accounts = () => {
     },
     { field: 'phone_number_office', header: 'Phone', colWidth: 160 },
     {
-      value: ({ data }) => (data.archive ? 'Inactive' : 'Active'),
-      header: 'Active',
+      renderer: 'accountStatusCell',
+      comparator: sortStatus,
+      header: 'Status',
       colWidth: 120,
+      value: statusValueGetter,
+      headerParams: {
+        showMenu: true,
+      },
     },
     {
       field: 'archive',
@@ -126,6 +149,7 @@ const Accounts = () => {
     accountAddedCell: AccountAddedCell,
     accountEmailCell: AccountEmailCell,
     accountNameCell: AccountNameCell,
+    accountStatusCell: AccountStatusCell,
     disableAccountCell: DisableAccountCell,
     editAccountCell: EditAccountCell,
   };
