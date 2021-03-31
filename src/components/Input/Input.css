@@ -23,7 +23,7 @@
 }
 
 .search {
-  @apply border-transparent outline-none ml-2 w-1/3;
+  @apply border-transparent outline-none ml-2 w-2/3;
 
   border-right: 1px solid #ccc;
   min-width: 0;

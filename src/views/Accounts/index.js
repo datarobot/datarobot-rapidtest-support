@@ -12,9 +12,12 @@ import { accountsAtom, accountsToDisableAtom } from 'rt-store';
 import Table2 from 'components/Table2';
 
 import { download, toCsv } from 'utils';
-import DisableAccountCell from 'components/Table2/DisableAccountCell';
-import AccountNameCell from 'components/Table2/AccountNameCell';
-import EditAccountCell from 'components/Table2/EditAccountCell';
+import { dateComparator } from 'utils/table';
+import DisableAccountCell from 'components/Table2/AccountRenderers/DisableAccountCell';
+import AccountAddedCell from 'components/Table2/AccountRenderers/AccountAddedCell';
+import AccountNameCell from 'components/Table2/AccountRenderers/AccountNameCell';
+import EditAccountCell from 'components/Table2/AccountRenderers/EditAccountCell';
+import AccountEmailCell from 'components/Table2/AccountRenderers/AccountEmailCell';
 import { toast } from 'react-toastify';
 
 const Accounts = () => {
@@ -76,6 +79,7 @@ const Accounts = () => {
     {
       renderer: 'accountNameCell',
       header: 'Name',
+      colId: 'name',
       headerParams: {
         showCheck: true,
         handleCheckChange,
@@ -83,8 +87,19 @@ const Accounts = () => {
       comparator: sortNames,
       value: ({ data }) => `${data.last_name}, ${data.first_name}`,
     },
-    { field: 'email_address', header: 'Email' },
-    { field: 'phone_number_office', header: 'Phone' },
+    {
+      field: 'email_address',
+      header: 'Email',
+      renderer: 'accountEmailCell',
+    },
+    {
+      field: 'welcome_email_sent',
+      header: 'Added',
+      renderer: 'accountAddedCell',
+      comparator: dateComparator,
+      colWidth: 120,
+    },
+    { field: 'phone_number_office', header: 'Phone', colWidth: 160 },
     {
       value: ({ data }) => (data.archive ? 'Inactive' : 'Active'),
       header: 'Active',
@@ -108,8 +123,10 @@ const Accounts = () => {
   ];
 
   const renderers = {
-    disableAccountCell: DisableAccountCell,
+    accountAddedCell: AccountAddedCell,
+    accountEmailCell: AccountEmailCell,
     accountNameCell: AccountNameCell,
+    disableAccountCell: DisableAccountCell,
     editAccountCell: EditAccountCell,
   };
 
@@ -134,6 +151,7 @@ const Accounts = () => {
       rows={accounts}
       cols={cols}
       renderers={renderers}
+      defaultSortCol="name"
       tableName="Manage Accounts"
       addButtonText={t('buttons.addAccount')}
       uploadButtonText={`+ ${t('buttons.uploadList')}`}
