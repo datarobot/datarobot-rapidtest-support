@@ -13,12 +13,15 @@ import Table2 from 'components/Table2';
 
 import { download, toCsv } from 'utils';
 import { dateComparator } from 'utils/table';
-import DisableAccountCell from 'components/Table2/AccountRenderers/DisableAccountCell';
-import AccountAddedCell from 'components/Table2/AccountRenderers/AccountAddedCell';
-import AccountNameCell from 'components/Table2/AccountRenderers/AccountNameCell';
-import AccountStatusCell from 'components/Table2/AccountRenderers/AccountStatusCell';
-import EditAccountCell from 'components/Table2/AccountRenderers/EditAccountCell';
-import AccountEmailCell from 'components/Table2/AccountRenderers/AccountEmailCell';
+import {
+  DisableAccountCell,
+  AccountAddedCell,
+  AccountNameCell,
+  AccountStatusCell,
+  EditAccountCell,
+  AccountEmailCell,
+} from 'components/Table2/AccountRenderers';
+
 import { toast } from 'react-toastify';
 
 const Accounts = () => {
@@ -117,7 +120,6 @@ const Accounts = () => {
       comparator: dateComparator,
       colWidth: 120,
     },
-    { field: 'phone_number_office', header: 'Phone', colWidth: 160 },
     {
       renderer: 'accountStatusCell',
       comparator: sortStatus,
@@ -132,9 +134,12 @@ const Accounts = () => {
       field: 'archive',
       renderer: 'disableAccountCell',
       header: 'Action',
+      headerParams: {
+        textEnd: true,
+      },
       disableSort: true,
-      colWidth: 120,
       resizable: false,
+      colWidth: 200,
     },
     {
       renderer: 'editAccountCell',
