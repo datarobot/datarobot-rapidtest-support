@@ -75,3 +75,11 @@
 ## v1.0.4
 - Disable email field on edit account form - [RSS-54](https://datarobot.atlassian.net/browse/RSS-54)
 - Fix map overlapping footer on smaller screens - [RSS-53](https://datarobot.atlassian.net/browse/RSS-53)
+
+## v1.0.5
+- Add 'Date Added' column - [RSS-55](https://datarobot.atlassian.net/browse/RSS-55)
+- Update account requests to work with other programs - [RSS-56](https://datarobot.atlassian.net/browse/RSS-56)
+- Upload Confirmation - [RSS-10](https://datarobot.atlassian.net/browse/RSS-10)
+- Program Admin Tab - [RSS-58](https://datarobot.atlassian.net/browse/RSS-58)
+- Updated "Account Status" field - [RSS-60](https://datarobot.atlassian.net/browse/RSS-60)
+- Added re-send account email feature - [RSS-61](https://datarobot.atlassian.net/browse/RSS-61)
