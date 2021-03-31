@@ -57,7 +57,7 @@ const Captcha = ({ handleSuccess, handleError }) => {
           className="text-sm text-blue ml-2 cursor-pointer"
           onClick={handleCaptchaChange}
         >
-          I'm a human.
+          {isSuccess ? <>You're a human!</> : <>I'm a human.</>}
         </p>
       </div>
     </section>

@@ -172,6 +172,8 @@ export const LANDING_PAGE_LINKS = {
   ],
 };
 
+export const LIVE_PROGRAMS = ['PA', 'WA'];
+
 export const CURRENT_PROGRAMS = ['PA', 'TX', 'WA'];
 
 export const CURRENT_PROGRAMS_FULL = [

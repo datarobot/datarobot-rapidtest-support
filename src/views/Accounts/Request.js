@@ -12,8 +12,10 @@ import ErrorMessage from 'components/ErrorMessage';
 import PageHeader from 'components/PageHeader';
 import Select from 'components/Select';
 
+import { LIVE_PROGRAMS } from 'rt-constants';
+
 import { addAccount, getPrograms } from 'services/api';
-import { sortArrayOfObjects } from 'utils';
+import { get, set, sortArrayOfObjects } from 'utils';
 
 import './Accounts.css';
 
@@ -21,6 +23,7 @@ const RequestAccount = ({ history }) => {
   const [showSuccessMsg, setShowSuccessMsg] = useState(false);
   const [programList, setProgramList] = useState([]);
   const [captchaVerified, setCaptchaVerified] = useState(false);
+  const [selectedProgram, setSelectedProgram] = useState(get('program'));
 
   const { handleSubmit, errors, register, control } = useForm({
     defaultValues: {},
@@ -56,7 +59,7 @@ const RequestAccount = ({ history }) => {
     for (const key in programs) {
       if (Object.hasOwnProperty.call(programs, key)) {
         const prog = programs[key][0];
-        programArr.push({ value: key, label: prog.name });
+        programArr.push({ value: key, label: `${key} - ${prog.name}` });
       }
     }
 
@@ -66,6 +69,19 @@ const RequestAccount = ({ history }) => {
   useEffect(() => {
     buildProgramList();
   }, []);
+
+  const handleProgramChange = (state) => {
+    if (!LIVE_PROGRAMS.includes(state)) {
+      toast.info('That program has not been implemented yet.', {
+        autoClose: 5000,
+      });
+      return;
+    }
+    set('program', state);
+    set('api', process.env[`REACT_APP_${state}_SERVER_URL`]);
+    setSelectedProgram(state);
+    window.location.reload(true);
+  };
 
   return (
     <>
@@ -88,16 +104,18 @@ const RequestAccount = ({ history }) => {
                 message: t('errorMessages.common.required'),
               },
             }}
-            render={({ onChange, value }) => (
+            render={({ onChange }) => (
               <Select
                 name="state"
                 placeholder="Select a program"
                 options={programList}
                 isRequired
-                onChange={(e) => {
-                  onChange(e);
+                onChange={({ target }) => {
+                  const { value } = target;
+                  onChange(value);
+                  handleProgramChange(value);
                 }}
-                value={value}
+                value={selectedProgram || get('program')}
                 className="w-2/5"
               />
             )}

@@ -18,7 +18,7 @@ import { getPrograms } from 'services/api';
 import { userAtom } from 'rt-store';
 import { get, set, getUserRole, setAccessToken, setRefreshToken } from 'utils';
 
-import { ROUTES } from 'rt-constants';
+import { ROUTES, LIVE_PROGRAMS } from 'rt-constants';
 
 const LogIn = ({ location, history }) => {
   const { handleSubmit, register, errors } = useForm();
@@ -83,6 +83,12 @@ const LogIn = ({ location, history }) => {
   };
 
   const handleProgramChange = (state) => {
+    if (!LIVE_PROGRAMS.includes(state)) {
+      toast.info('That program has not been implemented yet.', {
+        autoClose: 5000,
+      });
+      return;
+    }
     set('program', state);
     set('api', process.env[`REACT_APP_${state}_SERVER_URL`]);
     setSelectedProgram(state);
