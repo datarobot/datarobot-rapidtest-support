@@ -23,7 +23,7 @@
 }
 
 .upload-error-message {
-  @apply text-white mb-1;
+  @apply text-dark-red font-medium mb-1 flex justify-between;
 }
 
 .upload-error-message:last-of-type {

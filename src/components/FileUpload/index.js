@@ -34,6 +34,7 @@ const FileUpload = ({
   handleUpload,
   templateFile,
   templateName,
+  clearErrors = () => {},
 }) => {
   const [files, setFiles] = useState([]);
   const [tableColumns, setTableColumns] = useState([]);
@@ -97,6 +98,7 @@ const FileUpload = ({
     setTableColumns([]);
     setTableDataDisplay([]);
     setTableData([]);
+    clearErrors();
   };
 
   const isCsv = (file) => file.name.split('.').pop() === 'csv';
@@ -156,11 +158,13 @@ const FileUpload = ({
                   />
                 </div>
               </section>
-              <Table
-                tableOnly={true}
-                columns={tableColumns}
-                data={tableDataDisplay}
-              />
+              <section className="text-sm">
+                <Table
+                  tableOnly={true}
+                  columns={tableColumns}
+                  data={tableDataDisplay}
+                />
+              </section>
             </>
           ) : (
             <section className="error-msg">

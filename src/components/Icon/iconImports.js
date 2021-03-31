@@ -9,7 +9,6 @@ import {
   faSort,
   faSortUp,
   faSortDown,
-  faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { faLongArrowRight, faPencil } from '@fortawesome/pro-solid-svg-icons';
@@ -29,6 +28,7 @@ import {
   faSearch,
   faSignOut,
   faQuestionCircle,
+  faTimes,
   faTimesCircle,
 } from '@fortawesome/pro-light-svg-icons';
 

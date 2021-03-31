@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { Fragment, useRef } from 'react';
+import { Fragment, useRef, useState } from 'react';
+import cls from 'classnames';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
@@ -17,18 +18,25 @@ import fileTemplate from 'assets/static/rapidtest_sites_template.csv';
 
 import './Sites.css';
 
-const HeaderText = ({ errors }) => {
+const HeaderText = ({ errors, clearErrors }) => {
   const { REQUIRED, OPTIONAL } = VALID_SITE_COLUMNS;
 
   if (errors.length > 0) {
     return (
-      <section className="bg-dark-red rounded px-4 py-2 w-full">
-        <p className="text-white font-black text-lg uppercase w-full mb-2 border-b border-white">
-          <Icon iconName="exclamation-circle" /> Error(s)
-        </p>
+      <section className="px-4 py-2 w-full">
         {errors.map((err, i) => (
           <p className="upload-error-message" key={i}>
-            {err}
+            <span>
+              <Icon iconName="exclamation-circle" />
+              {err}
+            </span>
+            <button
+              type="button"
+              onClick={clearErrors}
+              className="cursor-pointer text-black"
+            >
+              <Icon iconName="times" type="fal" />
+            </button>
           </p>
         ))}
       </section>
@@ -63,16 +71,12 @@ const HeaderText = ({ errors }) => {
 };
 
 const UploadSites = ({ history }) => {
-  const [hasErrors, setHasErrors] = useState(false);
   const [errors, setErrors] = useState([]);
   const toastId = useRef(null);
 
   const notify = () => {
     toastId.current = toast.info('Uploading sites...', {
       autoClose: false,
-      onClose: () => {
-        history.push(ROUTES.SITES.path);
-      },
     });
   };
 
@@ -96,19 +100,15 @@ const UploadSites = ({ history }) => {
       .then(() => {
         update(`Uploaded ${data.length} sites!`, toast.TYPE.SUCCESS, {
           autoClose: 5000,
+          onClose: () => {
+            history.push(ROUTES.SITES.path);
+          },
         });
       })
       .catch((err) => {
-        const resp = err.response?.data.errors;
         dismiss();
-          const resp = err.response?.data.errors;
-          setErrors((prevState) => [...prevState, parseError(resp)]);
-          setHasErrors(true);
-          dismiss();
-        update(parseError(resp), toast.TYPE.ERROR, {
-          autoClose: 10000,
-          onClose: () => {},
-        });
+        const resp = err.response?.data.errors;
+        setErrors((prevState) => [...prevState, parseError(resp)]);
       });
   };
 
@@ -116,7 +116,10 @@ const UploadSites = ({ history }) => {
     <>
       <PageHeader
         headline="Upload a list of sites"
-        subtext={<HeaderText errors={errors} />}
+        subtext={
+          <HeaderText errors={errors} clearErrors={() => setErrors([])} />
+        }
+        subtextClass={cls({ 'w-1/2': errors.length > 0 })}
       />
       <FileUpload
         validator={isValidSitesList}
@@ -124,6 +127,7 @@ const UploadSites = ({ history }) => {
         handleUpload={handleUpload}
         templateFile={fileTemplate}
         templateName="rapidtest_sites_template.csv"
+        clearErrors={() => setErrors([])}
       />
     </>
   );

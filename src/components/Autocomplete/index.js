@@ -32,7 +32,7 @@ const Autocomplete = ({
       kind={KIND.CLEAR}
       className="clearIcon"
       onClick={onClearClick}
-      label={<Icon iconName="times" />}
+      label={<Icon iconName="times" type="fal" />}
     />
 
     {listValues?.length > 0 && (
