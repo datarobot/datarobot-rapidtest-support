@@ -21,3 +21,11 @@
     @apply font-bold text-dark-red;
   }
 }
+
+.upload-error-message {
+  @apply text-dark-red font-medium mb-1 flex justify-between;
+}
+
+.upload-error-message:last-of-type {
+  @apply mb-0;
+}

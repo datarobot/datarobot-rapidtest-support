@@ -96,26 +96,24 @@ const RequestAccount = ({ history }) => {
           <Controller
             control={control}
             name="state"
-            label="State"
-            defaultValue=""
+            defaultValue={selectedProgram || get('program') || ''}
             rules={{
               required: {
                 value: true,
                 message: t('errorMessages.common.required'),
               },
             }}
-            render={({ onChange }) => (
+            render={({ onChange, value }) => (
               <Select
                 name="state"
                 placeholder="Select a program"
                 options={programList}
                 isRequired
-                onChange={({ target }) => {
-                  const { value } = target;
-                  onChange(value);
-                  handleProgramChange(value);
+                onChange={(e) => {
+                  onChange(e);
+                  handleProgramChange(e.target.value);
                 }}
-                value={selectedProgram || get('program')}
+                value={value}
                 className="w-2/5"
               />
             )}
