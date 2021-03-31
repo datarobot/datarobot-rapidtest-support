@@ -139,7 +139,7 @@ const Accounts = () => {
       },
       disableSort: true,
       resizable: false,
-      colWidth: 200,
+      colWidth: 100,
     },
     {
       renderer: 'editAccountCell',
