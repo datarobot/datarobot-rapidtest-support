@@ -27,6 +27,7 @@ const Pagination = ({
   rowCount,
   onActivate,
   onDeactivate,
+  onPageSizeChange,
   // totalPages,
 }) => {
   const { pathname } = useLocation();
@@ -41,7 +42,7 @@ const Pagination = ({
   };
 
   return (
-    <div className="pagination-panel flex justify-between">
+    <div className="pagination-panel">
       <span>
         <button
           type="button"
@@ -54,6 +55,23 @@ const Pagination = ({
           Activate
         </button>
       </span>
+
+      {process.env.REACT_APP_ENABLE_PAGINATION_SIZE === 'true' && (
+        <span className="text-sm">
+          Show
+          <select
+            className="mx-1 cursor-pointer"
+            value={pageSize}
+            onChange={onPageSizeChange}
+          >
+            <option value={10}>10</option>
+            <option value={20}>20</option>
+            <option value={50}>50</option>
+            <option value={100}>100</option>
+          </select>
+          per page
+        </span>
+      )}
 
       <div className="flex items-center justify-center">
         <button

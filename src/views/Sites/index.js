@@ -7,8 +7,8 @@ import { toast } from 'react-toastify';
 
 import { getSiteList, editSite } from 'services/api';
 import { ROUTES } from 'rt-constants';
-import SiteNameCell from 'components/Table2/SiteNameCell';
-import DisableSiteCell from 'components/Table2/DisableSiteCell';
+import SiteNameCell from 'components/Table2/SiteRenderers/SiteNameCell';
+import DisableSiteCell from 'components/Table2/SiteRenderers/DisableSiteCell';
 import Table2 from 'components/Table2';
 
 import { download, toCsv } from 'utils';
@@ -76,6 +76,7 @@ const Sites = () => {
         showCheck: true,
         handleCheckChange,
       },
+      colId: 'siteName',
       value: ({ data }) => data.site_name,
     },
     {
@@ -128,6 +129,7 @@ const Sites = () => {
       <Table2
         rows={sites}
         cols={cols}
+        defaultSortCol="siteName"
         renderers={renderers}
         tableName="Manage Sites"
         addButtonText={t('buttons.addSite')}

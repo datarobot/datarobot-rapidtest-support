@@ -22,6 +22,7 @@ const Table2 = ({
   rows,
   cols,
   renderers,
+  defaultSortCol,
   addButtonText,
   uploadButtonText,
   tableName,
@@ -39,21 +40,29 @@ const Table2 = ({
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [rowCount, setRowCount] = useState(0);
-  const [pageSize, setPageSize] = useState(0);
+  const [pageSize, setPageSize] = useState(10);
   const [isLastPage, setIsLastPage] = useState(false);
   const [isFirstPage, setIsFirstPage] = useState(false);
-  // eslint-disable-next-line no-unused-vars
   const [currentProgram, setCurrentProgram] = useState('');
+  const [columnApi, setColumnApi] = useState();
 
   useEffect(() => {
     if (gridApi && isLoading) {
       gridApi.showLoadingOverlay();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
+
+  useEffect(() => {
+    if (columnApi && defaultSortCol) {
+      columnApi.getColumn(defaultSortCol).setSort('asc');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [columnApi]);
 
   const onGridReady = async (params) => {
     setGridApi(params.api);
-
+    setColumnApi(params.columnApi);
     const programs = await getPrograms();
 
     setCurrentProgram(programs[get('program')][0].name);
@@ -65,10 +74,9 @@ const Table2 = ({
 
   const onPaginationChanged = () => {
     if (gridApi) {
-      // setText('#lbPageSize', gridApi.paginationGetPageSize());
       setCurrentPage(gridApi.paginationGetCurrentPage() + 1);
       setTotalPages(gridApi.paginationGetTotalPages());
-      setPageSize(gridApi.paginationGetPageSize());
+      // setPageSize(gridApi.paginationGetPageSize());
       setRowCount(gridApi.paginationGetRowCount());
       setIsLastPage(
         gridApi.paginationGetCurrentPage() + 1 ===
@@ -78,50 +86,60 @@ const Table2 = ({
     }
   };
 
+  const handlePageSizeChange = ({ target }) => {
+    const { value } = target;
+    setPageSize(parseInt(value, 10));
+    gridApi.paginationSetPageSize(parseInt(value, 10));
+  };
+
   return (
     <>
       {!tableOnly && (
-        <div className="grid grid-cols-3 lg:mb-4 xl:mb-4 mt-2">
-          <div className="flex flex-0 flex-col justify-center col-span-2">
-            {tableName && (
-              <h1 className="headline text-blue mb-4">{tableName}</h1>
-            )}
-            <div className="flex items-center">
-              <Icon iconName="search" type="fal" />
-              <Input
-                onChange={handleFilterChange}
-                placeholder="Search..."
-                onFocus={() => setIsSearchFocused(true)}
-                onBlur={() => setIsSearchFocused(false)}
-                isSearch
-                wrapperClass="w-3/5"
-                className={cls('self-center search', {
-                  'rounded-r-none': !isSearchFocused,
-                })}
+        <>
+          {tableName && (
+            <h1 className="headline text-blue mb-4">{tableName}</h1>
+          )}
+          <div className="grid grid-cols-3 lg:mb-4 xl:mb-4 mt-2">
+            <div className="flex flex-0 flex-col justify-center col-span-2">
+              <div className="flex items-center">
+                <Icon iconName="search" type="fal" />
+                <Input
+                  onChange={handleFilterChange}
+                  placeholder="Search..."
+                  onFocus={() => setIsSearchFocused(true)}
+                  onBlur={() => setIsSearchFocused(false)}
+                  isSearch
+                  wrapperClass={cls({
+                    'w-3/5': isSearchFocused,
+                  })}
+                  className={cls('self-center search', {
+                    'rounded-r-none': !isSearchFocused,
+                  })}
+                />
+                {!isSearchFocused && (
+                  <span className="w-full truncate">
+                    Your program: <strong>{currentProgram}</strong>
+                  </span>
+                )}
+              </div>
+            </div>
+            <div className="table-buttons flex justify-end items-center">
+              <Link to={uploadRoute} className="btn-clear text-blue mr-1 px-2">
+                {uploadButtonText}
+              </Link>
+              <Button
+                kind={KIND.CLEAR}
+                label="Export data"
+                className="mr-3 px-2"
+                icon={<Icon iconName="file-export" type="fal" />}
+                onClick={onExportData}
               />
-              {!isSearchFocused && (
-                <span className="w-full truncate">
-                  Your program: <strong>{currentProgram}</strong>
-                </span>
-              )}
+              <Link to={addRoute} className="btn-primary px-2">
+                {addButtonText}
+              </Link>
             </div>
           </div>
-          <div className="table-buttons flex justify-end items-center">
-            <Link to={uploadRoute} className="btn-clear text-blue mr-1 px-2">
-              {uploadButtonText}
-            </Link>
-            <Button
-              kind={KIND.CLEAR}
-              label="Export data"
-              className="mr-3 px-2"
-              icon={<Icon iconName="file-export" type="fal" />}
-              onClick={onExportData}
-            />
-            <Link to={addRoute} className="btn-primary px-2">
-              {addButtonText}
-            </Link>
-          </div>
-        </div>
+        </>
       )}
       <div style={{ height: '100%', width: '100%' }}>
         <div className="ag-theme-rt" style={{ height: '100%', width: '100%' }}>
@@ -139,7 +157,7 @@ const Table2 = ({
               headerComponentParams: { showCheck: false },
             }}
             pagination={true}
-            paginationPageSize={10}
+            paginationPageSize={pageSize}
             onPaginationChanged={onPaginationChanged}
             suppressPaginationPanel={true}
             frameworkComponents={{
@@ -154,6 +172,7 @@ const Table2 = ({
             {cols.map(
               (
                 {
+                  colId,
                   colWidth,
                   comparator,
                   disableSort,
@@ -178,6 +197,7 @@ const Table2 = ({
                   maxWidth={colWidth}
                   comparator={comparator}
                   headerComponentParams={headerParams}
+                  colId={colId}
                 />
               )
             )}
@@ -193,6 +213,7 @@ const Table2 = ({
             rowCount={rowCount}
             onActivate={onActivate}
             onDeactivate={onDeactivate}
+            onPageSizeChange={handlePageSizeChange}
           />
         </div>
       </div>

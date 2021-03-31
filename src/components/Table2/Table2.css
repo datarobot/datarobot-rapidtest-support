@@ -14,7 +14,7 @@
   }
 
   .ag-row:hover {
-    @apply bg-gray-200;
+    @apply bg-gray-100;
   }
 
   .ag-cell {
@@ -50,7 +50,7 @@
   }
 
   .pagination-panel {
-    @apply py-4 flex justify-between;
+    @apply py-4 flex justify-between items-center mb-8;
   }
 
   .paging-button {
