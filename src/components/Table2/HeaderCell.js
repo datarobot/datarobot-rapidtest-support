@@ -60,17 +60,23 @@ const HeaderCell = (props) => {
   let sort = null;
   if (props.enableSorting) {
     sort = (
-      <div style={{ display: 'inline-block' }}>
-        {props.column.isSortAscending() && <Icon iconName="sort-down" />}
-        {props.column.isSortDescending() && <Icon iconName="sort-up" />}
+      <div className="inline-block ml-2 header-sort">
+        {props.column.isSortAscending() && (
+          <Icon iconName="sort-down" type="fal" />
+        )}
+        {props.column.isSortDescending() && (
+          <Icon iconName="sort-up" type="fal" />
+        )}
         {!props.column.isSortAscending() &&
-          !props.column.isSortDescending() && <Icon iconName="sort" />}
+          !props.column.isSortDescending() && (
+            <Icon iconName="sort" type="fal" />
+          )}
       </div>
     );
   }
 
   return (
-    <div className="flex pr-4 items-center">
+    <div className="flex pr-4 items-center header-cell">
       {props.showCheck && (
         <Checkbox
           checkClass="z-10"
@@ -83,7 +89,6 @@ const HeaderCell = (props) => {
       )}
       <span
         className={cls('flex w-full', {
-          'justify-between': !props.textEnd,
           'justify-end': props.textEnd,
         })}
         onClick={onSortRequested}

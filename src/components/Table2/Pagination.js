@@ -79,14 +79,14 @@ const Pagination = ({
           onClick={() => onBtnFirst()}
           disabled={isFirstPage}
         >
-          <Icon iconName="chevron-double-left" type="fal" />
+          <Icon iconName="angle-double-left" type="fal" />
         </button>
         <button
           className="paging-button"
           onClick={() => onBtnPrevious()}
           disabled={isFirstPage}
         >
-          <Icon iconName="chevron-left" type="fal" />
+          <Icon iconName="angle-left" type="fal" />
         </button>
         <CalculateCurrentView
           pageIndex={currentPage - 1}
@@ -98,14 +98,14 @@ const Pagination = ({
           onClick={() => onBtnNext()}
           disabled={isLastPage}
         >
-          <Icon iconName="chevron-right" type="fal" />
+          <Icon iconName="angle-right" type="fal" />
         </button>
         <button
           className="paging-button"
           onClick={() => onBtnLast()}
           disabled={isLastPage}
         >
-          <Icon iconName="chevron-double-right" type="fal" />
+          <Icon iconName="angle-double-right" type="fal" />
         </button>
       </div>
       <Modal

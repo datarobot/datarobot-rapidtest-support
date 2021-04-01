@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
 
-import Icon from 'components/Icon';
 import Loading from 'components/Loading';
 import SuccessCheck from 'components/Notifications/SuccessCheck';
 
@@ -51,22 +50,6 @@ const DisableAccountCell = ({ value, data }) => {
       });
   };
 
-  const resendEmail = () => {
-    setIsLoading(true);
-    editAccount(data.id, { resend_email: true })
-      .then(() => {
-        setIsSuccess(true);
-        setIsLoading(false);
-      })
-      .catch(() => {
-        toast.error('There was a problem updating the account.', {
-          onClose: () => {
-            setIsLoading(false);
-          },
-        });
-      });
-  };
-
   return (
     <>
       <span className="flex justify-end">
@@ -80,29 +63,12 @@ const DisableAccountCell = ({ value, data }) => {
       <>
         {!isSuccess && !isLoading && (
           <span className="flex items-center justify-end">
-            {!data.last_login_ip && (
-              <>
-                <button
-                  onClick={resendEmail}
-                  className="text-blue-light text-lg py-0 px-2 border-r border-blue-lighter px-1 flex justify-center focus:outline-none"
-                  type="button"
-                >
-                  <Icon iconName="envelope" type="fal" />
-                </button>
-              </>
-            )}
             <button
               onClick={toggleAccountActive}
-              className="text-blue-light text-lg py-0 px-2 flex justify-center focus:outline-none"
+              className="text-blue-light py-0 px-2 flex justify-center focus:outline-none"
               type="button"
             >
-              <>
-                {!value ? (
-                  <Icon iconName="user-slash" type="fal" />
-                ) : (
-                  <Icon iconName="user-plus" type="fal" />
-                )}
-              </>
+              {!value ? 'Deactivate' : 'Activate'}
             </button>
           </span>
         )}

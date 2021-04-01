@@ -124,10 +124,10 @@ const Accounts = () => {
       renderer: 'accountStatusCell',
       comparator: sortStatus,
       header: 'Status',
-      colWidth: 120,
+      colWidth: 200,
       value: statusValueGetter,
       headerParams: {
-        showMenu: true,
+        textEnd: true,
       },
     },
     {

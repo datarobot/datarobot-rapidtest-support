@@ -68,4 +68,14 @@
   .ag-overlay-loading-center {
     @apply w-full h-full flex items-center justify-center bg-white bg-opacity-75;
   }
+
+  .header-sort {
+    @apply opacity-50 transition-opacity;
+  }
+
+  .header-cell:hover {
+    .header-sort {
+      @apply opacity-100;
+    }
+  }
 }

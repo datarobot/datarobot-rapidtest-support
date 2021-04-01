@@ -6,9 +6,6 @@ import {
   faFileCsv,
   faHourglassHalf,
   faPen,
-  faSort,
-  faSortUp,
-  faSortDown,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { faLongArrowRight, faPencil } from '@fortawesome/pro-solid-svg-icons';
@@ -16,6 +13,10 @@ import { faLongArrowRight, faPencil } from '@fortawesome/pro-solid-svg-icons';
 import { faCloudUploadAlt } from '@fortawesome/pro-regular-svg-icons';
 
 import {
+  faAngleLeft,
+  faAngleRight,
+  faAngleDoubleLeft,
+  faAngleDoubleRight,
   faChevronLeft,
   faChevronRight,
   faChevronDoubleLeft,
@@ -33,11 +34,18 @@ import {
   faTimesCircle,
   faUserPlus,
   faUserSlash,
+  faSort,
+  faSortUp,
+  faSortDown,
 } from '@fortawesome/pro-light-svg-icons';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 library.add(
+  faAngleLeft,
+  faAngleRight,
+  faAngleDoubleLeft,
+  faAngleDoubleRight,
   faCheckCircle,
   faChevronDoubleLeft,
   faChevronDoubleRight,
