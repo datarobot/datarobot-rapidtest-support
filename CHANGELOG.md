@@ -83,3 +83,6 @@
 - Program Admin Tab - [RSS-58](https://datarobot.atlassian.net/browse/RSS-58)
 - Updated "Account Status" field - [RSS-60](https://datarobot.atlassian.net/browse/RSS-60)
 - Added re-send account email feature - [RSS-61](https://datarobot.atlassian.net/browse/RSS-61)
+
+## v1.0.6
+- Reverted styling on account activation buttons
