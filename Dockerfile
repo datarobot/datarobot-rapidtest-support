@@ -40,12 +40,11 @@ RUN yum -y update && \
 
 WORKDIR /mcfly
 # COPY ./mcfly/go.mod ./mcfly/go.sum ./mcfly/schools.csv ./mcfly/captcha/captcha.go ./
-# COPY ./mcfly/.env ./mcfly ./
-# RUN go mod download
-# RUN go build -o main .
+COPY ./mcfly/.env ./mcfly ./
+RUN go mod download
+RUN go build -o main .
 
 WORKDIR /
-RUN echo $(ls -1 /html/docs)
 COPY --from=htmlbuild /html/build /usr/share/nginx/html
 COPY --from=htmlbuild /html/docs/build /usr/share/nginx/docs/docs
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
