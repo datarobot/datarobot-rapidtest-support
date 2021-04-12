@@ -40,7 +40,7 @@ const Table2 = ({
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [rowCount, setRowCount] = useState(0);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(50);
   const [isLastPage, setIsLastPage] = useState(false);
   const [isFirstPage, setIsFirstPage] = useState(false);
   const [currentProgram, setCurrentProgram] = useState('');
@@ -76,7 +76,6 @@ const Table2 = ({
     if (gridApi) {
       setCurrentPage(gridApi.paginationGetCurrentPage() + 1);
       setTotalPages(gridApi.paginationGetTotalPages());
-      // setPageSize(gridApi.paginationGetPageSize());
       setRowCount(gridApi.paginationGetRowCount());
       setIsLastPage(
         gridApi.paginationGetCurrentPage() + 1 ===
@@ -141,7 +140,7 @@ const Table2 = ({
           </div>
         </>
       )}
-      <div style={{ height: '100%', width: '100%' }}>
+      <div style={{ height: '100%', width: '100%', marginBottom: '6.5rem' }}>
         <div className="ag-theme-rt" style={{ height: '100%', width: '100%' }}>
           <AgGridReact
             onGridReady={onGridReady}
