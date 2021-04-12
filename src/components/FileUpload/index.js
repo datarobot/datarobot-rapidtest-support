@@ -140,8 +140,13 @@ const FileUpload = ({
             <>
               <section className="flex justify-between items-center border-b border-blue-dark pb-2 mb-2">
                 <p className="text-xl">
-                  <span className="text-blue font-bold">Preview of</span>{' '}
-                  <span className="font-mono">{files[0].name}</span>
+                  <span className="text-blue">
+                    Showing rows <span className="font-bold">1 - 10</span> of{' '}
+                    <span className="font-bold">{tableData.length}</span> from
+                  </span>{' '}
+                  <span className="font-mono bg-gray-100 p-1 rounded border border-gray-200">
+                    {files[0].name}
+                  </span>
                 </p>
                 <div className="btn-row">
                   <Button

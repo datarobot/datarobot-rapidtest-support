@@ -158,11 +158,13 @@ const Table = ({
                           {column.render('Header')}
                           {typeof column.Header === 'string' && (
                             <>
-                              {!isSorted && <Icon iconName="sort" />}
+                              {!isSorted && <Icon iconName="sort" type="fal" />}
                               {isSorted && !isSortedDesc && (
-                                <Icon iconName="sort-up" />
+                                <Icon iconName="sort-up" type="fal" />
                               )}
-                              {isSortedDesc && <Icon iconName="sort-down" />}
+                              {isSortedDesc && (
+                                <Icon iconName="sort-down" type="fal" />
+                              )}
                             </>
                           )}
                         </div>
