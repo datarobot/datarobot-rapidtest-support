@@ -11,7 +11,7 @@ const Nav = () => (
     </li>
     <li>
       <NavLink exact className="nav-link" to={ROUTES.ACCOUNTS.path}>
-        Tester Operators
+        Test Operators
       </NavLink>
     </li>
     <li>

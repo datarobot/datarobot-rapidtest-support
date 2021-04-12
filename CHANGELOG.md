@@ -86,3 +86,8 @@
 
 ## v1.0.6
 - Reverted styling on account activation buttons
+
+## v1.0.7
+- Fixed "scrollbar not working on list upload for account" - [RSS-65](https://datarobot.atlassian.net/browse/RSS-65)
+- Bumped pagination size from 10 to 50 - [RSS-64](https://datarobot.atlassian.net/browse/RSS-64)
+- Replaced 'Testers' with 'Test Operators' - [RSS-67](https://datarobot.atlassian.net/browse/RSS-67)
