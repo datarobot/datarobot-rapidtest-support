@@ -91,3 +91,6 @@
 - Fixed "scrollbar not working on list upload for account" - [RSS-65](https://datarobot.atlassian.net/browse/RSS-65)
 - Bumped pagination size from 10 to 50 - [RSS-64](https://datarobot.atlassian.net/browse/RSS-64)
 - Replaced 'Testers' with 'Test Operators' - [RSS-67](https://datarobot.atlassian.net/browse/RSS-67)
+
+## v1.0.8
+- Fixed "resend email action not working" - [RSS-76](https://datarobot.atlassian.net/browse/RSS-76)
