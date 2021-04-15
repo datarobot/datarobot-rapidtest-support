@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
@@ -10,11 +10,11 @@ import { AuthContext } from 'components/AuthProvider';
 import Button, { KIND } from 'components/Button';
 import { ControlledInput } from 'components/Input';
 import ErrorMessage from 'components/ErrorMessage';
+import ProgramList from 'components/ProgramList';
 import PageHeader from 'components/PageHeader';
-import Select from 'components/Select';
 
 import { app, signIn, getUser, signOut } from 'services/firebase';
-import { getPrograms } from 'services/api';
+
 import { userAtom } from 'rt-store';
 import { get, set, getUserRole, setAccessToken, setRefreshToken } from 'utils';
 
@@ -24,7 +24,6 @@ const LogIn = ({ location, history }) => {
   const { handleSubmit, register, errors } = useForm();
   const [, setUserInfo] = useAtom(userAtom);
   const [showLoginMessage, setShowLoginMessage] = useState(false);
-  const [programList, setProgramList] = useState([]);
   const [selectedProgram, setSelectedProgram] = useState(get('program'));
   const { t } = useTranslation();
   const { setUser } = useContext(AuthContext);
@@ -67,21 +66,6 @@ const LogIn = ({ location, history }) => {
       });
   };
 
-  const buildProgramList = async () => {
-    const programs = await getPrograms();
-
-    const programArr = [];
-
-    for (const key in programs) {
-      if (Object.hasOwnProperty.call(programs, key)) {
-        const prog = programs[key][0];
-        programArr.push({ value: key, label: `${key} - ${prog.name}` });
-      }
-    }
-
-    setProgramList(programArr);
-  };
-
   const handleProgramChange = (state) => {
     if (!LIVE_PROGRAMS.includes(state)) {
       toast.info('That program has not been implemented yet.', {
@@ -94,10 +78,6 @@ const LogIn = ({ location, history }) => {
     setSelectedProgram(state);
     window.location.reload(true);
   };
-
-  useEffect(() => {
-    buildProgramList();
-  }, []);
 
   return (
     <>
@@ -117,16 +97,7 @@ const LogIn = ({ location, history }) => {
         </div>
       ) : (
         <form onSubmit={handleSubmit(onSubmit)} className="w-2/5">
-          <Select
-            name="state"
-            placeholder="Select a program"
-            label="Your program"
-            options={programList}
-            onChange={({ target }) => {
-              handleProgramChange(target.value);
-            }}
-            value={selectedProgram || get('program')}
-          />
+          <ProgramList name="state" onChange={handleProgramChange} />
 
           <ControlledInput
             name="email"
