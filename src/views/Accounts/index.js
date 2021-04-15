@@ -150,6 +150,31 @@ const Accounts = () => {
     },
   ];
 
+  const onFilter = ({ target }) => {
+    let filtered;
+    switch (target.value) {
+      case 'active':
+        filtered = accounts.filter((acc) => acc.archive === false);
+        break;
+
+      case 'inactive':
+        filtered = accounts.filter((acc) => acc.archive === true);
+        break;
+
+      case 'pending':
+        filtered = accounts.filter(
+          (acc) => acc.last_login_ip === null && !acc.archive
+        );
+        break;
+
+      default:
+        filtered = accounts;
+        break;
+    }
+
+    setAccounts(filtered);
+  };
+
   const renderers = {
     accountAddedCell: AccountAddedCell,
     accountEmailCell: AccountEmailCell,
@@ -180,10 +205,11 @@ const Accounts = () => {
       rows={accounts}
       cols={cols}
       renderers={renderers}
+      onFilter={onFilter}
       defaultSortCol="name"
       tableName="Manage Accounts"
       addButtonText={t('buttons.addAccount')}
-      uploadButtonText={`+ ${t('buttons.uploadList')}`}
+      uploadButtonText={t('buttons.uploadList')}
       addRoute={ROUTES.ADD_ACCOUNT.path}
       uploadRoute={ROUTES.UPLOAD_ACCOUNTS.path}
       isLoading={isLoading}

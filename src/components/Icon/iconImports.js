@@ -2,10 +2,14 @@ import {
   faCheckCircle,
   faChevronDown,
   faChevronUp,
+  faEnvelope,
   faExclamationCircle,
   faFileCsv,
+  faFileExport,
   faHourglassHalf,
   faPen,
+  faUpload,
+  faUserPlus,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { faLongArrowRight, faPencil } from '@fortawesome/pro-solid-svg-icons';
@@ -21,10 +25,9 @@ import {
   faChevronRight,
   faChevronDoubleLeft,
   faChevronDoubleRight,
-  faEnvelope,
   faEye,
   faEyeSlash,
-  faFileExport,
+  faFilter,
   faPencilAlt,
   faRedo,
   faSearch,
@@ -32,7 +35,6 @@ import {
   faQuestionCircle,
   faTimes,
   faTimesCircle,
-  faUserPlus,
   faUserSlash,
   faSort,
   faSortUp,
@@ -60,6 +62,7 @@ library.add(
   faEyeSlash,
   faFileCsv,
   faFileExport,
+  faFilter,
   faHourglassHalf,
   faLongArrowRight,
   faPen,
@@ -74,6 +77,7 @@ library.add(
   faSortDown,
   faTimes,
   faTimesCircle,
+  faUpload,
   faUserPlus,
   faUserSlash
 );
