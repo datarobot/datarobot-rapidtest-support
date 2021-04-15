@@ -10,14 +10,15 @@ import Input, { ControlledInput } from 'components/Input';
 import ErrorMessage from 'components/ErrorMessage';
 import Map from 'components/Map';
 import PageHeader from 'components/PageHeader';
+import ProgramList from 'components/ProgramList';
 import Select from 'components/Select';
 
 import { useDebounce } from 'hooks';
 
-// eslint-disable-next-line no-unused-vars
-import { searchSchool, getSchool } from 'services/api';
+import { get, set } from 'utils';
+import { searchSchool, getSchool, addSite } from 'services/api';
 
-import { STATE_OPTIONS } from 'rt-constants';
+import { LIVE_PROGRAMS, STATE_OPTIONS } from 'rt-constants';
 
 import './Sites.css';
 
@@ -28,17 +29,36 @@ const RequestSite = ({ history }) => {
   const [currentSchool, setCurrentSchool] = useState();
   const [mapCenter, setMapCenter] = useState();
   const [mapZoom, setMapZoom] = useState();
+  const [selectedProgram, setSelectedProgram] = useState(get('program'));
   const { handleSubmit, errors, register, control, setValue } = useForm();
   const { t } = useTranslation();
 
-  // eslint-disable-next-line no-unused-vars
   const onSubmit = (data) => {
-    toast.success('Your request was submitted successfully.', {
-      onClose: () => {
-        history.goBack();
-      },
-      autoClose: 5000,
-    });
+    addSite({
+      ...data,
+      latitude: currentSchool?.lat,
+      longitude: currentSchool?.lng,
+    })
+      .then(() => {
+        toast.success('Your request was submitted successfully.', {
+          onClose: () => {
+            history.goBack();
+          },
+          closeButton: false,
+          hideProgressBar: true,
+          autoClose: 1500,
+        });
+      })
+      .catch((err) => {
+        const resp = err.response.data.errors;
+        for (const key in resp) {
+          if (Object.hasOwnProperty.call(resp, key)) {
+            const msg = resp[key];
+            toast.error(msg, { autoClose: 10000 });
+          }
+        }
+      });
+
     setShowSuccessMsg(true);
   };
 
@@ -118,14 +138,33 @@ const RequestSite = ({ history }) => {
     setMapZoom();
   };
 
+  const handleProgramChange = ({ target }) => {
+    const { value } = target;
+    if (!LIVE_PROGRAMS.includes(value)) {
+      toast.info('That program has not been implemented yet.', {
+        autoClose: 5000,
+      });
+      return;
+    }
+    set('program', value);
+    set('api', process.env[`REACT_APP_${value}_SERVER_URL`]);
+    setSelectedProgram(value);
+    window.location.reload(true);
+  };
+
   return (
     <>
       <PageHeader headline="Request a site" />
-      <section className="flex mb-4">
+      <section className="flex mb-12">
         <form
           className={cls('request-site-form', { isSuccess: showSuccessMsg })}
           onSubmit={handleSubmit(onSubmit)}
         >
+          <ProgramList
+            name="program"
+            onChange={handleProgramChange}
+            selected={selectedProgram}
+          />
           <Controller
             name="site_name"
             control={control}
@@ -316,6 +355,20 @@ const RequestSite = ({ history }) => {
             )}
           />
 
+          <ControlledInput
+            name="clia"
+            label="CLIA Number"
+            placeholder="CLIA Number"
+            isRequired
+            ref={register({
+              required: {
+                value: true,
+                message: t('errorMessages.common.required'),
+              },
+            })}
+          />
+          <ErrorMessage errors={errors} errorKey="clia" />
+
           <div className="btn-row end mt-4">
             <button
               className="btn-clear"
@@ -325,7 +378,11 @@ const RequestSite = ({ history }) => {
               Cancel
             </button>
 
-            <button className="btn-primary mr-2" type="submit">
+            <button
+              className="btn-primary mr-2"
+              type="submit"
+              disabled={!selectedProgram}
+            >
               Request Site
             </button>
           </div>

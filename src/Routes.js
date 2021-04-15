@@ -140,7 +140,12 @@ export const Routes = ({ authenticated, roles }) => (
       component={Dashboard}
     />
     <Route path={ROUTES.REQUEST_ACCOUNT.path} component={RequestAccount} />
-    <Route path={ROUTES.REQUEST_SITE.path} component={RequestSite} />
+    <PrivateRoute
+      authenticated={authenticated}
+      path={ROUTES.REQUEST_SITE.path}
+      roles={roles}
+      component={RequestSite}
+    />
     <Route path={ROUTES.FAQ.path} component={Faq} />
     <Route
       exact
