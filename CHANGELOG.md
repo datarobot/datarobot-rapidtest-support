@@ -94,3 +94,7 @@
 
 ## v1.0.8
 - Fixed "resend email action not working" - [RSS-76](https://datarobot.atlassian.net/browse/RSS-76)
+
+## v1.0.9
+- Fixed broken links in FAQ - [RSS-81](https://datarobot.atlassian.net/browse/RSS-81)
+- Implemented docs site
