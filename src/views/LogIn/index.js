@@ -66,16 +66,17 @@ const LogIn = ({ location, history }) => {
       });
   };
 
-  const handleProgramChange = (state) => {
-    if (!LIVE_PROGRAMS.includes(state)) {
+  const handleProgramChange = ({ target }) => {
+    const { value } = target;
+    if (!LIVE_PROGRAMS.includes(value)) {
       toast.info('That program has not been implemented yet.', {
         autoClose: 5000,
       });
       return;
     }
-    set('program', state);
-    set('api', process.env[`REACT_APP_${state}_SERVER_URL`]);
-    setSelectedProgram(state);
+    set('program', value);
+    set('api', process.env[`REACT_APP_${value}_SERVER_URL`]);
+    setSelectedProgram(value);
     window.location.reload(true);
   };
 
