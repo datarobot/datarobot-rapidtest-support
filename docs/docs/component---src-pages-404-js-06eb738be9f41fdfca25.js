@@ -1,0 +1,2 @@
+(self.webpackChunk_datarobot_docs=self.webpackChunk_datarobot_docs||[]).push([[883],{2984:function(e,t,a){"use strict";a.r(t);var n=a(7158),o=a(2185),r=a(6311);a(4709);t.default=function(e){var t=e.location,a=e.pageContext;return n.createElement("main",null,n.createElement(r.Z,{location:t,pageContext:a},n.createElement(o.Z,{style:{textAlign:"center",marginTop:48},variant:"h1"},"Page Not Found")))}}}]);
+//# sourceMappingURL=component---src-pages-404-js-06eb738be9f41fdfca25.js.map

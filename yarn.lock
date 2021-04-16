@@ -1495,10 +1495,10 @@
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha1-8JULuhiBlRLUL3GX5WxRiqSRzxg=
 
-"@datarobot/docs@0.0.8":
-  version "0.0.8"
-  resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/@datarobot/docs/-/@datarobot/docs-0.0.8.tgz#8ffd15d8945cf5a478770b3f46d30a22cb7b65cc"
-  integrity sha1-j/0V2JRc9aR4dws/RtMKIst7Zcw=
+"@datarobot/docs@0.0.9":
+  version "0.0.9"
+  resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/@datarobot/docs/-/@datarobot/docs-0.0.9.tgz#acba0898358de2d8614af7cd1efb794a7c43d1ba"
+  integrity sha1-rLoImDWN4thhSvfNHvt5SnxD0bo=
   dependencies:
     "@material-ui/core" "^4.11.3"
     "@material-ui/icons" "^4.11.2"
