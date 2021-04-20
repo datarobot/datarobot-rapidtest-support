@@ -24,6 +24,7 @@ const Table2 = ({
   cols,
   renderers,
   onFilter,
+  onFilterReset,
   defaultSortCol,
   addButtonText,
   uploadButtonText,
@@ -72,8 +73,9 @@ const Table2 = ({
     setCurrentProgram(programs[get('program')][0].name);
   };
 
-  const handleFilterChange = (event) => {
-    gridApi.setQuickFilter(event.target.value);
+  // eslint-disable-next-line no-unused-vars
+  const handleFilterChange = ({ target }) => {
+    gridApi.setQuickFilter(target.value);
   };
 
   const onPaginationChanged = () => {
@@ -129,7 +131,10 @@ const Table2 = ({
                 {!isSearchFocused && (
                   <>
                     <span
-                      className="flex mr-8 border-r border-gray-300 pr-6 py-2 cursor-pointer"
+                      className={cls(
+                        'flex mr-8 border-gray-300 py-2 cursor-pointer',
+                        { 'pr-6 border-r': !isFilterFocused }
+                      )}
                       onClick={() => setIsFilterFocused(!isFilterFocused)}
                     >
                       {!isFilterFocused ? (
@@ -138,7 +143,13 @@ const Table2 = ({
                           <span className="text-gray-400">Filter</span>
                         </>
                       ) : (
-                        <Icon iconName="times" type="fal" className="mx-2" />
+                        <button
+                          type="button"
+                          className="btn-clear px-2 py-0 border-0"
+                          onClick={onFilterReset}
+                        >
+                          <Icon iconName="times" type="fal" className="mx-2" />
+                        </button>
                       )}
                     </span>
 

@@ -27,6 +27,7 @@ import { toast } from 'react-toastify';
 const Accounts = () => {
   const { t } = useTranslation();
   const [accounts, setAccounts] = useAtom(accountsAtom);
+  const [initialAccounts, setInitialAccounts] = useState([]);
   const [accountsToDisable, setAccountsToDisable] = useAtom(
     accountsToDisableAtom
   );
@@ -140,6 +141,7 @@ const Accounts = () => {
       disableSort: true,
       resizable: false,
       colWidth: 100,
+      colId: 'status',
     },
     {
       renderer: 'editAccountCell',
@@ -154,26 +156,30 @@ const Accounts = () => {
     let filtered;
     switch (target.value) {
       case 'active':
-        filtered = accounts.filter((acc) => acc.archive === false);
+        filtered = initialAccounts.filter(
+          (acc) => acc.archive === false && acc.last_login_ip
+        );
         break;
 
       case 'inactive':
-        filtered = accounts.filter((acc) => acc.archive === true);
+        filtered = initialAccounts.filter((acc) => acc.archive === true);
         break;
 
       case 'pending':
-        filtered = accounts.filter(
+        filtered = initialAccounts.filter(
           (acc) => acc.last_login_ip === null && !acc.archive
         );
         break;
 
       default:
-        filtered = accounts;
+        filtered = initialAccounts;
         break;
     }
 
     setAccounts(filtered);
   };
+
+  const onFilterReset = () => setAccounts(initialAccounts);
 
   const renderers = {
     accountAddedCell: AccountAddedCell,
@@ -195,6 +201,7 @@ const Accounts = () => {
       }
 
       setAccounts(data);
+      setInitialAccounts(data);
       setIsLoading(false);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -206,6 +213,7 @@ const Accounts = () => {
       cols={cols}
       renderers={renderers}
       onFilter={onFilter}
+      onFilterReset={onFilterReset}
       defaultSortCol="name"
       tableName="Manage Accounts"
       addButtonText={t('buttons.addAccount')}
