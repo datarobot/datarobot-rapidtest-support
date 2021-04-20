@@ -17,23 +17,41 @@ Program administrators must manage test operator accounts at each site. These re
 
 To manage test operators, click either the **Test Operators** tab or **View proctor list**. The _Manage Accounts_ page displays a list of all active and inactive test operators with their name, email, date they were added, and status.
 
+![Manage Accounts](images/admin-testop-1.png)
+
 ### Adding test operators
 
 To create an account for a new test operator:
 
 1. Click **Add a new account**.
+
+    ![Add a new account](images/admin-testop-2.png)
+
 2. Enter a name, email, and phone number (optional).
+
+    ![New account fields](images/admin-testop-3.png)
+
 3. Click **Save Info** to send a welcome email to the test operator with an account verification link.
 
 Monitor the status of their account from the **Manage Accounts** page.
+
+![Account status](images/admin-testop-4.png)
 
 ### Adding multiple test operators
 
 To create an account for multiple test operators at once:
 
 1. Click **+ Upload a list**.
+
+      ![Upload a list](images/admin-testop-5.png)
+
 2. Prepare a CSV file of new test operators with the three required columns: `first_name`, `last_name`, and `email_address`. Each new account must include information for each column. Click **Download a template file** to use a template with the column names pre-populated.
+
+    ![Download template](images/admin-testop-7.png)
+
 3. Drag-and-drop the CSV into the box or click **Choose a file** and navigate to the appropriate CSV file.
+
+    ![Add a new account](images/admin-testop-6.png)
 
 ### Deactivating test operators
 
@@ -44,13 +62,19 @@ To deactivate a test operator:
 1. Locate test operator you need to deactivate using the search bar.
 2. Click the **Deactivate** link in the Action field. The test operator's status now displays _Inactive_.
 
+    ![Deactivate account](images/admin-testop-8.png)
+
 If you deactivated the wrong test operator, click the **Activate** link to change their status back to _Active_.
+
+![Activate account](images/admin-testop-9.png)
 
 ### Downloading a test operator list
 
 Program administrators can download a list of all active and inactive test operators as a CSV file.
 
 To download a test operator list, click **Export data**.
+
+![Add a new account](images/admin-testop-10.png)
 
 The CSV file includes each test operator's id, name, email, phone number, and archive status. If the **archive** field is _FALSE_, the test operator is active in the system, and if the field is _TRUE_, the test operator is inactive.
 
@@ -61,18 +85,28 @@ If a test operator never received a welcome email or deleted it, it can be resen
 1. Locate test operator using the search bar.
 2. Click **Resend Email** in the Status column.
 
+    ![Resend email](images/admin-testop-11.png)
+
 ## Managing sites
 
 Program administrators are responsible for making sure each site in their program is available to test operators in the application as well as deactivating sites that leave the program.
 
 To manage sites, click either the **Sites** tab or **View site list**. The _Manage Sites_ page displays a list of all active and inactive sites with their name, address, district, contact (if available), and status.
 
+![Manage Sites](images/admin-site-1.png)
+
 ### Adding sites
 
 To add a site to your program:
 
 1. Click **Add a new site**.
+
+    ![Add site](images/admin-site-2.png)
+
 2. Populate the fields with information about the site. Required fields are marked with an asterisk (`*`).
+
+    ![Site details](images/admin-site-3.png)
+
 3. Click **Add site**.
 
 ### Adding multiple sites
@@ -80,8 +114,16 @@ To add a site to your program:
 To add multiple sites to your program at once:
 
 1. Click **+ Upload a list**.
+
+    ![Add site list](images/admin-site-4.png)
+
 2. Prepare a CSV file of new sites with the following columns: `site_name`*, `street`*, `city`*, `county`*, `state`*, `zip`*, `site_type`*, `district`*, `clia`*, contact_name, contact_phone, contact_email, latitude, longitude. Required fields are marked with an asterisk (`*`) Click **Download a template file** to use a template with the column names pre-populated.
+
+    ![Download template](images/admin-site-5.png)
+
 3. Drag-and-drop the CSV into the box or click **Choose a file** and navigate to the appropriate CSV file.
+
+    ![Upload site list](images/admin-site-6.png)
 
 ### Deactivating a site
 
@@ -92,12 +134,18 @@ To deactivate a site:
 1. Find site you need to deactivate using the search bar.
 2. Click to disable the toggle in the Status column.
 
+    ![Deactivate site](images/admin-site-7.png)
+
 If you deactivated the wrong site, click again to enable the Status toggle.
+
+![Activate site](images/admin-site-8.png)
 
 ### Downloading a site list
 
 Program administrators can download a list of all active and inactive sites as a CSV file.
 
 To download a site list, click **Export data**.
+
+![Download site list](images/admin-site-9.png)
 
 The CSV file includes information for each site as well as its archive status. If the **archive** field is _FALSE_, the site is active in the system, and if the field is _TRUE_, the site is inactive.
