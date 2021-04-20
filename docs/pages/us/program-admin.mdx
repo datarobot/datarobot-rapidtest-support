@@ -35,17 +35,69 @@ To create an account for multiple test operators at once:
 2. Prepare a CSV file of new test operators with the three required columns: `first_name`, `last_name`, and `email_address`. Each new account must include information for each column. Click **Download a template file** to use a template with the column names pre-populated.
 3. Drag-and-drop the CSV into the box or click **Choose a file** and navigate to the appropriate CSV file.
 
-### Activating test operators
-
-
-
 ### Deactivating test operators
+
+In addition to creating test operator accounts, program administrators are also responsible for deactivating accounts of test operators who no longer want to participate or if there is a change in test operator policy.
+
+To deactivate a test operator:
+
+1. Locate test operator you need to deactivate using the search bar.
+2. Click the **Deactivate** link in the Action field. The test operator's status now displays _Inactive_.
+
+If you deactivated the wrong test operator, click the **Activate** link to change their status back to _Active_.
 
 ### Downloading a test operator list
 
+Program administrators can download a list of all active and inactive test operators as a CSV file.
+
+To download a test operator list, click **Export data**.
+
+The CSV file includes each test operator's id, name, email, phone number, and archive status. If the **archive** field is _FALSE_, the test operator is active in the system, and if the field is _TRUE_, the test operator is inactive.
+
+### Resending a welcome email
+
+If a test operator never received a welcome email or deleted it, it can be resent on the _Manage Accounts_ page.
+
+1. Locate test operator using the search bar.
+2. Click **Resend Email** in the Status column.
 
 ## Managing sites
 
+Program administrators are responsible for making sure each site in their program is available to test operators in the application as well as deactivating sites that leave the program.
+
+To manage sites, click either the **Sites** tab or **View site list**. The _Manage Sites_ page displays a list of all active and inactive sites with their name, address, district, contact (if available), and status.
+
 ### Adding sites
 
+To add a site to your program:
+
+1. Click **Add a new site**.
+2. Populate the fields with information about the site. Required fields are marked with an asterisk (`*`).
+3. Click **Add site**.
+
+### Adding multiple sites
+
+To add multiple sites to your program at once:
+
+1. Click **+ Upload a list**.
+2. Prepare a CSV file of new sites with the following columns: `site_name`*, `street`*, `city`*, `county`*, `state`*, `zip`*, `site_type`*, `district`*, `clia`*, contact_name, contact_phone, contact_email, latitude, longitude. Required fields are marked with an asterisk (`*`) Click **Download a template file** to use a template with the column names pre-populated.
+3. Drag-and-drop the CSV into the box or click **Choose a file** and navigate to the appropriate CSV file.
+
+### Deactivating a site
+
+In addition to adding sites, program administrators are also responsible for deactivating sites that are no longer participating in the program or if there is a change in site policy.
+
+To deactivate a site:
+
+1. Find site you need to deactivate using the search bar.
+2. Click to disable the toggle in the Status column.
+
+If you deactivated the wrong site, click again to enable the Status toggle.
+
 ### Downloading a site list
+
+Program administrators can download a list of all active and inactive sites as a CSV file.
+
+To download a site list, click **Export data**.
+
+The CSV file includes information for each site as well as its archive status. If the **archive** field is _FALSE_, the site is active in the system, and if the field is _TRUE_, the site is inactive.
