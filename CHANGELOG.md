@@ -101,3 +101,6 @@
 
 ## v1.0.11
 - Fix nginx config
+
+## v1.0.12
+- https://github.com/datarobot/doc-brown/pull/62
