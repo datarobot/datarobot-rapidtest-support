@@ -7,14 +7,18 @@ import axios from 'axios';
 
 import { getAccountList, editAccount } from 'services/api';
 import { ROUTES } from 'rt-constants';
-import { accountsAtom, accountsToDisableAtom } from 'rt-store';
+import {
+  accountsAtom,
+  accountsToDisableAtom,
+  accountIdsToDisableAtom,
+  activeFilterAtom,
+} from 'rt-store';
 
 import Table2 from 'components/Table2';
 
 import { download, toCsv } from 'utils';
 import { dateComparator } from 'utils/table';
 import {
-  DisableAccountCell,
   AccountAddedCell,
   AccountNameCell,
   AccountStatusCell,
@@ -27,10 +31,18 @@ import { toast } from 'react-toastify';
 const Accounts = () => {
   const { t } = useTranslation();
   const [accounts, setAccounts] = useAtom(accountsAtom);
+  const [initialAccounts, setInitialAccounts] = useState([]);
   const [accountsToDisable, setAccountsToDisable] = useAtom(
     accountsToDisableAtom
   );
+  const [accountIdsToDisable, setAccountIdsToDisable] = useAtom(
+    accountIdsToDisableAtom
+  );
+  const [, setActiveFilter] = useAtom(activeFilterAtom);
   const [isLoading, setIsLoading] = useState(false);
+  const [showResendEmail, setShowResendEmail] = useState(false);
+  const [showDeactivate, setShowDeactivate] = useState(false);
+  const [showActivate, setShowActivate] = useState(false);
 
   const handleExportData = () => {
     const sanitizedAccounts = accounts.map((account) => {
@@ -45,13 +57,14 @@ const Accounts = () => {
     });
   };
 
-  const doBatch = (archive) => {
+  const doBatch = (payload) => {
     setIsLoading(true);
-    const batch = accountsToDisable.map((id) => editAccount(id, { archive }));
+    const batch = accountIdsToDisable.map((id) => editAccount(id, payload));
     axios
       .all(batch)
       .then(async () => {
         setAccounts(await getAccountList());
+        setAccountIdsToDisable([]);
         setAccountsToDisable([]);
         setIsLoading(false);
       })
@@ -61,12 +74,16 @@ const Accounts = () => {
       });
   };
 
+  const handleResendEmail = () => {
+    doBatch({ resend_email: true });
+  };
+
   const handleBatchActivate = () => {
-    doBatch(false);
+    doBatch({ archive: false });
   };
 
   const handleBatchDeactivate = () => {
-    doBatch(true);
+    doBatch({ archive: true });
   };
 
   const sortNames = (a, b) => {
@@ -86,15 +103,33 @@ const Accounts = () => {
       return 'Inactive';
     }
     if (!data.last_login_ip) {
-      return 'Email Sent';
+      return 'Pending';
     }
 
     return 'Active';
   };
 
   const handleCheckChange = (res, isChecked) => {
+    const accountIds = res.map(({ id }) => id);
     setAccountsToDisable(isChecked ? [] : res);
+    setAccountIdsToDisable(isChecked ? [] : accountIds);
   };
+
+  useEffect(() => {
+    const showEmail = accountsToDisable.every((acc) => !acc.last_login_ip);
+    const deactivate = accountsToDisable.every((acc) => !acc.archive);
+    const activate = accountsToDisable.every((acc) => acc.archive);
+
+    if (accountsToDisable.length > 0) {
+      setShowResendEmail(showEmail);
+      setShowActivate(activate);
+      setShowDeactivate(deactivate);
+    } else {
+      setShowResendEmail(false);
+      setShowActivate(false);
+      setShowDeactivate(false);
+    }
+  }, [accountsToDisable]);
 
   const cols = [
     {
@@ -131,17 +166,6 @@ const Accounts = () => {
       },
     },
     {
-      field: 'archive',
-      renderer: 'disableAccountCell',
-      header: 'Action',
-      headerParams: {
-        textEnd: true,
-      },
-      disableSort: true,
-      resizable: false,
-      colWidth: 100,
-    },
-    {
       renderer: 'editAccountCell',
       header: 'Edit',
       disableSort: true,
@@ -150,12 +174,47 @@ const Accounts = () => {
     },
   ];
 
+  const onFilter = ({ target }) => {
+    const { value } = target;
+    let filtered;
+
+    setActiveFilter(value);
+
+    switch (value) {
+      case 'active':
+        filtered = initialAccounts.filter(
+          (acc) => acc.archive === false && acc.last_login_ip
+        );
+        break;
+
+      case 'inactive':
+        filtered = initialAccounts.filter((acc) => acc.archive === true);
+        break;
+
+      case 'pending':
+        filtered = initialAccounts.filter(
+          (acc) => acc.last_login_ip === null && !acc.archive
+        );
+        break;
+
+      default:
+        filtered = initialAccounts;
+        break;
+    }
+
+    setAccounts(filtered);
+  };
+
+  const onFilterReset = () => {
+    setAccounts(initialAccounts);
+    setActiveFilter();
+  };
+
   const renderers = {
     accountAddedCell: AccountAddedCell,
     accountEmailCell: AccountEmailCell,
     accountNameCell: AccountNameCell,
     accountStatusCell: AccountStatusCell,
-    disableAccountCell: DisableAccountCell,
     editAccountCell: EditAccountCell,
   };
 
@@ -170,6 +229,7 @@ const Accounts = () => {
       }
 
       setAccounts(data);
+      setInitialAccounts(data);
       setIsLoading(false);
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -180,16 +240,22 @@ const Accounts = () => {
       rows={accounts}
       cols={cols}
       renderers={renderers}
+      onFilter={onFilter}
+      onFilterReset={onFilterReset}
       defaultSortCol="name"
       tableName="Manage Accounts"
       addButtonText={t('buttons.addAccount')}
-      uploadButtonText={`+ ${t('buttons.uploadList')}`}
+      uploadButtonText={t('buttons.uploadList')}
       addRoute={ROUTES.ADD_ACCOUNT.path}
       uploadRoute={ROUTES.UPLOAD_ACCOUNTS.path}
       isLoading={isLoading}
       onExportData={handleExportData}
       onActivate={handleBatchActivate}
       onDeactivate={handleBatchDeactivate}
+      showResendEmail={showResendEmail}
+      showActivate={showActivate}
+      showDeactivate={showDeactivate}
+      handleResendEmail={handleResendEmail}
     />
   );
 };

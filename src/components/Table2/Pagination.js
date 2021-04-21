@@ -44,16 +44,20 @@ const Pagination = ({
   return (
     <div className="pagination-panel">
       <span>
-        <button
-          type="button"
-          className="btn-clear mr-1"
-          onClick={handleDeactivate}
-        >
-          Deactivate
-        </button>
-        <button type="button" className="btn-primary" onClick={onActivate}>
-          Activate
-        </button>
+        {pathname.includes('sites') && (
+          <>
+            <button
+              type="button"
+              className="btn-clear mr-1"
+              onClick={handleDeactivate}
+            >
+              Deactivate
+            </button>
+            <button type="button" className="btn-primary" onClick={onActivate}>
+              Activate
+            </button>
+          </>
+        )}
       </span>
 
       {process.env.REACT_APP_ENABLE_PAGINATION_SIZE === 'true' && (

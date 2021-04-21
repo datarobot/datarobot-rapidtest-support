@@ -1,6 +1,10 @@
 // @ts-nocheck
 import cls from 'classnames';
 
+import IconButton from 'components/Button/IconButton';
+
+import './Button.css';
+
 export const KIND = {
   DEFAULT: 'default',
   PRIMARY: 'primary',
@@ -30,5 +34,7 @@ const Button = ({
     {label}
   </button>
 );
+
+export { IconButton };
 
 export default Button;

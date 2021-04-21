@@ -8,6 +8,9 @@ export const currentAccountAtom = atom({});
 export const sitesAtom = atom([]);
 export const currentSiteAtom = atom({});
 export const accountsToDisableAtom = atom([]);
+export const accountIdsToDisableAtom = atom([]);
 export const sitesToDisableAtom = atom([]);
 
 export const startProgramDetails = atom({});
+
+export const activeFilterAtom = atom();

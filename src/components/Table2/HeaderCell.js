@@ -44,17 +44,17 @@ const HeaderCell = (props) => {
     onSortChanged();
   }, []);
 
-  const getIds = () => {
-    const ids = [];
+  const getData = () => {
+    const dataArr = [];
 
     for (const key in props.api.getRenderedNodes()) {
       if (Object.hasOwnProperty.call(props.api.getRenderedNodes(), key)) {
         const { data } = props.api.getRenderedNodes()[key];
-        ids.push(data.id);
+        dataArr.push(data);
       }
     }
 
-    return ids;
+    return dataArr;
   };
 
   let sort = null;
@@ -82,7 +82,7 @@ const HeaderCell = (props) => {
           checkClass="z-10"
           onChange={() => {
             setIsChecked(!isChecked);
-            props.handleCheckChange(getIds(), isChecked);
+            props.handleCheckChange(getData(), isChecked);
           }}
           isChecked={isChecked}
         />
