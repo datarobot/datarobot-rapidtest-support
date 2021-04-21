@@ -4,5 +4,5 @@ description: Helm chart for deploying the rapid-test-dashboard app in Kubernetes
 
 type: application
 version: 0.0.1
-appVersion: "prod-1.0.12"
+appVersion: "prod-1.0.13"
 

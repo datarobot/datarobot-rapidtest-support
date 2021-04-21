@@ -104,3 +104,6 @@
 
 ## v1.0.12
 - https://github.com/datarobot/doc-brown/pull/62
+
+## v1.0.13
+- Batch actions! [RSS-78](https://datarobot.atlassian.net/browse/RSS-78)
