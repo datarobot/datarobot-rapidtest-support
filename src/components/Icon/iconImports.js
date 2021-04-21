@@ -9,7 +9,9 @@ import {
   faHourglassHalf,
   faPen,
   faUpload,
+  faUserCheck,
   faUserPlus,
+  faUserTimes,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { faLongArrowRight, faPencil } from '@fortawesome/pro-solid-svg-icons';
@@ -78,6 +80,8 @@ library.add(
   faTimes,
   faTimesCircle,
   faUpload,
+  faUserCheck,
   faUserPlus,
+  faUserTimes,
   faUserSlash
 );

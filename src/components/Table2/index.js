@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 import cls from 'classnames';
 
@@ -11,7 +11,6 @@ import Radio from 'components/Radio';
 import HeaderCell from 'components/Table2/HeaderCell';
 import LoadingOverlay from 'components/Table2/LoadingOverlay';
 import Pagination from 'components/Table2/Pagination';
-
 import { get } from 'utils';
 import { getPrograms } from 'services/api';
 
@@ -36,8 +35,14 @@ const Table2 = ({
   isLoading = false,
   onActivate,
   onDeactivate,
+  showResendEmail,
+  showActivate,
+  showDeactivate,
+  handleResendEmail,
 }) => {
   const history = useHistory();
+  const { pathname } = useLocation();
+
   const [gridApi, setGridApi] = useState(null);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isFilterFocused, setIsFilterFocused] = useState(false);
@@ -50,6 +55,8 @@ const Table2 = ({
   const [isFirstPage, setIsFirstPage] = useState(false);
   const [currentProgram, setCurrentProgram] = useState('');
   const [columnApi, setColumnApi] = useState();
+
+  const isAccounts = pathname.includes('/accounts');
 
   useEffect(() => {
     if (gridApi && isLoading) {
@@ -128,9 +135,10 @@ const Table2 = ({
                     />
                   </>
                 )}
-                {!isSearchFocused && (
+                {!isSearchFocused && isAccounts && (
                   <>
                     <span
+                      style={{ minHeight: 42 }}
                       className={cls(
                         'flex mr-8 border-gray-300 py-2 cursor-pointer',
                         { 'pr-6 border-r': !isFilterFocused }
@@ -174,34 +182,65 @@ const Table2 = ({
                 )}
               </div>
             </div>
+
             <div className="table-buttons flex justify-end items-center">
-              <IconButton
-                label="Re-send email"
-                className="px-2"
-                icon="envelope"
-                onClick={() => {}}
-              />
+              {isAccounts && (
+                <>
+                  {showResendEmail && (
+                    <IconButton
+                      label="Re-send email"
+                      className="px-2"
+                      icon="envelope"
+                      onClick={handleResendEmail}
+                    />
+                  )}
 
-              <IconButton
-                label={uploadButtonText}
-                className="px-2"
-                icon="upload"
-                onClick={handleUploadClick}
-              />
+                  {showDeactivate && (
+                    <IconButton
+                      label="Deactivate user(s)"
+                      className="px-2"
+                      icon="user-times"
+                      onClick={onDeactivate}
+                    />
+                  )}
 
-              <IconButton
-                label="Export data"
-                className="px-2"
-                icon="file-export"
-                onClick={onExportData}
-              />
+                  {showActivate && (
+                    <IconButton
+                      label="Activate user(s)"
+                      className="pl-2 pr-1"
+                      icon="user-check"
+                      onClick={onActivate}
+                    />
+                  )}
+                </>
+              )}
+              <span
+                className={cls('flex', {
+                  'ml-1 pl-1': isAccounts,
+                  'border-l': showResendEmail || showActivate || showDeactivate,
+                })}
+              >
+                <IconButton
+                  label={uploadButtonText}
+                  className="px-2"
+                  icon="upload"
+                  onClick={handleUploadClick}
+                />
 
-              <IconButton
-                label={addButtonText}
-                className="px-2"
-                icon="user-plus"
-                onClick={handleAddClick}
-              />
+                <IconButton
+                  label="Export data"
+                  className="px-2"
+                  icon="file-export"
+                  onClick={onExportData}
+                />
+
+                <IconButton
+                  label={addButtonText}
+                  className="px-2"
+                  icon="user-plus"
+                  onClick={handleAddClick}
+                />
+              </span>
             </div>
           </div>
         </>
@@ -276,8 +315,6 @@ const Table2 = ({
             totalPages={totalPages}
             pageSize={pageSize}
             rowCount={rowCount}
-            onActivate={onActivate}
-            onDeactivate={onDeactivate}
             onPageSizeChange={handlePageSizeChange}
           />
         </div>

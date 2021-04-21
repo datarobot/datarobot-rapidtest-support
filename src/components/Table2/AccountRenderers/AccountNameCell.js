@@ -4,28 +4,28 @@ import { useAtom } from 'jotai';
 
 import Checkbox from 'components/Checkbox';
 
-import { accountsToDisableAtom } from 'rt-store';
+import { accountsToDisableAtom, accountIdsToDisableAtom } from 'rt-store';
 
 const AccountNameCell = ({ data }) => {
   const [accounts, setAccounts] = useAtom(accountsToDisableAtom);
+  const [accountIds, setAccountIds] = useAtom(accountIdsToDisableAtom);
   const [isChecked, setIsChecked] = useState(false);
 
   const handleSelectAccount = () => {
     if (isChecked) {
-      const updatedSites = accounts.filter((s) => s !== data.id);
-      return setAccounts(updatedSites);
+      const updatedIds = accountIds.filter((a) => a !== data.id);
+      const updatedAccounts = accounts.filter((a) => a.id !== data.id);
+      setAccounts(updatedAccounts);
+      return setAccountIds(updatedIds);
     }
 
-    setAccounts([...accounts, data.id]);
+    setAccounts([...accounts, data]);
+    setAccountIds([...accountIds, data.id]);
   };
 
   useEffect(() => {
-    setIsChecked(accounts.includes(data.id));
-  }, [accounts]);
-
-  // useEffect(() => {
-  //   console.log(isChecked);
-  // }, [isChecked]);
+    setIsChecked(accountIds.includes(data.id));
+  }, [accountIds]);
 
   return (
     <span className="flex items-center">
