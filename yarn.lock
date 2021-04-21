@@ -1495,10 +1495,10 @@
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha1-8JULuhiBlRLUL3GX5WxRiqSRzxg=
 
-"@datarobot/docs@0.0.9":
-  version "0.0.9"
-  resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/@datarobot/docs/-/@datarobot/docs-0.0.9.tgz#acba0898358de2d8614af7cd1efb794a7c43d1ba"
-  integrity sha1-rLoImDWN4thhSvfNHvt5SnxD0bo=
+"@datarobot/docs@0.0.10":
+  version "0.0.10"
+  resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/@datarobot/docs/-/@datarobot/docs-0.0.10.tgz#349f2b8e341c76acae7098fd63f59586ae92cde6"
+  integrity sha1-NJ8rjjQcdqyucJj9Y/WVhq6SzeY=
   dependencies:
     "@material-ui/core" "^4.11.3"
     "@material-ui/icons" "^4.11.2"
@@ -1506,6 +1506,7 @@
     "@mdx-js/react" "^1.6.22"
     classnames "^2.2.6"
     gatsby "^3.2.1"
+    gatsby-image "^3.3.0"
     gatsby-plugin-anchor-links "^1.2.1"
     gatsby-plugin-google-fonts "^1.0.1"
     gatsby-plugin-image "^1.0.0"
@@ -9287,6 +9288,15 @@ gatsby-graphiql-explorer@^1.2.0:
   dependencies:
     "@babel/runtime" "^7.12.5"
 
+gatsby-image@^3.3.0:
+  version "3.3.0"
+  resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/gatsby-image/-/gatsby-image-3.3.0.tgz#2efea64da55011710cd118ec0f6666a323e5be75"
+  integrity sha1-Lv6mTaVQEXEM0RjsD2ZmoyPlvnU=
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    object-fit-images "^3.2.4"
+    prop-types "^15.7.2"
+
 gatsby-legacy-polyfills@^1.2.0:
   version "1.2.0"
   resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/gatsby-legacy-polyfills/-/gatsby-legacy-polyfills-1.2.0.tgz#fda9b3b9f6b340a4fdfdd978e84b0847bdfab79c"
@@ -14457,6 +14467,11 @@ object-copy@^0.1.0:
     copy-descriptor "^0.1.0"
     define-property "^0.2.5"
     kind-of "^3.0.3"
+
+object-fit-images@^3.2.4:
+  version "3.2.4"
+  resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/object-fit-images/-/object-fit-images-3.2.4.tgz#6c299d38fdf207746e5d2d46c2877f6f25d15b52"
+  integrity sha1-bCmdOP3yB3RuXS1Gwod/byXRW1I=
 
 object-hash@^2.1.1:
   version "2.1.1"

@@ -98,3 +98,6 @@
 ## v1.0.9
 - Fixed broken links in FAQ - [RSS-81](https://datarobot.atlassian.net/browse/RSS-81)
 - Implemented docs site
+
+## v1.0.11
+- Fix nginx config
