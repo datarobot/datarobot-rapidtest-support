@@ -143,6 +143,7 @@ export const Routes = ({ authenticated, roles }) => (
     <PrivateRoute
       authenticated={authenticated}
       path={ROUTES.REQUEST_SITE.path}
+      route={ROUTES.REQUEST_SITE}
       roles={roles}
       component={RequestSite}
     />
