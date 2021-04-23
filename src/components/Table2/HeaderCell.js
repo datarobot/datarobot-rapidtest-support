@@ -1,15 +1,18 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
 import cls from 'classnames';
+import { useAtom } from 'jotai';
 
 import Checkbox from 'components/Checkbox';
 import Icon from 'components/Icon';
+
+import { headerCellCheckedAtom } from 'rt-store';
 
 const HeaderCell = (props) => {
   const [, setAscSort] = useState('inactive');
   const [, setDescSort] = useState('inactive');
   const [, setNoSort] = useState('inactive');
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useAtom(headerCellCheckedAtom);
 
   const onSortChanged = () => {
     setAscSort(props.column.isSortAscending() ? 'active' : 'inactive');

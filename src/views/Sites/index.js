@@ -13,12 +13,13 @@ import Table2 from 'components/Table2';
 
 import { download, toCsv } from 'utils';
 
-import { sitesAtom, sitesToDisableAtom } from 'rt-store';
+import { sitesAtom, sitesToDisableAtom, siteIdsToDisableAtom } from 'rt-store';
 
 const Sites = () => {
   const { t } = useTranslation();
   const [sites, setSites] = useAtom(sitesAtom);
-  const [sitesToDisable, setSitesToDisable] = useAtom(sitesToDisableAtom);
+  const [, setSitesToDisable] = useAtom(sitesToDisableAtom);
+  const [siteIdsToDisable, setSiteIdsToDisable] = useAtom(siteIdsToDisableAtom);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleExportData = () => {
@@ -27,7 +28,7 @@ const Sites = () => {
 
   const doBatch = (archive) => {
     setIsLoading(true);
-    const batch = sitesToDisable.map((id) => editSite(id, { archive }));
+    const batch = siteIdsToDisable.map((id) => editSite(id, { archive }));
     return axios.all(batch);
   };
 
@@ -64,7 +65,9 @@ const Sites = () => {
   };
 
   const handleCheckChange = (res, isChecked) => {
+    const siteIds = res.map(({ id }) => id);
     setSitesToDisable(isChecked ? [] : res);
+    setSiteIdsToDisable(isChecked ? [] : siteIds);
   };
 
   const cols = [
