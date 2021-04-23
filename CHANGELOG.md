@@ -107,3 +107,7 @@
 
 ## v1.0.13
 - Batch actions! [RSS-78](https://datarobot.atlassian.net/browse/RSS-78)
+
+## v1.0.14
+- Add count of selected table rows [RSS-87](https://datarobot.atlassian.net/browse/RSS-87)
+- Fix broken request site route [RSS-88](https://datarobot.atlassian.net/browse/RSS-88)
