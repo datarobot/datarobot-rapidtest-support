@@ -4,29 +4,33 @@ import { useAtom } from 'jotai';
 
 import Checkbox from 'components/Checkbox';
 
-import { sitesToDisableAtom } from 'rt-store';
+import { sitesToDisableAtom, siteIdsToDisableAtom } from 'rt-store';
 
-const AccountNameCell = ({ data }) => {
+const SiteNameCell = ({ data }) => {
   const [sites, setSites] = useAtom(sitesToDisableAtom);
+  const [siteIds, setSiteIds] = useAtom(siteIdsToDisableAtom);
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleSelectAccount = () => {
+  const handleSelectSite = () => {
     if (isChecked) {
+      const updatedIds = siteIds.filter((a) => a !== data.id);
       const updatedSites = sites.filter((s) => s !== data.id);
+      setSiteIds(updatedIds);
       return setSites(updatedSites);
     }
 
     setSites([...sites, data.id]);
+    setSiteIds([...siteIds, data.id]);
   };
 
   useEffect(() => {
-    setIsChecked(sites.includes(data.id));
-  }, [sites]);
+    setIsChecked(siteIds.includes(data.id));
+  }, [siteIds]);
 
   return (
     <span className="flex items-center">
       <Checkbox
-        onChange={handleSelectAccount}
+        onChange={handleSelectSite}
         isChecked={isChecked}
         isDisabled={data.id === 3}
       />
@@ -35,4 +39,4 @@ const AccountNameCell = ({ data }) => {
   );
 };
 
-export default AccountNameCell;
+export default SiteNameCell;

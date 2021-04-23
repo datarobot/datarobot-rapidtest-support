@@ -46,7 +46,6 @@ const Table2 = ({
   const [gridApi, setGridApi] = useState(null);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isFilterFocused, setIsFilterFocused] = useState(false);
-
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [rowCount, setRowCount] = useState(0);
