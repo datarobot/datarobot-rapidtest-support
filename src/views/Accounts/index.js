@@ -245,6 +245,7 @@ const Accounts = () => {
       defaultSortCol="name"
       tableName="Manage Accounts"
       addButtonText={t('buttons.addAccount')}
+      addButtonIcon="user-plus"
       uploadButtonText={t('buttons.uploadList')}
       addRoute={ROUTES.ADD_ACCOUNT.path}
       uploadRoute={ROUTES.UPLOAD_ACCOUNTS.path}

@@ -26,6 +26,7 @@ const Table2 = ({
   onFilterReset,
   defaultSortCol,
   addButtonText,
+  addButtonIcon,
   uploadButtonText,
   tableName,
   addRoute,
@@ -236,7 +237,7 @@ const Table2 = ({
                 <IconButton
                   label={addButtonText}
                   className="px-2"
-                  icon="user-plus"
+                  icon={addButtonIcon}
                   onClick={handleAddClick}
                 />
               </span>
