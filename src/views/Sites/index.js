@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
 import axios from 'axios';
@@ -136,6 +136,7 @@ const Sites = () => {
         renderers={renderers}
         tableName="Manage Sites"
         addButtonText={t('buttons.addSite')}
+        addButtonIcon="building"
         uploadButtonText={`+ ${t('buttons.uploadList')}`}
         addRoute={ROUTES.ADD_SITE.path}
         uploadRoute={ROUTES.UPLOAD_SITES.path}
