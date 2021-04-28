@@ -3,7 +3,10 @@
 ![Doc-Brown](https://user-images.githubusercontent.com/45003409/111694926-e0595980-8808-11eb-9cfa-1be473a54083.jpeg)
 
 ## Dockerizing the app
+- Change the app version number by running `yarn bumpVersion x.x.x`. This will change the version numbers in `package.json` and `rapid-test-dashboard/Chart.yaml` to whatever args used in the `bumpVersion` command.
+  
 - Log in with docker
+  
   1. Set your `AWS_PROFILE` environment variable to the AI Apps Dev account
   
         _Note:_ This refers to a named profile in `~/.aws/config`
@@ -15,9 +18,11 @@
   2. Log in to aws using `aws sso login`
   
   3. Use this command to log into ECR: `aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 014297230414.dkr.ecr.us-east-1.amazonaws.com`
+  
 - Build & tag the image:
   - `<tag_name>` should be `prod-x.x.x`, e.g. `prod-0.0.1`
   - `docker build -t 014297230414.dkr.ecr.us-east-1.amazonaws.com/datarobot/rapid-test-dashboard:<tag_name> .`
+  
 - Push it real good:
   - `docker push 014297230414.dkr.ecr.us-east-1.amazonaws.com/datarobot/rapid-test-dashboard:<tag_name>`
 
