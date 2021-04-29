@@ -6,23 +6,14 @@
   grid-template-columns: 1fr 45% 1fr;
   grid-template-rows: 1fr;
   gap: 0px 0px;
-  grid-template-areas:
-    "logo nav links";
+  grid-template-areas: 'logo nav links';
 
   padding-left: 8.5vw;
-  padding-right: 8.5vw
-}
-
-.isLandingPage .rt-header {
-  @apply bg-transparent border-b-0 shadow-none;
+  padding-right: 8.5vw;
 }
 
 .login-btn {
   @apply bg-transparent font-bold rounded px-6 py-2 text-sm outline-none focus:outline-none text-blue;
-}
-
-.isLandingPage .login-btn {
-  @apply text-purple
 }
 
 .logo {
@@ -61,7 +52,7 @@
 .nav-link::before {
   @apply bg-blue absolute w-full bottom-0 left-0 invisible;
 
-  content: "";
+  content: '';
   height: 1px;
   transform: scaleX(0);
   transition: all 0.3s ease-in-out;

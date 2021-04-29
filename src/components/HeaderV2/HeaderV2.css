@@ -1,0 +1,44 @@
+.rt-header-v2 {
+  @apply grid shadow;
+
+  height: 72px;
+  /* Map z-index is 400 */
+  z-index: 401;
+  grid-template-columns: 1fr 45% 1fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: 'logo nav links';
+
+  padding-left: 8.5vw;
+  padding-right: 8.5vw;
+
+  .logo {
+    @apply flex items-center;
+
+    max-width: 200px;
+    grid-area: logo;
+  }
+
+  .links {
+    @apply flex justify-around items-center;
+
+    grid-area: links;
+  }
+
+  .nav {
+    @apply flex w-full h-full items-center justify-center;
+
+    grid-area: nav;
+  }
+
+  .nav li {
+    @apply h-full flex items-center;
+  }
+
+  .nav-link {
+    @apply flex items-center relative font-bold text-sm p-4 inline-block h-full;
+
+    color: var(--text-color);
+    transition: all 250ms ease;
+  }
+}

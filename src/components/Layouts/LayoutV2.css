@@ -1,0 +1,10 @@
+.LayoutV2 {
+  min-height: 100vh;
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+  .content {
+    padding-left: 8.5vw;
+    padding-right: 8.5vw;
+  }
+}

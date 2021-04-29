@@ -5,11 +5,13 @@ import { ROUTES } from 'rt-constants';
 import { getUserRole } from 'utils';
 
 import LayoutV1 from 'components/Layouts/LayoutV1';
+import LayoutV2 from 'components/Layouts/LayoutV2';
 import Unauthorized from 'components/Unauthorized';
 import { AuthContext } from 'components/AuthProvider';
 import Loading from 'components/Loading';
 
 const Home = lazy(() => import('views/Home'));
+const HomeV2 = lazy(() => import('views/HomeV2'));
 const Admin = lazy(() => import('views/Admin'));
 const Join = lazy(() => import('views/Join'));
 const Sites = lazy(() => import('views/Sites'));
@@ -185,6 +187,12 @@ export const Routes = () => {
       />
       <PublicRoute exact path={ROUTES.CONTACT.path} component={Contact} />
       <PublicRoute exact path={ROUTES.LOG_IN.path} component={LogIn} />
+      <PublicRoute
+        layout={LayoutV2}
+        exact
+        path={ROUTES.LANDING_PAGE_V2.path}
+        component={HomeV2}
+      />
       <PublicRoute exact path={ROUTES.LANDING_PAGE.path} component={Home} />
       <PublicRoute component={FourOhFour} />
     </Switch>

@@ -10,6 +10,7 @@ export const USER_ROLES = {
 
 export const ROUTES = {
   LANDING_PAGE: { path: '/' },
+  LANDING_PAGE_V2: { path: '/v2' },
   JOIN: { path: '/join' },
   SITES: {
     path: '/sites',

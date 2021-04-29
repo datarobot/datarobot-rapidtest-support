@@ -1,0 +1,93 @@
+.LayoutV2 {
+  font-family: 'Avenir Next', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+
+  h1 {
+    font-family: Merriweather, sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 64px;
+    letter-spacing: 0.02em;
+  }
+
+  h2 {
+    font-family: Merriweather, sans-serif;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: 0.02em;
+  }
+
+  h3 {
+    font-family: Merriweather, sans-serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: 0.02em;
+  }
+
+  h4 {
+    font-family: Merriweather, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 28px;
+    letter-spacing: 0.02em;
+  }
+
+  h5 {
+    font-family: 'Avenir Next', sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+    letter-spacing: 0.05em;
+  }
+
+  h6 {
+    font-family: 'Avenir Next', sans-serif;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  a small {
+    font-family: 'Avenir Next', sans-serif;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0.02em;
+    text-decoration: underline;
+    color: var(--purple-70);
+  }
+
+  .tooltip {
+    font-family: 'Avenir Next', sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0.02em;
+  }
+
+  .label {
+    font-family: 'Avenir Next', sans-serif;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--black);
+  }
+}

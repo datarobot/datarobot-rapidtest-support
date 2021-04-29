@@ -1,0 +1,14 @@
+.footer-v2 {
+  @apply bg-white flex justify-between items-center;
+
+  height: 96px;
+  /* Map z-index is 400 */
+  z-index: 401;
+  padding-left: 8.5vw;
+  padding-right: 8.5vw;
+
+  .copy {
+    font-size: 18px;
+    line-height: 34px;
+  }
+}

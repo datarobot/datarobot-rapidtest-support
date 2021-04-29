@@ -1,7 +1,11 @@
-.App {
+.LayoutV1 {
   min-height: calc(100vh - 80px);
   margin-top: 80px;
   padding-left: 8.5vw;
   padding-right: 8.5vw;
   overflow-y: scroll;
+
+  .content {
+    @apply overflow-y-scroll mb-4 relative;
+  }
 }

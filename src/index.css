@@ -4,8 +4,8 @@
 
 body {
   margin: 0;
-  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -16,16 +16,13 @@ body {
   height: 100%;
 } */
 
-.content {
-  @apply overflow-y-scroll mb-4 relative;
-}
-
-.leaflet-top, .leaflet-bottom {
+.leaflet-top,
+.leaflet-bottom {
   z-index: 400;
 }
 
 @layer components {
-  [class*="btn-"] {
+  [class*='btn-'] {
     transition: all 250ms ease;
   }
 
@@ -89,21 +86,20 @@ body {
     @apply justify-end;
   }
 
-  a:not([role="button"]):not([class*="btn-"]):not(.nav-link):not(.page-link)
-   {
-    @apply underline text-blue;
-  }
+  .LayoutV1 {
+    a:not([role='button']):not([class*='btn-']):not(.nav-link):not(.page-link) {
+      @apply underline text-blue;
+    }
 
-  a:not([role="button"]):not([class*="btn-"]):not(.nav-link):hover,
-  .btn-link:hover {
+    a:not([role='button']):not([class*='btn-']):not(.nav-link):hover,
+    .btn-link:hover {
+      text-shadow: -0.25px -0.25px 0 rgba(0, 82, 141, 0.25),
+        0.25px -0.25px 0 rgba(0, 82, 141, 0.25),
+        -0.25px 0.25px 0 rgba(0, 82, 141, 0.25),
+        0.25px 0.25px 0 rgba(0, 82, 141, 0.25);
 
-    text-shadow:
-      -.25px -.25px 0 rgba(0, 82, 141, 0.25),
-      .25px -.25px 0 rgba(0, 82, 141, 0.25),
-      -.25px .25px 0 rgba(0, 82, 141, 0.25),
-      .25px .25px 0 rgba(0, 82, 141, 0.25);
-
-    transition: all 500ms ease;
+      transition: all 500ms ease;
+    }
   }
 
   .full-height {
@@ -113,16 +109,15 @@ body {
 
   .headline {
     @apply text-blue;
-    
+
     font-size: 2.5rem;
     line-height: 2.75rem;
     font-weight: 700;
   }
 
   .sub-heading {
-    @apply text-2xl font-bold; 
+    @apply text-2xl font-bold;
   }
-
 }
 
 .Toastify__toast-container {

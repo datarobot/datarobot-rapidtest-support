@@ -2,14 +2,14 @@ import React, { Suspense } from 'react';
 import { ToastContainer } from 'react-toastify';
 
 import Loading from 'components/Loading';
-import Header from 'components/Header';
-import Footer from 'components/Footer';
+import HeaderV2 from 'components/HeaderV2';
+import FooterV2 from 'components/FooterV2';
 
-import './LayoutV1.css';
+import './LayoutV2.css';
 
-const LayoutV1 = ({ children }) => (
-  <div className="LayoutV1">
-    <Header />
+const LayoutV2 = ({ children }) => (
+  <div className="LayoutV2">
+    <HeaderV2 />
     <main className="content">
       <Suspense
         fallback={
@@ -23,7 +23,7 @@ const LayoutV1 = ({ children }) => (
         {children}
       </Suspense>
     </main>
-    <Footer />
+    <FooterV2 />
     <ToastContainer
       position="bottom-center"
       toastClassName="rt-toast"
@@ -33,4 +33,4 @@ const LayoutV1 = ({ children }) => (
   </div>
 );
 
-export default LayoutV1;
+export default LayoutV2;

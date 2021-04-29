@@ -134,7 +134,7 @@ const LogIn = ({ location, history }) => {
 
           <div className="btn-row end">
             <Button
-              btnType="submit"
+              type="submit"
               kind={KIND.PRIMARY}
               className="mt-8"
               label="Log In"

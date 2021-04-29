@@ -14,26 +14,41 @@ export const KIND = {
 };
 
 const Button = ({
-  btnType = 'button',
+  v2 = false,
+  primary,
+  secondary,
+  outline,
+  small,
+  type = 'button',
   className,
-  kind = KIND.DEFAULT,
-  label,
-  onClick,
+  kind,
   icon,
-  isDisabled,
+  label,
+  children,
   ...rest
-}) => (
-  <button
-    className={cls(`btn-${kind}`, className)}
-    type={btnType}
-    onClick={onClick}
-    disabled={isDisabled}
-    {...rest}
-  >
-    {icon && <span className="mr-1">{icon}</span>}
-    {label}
-  </button>
-);
+}) =>
+  v2 ? (
+    <button
+      className={cls(className, 'btn-v2', {
+        'btn-v2-small': small,
+        'btn-v2-primary': primary,
+        'btn-v2-secondary': secondary,
+        'btn-v2-outline': outline,
+      })}
+      type={type}
+      {...rest}
+    >
+      {icon && <span className="mr-1">{icon}</span>}
+      {label}
+      {children}
+    </button>
+  ) : (
+    <button className={cls(`btn-${kind}`, className)} type={type} {...rest}>
+      {icon && <span className="mr-1">{icon}</span>}
+      {label}
+      {children}
+    </button>
+  );
 
 export { IconButton };
 
