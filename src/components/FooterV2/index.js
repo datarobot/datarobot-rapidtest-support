@@ -7,8 +7,10 @@ const year = new Date().getFullYear();
 
 const FooterV2 = () => (
   <div className="footer-v2">
-    <div className="copy">
-      &copy;{year} Rapidtest <small>v{pkg.version}</small>
+    <div className="wrapper">
+      <div className="copy">
+        &copy;{year} Rapidtest <small>v{pkg.version}</small>
+      </div>
     </div>
   </div>
 );

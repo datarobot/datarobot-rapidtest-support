@@ -1,2 +1,75 @@
 .HomeV2 {
+  section {
+    .importantItems {
+      @apply w-1/2 flex flex-wrap justify-around;
+
+      .importantItem {
+        @apply w-1/2 p-4;
+
+        max-width: 200px;
+      }
+    }
+
+    &.howItWorks {
+      hr {
+        @apply my-4 border-t border-b;
+
+        border-color: var(--purple-30);
+      }
+
+      .step {
+        @apply w-1/5 flex flex-col;
+
+        max-width: 160px;
+
+        h5 {
+          @apply mb-1;
+        }
+
+        & > div {
+          @apply flex-grow flex flex-col justify-center;
+
+          .subStep {
+            @apply p-4 my-6 rounded-xl;
+          }
+        }
+      }
+    }
+
+    .forParentsItems {
+      @apply w-1/2 flex flex-wrap justify-around;
+
+      gap: 2rem;
+
+      .forParentsItem {
+        @apply flex flex-col rounded-xl border cursor-pointer;
+
+        width: calc(50% - 1rem);
+        border-color: var(--purple-40);
+        //max-width: 200px;
+
+        h5 {
+          @apply m-4 flex-grow;
+        }
+
+        .arrow {
+          @apply flex p-4 border-t;
+
+          border-color: var(--purple-40);
+        }
+
+        &:hover {
+          background-color: var(--white);
+
+          h5 {
+            color: var(--purple-90);
+          }
+
+          .arrow {
+            @apply justify-end;
+          }
+        }
+      }
+    }
+  }
 }

@@ -34,11 +34,15 @@
   border: 2px solid transparent;
   border-radius: 12px;
   min-width: 160px;
-  font-family: 'Avenir Next', sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 18px;
   font-style: normal;
   font-weight: 600;
   line-height: 22px;
+
+  &:focus {
+    outline: 0;
+  }
 
   &.btn-v2-small {
     padding: 12px;

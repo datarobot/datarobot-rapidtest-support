@@ -1,11 +1,17 @@
 .footer-v2 {
-  @apply bg-white flex justify-between items-center;
+  @apply bg-white;
 
-  height: 96px;
-  /* Map z-index is 400 */
-  z-index: 401;
-  padding-left: 8.5vw;
-  padding-right: 8.5vw;
+  .wrapper {
+    @apply px-12 flex justify-between items-center;
+
+    height: 96px;
+    /* Map z-index is 400 */
+    z-index: 401;
+
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   .copy {
     font-size: 18px;

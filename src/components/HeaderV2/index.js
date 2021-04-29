@@ -38,8 +38,8 @@ const HeaderV2 = () => {
   }, [user]);
 
   return (
-    <>
-      <div className="rt-header-v2">
+    <div className="rt-header-v2">
+      <div className="wrapper">
         <Link className="logo" to={ROUTES.LANDING_PAGE_V2.path}>
           <LogoV2 />
         </Link>
@@ -83,7 +83,7 @@ const HeaderV2 = () => {
         </section>
       </div>
       <ReactTooltip id="sign-out" effect="solid" />
-    </>
+    </div>
   );
 };
 

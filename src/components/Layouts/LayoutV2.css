@@ -6,8 +6,11 @@
   background-color: var(--background-color);
 
   .content {
+    @apply px-6;
+
     flex-grow: 1;
-    padding-left: 8.5vw;
-    padding-right: 8.5vw;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }

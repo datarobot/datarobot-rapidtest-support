@@ -1,10 +1,14 @@
 .LayoutV2 {
-  font-family: 'Avenir Next', sans-serif;
+  font-family: Montserrat, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
   line-height: 28px;
   letter-spacing: 0.02em;
+
+  .highlighted {
+    background-color: var(--white);
+  }
 
   .inverted {
     background-color: var(--purple-90);
@@ -64,7 +68,7 @@
   }
 
   h5 {
-    font-family: 'Avenir Next', sans-serif;
+    font-family: Montserrat, sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
@@ -77,7 +81,7 @@
   }
 
   h6 {
-    font-family: 'Avenir Next', sans-serif;
+    font-family: Montserrat, sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
@@ -90,7 +94,7 @@
   }
 
   a small {
-    font-family: 'Avenir Next', sans-serif;
+    font-family: Montserrat, sans-serif;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -101,7 +105,7 @@
   }
 
   .tooltip {
-    font-family: 'Avenir Next', sans-serif;
+    font-family: Montserrat, sans-serif;
     font-style: normal;
     font-weight: 500;
     font-size: 12px;
@@ -110,7 +114,7 @@
   }
 
   .badge {
-    font-family: 'Avenir Next', sans-serif;
+    font-family: Montserrat, sans-serif;
     font-size: 13px;
     font-style: normal;
     font-weight: 700;

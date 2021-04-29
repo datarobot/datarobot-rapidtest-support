@@ -1,24 +1,24 @@
 @font-face {
-  font-family: 'Avenir Next';
+  font-family: 'Montserrat';
   font-weight: 500;
-  src: local('Avenir Next'),
-    url('../fonts/Roboto/Roboto-Medium.ttf') format('truetype');
+  src: local('Montserrat'),
+    url('../fonts/Montserrat/Montserrat-Medium.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Avenir Next';
+  font-family: 'Montserrat';
   font-weight: 600;
-  src: local('Avenir Next'),
-    url('../fonts/Roboto/Roboto-Medium.ttf') format('truetype');
+  src: local('Montserrat'),
+    url('../fonts/Montserrat/Montserrat-SemiBold.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Avenir Next';
+  font-family: 'Montserrat';
   font-weight: 700;
-  src: local('Avenir Next'),
-    url('../fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+  src: local('Montserrat'),
+    url('../fonts/Montserrat/Montserrat-Bold.ttf') format('truetype');
   font-display: swap;
 }
 
