@@ -9,10 +9,6 @@
   padding-right: 8.5vw;
 }
 
-.isLandingPage .footer {
-  @apply bg-transparent text-dark-grey border-t border-dark-grey;
-}
-
 .footer-links > * {
   @apply mr-4;
 }

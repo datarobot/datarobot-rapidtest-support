@@ -1,22 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'jotai';
-import './i18n';
 
-import AuthProvider from 'components/AuthProvider';
-
-import 'assets/styles/fonts.css';
-import './index.css';
 import App from './App';
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <AuthProvider>
-      <Provider>
-        <App />
-      </Provider>
-    </AuthProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

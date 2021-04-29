@@ -7,6 +7,8 @@ import { LANDING_PAGE_LINKS, ROUTES } from 'rt-constants';
 import gettingTested from 'assets/images/getting-tested.svg';
 import testingOthers from 'assets/images/testing-others.svg';
 
+import './Home.css';
+
 const LoggedOut = () => {
   const { TESTING_OTHERS, GETTING_TESTED } = LANDING_PAGE_LINKS;
 
@@ -60,7 +62,7 @@ const LoggedOut = () => {
 
       <article className="my-12">
         <h3 className="font-bold text-blue text-2xl mb-4">About</h3>
-        <section className="two-column">
+        <section>
           As the COVID-19 pandemic continues, finding ways to safely reopen
           schools for in-person learning is a pressing need. Schools provide a
           critical outlet for children through education, safety, nutrition,

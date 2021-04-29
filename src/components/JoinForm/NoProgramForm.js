@@ -195,7 +195,7 @@ const NoProgramForm = ({ onSubmit }) => {
 
         <Button
           kind={KIND.PRIMARY}
-          btnType="submit"
+          type="submit"
           label="Request Test Admin Account"
         />
       </form>

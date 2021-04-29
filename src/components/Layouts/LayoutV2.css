@@ -1,0 +1,16 @@
+.LayoutV2 {
+  @apply flex flex-col;
+
+  min-height: 100vh;
+  color: var(--text-color);
+  background-color: var(--background-color);
+
+  .content {
+    @apply px-6;
+
+    flex-grow: 1;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
