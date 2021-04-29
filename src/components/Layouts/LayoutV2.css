@@ -1,9 +1,12 @@
 .LayoutV2 {
+  @apply flex flex-col;
+
   min-height: 100vh;
   color: var(--text-color);
   background-color: var(--background-color);
 
   .content {
+    flex-grow: 1;
     padding-left: 8.5vw;
     padding-right: 8.5vw;
   }

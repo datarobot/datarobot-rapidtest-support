@@ -6,6 +6,11 @@
   line-height: 28px;
   letter-spacing: 0.02em;
 
+  .inverted {
+    background-color: var(--purple-90);
+    color: var(--purple-10);
+  }
+
   h1 {
     font-family: Merriweather, sans-serif;
     font-size: 40px;
@@ -13,6 +18,10 @@
     font-weight: 700;
     line-height: 64px;
     letter-spacing: 0.02em;
+    color: var(--purple-100);
+  }
+  .inverted h1 {
+    color: var(--white);
   }
 
   h2 {
@@ -22,6 +31,10 @@
     font-weight: 700;
     line-height: 48px;
     letter-spacing: 0.02em;
+    color: var(--purple-100);
+  }
+  .inverted h2 {
+    color: var(--white);
   }
 
   h3 {
@@ -31,6 +44,10 @@
     font-weight: 700;
     line-height: 32px;
     letter-spacing: 0.02em;
+    color: var(--purple-100);
+  }
+  .inverted h3 {
+    color: var(--white);
   }
 
   h4 {
@@ -40,6 +57,10 @@
     font-weight: 700;
     line-height: 28px;
     letter-spacing: 0.02em;
+    color: var(--purple-100);
+  }
+  .inverted h4 {
+    color: var(--white);
   }
 
   h5 {
@@ -49,6 +70,10 @@
     font-weight: 600;
     line-height: 22px;
     letter-spacing: 0.05em;
+    color: var(--purple-100);
+  }
+  .inverted h5 {
+    color: var(--white);
   }
 
   h6 {
@@ -58,6 +83,10 @@
     font-weight: 600;
     line-height: 16px;
     letter-spacing: 0.02em;
+    color: var(--purple-100);
+  }
+  .inverted h6 {
+    color: var(--white);
   }
 
   a small {
@@ -80,7 +109,7 @@
     letter-spacing: 0.02em;
   }
 
-  .label {
+  .badge {
     font-family: 'Avenir Next', sans-serif;
     font-size: 13px;
     font-style: normal;
@@ -89,5 +118,15 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--black);
+
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: var(--orange-10);
+  }
+
+  .inverted .badge {
+    color: var(--purple-90);
+    background-color: var(--purple-20);
   }
 }

@@ -13,7 +13,8 @@ module.exports = {
   rules: {
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
-    'no-unused-vars': ['error', { vars: 'all' }],
+    'no-unused-vars': 1,
+    'arrow-body-style': 1,
     eqeqeq: ['error', 'smart'],
     'func-style': ['error', 'expression'],
     'func-names': ['error', 'always', { generators: 'as-needed' }],
