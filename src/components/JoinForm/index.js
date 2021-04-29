@@ -27,6 +27,12 @@ const Joinform = ({ currentState, hasProgram }) => {
     addAccount(data)
       .then(() => {
         toast.success('Request submitted!');
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'analyticsEvent',
+          eventAction: 'Signup Complete',
+          eventCategory: 'Registration',
+        });
       })
       .catch((err) => {
         toast.error(err.message);
