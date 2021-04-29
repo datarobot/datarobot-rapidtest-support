@@ -28,6 +28,7 @@
 
   .links {
     @apply flex justify-around items-center;
+    gap: 1rem;
 
     grid-area: links;
   }
