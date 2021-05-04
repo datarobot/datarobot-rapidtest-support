@@ -1,0 +1,23 @@
+@define-mixin for-size-phone $arg {
+  @media only screen and (max-width: 767px) {
+    @mixin-content;
+  }
+}
+
+@define-mixin for-size-tablet-or-phone $arg {
+  @media only screen and (max-width: 1023px) {
+    @mixin-content;
+  }
+}
+
+@define-mixin for-size-tablet $arg {
+  @media only screen and (min-width: 768px) and (max-width: 1023px) {
+    @mixin-content;
+  }
+}
+
+@define-mixin for-size-desktop $arg {
+  @media only screen and (min-width: 1024px) {
+    @mixin-content;
+  }
+}

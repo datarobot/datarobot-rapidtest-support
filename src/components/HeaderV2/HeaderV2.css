@@ -2,6 +2,7 @@
   @apply shadow;
 
   width: 100%;
+  background-color: var(--background-color);
 
   .wrapper {
     @apply px-12 grid;
