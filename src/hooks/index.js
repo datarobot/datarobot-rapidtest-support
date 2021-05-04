@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { useEffect, useState, useCallback, useRef } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 // eslint-disable-next-line import/prefer-default-export
 export const useDebounce = (value, delay) => {
@@ -35,4 +36,23 @@ export const useTimeout = (callback = () => {}, timeout = 0) => {
   }, [callback, timeout, cancel]);
 
   return cancel;
+};
+
+export const useResponsive = () => {
+  const isMobile = useMediaQuery({
+    maxWidth: 767,
+  });
+
+  const isTablet = useMediaQuery({
+    minWidth: 768,
+    maxWidth: 1024,
+  });
+  const isTabletOrMobile = useMediaQuery({
+    maxWidth: 1024,
+  });
+  return {
+    isMobile,
+    isTablet,
+    isTabletOrMobile,
+  };
 };

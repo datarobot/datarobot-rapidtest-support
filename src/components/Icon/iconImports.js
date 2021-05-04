@@ -1,4 +1,5 @@
 import {
+  faBars,
   faBuilding,
   faCheckCircle,
   faChevronDown,
@@ -51,6 +52,7 @@ library.add(
   faAngleRight,
   faAngleDoubleLeft,
   faAngleDoubleRight,
+  faBars,
   faBuilding,
   faCheckCircle,
   faChevronDoubleLeft,

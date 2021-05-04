@@ -7,8 +7,11 @@
     &.testingProgram {
       @apply flex items-center py-8 px-14;
 
+      .testingProgramText {
+        @apply w-1/2;
+      }
       .thumbsUp {
-        position: relative;
+        @apply w-1/2 relative;
 
         .el5 {
           position: absolute;
@@ -53,6 +56,11 @@
 
     &.trainingMaterials {
       @apply flex items-center py-8 px-14;
+
+      .trainingMaterialsText,
+      .trainingMaterialsPicture {
+        @apply w-1/2;
+      }
     }
 
     &.howItWorks {
@@ -236,6 +244,43 @@
         .el12,
         .el13 {
           @apply hidden;
+        }
+      }
+    }
+  }
+}
+
+@mixin for-size-phone {
+  .HomeV2 {
+    section {
+      &.testingProgram {
+        @apply flex-col;
+
+        .testingProgramText {
+          @apply w-full;
+        }
+        .thumbsUp {
+          @apply w-full mt-8;
+        }
+      }
+      &.trainingMaterials {
+        @apply flex-col-reverse;
+
+        .trainingMaterialsText {
+          @apply w-full;
+        }
+        .trainingMaterialsPicture {
+          @apply w-full mb-8;
+        }
+      }
+      &.howItWorks {
+        @apply px-2;
+      }
+      &.forParents {
+        .forParentsItems {
+          .forParentsItem {
+            @apply w-full;
+          }
         }
       }
     }

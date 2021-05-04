@@ -6681,6 +6681,11 @@ css-loader@^5.0.1:
     schema-utils "^3.0.0"
     semver "^7.3.4"
 
+css-mediaquery@^0.1.2:
+  version "0.1.2"
+  resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/css-mediaquery/-/css-mediaquery-0.1.2.tgz#6a2c37344928618631c54bd33cedd301da18bea0"
+  integrity sha1-aiw3NEkoYYYxxUvTPO3TAdoYvqA=
+
 css-minimizer-webpack-plugin@^1.3.0:
   version "1.3.0"
   resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/css-minimizer-webpack-plugin/-/css-minimizer-webpack-plugin-1.3.0.tgz#d867b4a54ca9920125b30263505e8cca72bc8cf1"
@@ -11030,7 +11035,7 @@ human-signals@^1.1.1:
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/human-signals/-/human-signals-1.1.1.tgz#c5b1cd14f50aeae09ab6c59fe63ba3395fe4dfa3"
   integrity sha1-xbHNFPUK6uCatsWf5jujOV/k36M=
 
-hyphenate-style-name@^1.0.3:
+hyphenate-style-name@^1.0.0, hyphenate-style-name@^1.0.3:
   version "1.0.4"
   resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/hyphenate-style-name/-/hyphenate-style-name-1.0.4.tgz#691879af8e220aea5750e8827db4ef62a54e361d"
   integrity sha1-aRh5r44iCupXUOiCfbTvYqVONh0=
@@ -13378,6 +13383,13 @@ markdown-table@^2.0.0:
   integrity sha1-GUqQztJtMf51PYuUNEMCFMARhls=
   dependencies:
     repeat-string "^1.0.0"
+
+matchmediaquery@^0.3.0:
+  version "0.3.1"
+  resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/matchmediaquery/-/matchmediaquery-0.3.1.tgz#8247edc47e499ebb7c58f62a9ff9ccf5b815c6d7"
+  integrity sha1-gkftxH5Jnrt8WPYqn/nM9bgVxtc=
+  dependencies:
+    css-mediaquery "^0.1.2"
 
 md5-file@^5.0.0:
   version "5.0.0"
@@ -16985,6 +16997,16 @@ react-refresh@^0.9.0:
   resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/react-refresh/-/react-refresh-0.9.0.tgz#71863337adc3e5c2f8a6bfddd12ae3bfe32aafbf"
   integrity sha1-cYYzN63D5cL4pr/d0Srjv+Mqr78=
 
+react-responsive@8.2.0:
+  version "8.2.0"
+  resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/react-responsive/-/react-responsive-8.2.0.tgz#e0ffb306cfd8f38c9c12e26725b9e1245fa9debc"
+  integrity sha1-4P+zBs/Y84ycEuJnJbnhJF+p3rw=
+  dependencies:
+    hyphenate-style-name "^1.0.0"
+    matchmediaquery "^0.3.0"
+    prop-types "^15.6.1"
+    shallow-equal "^1.1.0"
+
 react-router-dom@^5.2.0:
   version "5.2.0"
   resolved "https://artifactory.int.datarobot.com/artifactory/api/npm/npm-all/react-router-dom/-/react-router-dom-5.2.0.tgz#9e65a4d0c45e13289e66c7b17c7e175d0ea15662"
@@ -18326,6 +18348,11 @@ shallow-compare@^1.2.2:
   version "1.2.2"
   resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/shallow-compare/-/shallow-compare-1.2.2.tgz#fa4794627bf455a47c4f56881d8a6132d581ffdb"
   integrity sha1-+keUYnv0VaR8T1aIHYphMtWB/9s=
+
+shallow-equal@^1.1.0:
+  version "1.2.1"
+  resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/shallow-equal/-/shallow-equal-1.2.1.tgz#4c16abfa56043aa20d050324efa68940b0da79da"
+  integrity sha1-TBar+lYEOqINBQMk76aJQLDaedo=
 
 sharp@^0.27.0:
   version "0.27.2"

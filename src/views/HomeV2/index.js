@@ -40,14 +40,14 @@ const HomeV2 = () => (
   <LayoutV2 landingBackground>
     <div className="HomeV2">
       <section className="testingProgram">
-        <div className="w-1/2">
+        <div className="testingProgramText">
           <div className="badge">Testing program at K-12 schools</div>
           <h1>Keep students and teachers safe</h1>
           <Button className="mt-4" v2 primary>
             <Link to={ROUTES.JOIN.path}>Join a Program</Link>
           </Button>
         </div>
-        <div className="w-1/2 thumbsUp">
+        <div className="thumbsUp">
           <img src={thumbsUp} alt="" className="mx-auto" />
           <img src={el5} alt="" className="el5" />
         </div>
@@ -90,7 +90,7 @@ const HomeV2 = () => (
         <img src={el7} alt="" className="el7" />
       </section>
       <section className="trainingMaterials">
-        <div className="w-1/2">
+        <div className="trainingMaterialsText">
           <div className="badge">PLAYBOOK</div>
           <h1 className="mb-4">Training materials</h1>
           <p>
@@ -109,7 +109,7 @@ const HomeV2 = () => (
             </a>
           </Button>
         </div>
-        <div className="w-1/2">
+        <div className="trainingMaterialsPicture">
           <img src={playbook} alt="playbook" className="mx-auto" />
         </div>
       </section>
