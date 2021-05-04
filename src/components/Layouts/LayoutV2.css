@@ -1,9 +1,46 @@
+@import '../../assets/styles/mixins.css';
+
 .LayoutV2 {
   @apply flex flex-col;
 
+  position: relative;
   min-height: 100vh;
   color: var(--text-color);
   background-color: var(--background-color);
+
+  > * {
+    z-index: 1;
+  }
+
+  .bg {
+    position: absolute;
+    z-index: 0;
+  }
+
+  .bg1 {
+    left: 0;
+    top: 5%;
+  }
+
+  .bg2 {
+    left: 0;
+    top: 35%;
+  }
+
+  .bg3 {
+    left: 0;
+    bottom: 15%;
+  }
+
+  .bg4 {
+    right: 0;
+    top: 5%;
+  }
+
+  .bg5 {
+    right: 0;
+    bottom: 4%;
+  }
 
   .content {
     @apply px-6;
@@ -12,5 +49,23 @@
     max-width: 1280px;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+@mixin for-size-tablet-or-phone {
+  .bg2,
+  .bg3,
+  .bg5 {
+    @apply hidden;
+  }
+  .bg1 {
+    img {
+      width: 64px;
+    }
+  }
+  .bg4 {
+    img {
+      width: 98px;
+    }
   }
 }

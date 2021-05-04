@@ -82,3 +82,7 @@
     border-color: var(--purple-70);
   }
 }
+
+.btn-v2-link {
+  min-width: unset;
+}

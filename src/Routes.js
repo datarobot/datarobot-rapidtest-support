@@ -4,8 +4,9 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { ROUTES } from 'rt-constants';
 import { getUserRole } from 'utils';
 
+import NullLayout from 'components/Layouts/NullLayout';
 import LayoutV1 from 'components/Layouts/LayoutV1';
-import LayoutV2 from 'components/Layouts/LayoutV2';
+// import LayoutV2 from 'components/Layouts/LayoutV2';
 import Unauthorized from 'components/Unauthorized';
 import { AuthContext } from 'components/AuthProvider';
 import Loading from 'components/Loading';
@@ -188,7 +189,7 @@ export const Routes = () => {
       <PublicRoute exact path={ROUTES.CONTACT.path} component={Contact} />
       <PublicRoute exact path={ROUTES.LOG_IN.path} component={LogIn} />
       <PublicRoute
-        layout={LayoutV2}
+        layout={NullLayout}
         exact
         path={ROUTES.LANDING_PAGE_V2.path}
         component={HomeV2}

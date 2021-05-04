@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from 'rt-constants';
 
+import LayoutV2 from 'components/Layouts/LayoutV2';
 import Button from 'components/Button';
 
 import thumbsUp from 'assets/images/home/thumbs-up.png';
@@ -24,26 +25,34 @@ import autoUpload from 'assets/images/home/auto-upload.svg';
 
 import arrowRight from 'assets/images/home/arrow-right.svg';
 
-import trainingMaterials from '../../assets/static/TrainingMaterials.pdf';
+import el4 from 'assets/images/home/el4.svg';
+import el5 from 'assets/images/home/el5.svg';
+import el7 from 'assets/images/home/el7.svg';
+import el11 from 'assets/images/home/el11.svg';
+import el12 from 'assets/images/home/el12.svg';
+import el13 from 'assets/images/home/el13.svg';
+
+import trainingMaterials from 'assets/static/TrainingMaterials.pdf';
 
 import './HomeV2.css';
 
-const HomeV2 = () => {
-  return (
-    <div className="HomeV2 pb-8">
-      <section className="flex items-center py-8">
-        <div className="w-1/2 px-14">
+const HomeV2 = () => (
+  <LayoutV2 landingBackground>
+    <div className="HomeV2">
+      <section className="testingProgram">
+        <div className="testingProgramText">
           <div className="badge">Testing program at K-12 schools</div>
           <h1>Keep students and teachers safe</h1>
           <Button className="mt-4" v2 primary>
             <Link to={ROUTES.JOIN.path}>Join a Program</Link>
           </Button>
         </div>
-        <div className="w-1/2">
+        <div className="thumbsUp">
           <img src={thumbsUp} alt="" className="mx-auto" />
+          <img src={el5} alt="" className="el5" />
         </div>
       </section>
-      <section className="flex items-center p-8 highlighted rounded-xl">
+      <section className="highlighted whyImportant">
         <div className="importantItems">
           <div className="importantItem">
             <img src={safe} alt="safe" />
@@ -65,8 +74,9 @@ const HomeV2 = () => {
             <strong>Quick Testing</strong>
             <p>Testing and reporting is done in just 5 steps</p>
           </div>
+          <div className="dummy">&nbsp;</div>
         </div>
-        <div className="w-1/2 px-14">
+        <div className="importantText">
           <div className="badge">About RAPIDTEST</div>
           <h1 className="mb-4">Why it’s important</h1>
           <p>
@@ -76,9 +86,11 @@ const HomeV2 = () => {
             behavioral health care and important social interaction.
           </p>
         </div>
+        <img src={el4} alt="" className="el4" />
+        <img src={el7} alt="" className="el7" />
       </section>
-      <section className="flex items-center py-8">
-        <div className="w-1/2 px-14">
+      <section className="trainingMaterials">
+        <div className="trainingMaterialsText">
           <div className="badge">PLAYBOOK</div>
           <h1 className="mb-4">Training materials</h1>
           <p>
@@ -97,11 +109,11 @@ const HomeV2 = () => {
             </a>
           </Button>
         </div>
-        <div className="w-1/2">
+        <div className="trainingMaterialsPicture">
           <img src={playbook} alt="playbook" className="mx-auto" />
         </div>
       </section>
-      <section className="py-8 w-full text-center">
+      <section className="howItWorks">
         <div className="badge">ONSITE TESTING GUIDANCE</div>
         <h1 className="mb-4">How it works</h1>
         <p>
@@ -110,7 +122,7 @@ const HomeV2 = () => {
           ensure student and staff safety.
         </p>
       </section>
-      <section className="flex justify-around py-8 howItWorks">
+      <section className="howItWorksColumns">
         <div className="step">
           <h5 className="text-center">Pre-register</h5>
           <hr />
@@ -183,8 +195,9 @@ const HomeV2 = () => {
             </div>
           </div>
         </div>
+        <div className="dummy">&nbsp;</div>
       </section>
-      <section className="flex items-center p-14 inverted rounded-xl">
+      <section className="inverted forParents">
         <div className="forParentsItems">
           <div className="forParentsItem">
             <h5>CDC guidance for school and childcare programs</h5>
@@ -211,7 +224,7 @@ const HomeV2 = () => {
             </div>
           </div>
         </div>
-        <div className="w-1/2 px-14">
+        <div className="forParentsText">
           <div className="badge">For Parents and Students</div>
           <h1 className="mb-4">If you are getting tested</h1>
           <p>
@@ -221,9 +234,12 @@ const HomeV2 = () => {
             authorities in a timely manner.
           </p>
         </div>
+        <img src={el11} alt="" className="el11" />
+        <img src={el12} alt="" className="el12" />
+        <img src={el13} alt="" className="el13" />
       </section>
     </div>
-  );
-};
+  </LayoutV2>
+);
 
 export default HomeV2;
