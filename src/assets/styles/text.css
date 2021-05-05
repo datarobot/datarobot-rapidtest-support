@@ -1,8 +1,8 @@
 .LayoutV2 {
-  font-family: Montserrat, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 28px;
   letter-spacing: 0.02em;
 
@@ -68,7 +68,7 @@
   }
 
   h5 {
-    font-family: Montserrat, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
@@ -81,7 +81,7 @@
   }
 
   h6 {
-    font-family: Montserrat, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
@@ -94,10 +94,10 @@
   }
 
   a small {
-    font-family: Montserrat, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     line-height: 28px;
     letter-spacing: 0.02em;
     text-decoration: underline;
@@ -105,16 +105,16 @@
   }
 
   .tooltip {
-    font-family: Montserrat, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 12px;
     line-height: 18px;
     letter-spacing: 0.02em;
   }
 
   .badge {
-    font-family: Montserrat, sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 13px;
     font-style: normal;
     font-weight: 700;
