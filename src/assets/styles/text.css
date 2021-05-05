@@ -1,10 +1,7 @@
+@import 'typography.css';
+
 .LayoutV2 {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 28px;
-  letter-spacing: 0.02em;
+  @mixin body;
 
   .highlighted {
     background-color: var(--white);
@@ -16,12 +13,7 @@
   }
 
   h1 {
-    font-family: Merriweather, sans-serif;
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 64px;
-    letter-spacing: 0.02em;
+    @mixin h1;
     color: var(--purple-100);
   }
   .inverted h1 {
@@ -29,12 +21,7 @@
   }
 
   h2 {
-    font-family: Merriweather, sans-serif;
-    font-size: 32px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 48px;
-    letter-spacing: 0.02em;
+    @mixin h2;
     color: var(--purple-100);
   }
   .inverted h2 {
@@ -42,12 +29,7 @@
   }
 
   h3 {
-    font-family: Merriweather, sans-serif;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 32px;
-    letter-spacing: 0.02em;
+    @mixin h3;
     color: var(--purple-100);
   }
   .inverted h3 {
@@ -55,12 +37,7 @@
   }
 
   h4 {
-    font-family: Merriweather, sans-serif;
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 28px;
-    letter-spacing: 0.02em;
+    @mixin h4;
     color: var(--purple-100);
   }
   .inverted h4 {
@@ -68,12 +45,7 @@
   }
 
   h5 {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 22px;
-    letter-spacing: 0.05em;
+    @mixin h5;
     color: var(--purple-100);
   }
   .inverted h5 {
@@ -81,12 +53,7 @@
   }
 
   h6 {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 16px;
-    letter-spacing: 0.02em;
+    @mixin h6;
     color: var(--purple-100);
   }
   .inverted h6 {
@@ -94,33 +61,12 @@
   }
 
   a small {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 28px;
-    letter-spacing: 0.02em;
-    text-decoration: underline;
+    @mixin text-link;
     color: var(--purple-70);
   }
 
-  .tooltip {
-    font-family: 'Open Sans', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 18px;
-    letter-spacing: 0.02em;
-  }
-
   .badge {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 16px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    @mixin badge;
     color: var(--black);
 
     display: inline-block;
@@ -132,5 +78,9 @@
   .inverted .badge {
     color: var(--purple-90);
     background-color: var(--purple-20);
+  }
+
+  .tooltip {
+    @mixin tooltip;
   }
 }

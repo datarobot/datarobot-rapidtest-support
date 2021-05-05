@@ -45,10 +45,10 @@ export const useResponsive = () => {
 
   const isTablet = useMediaQuery({
     minWidth: 768,
-    maxWidth: 1024,
+    maxWidth: 1023,
   });
   const isTabletOrMobile = useMediaQuery({
-    maxWidth: 1024,
+    maxWidth: 1023,
   });
   return {
     isMobile,
