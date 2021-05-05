@@ -12,6 +12,7 @@ export const ROUTES = {
   LANDING_PAGE: { path: '/' },
   LANDING_PAGE_V2: { path: '/v2' },
   JOIN: { path: '/join' },
+  JOIN_V2: { path: '/join-v2' },
   SITES: {
     path: '/sites',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
@@ -69,6 +70,7 @@ export const ROUTES = {
   },
   DASHBOARD: { path: '/dashboard' },
   LOG_IN: { path: '/login' },
+  LOG_IN_V2: { path: '/login-v2' },
   TRAINING_MATERIALS: { path: '/training-materials' },
   SUGGEST_IMPROVEMENT: {
     path: '/suggestions',

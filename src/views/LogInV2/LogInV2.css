@@ -1,0 +1,14 @@
+.LogInV2 {
+  @apply mx-auto;
+  max-width: 550px;
+
+  .logoV2 {
+    @apply block mx-auto my-6;
+    > svg {
+      @apply mx-auto;
+    }
+  }
+  .formContainer {
+    @apply bg-white rounded p-6 mb-12;
+  }
+}
