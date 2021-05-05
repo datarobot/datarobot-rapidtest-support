@@ -15,6 +15,7 @@ const Home = lazy(() => import('views/Home'));
 const HomeV2 = lazy(() => import('views/HomeV2'));
 const Admin = lazy(() => import('views/Admin'));
 const Join = lazy(() => import('views/Join'));
+const JoinV2 = lazy(() => import('views/JoinV2'));
 const Sites = lazy(() => import('views/Sites'));
 const AddSite = lazy(() => import('views/Sites/AddSite'));
 const EditSite = lazy(() => import('views/Sites/EditSite'));
@@ -27,6 +28,7 @@ const RequestAccount = lazy(() => import('views/Accounts/Request'));
 const UploadAccounts = lazy(() => import('views/Accounts/UploadAccounts'));
 const Faq = lazy(() => import('views/Faq'));
 const LogIn = lazy(() => import('views/LogIn'));
+const LogInV2 = lazy(() => import('views/LogInV2'));
 const Dashboard = lazy(() => import('views/Dashboard'));
 const TrainingMaterials = lazy(() => import('views/TrainingMaterials'));
 const SuggestImprovement = lazy(() => import('views/SuggestImprovement'));
@@ -89,6 +91,11 @@ export const Routes = () => {
   ) : (
     <Switch>
       <PublicRoute path={ROUTES.JOIN.path} component={Join} />
+      <PublicRoute
+        layout={NullLayout}
+        path={ROUTES.JOIN_V2.path}
+        component={JoinV2}
+      />
       <PrivateRoute
         authenticated={authenticated}
         exact
@@ -188,6 +195,12 @@ export const Routes = () => {
       />
       <PublicRoute exact path={ROUTES.CONTACT.path} component={Contact} />
       <PublicRoute exact path={ROUTES.LOG_IN.path} component={LogIn} />
+      <PublicRoute
+        layout={NullLayout}
+        exact
+        path={ROUTES.LOG_IN_V2.path}
+        component={LogInV2}
+      />
       <PublicRoute
         layout={NullLayout}
         exact

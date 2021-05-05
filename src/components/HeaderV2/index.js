@@ -69,7 +69,7 @@ const HeaderV2 = () => {
                     )}
                   </span>
                   <Link
-                    to={ROUTES.LANDING_PAGE.path}
+                    to={ROUTES.LANDING_PAGE_V2.path}
                     className="logout-btn inline-block -mb-1"
                     onClick={() => {
                       signOut();
@@ -83,11 +83,13 @@ const HeaderV2 = () => {
               ) : (
                 <>
                   <Button v2 outline small>
-                    <Link to={ROUTES.LOG_IN.path}>{t('buttons.signin')}</Link>
+                    <Link to={ROUTES.LOG_IN_V2.path}>
+                      {t('buttons.signin')}
+                    </Link>
                   </Button>
 
                   <Button v2 secondary small>
-                    <Link to={ROUTES.JOIN.path}>{t('buttons.signup')}</Link>
+                    <Link to={ROUTES.JOIN_V2.path}>{t('buttons.signup')}</Link>
                   </Button>
                 </>
               )}

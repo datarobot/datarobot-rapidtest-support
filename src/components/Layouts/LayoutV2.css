@@ -17,6 +17,16 @@
     z-index: 0;
   }
 
+  .bga1 {
+    left: 0;
+    bottom: 0;
+  }
+
+  .bga2 {
+    right: 0;
+    bottom: 0;
+  }
+
   .bg1 {
     left: 0;
     top: 5%;

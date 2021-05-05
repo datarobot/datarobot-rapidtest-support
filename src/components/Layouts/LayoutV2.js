@@ -5,6 +5,9 @@ import Loading from 'components/Loading';
 import HeaderV2 from 'components/HeaderV2';
 import FooterV2 from 'components/FooterV2';
 
+import bga1 from 'assets/images/backgrounds/a1.svg';
+import bga2 from 'assets/images/backgrounds/a2.svg';
+
 import bg1 from 'assets/images/backgrounds/1.svg';
 import bg2 from 'assets/images/backgrounds/2.svg';
 import bg3 from 'assets/images/backgrounds/3.svg';
@@ -13,8 +16,24 @@ import bg5 from 'assets/images/backgrounds/5.svg';
 
 import './LayoutV2.css';
 
-const LayoutV2 = ({ children, landingBackground = false }) => (
+const LayoutV2 = ({
+  children,
+  hideHeader = false,
+  hideFooter = false,
+  authBackground = false,
+  landingBackground = false,
+}) => (
   <div className="LayoutV2">
+    {authBackground && (
+      <>
+        <div className="bg bga1">
+          <img src={bga1} alt="" />
+        </div>
+        <div className="bg bga2">
+          <img src={bga2} alt="" />
+        </div>
+      </>
+    )}
     {landingBackground && (
       <>
         <div className="bg bg1">
@@ -34,7 +53,7 @@ const LayoutV2 = ({ children, landingBackground = false }) => (
         </div>
       </>
     )}
-    <HeaderV2 />
+    {hideHeader ? null : <HeaderV2 />}
     <main className="content">
       <Suspense
         fallback={
@@ -48,7 +67,7 @@ const LayoutV2 = ({ children, landingBackground = false }) => (
         {children}
       </Suspense>
     </main>
-    <FooterV2 />
+    {hideFooter ? null : <FooterV2 />}
     <ToastContainer
       position="bottom-center"
       toastClassName="rt-toast"

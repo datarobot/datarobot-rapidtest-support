@@ -6,7 +6,7 @@ import Select from 'components/Select';
 import { get } from 'utils';
 import { getPrograms } from 'services/api';
 
-const ProgramList = ({ onChange, name, selected }) => {
+const ProgramList = ({ onChange, name, label = 'Your program', selected }) => {
   const [programList, setProgramList] = useState([]);
 
   const buildProgramList = async () => {
@@ -32,7 +32,7 @@ const ProgramList = ({ onChange, name, selected }) => {
     <Select
       name={name}
       placeholder="Select a program"
-      label="Your program"
+      label={label}
       options={programList}
       onChange={onChange}
       value={selected || get('program')}
