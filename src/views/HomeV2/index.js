@@ -143,7 +143,6 @@ const HomeV2 = () => (
           <svg
             width="90"
             height="270"
-            viewBox="0 0 90 270"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -167,7 +166,6 @@ const HomeV2 = () => (
           <svg
             width="186"
             height="112"
-            viewBox="0 0 186 112"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -195,7 +193,6 @@ const HomeV2 = () => (
           <svg
             width="90"
             height="267"
-            viewBox="0 0 90 267"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -215,7 +212,6 @@ const HomeV2 = () => (
           <svg
             width="186"
             height="48"
-            viewBox="0 0 186 48"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -248,7 +244,6 @@ const HomeV2 = () => (
           <svg
             width="90"
             height="2"
-            viewBox="0 0 90 2"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -259,7 +254,6 @@ const HomeV2 = () => (
           <svg
             width="2"
             height="48"
-            viewBox="0 0 2 48"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -293,7 +287,6 @@ const HomeV2 = () => (
           <svg
             width="90"
             height="2"
-            viewBox="0 0 90 2"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
@@ -304,7 +297,6 @@ const HomeV2 = () => (
           <svg
             width="2"
             height="48"
-            viewBox="0 0 2 48"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
