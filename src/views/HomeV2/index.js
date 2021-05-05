@@ -42,7 +42,7 @@ const HomeV2 = () => (
       <section className="testingProgram">
         <div className="testingProgramText">
           <div className="badge">Testing program at K-12 schools</div>
-          <h1>Keep students and teachers safe</h1>
+          <h1 className="my-4">Keep students and teachers safe</h1>
           <Button className="mt-4" v2 primary>
             <Link to={ROUTES.JOIN.path}>Join a Program</Link>
           </Button>
@@ -78,7 +78,7 @@ const HomeV2 = () => (
         </div>
         <div className="importantText">
           <div className="badge">About RAPIDTEST</div>
-          <h1 className="mb-4">Why it’s important</h1>
+          <h1 className="my-4">Why it’s important</h1>
           <p>
             As the COVID-19 pandemic continues, finding ways to safely reopen
             schools for in-person learning is a pressing need. Schools provide a
@@ -92,7 +92,7 @@ const HomeV2 = () => (
       <section className="trainingMaterials">
         <div className="trainingMaterialsText">
           <div className="badge">PLAYBOOK</div>
-          <h1 className="mb-4">Training materials</h1>
+          <h1 className="my-4">Training materials</h1>
           <p>
             The information found in the training materials will outline the
             steps required to successfully develop an application-supported
@@ -115,7 +115,7 @@ const HomeV2 = () => (
       </section>
       <section className="howItWorks">
         <div className="badge">ONSITE TESTING GUIDANCE</div>
-        <h1 className="mb-4">How it works</h1>
+        <h1 className="my-4">How it works</h1>
         <p>
           Conducting rapid COVID-19 antigen tests at schools for assurance and
           symptom-induced testing is a cost effective, easy, and reliable way to
@@ -349,7 +349,7 @@ const HomeV2 = () => (
         </div>
         <div className="forParentsText">
           <div className="badge">For Parents and Students</div>
-          <h1 className="mb-4">If you are getting tested</h1>
+          <h1 className="my-4">If you are getting tested</h1>
           <p>
             Utilizing rapid COVID-19 antigen tests requires adherence to state
             and federal reporting regulations. These regulations instruct test
