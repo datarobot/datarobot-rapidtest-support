@@ -4,7 +4,7 @@
     <script>
       dataLayer = [];
     </script>
-    <!-- Google Tag Manager --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WTWRHPG');</script><!-- End Google Tag Manager -->
+    <!-- GTM --><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WTWRHPG');</script><!-- GTM End -->
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -19,10 +19,27 @@
       integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
       crossorigin=""></script>
     <title>Rapid Test</title>
+    <!-- FBPixel -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '488145359100862');
+      fbq('track', 'PageView');
+    </script>
+    <!-- FBPixel End -->
   </head>
   <body>
-    <!-- Google Tag Manager (noscript) --><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WTWRHPG"height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript><!-- End Google Tag Manager (noscript) -->
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <noscript>
+      You need to enable JavaScript to run this app.
+      <!-- GTM --><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WTWRHPG" height="0" width="0" style="display:none;visibility:hidden"></iframe><!-- GTM End -->
+      <!-- FBPixel --><img height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=488145359100862&ev=PageView&noscript=1" /><!-- FBPixel End -->
+    </noscript>
+    <div id="root"/>
   </body>
 </html>
