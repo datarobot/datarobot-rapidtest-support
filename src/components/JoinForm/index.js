@@ -1,5 +1,4 @@
 // @ts-nocheck
-import cls from 'classnames';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useAtom } from 'jotai';
@@ -20,7 +19,7 @@ import { ROUTES } from 'rt-constants';
 
 import './JoinForm.css';
 
-const JoinForm = ({ v2 = false, currentState, hasProgram }) => {
+const Joinform = ({ currentState, hasProgram }) => {
   const [, setStartProgramDetails] = useAtom(startProgramDetails);
   const scroll = Scroll.animateScroll;
 
@@ -54,15 +53,8 @@ const JoinForm = ({ v2 = false, currentState, hasProgram }) => {
       <p className="sub-heading text-blue">
         {hasProgram ? 'Join' : 'Start'} a program in {currentState}
       </p>
-      <div className={cls({ flex: !v2 })}>
-        <section
-          className={cls({
-            'p-2': v2,
-            'join-form': !v2,
-            'mt-8': !v2,
-            'w-1/2': !v2,
-          })}
-        >
+      <div className="flex">
+        <section className="join-form mt-8 w-1/2">
           {!hasProgram ? (
             <NoProgramForm onSubmit={handleNoProgramSubmit} />
           ) : (
@@ -82,24 +74,16 @@ const JoinForm = ({ v2 = false, currentState, hasProgram }) => {
             </>
           )}
         </section>
-        <section
-          className={cls('pt-0 h-full', {
-            'mt-8': !v2,
-            'w-1/3': !v2,
-            'p-12': !v2,
-          })}
-        >
+        <section className="mt-8 w-1/3 p-12 pt-0 h-full">
           {hasProgram && (
             <>
               <InfoBox
-                v2={v2}
                 className="mb-4"
                 heading="Test admins"
                 subtext="are responsible for conducting tests, but are not running training
         programs across multiple sites."
               />
               <InfoBox
-                v2={v2}
                 heading="Program admins"
                 subtext="are responsible for signing up new users, and running training programs.
         They are managing the rollout across multiple schools."
@@ -108,7 +92,6 @@ const JoinForm = ({ v2 = false, currentState, hasProgram }) => {
           )}
           {!hasProgram && currentState && (
             <InfoBox
-              v2={v2}
               className="mb-4"
               heading="CLIA waivers"
               subtext="CLIA waivers are issued in varying capacities depending on each state’s policy. A CLIA waiver allows the operating school to conduct and report tests in compliance with state and federal policy. CLIA waivers are not frequently owned by schools or other non-health organizations, so there can be some complications in obtaining these waivers. It’s recommended that there’s a scalable plan for providing CLIA waivers to all schools or organizations who will be participating in the program, for more information on obtaining CLIA waivers, click here."
@@ -119,4 +102,4 @@ const JoinForm = ({ v2 = false, currentState, hasProgram }) => {
     </>
   );
 };
-export default JoinForm;
+export default Joinform;

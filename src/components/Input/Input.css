@@ -41,7 +41,7 @@
   }
 }
 
-.input-label.required::after {
+.input-label.required:not(.v2)::after {
   content: '*';
 
   @apply font-bold text-dark-red ml-1;

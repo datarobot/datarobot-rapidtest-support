@@ -8,6 +8,7 @@ import Icon from 'components/Icon';
 import './Input.css';
 
 const Input = ({
+  v2 = false,
   name,
   label,
   type,
@@ -36,7 +37,10 @@ const Input = ({
     <>
       {label && (
         <label
-          className={cls('input-label', labelClass, { required: isRequired })}
+          className={cls('input-label', labelClass, {
+            required: isRequired,
+            v2,
+          })}
           htmlFor={name}
         >
           {label}
