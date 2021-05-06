@@ -7,9 +7,10 @@ import ReactTooltip from 'react-tooltip';
 import { useResponsive } from 'hooks';
 
 import Icon from 'components/Icon';
-import Button, { KIND } from 'components/Button';
+import Button from 'components/Button';
 import LogoV2 from 'components/LogoV2';
 import Nav from 'components/HeaderV2/Nav';
+import Menu from 'components/HeaderV2/Menu';
 import { AuthContext } from 'components/AuthProvider';
 
 import { ROUTES } from 'rt-constants';
@@ -51,26 +52,22 @@ const HeaderV2 = () => {
 
         {isTabletOrMobile ? (
           <section className="links">
-            <Button v2 link icon={<Icon iconName="bars" type="fas" />} />
+            <Menu authenticated={authenticated} />
           </section>
         ) : (
           <>
-            <Nav />
+            <Nav authenticated={authenticated} />
 
             <section className="links">
               {authenticated ? (
                 <div className="flex items-center justify-end">
                   <span className="mr-3">
-                    <p className="font-bold text-xs">
-                      {user?.displayName || user?.email}
-                    </p>
-                    {roleType && (
-                      <p className="text-gray-500 text-xs">{roleType}</p>
-                    )}
+                    <h5>{user?.displayName || user?.email}</h5>
+                    {roleType && <h6>{roleType}</h6>}
                   </span>
                   <Link
                     to={ROUTES.LANDING_PAGE_V2.path}
-                    className="logout-btn inline-block -mb-1"
+                    className="logout-btn inline-block"
                     onClick={() => {
                       signOut();
                     }}
@@ -89,7 +86,7 @@ const HeaderV2 = () => {
                   </Button>
 
                   <Button v2 secondary small>
-                    <Link to={ROUTES.JOIN_V2.path}>{t('buttons.signup')}</Link>
+                    <Link to={ROUTES.JOIN_V2.path}>{t('buttons.join')}</Link>
                   </Button>
                 </>
               )}

@@ -7,6 +7,7 @@ import './Select.css';
 const Select = forwardRef(
   (
     {
+      v2,
       options = [],
       label,
       isRequired,
@@ -22,7 +23,7 @@ const Select = forwardRef(
     <>
       {label && (
         <label
-          className={cls('select-label', { required: isRequired })}
+          className={cls('select-label', { required: isRequired, v2 })}
           htmlFor={name}
         >
           {label}
@@ -33,7 +34,7 @@ const Select = forwardRef(
         ref={ref}
         onChange={onChange}
         id={name}
-        className={cls(className, 'select')}
+        className={cls(className, 'select', { v2 })}
         value={value || 'DEFAULT'}
         name={name}
         {...rest}

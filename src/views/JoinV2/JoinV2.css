@@ -9,6 +9,6 @@
     }
   }
   .formContainer {
-    @apply bg-white rounded p-6 mb-12;
+    @apply bg-white rounded px-12 py-10 mb-12;
   }
 }

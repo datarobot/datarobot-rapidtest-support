@@ -2,8 +2,22 @@ import { NavLink } from 'react-router-dom';
 import { ROUTES } from 'rt-constants';
 import trainingMaterials from 'assets/static/TrainingMaterials.pdf';
 
-const Nav = () => (
+const Nav = ({ authenticated }) => (
   <ul className="nav">
+    {authenticated && (
+      <li>
+        <NavLink exact className="p-4" to={ROUTES.SITES.path}>
+          <h5>Sites</h5>
+        </NavLink>
+      </li>
+    )}
+    {authenticated && (
+      <li>
+        <NavLink exact className="p-4" to={ROUTES.ACCOUNTS.path}>
+          <h5>Accounts</h5>
+        </NavLink>
+      </li>
+    )}
     <li>
       <a
         href={trainingMaterials}

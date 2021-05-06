@@ -1,7 +1,9 @@
+@import '../../assets/styles/typography.css';
+
 select {
   @apply w-full border px-4 py-2 rounded mt-1;
 
-  border-color: #D1D8DC;
+  border-color: #d1d8dc;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -10,23 +12,50 @@ select {
 }
 
 .select {
-  background-image:
-    linear-gradient(45deg, transparent 50%, gray 50%),
+  background-image: linear-gradient(45deg, transparent 50%, gray 50%),
     linear-gradient(135deg, gray 50%, transparent 50%),
     linear-gradient(to right, #ccc, #ccc);
-  background-position:
-    calc(100% - 20px) calc(1em + 2px),
-    calc(100% - 15px) calc(1em + 2px),
-    calc(100% - 2.5em) 0.5em;
-  background-size:
-    5px 5px,
-    5px 5px,
-    1px 1.5em;
+  background-position: calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
+  background-size: 5px 5px, 5px 5px, 1px 1.5em;
   background-repeat: no-repeat;
+
+  &.v2 {
+    outline: none;
+    background-image: linear-gradient(
+        45deg,
+        transparent 50%,
+        var(--purple-70) 50%
+      ),
+      linear-gradient(135deg, var(--purple-70) 50%, transparent 50%);
+    background-position: calc(100% - 20px) calc(1em + 5px),
+      calc(100% - 13px) calc(1em + 5px);
+    background-size: 7px 7px, 7px 7px;
+    color: var(--purple-90);
+    border: solid 1px var(--purple-20);
+
+    &:hover {
+      background-color: var(--purple-10);
+    }
+
+    &:focus {
+      border: solid 1px var(--purple-70);
+    }
+
+    &::placeholder {
+      color: var(--purple-40);
+    }
+  }
 }
 
 .select-label {
   @apply inline-block text-blue text-sm mt-2;
+
+  &.v2 {
+    @mixin h6;
+    @apply mt-6;
+    color: var(--purple-90);
+  }
 }
 
 .select-label.required::after {
@@ -49,7 +78,7 @@ select {
 
 .select-button svg {
   @apply ease-in-out duration-300;
-  
+
   transform: rotate(0deg);
 }
 

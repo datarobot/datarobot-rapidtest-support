@@ -44,7 +44,7 @@ const HomeV2 = () => (
           <div className="badge">Testing program at K-12 schools</div>
           <h1 className="my-4">Keep students and teachers safe</h1>
           <Button className="mt-4" v2 primary>
-            <Link to={ROUTES.JOIN.path}>Join a Program</Link>
+            <Link to={ROUTES.JOIN_V2.path}>Join a Program</Link>
           </Button>
         </div>
         <div className="thumbsUp">
