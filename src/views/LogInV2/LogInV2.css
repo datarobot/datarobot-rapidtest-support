@@ -1,3 +1,5 @@
+@import '../../assets/styles/typography.css';
+
 .LogInV2 {
   @apply mx-auto;
   max-width: 550px;
@@ -9,6 +11,18 @@
     }
   }
   .formContainer {
-    @apply bg-white rounded p-6 mb-12;
+    @apply bg-white rounded px-12 py-10 mb-6;
+  }
+  .contactSupport {
+    @apply bg-white flex justify-center items-center rounded p-4 mb-12;
+
+    gap: 0.5rem;
+
+    img {
+      @apply mr-2;
+    }
+    span {
+      @mixin h6;
+    }
   }
 }

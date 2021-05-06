@@ -80,6 +80,7 @@ const Input = ({
 export const ControlledInput = forwardRef(
   (
     {
+      v2 = false,
       name,
       label,
       type,
@@ -107,7 +108,10 @@ export const ControlledInput = forwardRef(
       <>
         {label && (
           <label
-            className={cls('input-label', labelClass, { required: isRequired })}
+            className={cls('input-label', labelClass, {
+              required: isRequired,
+              v2,
+            })}
             htmlFor={name}
           >
             {label}
@@ -118,7 +122,7 @@ export const ControlledInput = forwardRef(
             ref={ref}
             name={name}
             id={name}
-            className={cls(className, 'input', { isRounded: rounded })}
+            className={cls(className, 'input', { isRounded: rounded, v2 })}
             type={getInputType()}
             value={value}
             placeholder={placeholder}
@@ -130,10 +134,11 @@ export const ControlledInput = forwardRef(
               kind={KIND.DEFAULT}
               onClick={() => setShowPasswordText(!showPasswordText)}
               tabIndex={-1}
-              className="show-password-toggle"
+              className={cls('show-password-toggle', { v2 })}
               label={
                 <Icon
-                  type="fal"
+                  type={v2 ? 'fas' : 'fal'}
+                  size={v2 ? 'sm' : null}
                   iconName={showPasswordText ? 'eye-slash' : 'eye'}
                 />
               }

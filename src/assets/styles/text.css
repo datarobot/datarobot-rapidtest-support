@@ -14,7 +14,6 @@
 
   h1 {
     @mixin h1;
-    color: var(--purple-100);
   }
   .inverted h1 {
     color: var(--white);
@@ -22,7 +21,6 @@
 
   h2 {
     @mixin h2;
-    color: var(--purple-100);
   }
   .inverted h2 {
     color: var(--white);
@@ -30,7 +28,6 @@
 
   h3 {
     @mixin h3;
-    color: var(--purple-100);
   }
   .inverted h3 {
     color: var(--white);
@@ -38,7 +35,6 @@
 
   h4 {
     @mixin h4;
-    color: var(--purple-100);
   }
   .inverted h4 {
     color: var(--white);
@@ -46,7 +42,6 @@
 
   h5 {
     @mixin h5;
-    color: var(--purple-100);
   }
   .inverted h5 {
     color: var(--white);
@@ -54,15 +49,15 @@
 
   h6 {
     @mixin h6;
-    color: var(--purple-100);
   }
   .inverted h6 {
     color: var(--white);
   }
 
-  a small {
+  a {
     @mixin text-link;
     color: var(--purple-70);
+    text-decoration: underline;
   }
 
   .badge {

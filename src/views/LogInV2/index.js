@@ -13,13 +13,14 @@ import { ROUTES, LIVE_PROGRAMS } from 'rt-constants';
 
 import { AuthContext } from 'components/AuthProvider';
 import Button, { KIND } from 'components/Button';
-import { ControlledInput } from 'components/Input';
+import { ControlledInput as Input } from 'components/Input';
 import ErrorMessage from 'components/ErrorMessage';
 import ProgramList from 'components/ProgramList';
 
 import LayoutV2 from 'components/Layouts/LayoutV2';
 import LogoV2 from 'components/LogoV2';
 
+import support from 'assets/images/auth/support.svg';
 import './LogInV2.css';
 
 const LogInV2 = ({ location, history }) => {
@@ -89,7 +90,7 @@ const LogInV2 = ({ location, history }) => {
           <LogoV2 />
         </Link>
         <div className="formContainer">
-          <h2 className="mb-6">Sign In</h2>
+          <h2 className="mb-4">Sign In</h2>
           {showLoginMessage ? (
             <div className="w-full pt-24 flex place-content-center">
               <p className="headline">
@@ -99,16 +100,17 @@ const LogInV2 = ({ location, history }) => {
           ) : (
             <form onSubmit={handleSubmit(onSubmit)}>
               <ProgramList
+                v2
                 name="state"
                 label="Your state"
                 onChange={handleProgramChange}
               />
 
-              <ControlledInput
+              <Input
+                v2
                 name="email"
                 label="Email address"
                 placeholder="you@example.com"
-                labelClass="mt-2"
                 ref={register({
                   required: {
                     value: true,
@@ -122,7 +124,8 @@ const LogInV2 = ({ location, history }) => {
               />
               <ErrorMessage errors={errors} errorKey="email" />
 
-              <ControlledInput
+              <Input
+                v2
                 label="Password"
                 placeholder="••••••••"
                 type="password"
@@ -138,6 +141,8 @@ const LogInV2 = ({ location, history }) => {
 
               <div className="btn-row">
                 <Button
+                  v2
+                  primary
                   type="submit"
                   kind={KIND.PRIMARY}
                   className="mt-8"
@@ -153,6 +158,13 @@ const LogInV2 = ({ location, history }) => {
               Join
             </Link>
           </p>
+        </div>
+        <div className="contactSupport">
+          <img src={support} alt="" />
+          <span>If you have any questions</span>
+          <a href="mailto:mack.heiser@datarobot.com?subject=rapidtestingapp.org%20Support%20Request">
+            Contact support
+          </a>
         </div>
       </div>
     </LayoutV2>

@@ -5,7 +5,7 @@
   background-color: var(--background-color);
 
   .wrapper {
-    @apply px-12 grid;
+    @apply px-12 flex justify-between;
 
     height: 72px;
     /* Map z-index is 400 */
@@ -23,12 +23,12 @@
   .logo {
     @apply flex items-center;
 
-    max-width: 200px;
+    max-width: 136px;
     grid-area: logo;
   }
 
   .links {
-    @apply flex justify-around items-center;
+    @apply flex justify-around items-center whitespace-nowrap;
     gap: 1rem;
 
     grid-area: links;
@@ -49,5 +49,15 @@
 
     color: var(--text-color);
     transition: all 250ms ease;
+  }
+
+  .logout-btn {
+    @apply text-lg;
+    color: var(--purple-70);
+  }
+
+  a {
+    @apply no-underline whitespace-nowrap;
+    color: var(--purple-90);
   }
 }

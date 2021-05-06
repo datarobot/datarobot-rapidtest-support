@@ -1,0 +1,34 @@
+@import '../../assets/styles/typography.css';
+
+.Menu {
+  .menuButton {
+    @apply flex justify-center items-center;
+
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.menuModalOverlay {
+  @apply fixed overflow-scroll;
+
+  background-color: var(--background-color);
+  inset: 0;
+  top: 70px;
+  z-index: 2;
+}
+
+.menuModalContent {
+  @apply w-full mx-auto px-6 pb-12;
+
+  max-width: 375px;
+  outline: none;
+
+  hr {
+    border-color: var(--purple-20);
+  }
+  h5 {
+    @mixin h5;
+    color: var(--purple-90);
+  }
+}

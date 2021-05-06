@@ -1,7 +1,26 @@
+@import '../../assets/styles/typography.css';
+
 .input {
   @apply w-full border px-4 py-2 rounded;
-  
-  border-color: #D1D8DC;
+
+  border-color: #d1d8dc;
+
+  &.v2 {
+    color: var(--purple-90);
+    border: solid 1px var(--purple-20);
+
+    &:hover {
+      background-color: var(--purple-10);
+    }
+
+    &:focus {
+      border: solid 1px var(--purple-70);
+    }
+
+    &::placeholder {
+      color: var(--purple-40);
+    }
+  }
 }
 
 .input:focus {
@@ -14,6 +33,12 @@
 
 .input-label {
   @apply inline-block text-blue text-sm mt-2;
+
+  &.v2 {
+    @mixin h6;
+    @apply mt-6;
+    color: var(--purple-90);
+  }
 }
 
 .input-label.required::after {
@@ -46,6 +71,9 @@ form {
   top: 50%;
   transform: translateY(-50%);
   right: 10px;
+  &.v2 {
+    color: var(--purple-40);
+  }
 }
 
 .show-password-toggle:focus {

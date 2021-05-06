@@ -39,16 +39,25 @@
   font-style: normal;
   font-weight: 600;
   line-height: 22px;
+  a {
+    @apply no-underline;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 22px;
+  }
 
   &:focus {
     outline: 0;
   }
 
+  &:disabled {
+    opacity: 0.5;
+  }
+
   &.btn-v2-small {
     padding: 12px;
     min-width: 110px;
-    /* font-size: 14px; */
-    /* line-height: 16px; */
   }
 }
 
@@ -61,6 +70,9 @@
     background-color: var(--purple-80);
     border-color: var(--purple-80);
   }
+  a {
+    color: var(--white);
+  }
 }
 
 .btn-v2-secondary {
@@ -71,6 +83,9 @@
     background-color: var(--purple-30);
     border-color: var(--purple-30);
   }
+  a {
+    color: var(--purple-100);
+  }
 }
 
 .btn-v2-outline {
@@ -80,6 +95,9 @@
   &:hover {
     color: var(--purple-70);
     border-color: var(--purple-70);
+  }
+  a {
+    color: var(--purple-100);
   }
 }
 

@@ -68,7 +68,6 @@
   font-size: 16px;
   line-height: 28px;
   letter-spacing: 0.02em;
-  text-decoration: underline;
 }
 
 @define-mixin badge {
