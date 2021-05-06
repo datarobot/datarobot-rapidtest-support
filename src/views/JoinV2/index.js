@@ -1,45 +1,24 @@
 // @ts-nocheck
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import cls from 'classnames';
-import { Element, scroller } from 'react-scroll';
 import { useAtom } from 'jotai';
 
 import Confirmation from 'views/Join/Confirmation';
-import Select from 'components/Select';
-import JoinForm from 'components/JoinForm';
-import { STATE_OPTIONS_FULL, CURRENT_PROGRAMS, ROUTES } from 'rt-constants';
+import JoinFormV2 from 'components/JoinFormV2';
+import { ROUTES } from 'rt-constants';
 import { startProgramDetails } from 'rt-store';
 
 import LayoutV2 from 'components/Layouts/LayoutV2';
 import LogoV2 from 'components/LogoV2';
+import Segments from 'components/Segments';
+
+import support from 'assets/images/auth/support.svg';
 
 import './JoinV2.css';
 
-const Join = () => {
-  const [currentState, setCurrentState] = useState('');
-  const [currentStateName, setCurrentStateName] = useState('');
-  const [hasProgram, setHasProgram] = useState();
+const JoinV2 = () => {
   const [programDetails] = useAtom(startProgramDetails);
-
-  const getStateFullName = (val) =>
-    STATE_OPTIONS_FULL.filter(({ value }) => val === value);
-
-  const scrollToForm = () => {
-    scroller.scrollTo('join-form', {
-      duration: 500,
-      delay: 100,
-      smooth: true,
-      offset: -80,
-    });
-  };
-
-  const handleStateSelect = ({ value }) => {
-    setCurrentState(value);
-    setCurrentStateName(getStateFullName(value)[0].label);
-    setHasProgram(CURRENT_PROGRAMS.includes(value));
-    scrollToForm();
-  };
+  const [joinProgram, setJoinProgram] = useState(true);
 
   return (
     <LayoutV2 hideHeader hideFooter authBackground>
@@ -52,61 +31,34 @@ const Join = () => {
             <Confirmation />
           ) : (
             <>
-              <h2>Join</h2>
-              <p className="mb-6">
-                Reopen your schools. Rollout a COVID-19 testing program using
-                RapidTest and send reports to government regulated relevant
-                health authorities.
-              </p>
+              <h2 className="mb-4">Join</h2>
+              <Segments
+                names={['Existing Program', 'Start a Program']}
+                current={joinProgram ? 0 : 1}
+                setCurrent={(value) => setJoinProgram(value === 0)}
+              />
               <section>
-                <p className="sub-heading text-blue">What state are you in?</p>
-
-                <div className="flex mt-4">
-                  <div className="w-1/2 mr-8">
-                    <Select
-                      name="join-state-select"
-                      placeholder="Select your state"
-                      options={STATE_OPTIONS_FULL}
-                      onChange={({ target }) => {
-                        handleStateSelect(target);
-                      }}
-                      value={currentState}
-                    />
-                  </div>
-                  <p
-                    className={cls('w-1/2 flex items-center', {
-                      'text-blue-light': hasProgram && currentState,
-                      'text-yellow': !hasProgram && currentState,
-                    })}
-                  >
-                    {!hasProgram &&
-                      currentState &&
-                      `There is no existing program in ${currentStateName}`}
-                    {hasProgram &&
-                      currentState &&
-                      `There is an existing program in ${currentStateName}`}
-                    {!currentState &&
-                      'Check if there is a program in your state.'}
-                  </p>
-                </div>
+                <JoinFormV2 joinProgram={joinProgram} />
               </section>
-              <Element name="join-form">
-                <section className="mt-6">
-                  {currentState && (
-                    <JoinForm
-                      v2
-                      currentState={currentStateName}
-                      hasProgram={hasProgram}
-                    />
-                  )}
-                </section>
-              </Element>
+              <p className="mt-4">
+                Already have an account?{' '}
+                <Link to={ROUTES.LOG_IN_V2.path} className="underline">
+                  Sign In
+                </Link>
+              </p>
             </>
           )}
+        </div>
+        <div className="contactSupport">
+          <img src={support} alt="" />
+          <span>If you have any questions</span>
+          <a href="mailto:mack.heiser@datarobot.com?subject=rapidtestingapp.org%20Support%20Request">
+            Contact support
+          </a>
         </div>
       </div>
     </LayoutV2>
   );
 };
 
-export default Join;
+export default JoinV2;

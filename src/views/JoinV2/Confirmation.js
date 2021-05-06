@@ -41,7 +41,7 @@ const Confirmation = () => {
           our full training materials.
         </p>
       </section>
-      <section className="join-form w-3/5 mb-12">
+      <section className="join-form-v2 w-3/5 mb-12">
         <p className="sub-heading text-xl mb-6">Personal information</p>
         <p className="font-bold">
           {programDetails.lastName}, {programDetails.firstName}

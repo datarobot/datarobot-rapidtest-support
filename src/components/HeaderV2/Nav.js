@@ -14,7 +14,7 @@ const Nav = ({ authenticated }) => (
     {authenticated && (
       <li>
         <NavLink exact className="p-4" to={ROUTES.ACCOUNTS.path}>
-          <h5>Accounts</h5>
+          <h5>Test Operators</h5>
         </NavLink>
       </li>
     )}

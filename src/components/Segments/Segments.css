@@ -1,0 +1,23 @@
+@import '../../assets/styles/typography.css';
+
+.Segments {
+  @apply flex rounded-3xl justify-items-stretch;
+
+  background-color: var(--purple-20);
+
+  .segment {
+    @apply rounded-3xl m-1 px-8 py-3 flex-grow text-center uppercase;
+    @mixin badge;
+
+    color: var(--purple-80);
+
+    &:hover {
+      background-color: var(--purple-30);
+    }
+
+    &.active {
+      color: var(--purple-10);
+      background-color: var(--purple-90);
+    }
+  }
+}
