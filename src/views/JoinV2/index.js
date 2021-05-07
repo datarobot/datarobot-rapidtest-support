@@ -1,14 +1,16 @@
 // @ts-nocheck
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAtom } from 'jotai';
 
 import Confirmation from 'views/Join/Confirmation';
-import JoinFormV2 from 'components/JoinFormV2';
 import { ROUTES } from 'rt-constants';
 import { startProgramDetails } from 'rt-store';
 
 import LayoutV2 from 'components/Layouts/LayoutV2';
+import ProgramAdminForm from 'components/JoinFormV2/ProgramAdminForm';
+import NoProgramForm from 'components/JoinFormV2/NoProgramForm';
+
 import LogoV2 from 'components/LogoV2';
 import Segments from 'components/Segments';
 
@@ -37,9 +39,9 @@ const JoinV2 = () => {
                 current={joinProgram ? 0 : 1}
                 setCurrent={(value) => setJoinProgram(value === 0)}
               />
-              <section>
-                <JoinFormV2 joinProgram={joinProgram} />
-              </section>
+
+              {joinProgram ? <ProgramAdminForm /> : <NoProgramForm />}
+
               <p className="mt-4">
                 Already have an account?{' '}
                 <Link to={ROUTES.LOG_IN_V2.path} className="underline">

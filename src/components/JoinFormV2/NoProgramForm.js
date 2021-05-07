@@ -1,21 +1,64 @@
 // @ts-nocheck
+import React, { useState } from 'react';
+import { useAtom } from 'jotai';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+
+import {
+  NO_PROGRAMS_FULL,
+  STATE_OPTIONS_FULL,
+  YES_NO_RADIOS,
+} from 'rt-constants';
+import { startProgramDetails } from 'rt-store';
 
 import ErrorMessage from 'components/ErrorMessage';
 import Input from 'components/Input';
 // import Select from 'components/Select';
 import Radio from 'components/Radio';
 import Button from 'components/Button';
+import Select from 'components/Select';
 
-import { YES_NO_RADIOS } from 'rt-constants';
-
-const NoProgramForm = ({ onSubmit }) => {
-  const { control, errors, handleSubmit } = useForm();
+const NoProgramForm = () => {
   const { t } = useTranslation();
+
+  const [currentState, setCurrentState] = useState('');
+  const onStateChange = ({ target: { value: newValue } }) => {
+    const { label } = STATE_OPTIONS_FULL.filter(
+      ({ value }) => newValue === value
+    )[0];
+    setCurrentState(label);
+  };
+
+  const [, setStartProgramDetails] = useAtom(startProgramDetails);
+  const onSubmit = (data) => {
+    setStartProgramDetails(data);
+    toast.success(
+      // eslint-disable-next-line quotes
+      "Thanks for your interest! Unfortunately this feature hasn't been implemented yet."
+    );
+  };
+
+  const { control, errors, handleSubmit } = useForm();
 
   return (
     <section>
+      <p className="mt-4">Select your state to start a program </p>
+      <section>
+        <div className="flex">
+          <div className="w-full">
+            <Select
+              v2
+              name="join-state-select"
+              label="State"
+              placeholder="Select your state"
+              options={NO_PROGRAMS_FULL}
+              onChange={onStateChange}
+              value={currentState}
+            />
+          </div>
+        </div>
+      </section>
       <form className="w-full mt-0" onSubmit={handleSubmit(onSubmit)}>
         <fieldset className="mb-6">
           <Controller

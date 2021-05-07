@@ -1,5 +1,9 @@
 @import '../../assets/styles/typography.css';
 
+.join-form-v2 {
+  @apply bg-blue bg-opacity-10 py-8 px-12;
+}
+
 .JoinV2 {
   @apply mx-auto;
   max-width: 550px;

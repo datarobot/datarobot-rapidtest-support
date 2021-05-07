@@ -1,16 +1,62 @@
+import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+
+import { addAccount } from 'services/api';
+import { NO_PROGRAMS_FULL, STATE_OPTIONS_FULL } from 'rt-constants';
 
 import ErrorMessage from 'components/ErrorMessage';
 import Input from 'components/Input';
 import Button from 'components/Button';
+import Select from 'components/Select';
 
-const ProgramAdminForm = ({ onSubmit }) => {
-  const { control, errors, handleSubmit } = useForm();
+const ProgramAdminForm = () => {
   const { t } = useTranslation();
+
+  const [currentState, setCurrentState] = useState('');
+  const onStateChange = ({ target: { value: newValue } }) => {
+    const { label } = STATE_OPTIONS_FULL.filter(
+      ({ value }) => newValue === value
+    )[0];
+    setCurrentState(label);
+  };
+
+  const onSubmit = (data) => {
+    addAccount(data)
+      .then(() => {
+        toast.success('Request submitted!');
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'analyticsEvent',
+          eventAction: 'Signup Complete',
+          eventCategory: 'Registration',
+        });
+      })
+      .catch((err) => {
+        toast.error(err.message);
+      });
+  };
+
+  const { control, errors, handleSubmit } = useForm();
 
   return (
     <form className="w-full mt-0" onSubmit={handleSubmit(onSubmit)}>
+      <p className="mt-4">
+        The program is currently available only in Pennsylvania and Washington
+      </p>
+      <section>
+        <Select
+          v2
+          name="join-state-select"
+          label="State"
+          placeholder="Select your state"
+          options={NO_PROGRAMS_FULL}
+          onChange={onStateChange}
+          value={currentState}
+        />
+      </section>
+
       <Controller
         name="first_name"
         control={control}

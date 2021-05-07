@@ -67,7 +67,7 @@ const HomeV2 = () => (
           <div className="importantItem">
             <img src={scalable} alt="scalable" />
             <strong>Scalable</strong>
-            <p>Democratized testing to enable widespread use</p>
+            <p>Democratized approach to enable widespread use</p>
           </div>
           <div className="importantItem">
             <img src={quick} alt="quick" />
