@@ -62,8 +62,10 @@ const HeaderV2 = () => {
               {authenticated ? (
                 <div className="flex items-center justify-end">
                   <span className="mr-3">
-                    <h5>{user?.displayName || user?.email}</h5>
-                    {roleType && <h6>{roleType}</h6>}
+                    <Link to={ROUTES.ADMIN.path}>
+                      <h5>{user?.displayName || user?.email}</h5>
+                      {roleType && <h6>{roleType}</h6>}
+                    </Link>
                   </span>
                   <Link
                     to={ROUTES.LANDING_PAGE_V2.path}

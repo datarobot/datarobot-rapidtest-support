@@ -1,3 +1,4 @@
+@import '../../assets/styles/mixins.css';
 @import '../../assets/styles/typography.css';
 
 .LogInV2 {
@@ -23,6 +24,14 @@
     }
     span {
       @mixin h6;
+    }
+  }
+}
+
+@mixin for-size-phone {
+  .LogInV2 {
+    .formContainer {
+      @apply bg-transparent p-0;
     }
   }
 }

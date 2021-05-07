@@ -151,7 +151,7 @@ const ProgramAdminForm = () => {
         )}
       />
 
-      <Button v2 primary type="submit" className="mt-6">
+      <Button v2 primary type="submit" className="mt-6 w-full md:w-auto">
         Request account
       </Button>
     </form>

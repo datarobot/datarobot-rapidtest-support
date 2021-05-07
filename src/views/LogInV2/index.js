@@ -145,7 +145,7 @@ const LogInV2 = ({ location, history }) => {
                   primary
                   type="submit"
                   kind={KIND.PRIMARY}
-                  className="mt-8"
+                  className="mt-8 w-full md:w-auto"
                   label="Sign In"
                   disabled={!selectedProgram}
                 />

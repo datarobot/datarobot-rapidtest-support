@@ -60,6 +60,8 @@
 }
 
 @mixin for-size-tablet-or-phone {
+  .bga1,
+  .bga2,
   .bg2,
   .bg3,
   .bg5 {

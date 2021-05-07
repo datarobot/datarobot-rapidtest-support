@@ -204,7 +204,7 @@ const NoProgramForm = () => {
           <ErrorMessage v2 errors={errors} errorKey="tests_per_day" />
         </fieldset>
 
-        <Button v2 primary type="submit">
+        <Button v2 primary type="submit" className="w-full md:w-auto">
           Request account
         </Button>
       </form>
