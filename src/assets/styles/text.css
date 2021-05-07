@@ -12,42 +12,48 @@
     color: var(--purple-10);
   }
 
-  h1 {
+  h1,
+  .h1 {
     @mixin h1;
   }
   .inverted h1 {
     color: var(--white);
   }
 
-  h2 {
+  h2,
+  .h2 {
     @mixin h2;
   }
   .inverted h2 {
     color: var(--white);
   }
 
-  h3 {
+  h3,
+  .h3 {
     @mixin h3;
   }
   .inverted h3 {
     color: var(--white);
   }
 
-  h4 {
+  h4,
+  .h4 {
     @mixin h4;
   }
   .inverted h4 {
     color: var(--white);
   }
 
-  h5 {
+  h5,
+  .h5 {
     @mixin h5;
   }
   .inverted h5 {
     color: var(--white);
   }
 
-  h6 {
+  h6,
+  .h6 {
     @mixin h6;
   }
   .inverted h6 {

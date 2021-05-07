@@ -2,6 +2,8 @@
 import { useAtom } from 'jotai';
 import { startProgramDetails } from 'rt-store';
 
+import './JoinV2.css';
+
 const Confirmation = () => {
   // eslint-disable-next-line no-unused-vars
   const [programDetails] = useAtom(startProgramDetails);

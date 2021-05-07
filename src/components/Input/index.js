@@ -19,6 +19,8 @@ const Input = ({
   labelClass,
   rounded,
   isRequired,
+  optional,
+  errorMessage,
   isSearch,
   wrapperClass,
   ...rest
@@ -35,7 +37,7 @@ const Input = ({
 
   return (
     <>
-      {label && (
+      {(label || optional) && (
         <label
           className={cls('input-label', labelClass, {
             required: isRequired,
@@ -44,6 +46,8 @@ const Input = ({
           htmlFor={name}
         >
           {label}
+          {label && ' '}
+          {optional && <span className="optional">Optional</span>}
         </label>
       )}
       <span
@@ -55,7 +59,11 @@ const Input = ({
         <input
           name={name}
           id={name}
-          className={cls(className, 'input', { isRounded: rounded })}
+          className={cls(className, 'input', {
+            isRounded: rounded,
+            v2,
+            error: errorMessage,
+          })}
           type={getInputType()}
           value={value}
           placeholder={placeholder}
@@ -77,6 +85,8 @@ const Input = ({
           />
         )}
       </span>
+      {errorMessage && <span className="error-message">{errorMessage}</span>}
+      {errorMessage && <br />}
     </>
   );
 };
@@ -94,6 +104,8 @@ export const ControlledInput = forwardRef(
       labelClass,
       rounded,
       isRequired,
+      optional,
+      errorMessage,
       ...rest
     },
     ref
@@ -110,7 +122,7 @@ export const ControlledInput = forwardRef(
 
     return (
       <>
-        {label && (
+        {(label || optional) && (
           <label
             className={cls('input-label', labelClass, {
               required: isRequired,
@@ -119,6 +131,7 @@ export const ControlledInput = forwardRef(
             htmlFor={name}
           >
             {label}
+            {optional && <span className="optional">Optional</span>}
           </label>
         )}
         <span className={cls('w-full', { relative: type === 'password' })}>
@@ -126,7 +139,11 @@ export const ControlledInput = forwardRef(
             ref={ref}
             name={name}
             id={name}
-            className={cls(className, 'input', { isRounded: rounded, v2 })}
+            className={cls(className, 'input', {
+              isRounded: rounded,
+              v2,
+              error: errorMessage,
+            })}
             type={getInputType()}
             value={value}
             placeholder={placeholder}
@@ -149,6 +166,8 @@ export const ControlledInput = forwardRef(
             />
           )}
         </span>
+        {errorMessage && <span className="error-message">{errorMessage}</span>}
+        {errorMessage && <br />}
       </>
     );
   }

@@ -1,12 +1,12 @@
 @import '../../assets/styles/typography.css';
 
 .Segments {
-  @apply flex rounded-3xl justify-items-stretch;
+  @apply flex rounded-full justify-items-stretch;
 
   background-color: var(--purple-20);
 
   .segment {
-    @apply rounded-3xl m-1 px-8 py-3 flex-grow text-center uppercase;
+    @apply rounded-full m-1 px-8 py-3 flex-grow text-center uppercase;
     @mixin badge;
 
     color: var(--purple-80);

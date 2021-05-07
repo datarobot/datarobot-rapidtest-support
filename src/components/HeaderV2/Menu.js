@@ -4,6 +4,7 @@ import ReactModal from 'react-modal';
 import { useTranslation } from 'react-i18next';
 
 import { ROUTES } from 'rt-constants';
+import { signOut } from 'services/firebase';
 
 import Button from 'components/Button';
 
@@ -43,12 +44,37 @@ const Menu = ({ authenticated }) => {
         >
           {authenticated && (
             <>
-              <NavLink exact className="p-4" to={ROUTES.SITES.path}>
+              <NavLink
+                exact
+                className="p-4"
+                to={ROUTES.SITES.path}
+                onClick={() => {
+                  closeMenu();
+                }}
+              >
                 <h5>Sites</h5>
               </NavLink>
               <hr />
-              <NavLink exact className="p-4" to={ROUTES.ACCOUNTS.path}>
-                <h5>Accounts</h5>
+              <NavLink
+                exact
+                className="p-4"
+                to={ROUTES.ACCOUNTS.path}
+                onClick={() => {
+                  closeMenu();
+                }}
+              >
+                <h5>Test Operators</h5>
+              </NavLink>
+              <hr />
+              <NavLink
+                exact
+                className="p-4"
+                to={ROUTES.ADMIN.path}
+                onClick={() => {
+                  closeMenu();
+                }}
+              >
+                <h5>Program Admin</h5>
               </NavLink>
               <hr />
             </>
@@ -58,23 +84,61 @@ const Menu = ({ authenticated }) => {
             className="p-4"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              closeMenu();
+            }}
           >
             <h5>Training Materials</h5>
           </a>
           <hr />
-          <NavLink exact className="p-4" to={ROUTES.FAQ.path}>
+          <NavLink
+            exact
+            className="p-4"
+            to={ROUTES.FAQ.path}
+            onClick={() => {
+              closeMenu();
+            }}
+          >
             <h5>FAQ</h5>
           </NavLink>
 
-          {!authenticated && (
+          {authenticated ? (
             <>
-              <Button v2 primary className="w-full mt-12">
-                <Link to={ROUTES.JOIN_V2.path}>{t('buttons.join')}</Link>
-              </Button>
+              <Link
+                to={ROUTES.LANDING_PAGE_V2.path}
+                onClick={() => {
+                  closeMenu();
+                  signOut();
+                }}
+              >
+                <Button v2 primary className="w-full mt-12">
+                  {t('buttons.signout')}
+                </Button>
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                to={ROUTES.JOIN_V2.path}
+                onClick={() => {
+                  closeMenu();
+                }}
+              >
+                <Button v2 primary className="w-full mt-12">
+                  {t('buttons.join')}
+                </Button>
+              </Link>
 
-              <Button v2 outline className="w-full mt-8">
-                <Link to={ROUTES.LOG_IN_V2.path}>{t('buttons.signin')}</Link>
-              </Button>
+              <Link
+                to={ROUTES.LOG_IN_V2.path}
+                onClick={() => {
+                  closeMenu();
+                }}
+              >
+                <Button v2 outline className="w-full mt-8">
+                  {t('buttons.signin')}
+                </Button>
+              </Link>
             </>
           )}
         </ReactModal>

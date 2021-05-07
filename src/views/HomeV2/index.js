@@ -5,7 +5,7 @@ import { ROUTES } from 'rt-constants';
 import LayoutV2 from 'components/Layouts/LayoutV2';
 import Button from 'components/Button';
 
-import thumbsUp from 'assets/images/home/thumbs-up.png';
+import people from 'assets/images/home/people.png';
 
 import safe from 'assets/images/home/safe.svg';
 import reliable from 'assets/images/home/reliable.svg';
@@ -47,8 +47,8 @@ const HomeV2 = () => (
             <Link to={ROUTES.JOIN_V2.path}>Join a Program</Link>
           </Button>
         </div>
-        <div className="thumbsUp">
-          <img src={thumbsUp} alt="" className="mx-auto" />
+        <div className="people">
+          <img src={people} alt="" className="mx-auto" />
           <img src={el5} alt="" className="el5" />
         </div>
       </section>
@@ -67,7 +67,7 @@ const HomeV2 = () => (
           <div className="importantItem">
             <img src={scalable} alt="scalable" />
             <strong>Scalable</strong>
-            <p>Democratized testing to enable widespread use</p>
+            <p>Democratized approach to enable widespread use</p>
           </div>
           <div className="importantItem">
             <img src={quick} alt="quick" />

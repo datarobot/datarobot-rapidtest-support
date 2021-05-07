@@ -20,6 +20,10 @@
     &::placeholder {
       color: var(--purple-40);
     }
+
+    &.error {
+      border: solid 1px var(--red);
+    }
   }
 }
 
@@ -38,7 +42,17 @@
     @mixin h6;
     @apply mt-6;
     color: var(--purple-90);
+
+    .optional {
+      @mixin tooltip;
+      color: var(--purple-40);
+    }
   }
+}
+
+.error-message {
+  @mixin tooltip;
+  color: var(--red);
 }
 
 .input-label.required:not(.v2)::after {
