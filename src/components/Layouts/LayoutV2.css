@@ -59,13 +59,24 @@
   }
 }
 
-@mixin for-size-tablet-or-phone {
+@mixin for-size-phone {
   .bga1,
-  .bga2,
+  .bga2 {
+    @apply hidden;
+  }
+}
+
+@mixin for-size-tablet-or-phone {
   .bg2,
   .bg3,
   .bg5 {
     @apply hidden;
+  }
+  .bga1 {
+    width: 150px;
+  }
+  .bga2 img {
+    width: 320px;
   }
   .bg1 {
     img {
