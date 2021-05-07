@@ -1,0 +1,43 @@
+@import '../../assets/styles/typography.css';
+
+.FaqV2 {
+  & > h2 {
+    @apply text-center mt-16 mb-6;
+
+    color: var(--purple-100);
+  }
+
+  .segments {
+    @apply mx-auto;
+
+    max-width: 630px;
+    > * {
+      @apply w-1/3;
+    }
+  }
+
+  .faq-sidebar {
+    @apply fixed flex bg-white w-full;
+
+    z-index: 9;
+    top: 64px;
+
+    a {
+      @apply mr-4 no-underline;
+    }
+
+    .nav-link {
+      @apply px-1 py-2;
+    }
+  }
+  .contactSupport {
+    @apply bg-white flex justify-between items-center rounded-xl px-8 py-8 mb-12;
+
+    gap: 0.5rem;
+
+    img {
+      @apply mr-6;
+      width: 96px;
+    }
+  }
+}

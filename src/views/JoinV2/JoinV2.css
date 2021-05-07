@@ -16,10 +16,10 @@
     }
   }
   .formContainer {
-    @apply bg-white rounded px-12 py-10 mb-6;
+    @apply bg-white rounded-xl px-12 py-10 mb-6;
   }
   .contactSupport {
-    @apply bg-white flex justify-center items-center rounded p-4 mb-12;
+    @apply bg-white flex justify-center items-center rounded-xl p-4 mb-12;
 
     gap: 0.5rem;
 

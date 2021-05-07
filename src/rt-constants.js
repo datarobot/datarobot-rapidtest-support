@@ -57,7 +57,6 @@ export const ROUTES = {
   },
   FAQ: {
     path: '/faq',
-
     GENERAL: {
       path: '/faq/general',
     },
@@ -66,6 +65,21 @@ export const ROUTES = {
     },
     TEST: {
       path: '/faq/test',
+    },
+  },
+  FAQ_V2: {
+    path: '/faq-v2',
+    ALL: {
+      path: '/faq-v2/:id',
+    },
+    GENERAL: {
+      path: '/faq-v2/general',
+    },
+    PROGRAM: {
+      path: '/faq-v2/program',
+    },
+    TEST: {
+      path: '/faq-v2/test',
     },
   },
   DASHBOARD: { path: '/dashboard' },

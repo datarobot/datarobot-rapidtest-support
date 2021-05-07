@@ -6,7 +6,7 @@ import { getUserRole } from 'utils';
 
 import NullLayout from 'components/Layouts/NullLayout';
 import LayoutV1 from 'components/Layouts/LayoutV1';
-// import LayoutV2 from 'components/Layouts/LayoutV2';
+import LayoutV2 from 'components/Layouts/LayoutV2';
 import Unauthorized from 'components/Unauthorized';
 import { AuthContext } from 'components/AuthProvider';
 import Loading from 'components/Loading';
@@ -27,6 +27,7 @@ const EditAccount = lazy(() => import('views/Accounts/EditAccount'));
 const RequestAccount = lazy(() => import('views/Accounts/Request'));
 const UploadAccounts = lazy(() => import('views/Accounts/UploadAccounts'));
 const Faq = lazy(() => import('views/Faq'));
+const FaqV2 = lazy(() => import('views/FaqV2'));
 const LogIn = lazy(() => import('views/LogIn'));
 const LogInV2 = lazy(() => import('views/LogInV2'));
 const Dashboard = lazy(() => import('views/Dashboard'));
@@ -181,6 +182,11 @@ export const Routes = () => {
         component={RequestSite}
       />
       <PublicRoute path={ROUTES.FAQ.path} component={Faq} />
+      <PublicRoute
+        layout={LayoutV2}
+        path={ROUTES.FAQ_V2.path}
+        component={FaqV2}
+      />
       <PublicRoute
         exact
         path={ROUTES.TRAINING_MATERIALS.path}

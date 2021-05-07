@@ -101,6 +101,19 @@
   }
 }
 
+.btn-v2-transparent {
+  color: var(--purple-100);
+  background-color: transparent;
+  border-color: var(--purple-20);
+  &:hover {
+    color: var(--purple-70);
+    border-color: var(--purple-70);
+  }
+  a {
+    color: var(--purple-100);
+  }
+}
+
 .btn-v2-link {
   min-width: unset;
 }
