@@ -15,7 +15,7 @@ import { startProgramDetails } from 'rt-store';
 import ErrorMessage from 'components/ErrorMessage';
 import Input from 'components/Input';
 // import Select from 'components/Select';
-import Radio from 'components/Radio';
+import Radio from 'components/RadioV2';
 import Button from 'components/Button';
 import Select from 'components/Select';
 
@@ -51,7 +51,7 @@ const NoProgramForm = () => {
               v2
               name="join-state-select"
               label="State"
-              placeholder="Select your state"
+              placeholder="Select"
               options={NO_PROGRAMS_FULL}
               onChange={onStateChange}
               value={currentState}
@@ -62,7 +62,7 @@ const NoProgramForm = () => {
       <form className="w-full mt-0" onSubmit={handleSubmit(onSubmit)}>
         <fieldset className="mb-6">
           <Controller
-            name="firstName"
+            name="first_name"
             control={control}
             defaultValue=""
             rules={{
@@ -71,22 +71,21 @@ const NoProgramForm = () => {
                 message: t('errorMessages.common.required'),
               },
             }}
-            render={({ onChange, value }) => (
+            render={({ onChange, value }, rest) => (
               <Input
                 v2
-                name="firstName"
+                name="first_name"
                 label="First Name"
-                placeholder="First Name"
                 onChange={onChange}
                 value={value}
                 isRequired
+                errorMessage={errors?.first_name?.message}
               />
             )}
           />
-          <ErrorMessage errors={errors} errorKey="firstName" />
 
           <Controller
-            name="lastName"
+            name="last_name"
             control={control}
             defaultValue=""
             rules={{
@@ -98,19 +97,18 @@ const NoProgramForm = () => {
             render={({ onChange, value }) => (
               <Input
                 v2
-                name="lastName"
+                name="last_name"
                 label="Last Name"
-                placeholder="Last Name"
                 onChange={onChange}
                 value={value}
                 isRequired
+                errorMessage={errors?.last_name?.message}
               />
             )}
           />
-          <ErrorMessage errors={errors} errorKey="lastName" />
 
           <Controller
-            name="email"
+            name="email_address"
             control={control}
             defaultValue=""
             rules={{
@@ -126,22 +124,21 @@ const NoProgramForm = () => {
             render={({ onChange, value }) => (
               <Input
                 v2
-                name="email"
+                name="email_address"
                 label="Email Address"
-                placeholder="Email Address"
                 onChange={onChange}
                 value={value}
                 isRequired
+                errorMessage={errors?.email_address?.message}
               />
             )}
           />
-          <ErrorMessage errors={errors} errorKey="email" />
         </fieldset>
 
         <fieldset className="mb-6">
-          <p className="sub-heading text-xl">Do you have tests?</p>
+          <h6>Do you have tests?</h6>
           <Controller
-            name="hasTests"
+            name="has_tests"
             control={control}
             defaultValue=""
             rules={{
@@ -153,20 +150,19 @@ const NoProgramForm = () => {
             render={({ onChange }) => (
               <Radio
                 values={YES_NO_RADIOS}
-                name="hasTests"
+                name="has_tests"
                 onChange={onChange}
-                wrapperClass="flex w-1/3 justify-between"
+                wrapperClass="flex w-1/3 justify-between mt-4"
               />
             )}
           />
-          <ErrorMessage errors={errors} errorKey="hasTests" />
+          <ErrorMessage v2 errors={errors} errorKey="has_tests" />
         </fieldset>
+
         <fieldset className="mb-6">
-          <p className="sub-heading text-xl">
-            Are you a member of state or local health authority?
-          </p>
+          <h6>Are you a member of state or local health authority?</h6>
           <Controller
-            name="isLocalAuthority"
+            name="is_local_authority"
             control={control}
             defaultValue=""
             rules={{
@@ -178,70 +174,39 @@ const NoProgramForm = () => {
             render={({ onChange }) => (
               <Radio
                 values={YES_NO_RADIOS}
-                name="isLocalAuthority"
+                name="is_local_authority"
                 onChange={onChange}
-                wrapperClass="flex w-1/3 justify-between"
+                wrapperClass="flex w-1/3 justify-between mt-4"
               />
             )}
           />
-          <ErrorMessage errors={errors} errorKey="isLocalAuthority" />
-          {/* UNCOMMENT THIS WHEN THERE IS SOMETHING MORE THAN SCHOOL DISTRICT  */}
-          {/* <Controller
-            name="authorityType"
-            control={control}
-            defaultValue=""
-            rules={{
-              required: {
-                value: true,
-                message: t('errorMessages.common.required'),
-              },
-            }}
-            render={({ onChange }) => (
-              <Select
-                options={[
-                  { value: 'schoolDistrict', label: 'School District' },
-                ]}
-                name="authorityType"
-                onChange={onChange}
-                disabled
-                value={'schoolDistrict'}
-                className="mt-4"
-              />
-            )}
-          /> */}
+          <ErrorMessage v2 errors={errors} errorKey="is_local_authority" />
         </fieldset>
 
         <fieldset className="mb-6">
-          <p className="sub-heading text-xl -mb-4">
+          <h6 className="-mb-4">
             How many tests does your program plan on doing per day?
-          </p>
-
+          </h6>
           <Controller
-            name="testsPerDay"
+            name="tests_per_day"
             control={control}
             defaultValue=""
-            rules={{
-              required: {
-                value: true,
-                message: t('errorMessages.common.required'),
-              },
-            }}
             render={({ onChange }) => (
               <Input
                 v2
-                name="testsPerDay"
-                label="Optional"
-                label="Optional"
-                placeholder="Number of tests"
+                name="tests_per_day"
+                optional
                 onChange={onChange}
                 type="number"
               />
             )}
           />
-          <ErrorMessage errors={errors} errorKey="testsPerDay" />
+          <ErrorMessage v2 errors={errors} errorKey="tests_per_day" />
         </fieldset>
 
-        <Button v2 primary type="submit" label="Request Test Admin Account" />
+        <Button v2 primary type="submit">
+          Request account
+        </Button>
       </form>
     </section>
   );

@@ -30,7 +30,7 @@ const TestAdminForm = ({ onSubmit }) => {
           />
         )}
       />
-      <ErrorMessage errors={errors} errorKey="firstName" />
+      <ErrorMessage errors={errors} errorKey="first_name" />
 
       <Controller
         name="last_name"
@@ -53,7 +53,7 @@ const TestAdminForm = ({ onSubmit }) => {
           />
         )}
       />
-      <ErrorMessage errors={errors} errorKey="lastName" />
+      <ErrorMessage errors={errors} errorKey="last_name" />
 
       <Controller
         name="email_address"
@@ -76,7 +76,7 @@ const TestAdminForm = ({ onSubmit }) => {
           />
         )}
       />
-      <ErrorMessage errors={errors} errorKey="email" />
+      <ErrorMessage errors={errors} errorKey="email_address" />
 
       <Controller
         name="phone_number_office"
@@ -101,6 +101,7 @@ const TestAdminForm = ({ onSubmit }) => {
           />
         )}
       />
+      <ErrorMessage errors={errors} errorKey="phone_number_office" />
 
       <button type="submit" className="btn-primary mt-6">
         Request Account

@@ -42,7 +42,7 @@ const JoinV2 = () => {
 
               {joinProgram ? <ProgramAdminForm /> : <NoProgramForm />}
 
-              <p className="mt-4">
+              <p className="mt-6">
                 Already have an account?{' '}
                 <Link to={ROUTES.LOG_IN_V2.path} className="underline">
                   Sign In
