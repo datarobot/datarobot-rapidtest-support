@@ -18,6 +18,7 @@ const Button = ({
   primary,
   secondary,
   outline,
+  transparent,
   link,
   small,
   type = 'button',
@@ -35,6 +36,7 @@ const Button = ({
         'btn-v2-primary': primary,
         'btn-v2-secondary': secondary,
         'btn-v2-outline': outline,
+        'btn-v2-transparent': transparent,
         'btn-v2-link': link,
       })}
       type={type}

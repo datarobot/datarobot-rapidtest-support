@@ -1,4 +1,6 @@
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   @apply font-bold text-blue;
 }
 
@@ -58,7 +60,7 @@ h2 {
 }
 
 .prose ol > li.toc-item::before {
-  content: ''
+  content: '';
 }
 
 .prose ol:last-child {
