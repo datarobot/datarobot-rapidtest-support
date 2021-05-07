@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -22,8 +23,46 @@ const Sites = () => {
   const [siteIdsToDisable, setSiteIdsToDisable] = useAtom(siteIdsToDisableAtom);
   const [isLoading, setIsLoading] = useState(false);
 
+  const sanitizedSites = sites.map(
+    ({
+      site_name,
+      street,
+      city,
+      state,
+      zip,
+      county,
+      clia,
+      contact_name,
+      contact_phone,
+      contact_email,
+      district,
+      latitude,
+      longitude,
+      site_type,
+    }) => ({
+      site_name,
+      street,
+      city,
+      state,
+      zip,
+      county,
+      clia,
+      contact_name,
+      contact_phone,
+      contact_email,
+      district,
+      latitude,
+      longitude,
+      site_type,
+    })
+  );
+
   const handleExportData = () => {
-    download({ name: 'rapidtest_sites', ext: 'csv', data: toCsv(sites) });
+    download({
+      name: 'rapidtest_sites',
+      ext: 'csv',
+      data: toCsv(sanitizedSites),
+    });
   };
 
   const doBatch = (archive) => {

@@ -44,12 +44,18 @@ const Accounts = () => {
   const [showDeactivate, setShowDeactivate] = useState(false);
   const [showActivate, setShowActivate] = useState(false);
 
+  const accountsCopy = Array.from(accounts);
+
+  const sanitizedAccounts = accountsCopy.map(
+    ({ email_address, first_name, last_name, phone_number_office }) => ({
+      email_address,
+      first_name,
+      last_name,
+      phone_number_office,
+    })
+  );
+
   const handleExportData = () => {
-    const sanitizedAccounts = accounts.map((account) => {
-      delete account.last_login_ip;
-      delete account.welcome_email_sent;
-      return account;
-    });
     download({
       name: 'rapidtest_accounts',
       ext: 'csv',
