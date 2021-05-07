@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
 import { addAccount } from 'services/api';
-import { NO_PROGRAMS_FULL, STATE_OPTIONS_FULL } from 'rt-constants';
+import { CURRENT_PROGRAMS_FULL, STATE_OPTIONS_FULL } from 'rt-constants';
 
 import Input from 'components/Input';
 import Button from 'components/Button';
@@ -50,7 +50,7 @@ const ProgramAdminForm = () => {
           name="join-state-select"
           label="State"
           placeholder="Select"
-          options={NO_PROGRAMS_FULL}
+          options={CURRENT_PROGRAMS_FULL}
           onChange={onStateChange}
           value={currentState}
         />
