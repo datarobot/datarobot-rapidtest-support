@@ -28,6 +28,8 @@ const Menu = ({ authenticated }) => {
     document.body.style.overflow = 'unset';
   };
 
+  ReactModal.setAppElement('body');
+
   return (
     <div className="Menu">
       <div className="menuButton">

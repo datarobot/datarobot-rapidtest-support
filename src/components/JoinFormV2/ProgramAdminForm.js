@@ -136,6 +136,7 @@ const ProgramAdminForm = ({ setRequestSubmitted }) => {
             label="Phone Number"
             optional
             placeholder="(000) 000-0000"
+            mask="(999) 999-9999"
             onChange={({ target }) => {
               const x = target.value
                 .replace(/\D/g, '')

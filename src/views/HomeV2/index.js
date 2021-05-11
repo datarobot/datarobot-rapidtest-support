@@ -149,15 +149,15 @@ const HomeV2 = () => (
             <path
               d="M0 1L90 1"
               stroke="#5B5FF0"
-              stroke-width="2"
-              stroke-dasharray="4 6"
+              strokeWidth="2"
+              strokeDasharray="4 6"
               className="path"
             />
             <path
               d="M1 269H90"
               stroke="#5B5FF0"
-              stroke-width="2"
-              stroke-dasharray="4 6"
+              strokeWidth="2"
+              strokeDasharray="4 6"
               className="path"
             />
           </svg>
