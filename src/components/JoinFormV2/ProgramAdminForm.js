@@ -10,7 +10,7 @@ import Input from 'components/Input';
 import Button from 'components/Button';
 import Select from 'components/Select';
 
-const ProgramAdminForm = () => {
+const ProgramAdminForm = ({ setRequestSubmitted }) => {
   const { t } = useTranslation();
 
   const [currentState, setCurrentState] = useState('');
@@ -22,7 +22,7 @@ const ProgramAdminForm = () => {
   const onSubmit = (data) => {
     addAccount(data)
       .then(() => {
-        toast.success('Request submitted!');
+        setRequestSubmitted(true);
       })
       .then(() => {
         window.dataLayer = window.dataLayer || [];

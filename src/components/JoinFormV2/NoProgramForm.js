@@ -19,7 +19,7 @@ import Radio from 'components/RadioV2';
 import Button from 'components/Button';
 import Select from 'components/Select';
 
-const NoProgramForm = () => {
+const NoProgramForm = ({ setRequestSubmitted }) => {
   const { t } = useTranslation();
 
   const [currentState, setCurrentState] = useState('');
@@ -33,6 +33,7 @@ const NoProgramForm = () => {
   const [, setStartProgramDetails] = useAtom(startProgramDetails);
   const onSubmit = (data) => {
     setStartProgramDetails(data);
+    // setRequestSubmitted(true);
     toast.success(
       // eslint-disable-next-line quotes
       "Thanks for your interest! Unfortunately this feature hasn't been implemented yet."
