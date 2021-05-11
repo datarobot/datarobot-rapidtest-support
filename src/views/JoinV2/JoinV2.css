@@ -30,12 +30,30 @@
       @mixin h6;
     }
   }
+  .bgs {
+    @apply absolute;
+  }
+  .bgs1 {
+    top: 10px;
+    left: 10px;
+  }
+  .bgs2 {
+    right: 10px;
+    top: 60%;
+  }
+  .bgs3 {
+    bottom: 10px;
+    right: 20%;
+  }
 }
 
 @mixin for-size-phone {
   .JoinV2 {
     .formContainer {
       @apply bg-transparent p-0;
+    }
+    .bgs {
+      @apply hidden;
     }
   }
 }
