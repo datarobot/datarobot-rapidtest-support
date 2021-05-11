@@ -8,15 +8,12 @@
   .prose {
     color: var(--purple-90);
 
-    h3 {
-      @apply mt-0;
-      @mixin h5;
-
-      color: var(--purple-90);
-    }
-
     .page-outline {
       @apply hidden;
+    }
+
+    a {
+      color: var(--purple-70);
     }
 
     ol > li {
@@ -29,8 +26,34 @@
         content: '';
       }
 
+      h3 {
+        @apply mt-0;
+        @mixin h5;
+
+        color: var(--purple-90);
+      }
+
+      &:hover h3 {
+        color: var(--purple-70);
+      }
+
       ul > li {
-        @apply my-0;
+        @apply my-0 pl-6;
+
+        &::before {
+          font-size: 0.5rem;
+          top: 0.75rem;
+          left: 0.5rem;
+          background-color: var(--purple-90);
+        }
+      }
+
+      & > ul > li {
+        @apply pl-0;
+
+        &::before {
+          @apply hidden;
+        }
       }
     }
   }
