@@ -107,13 +107,22 @@ const Pagination = ({
               Accounts selected: <strong>{accountsToDisable.length}</strong>
             </p>
             {accounts.length !== accountIdsToDisable.length ? (
-              <button
-                type="button"
-                className="btn-clear ml-2 px-2"
-                onClick={selectAllAccounts}
-              >
-                Select all?
-              </button>
+              <>
+                <button
+                  type="button"
+                  className="btn-clear ml-2 px-2"
+                  onClick={selectAllAccounts}
+                >
+                  Select all?
+                </button>
+                <button
+                  type="button"
+                  className="btn-clear ml-2 px-2"
+                  onClick={deselectAllAccounts}
+                >
+                  Clear selection
+                </button>
+              </>
             ) : (
               <>
                 {accountIdsToDisable.length > pageSize && (
@@ -151,13 +160,22 @@ const Pagination = ({
             Sites selected: <strong>{sitesToDisable.length}</strong>
           </p>
           {sites.length !== siteIdsToDisable.length ? (
-            <button
-              type="button"
-              className="btn-clear ml-2 px-2"
-              onClick={selectAllSites}
-            >
-              Select all?
-            </button>
+            <>
+              <button
+                type="button"
+                className="btn-clear ml-2 px-2"
+                onClick={selectAllSites}
+              >
+                Select all?
+              </button>
+              <button
+                type="button"
+                className="btn-clear ml-2 px-2"
+                onClick={deselectAllSites}
+              >
+                Clear selection
+              </button>
+            </>
           ) : (
             <>
               {siteIdsToDisable.length > pageSize && (
