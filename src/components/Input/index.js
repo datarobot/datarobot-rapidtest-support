@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { forwardRef, useState } from 'react';
 import cls from 'classnames';
+import InputMask from 'react-input-mask';
 
 import Button, { KIND } from 'components/Button';
 import Icon from 'components/Icon';
@@ -15,6 +16,7 @@ const Input = ({
   value,
   onChange,
   placeholder,
+  mask,
   className,
   labelClass,
   rounded,
@@ -56,20 +58,38 @@ const Input = ({
           relative: type === 'password',
         })}
       >
-        <input
-          name={name}
-          id={name}
-          className={cls(className, 'input', {
-            isRounded: rounded,
-            v2,
-            error: errorMessage,
-          })}
-          type={getInputType()}
-          value={value}
-          placeholder={placeholder}
-          onChange={onChange}
-          {...rest}
-        />
+        {mask ? (
+          <InputMask
+            mask={mask}
+            name={name}
+            id={name}
+            className={cls(className, 'input', {
+              isRounded: rounded,
+              v2,
+              error: errorMessage,
+            })}
+            type={getInputType()}
+            value={value}
+            placeholder={placeholder}
+            onChange={onChange}
+            {...rest}
+          />
+        ) : (
+          <input
+            name={name}
+            id={name}
+            className={cls(className, 'input', {
+              isRounded: rounded,
+              v2,
+              error: errorMessage,
+            })}
+            type={getInputType()}
+            value={value}
+            placeholder={placeholder}
+            onChange={onChange}
+            {...rest}
+          />
+        )}
         {type === 'password' && (
           <Button
             kind={KIND.DEFAULT}
