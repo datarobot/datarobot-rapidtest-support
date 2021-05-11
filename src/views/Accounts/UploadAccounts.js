@@ -28,14 +28,6 @@ const UploadAccounts = ({ history }) => {
 
   const dismiss = () => toast.dismiss(toastId.current);
 
-  const update = (msg, type, { ...rest }) => {
-    toast.update(toastId.current, {
-      render: msg,
-      type,
-      ...rest,
-    });
-  };
-
   const handleUpload = (data) => {
     notify();
 
@@ -44,12 +36,9 @@ const UploadAccounts = ({ history }) => {
     axios
       .all(batch)
       .then(() => {
-        update(`Uploaded ${data.length} accounts!`, toast.TYPE.SUCCESS, {
-          autoClose: 5000,
-          onClose: () => {
-            history.push(ROUTES.SITES.path);
-          },
-        });
+        dismiss();
+        history.push(ROUTES.ACCOUNTS.path);
+        toast.success(`Uploaded ${data.length} accounts!`, { autoClose: 5000 });
       })
       .catch((err) => {
         dismiss();
