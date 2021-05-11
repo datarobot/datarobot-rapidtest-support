@@ -30,14 +30,6 @@ const UploadSites = ({ history }) => {
 
   const dismiss = () => toast.dismiss(toastId.current);
 
-  const update = (msg, type, { ...rest }) => {
-    toast.update(toastId.current, {
-      render: msg,
-      type,
-      ...rest,
-    });
-  };
-
   const handleUpload = (data) => {
     notify();
 
@@ -46,11 +38,10 @@ const UploadSites = ({ history }) => {
     axios
       .all(batch)
       .then(() => {
-        update(`Uploaded ${data.length} sites!`, toast.TYPE.SUCCESS, {
+        dismiss();
+        history.push(ROUTES.SITES.path);
+        toast.success(`Uploaded ${data.length} sites!`, {
           autoClose: 5000,
-          onClose: () => {
-            history.push(ROUTES.SITES.path);
-          },
         });
       })
       .catch((err) => {
