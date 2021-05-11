@@ -72,6 +72,7 @@ const Accounts = () => {
         setAccounts(await getAccountList());
         setAccountIdsToDisable([]);
         setAccountsToDisable([]);
+        toast.success('Email was successfully sent!');
         setIsLoading(false);
       })
       .catch(() => {
