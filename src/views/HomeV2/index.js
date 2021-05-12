@@ -37,12 +37,12 @@ import trainingMaterials from 'assets/static/TrainingMaterials.pdf';
 import './HomeV2.css';
 
 const HomeV2 = () => (
-  <LayoutV2 landingBackground>
+  <LayoutV2 landingBackground wide>
     <div className="HomeV2">
-      <section className="testingProgram">
+      <section className="limitWidth testingProgram">
         <div className="testingProgramText">
           <div className="badge">Testing program at K-12 schools</div>
-          <h1 className="my-4">Keep students and teachers safe</h1>
+          <h1 className="my-4">Keep students and&nbsp;teachers safe</h1>
           <Button className="mt-4" v2 primary>
             <Link to={ROUTES.JOIN_V2.path}>Join a Program</Link>
           </Button>
@@ -52,47 +52,53 @@ const HomeV2 = () => (
           <img src={el5} alt="" className="el5" />
         </div>
       </section>
-      <section className="highlighted whyImportant">
-        <div className="importantItems">
-          <div className="importantItem">
-            <img src={safe} alt="safe" />
-            <strong>Safe</strong>
-            <p>Get and keep kids back in school safely</p>
+      <div className="wrapper highlighted">
+        <section className="limitWidth whyImportant">
+          <div className="importantItems">
+            <div className="importantItem">
+              <img src={safe} alt="safe" />
+              <strong>Safe</strong>
+              <p>Get and keep kids back in school safely</p>
+            </div>
+            <div className="importantItem">
+              <img src={reliable} alt="reliable" />
+              <strong>Reliable</strong>
+              <p>Stop an outbreak before it starts</p>
+            </div>
+            <div className="importantItem">
+              <img src={scalable} alt="scalable" />
+              <strong>Scalable</strong>
+              <p>Democratized approach to enable widespread use</p>
+            </div>
+            <div className="importantItem">
+              <img src={quick} alt="quick" />
+              <strong>Quick Testing</strong>
+              <p>Testing and reporting is done in just 5 steps</p>
+            </div>
+            <div className="dummy">&nbsp;</div>
           </div>
-          <div className="importantItem">
-            <img src={reliable} alt="reliable" />
-            <strong>Reliable</strong>
-            <p>Stop an outbreak before it starts</p>
+          <div className="importantSplit" />
+          <div className="importantText">
+            <div>
+              <div className="badge">About RAPIDTEST</div>
+              <h2>Why it’s important</h2>
+              <p>
+                As the COVID-19 pandemic continues, finding ways to safely
+                reopen schools for in-person learning is a pressing need.
+                Schools provide a critical outlet for children through
+                education, safety, nutrition, behavioral health care and
+                important social interaction.
+              </p>
+            </div>
           </div>
-          <div className="importantItem">
-            <img src={scalable} alt="scalable" />
-            <strong>Scalable</strong>
-            <p>Democratized approach to enable widespread use</p>
-          </div>
-          <div className="importantItem">
-            <img src={quick} alt="quick" />
-            <strong>Quick Testing</strong>
-            <p>Testing and reporting is done in just 5 steps</p>
-          </div>
-          <div className="dummy">&nbsp;</div>
-        </div>
-        <div className="importantText">
-          <div className="badge">About RAPIDTEST</div>
-          <h1 className="my-4">Why it’s important</h1>
-          <p>
-            As the COVID-19 pandemic continues, finding ways to safely reopen
-            schools for in-person learning is a pressing need. Schools provide a
-            critical outlet for children through education, safety, nutrition,
-            behavioral health care and important social interaction.
-          </p>
-        </div>
-        <img src={el4} alt="" className="el4" />
-        <img src={el7} alt="" className="el7" />
-      </section>
-      <section className="trainingMaterials">
+          <img src={el4} alt="" className="el4" />
+          <img src={el7} alt="" className="el7" />
+        </section>
+      </div>
+      <section className="limitWidth trainingMaterials">
         <div className="trainingMaterialsText">
           <div className="badge">PLAYBOOK</div>
-          <h1 className="my-4">Training materials</h1>
+          <h2>Training materials</h2>
           <p>
             The information found in the training materials will outline the
             steps required to successfully develop an application-supported
@@ -113,16 +119,16 @@ const HomeV2 = () => (
           <img src={playbook} alt="playbook" className="mx-auto" />
         </div>
       </section>
-      <section className="howItWorks">
+      <section className="limitWidth howItWorks">
         <div className="badge">ONSITE TESTING GUIDANCE</div>
-        <h1 className="my-4">How it works</h1>
+        <h2>How it works</h2>
         <p>
           Conducting rapid COVID-19 antigen tests at schools for assurance and
           symptom-induced testing is a cost effective, easy, and reliable way to
           ensure student and staff safety.
         </p>
       </section>
-      <section className="howItWorksColumns">
+      <section className="limitWidth howItWorksColumns">
         <div className="step">
           <h5 className="text-center">Pre-register</h5>
           <hr />
@@ -320,47 +326,49 @@ const HomeV2 = () => (
         </div>
         <div className="dummy">&nbsp;</div>
       </section>
-      <section className="inverted forParents">
-        <div className="forParentsItems">
-          <div className="forParentsItem">
-            <h5>CDC guidance for school and childcare programs</h5>
-            <div className="arrow">
-              <img src={arrowRight} alt="" />
+      <div className="wrapper inverted">
+        <section className="limitWidth forParents">
+          <div className="forParentsItems">
+            <div className="forParentsItem">
+              <h5>CDC guidance for school and childcare programs</h5>
+              <div className="arrow">
+                <img src={arrowRight} alt="" />
+              </div>
+            </div>
+            <div className="forParentsItem">
+              <h5>COVID testing guidance</h5>
+              <div className="arrow">
+                <img src={arrowRight} alt="" />
+              </div>
+            </div>
+            <div className="forParentsItem">
+              <h5>Children, teens, young adults (CDC)</h5>
+              <div className="arrow">
+                <img src={arrowRight} alt="" />
+              </div>
+            </div>
+            <div className="forParentsItem">
+              <h5>Screen for COVID among school population</h5>
+              <div className="arrow">
+                <img src={arrowRight} alt="" />
+              </div>
             </div>
           </div>
-          <div className="forParentsItem">
-            <h5>COVID testing guidance</h5>
-            <div className="arrow">
-              <img src={arrowRight} alt="" />
-            </div>
+          <div className="forParentsText">
+            <div className="badge">For Parents and Students</div>
+            <h2>If you are getting tested</h2>
+            <p>
+              Utilizing rapid COVID-19 antigen tests requires adherence to state
+              and federal reporting regulations. These regulations instruct test
+              administrators to report all test results to the relevant health
+              authorities in a timely manner.
+            </p>
           </div>
-          <div className="forParentsItem">
-            <h5>Children, teens, young adults (CDC)</h5>
-            <div className="arrow">
-              <img src={arrowRight} alt="" />
-            </div>
-          </div>
-          <div className="forParentsItem">
-            <h5>Screen for COVID among school population</h5>
-            <div className="arrow">
-              <img src={arrowRight} alt="" />
-            </div>
-          </div>
-        </div>
-        <div className="forParentsText">
-          <div className="badge">For Parents and Students</div>
-          <h1 className="my-4">If you are getting tested</h1>
-          <p>
-            Utilizing rapid COVID-19 antigen tests requires adherence to state
-            and federal reporting regulations. These regulations instruct test
-            administrators to report all test results to the relevant health
-            authorities in a timely manner.
-          </p>
-        </div>
-        <img src={el11} alt="" className="el11" />
-        <img src={el12} alt="" className="el12" />
-        <img src={el13} alt="" className="el13" />
-      </section>
+          <img src={el11} alt="" className="el11" />
+          <img src={el12} alt="" className="el12" />
+          <img src={el13} alt="" className="el13" />
+        </section>
+      </div>
     </div>
   </LayoutV2>
 );

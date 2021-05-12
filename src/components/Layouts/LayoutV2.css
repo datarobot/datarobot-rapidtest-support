@@ -13,6 +13,11 @@
     z-index: 0;
   }
 
+  .bga {
+    position: fixed;
+    z-index: 0;
+  }
+
   .bga1 {
     left: 0;
     bottom: 0;
@@ -49,13 +54,14 @@
   }
 
   .content {
-    @apply px-5;
+    @apply flex-grow;
 
     z-index: 1;
-    flex-grow: 1;
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
+  }
+
+  .limitWidth {
+    @apply px-5 mx-auto;
+    max-width: var(--max-width);
   }
 }
 

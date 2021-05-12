@@ -13,6 +13,10 @@
     color: var(--purple-100);
   }
 
+  h2 {
+    @apply mt-4 mb-3;
+  }
+
   .path {
     stroke-width: 2;
     stroke-dasharray: 4 6;
@@ -33,13 +37,21 @@
 
   section {
     &.testingProgram {
-      @apply flex items-center py-8 px-14;
+      @apply flex items-center py-8 gap-8;
 
       .testingProgramText {
-        @apply w-1/2;
+        @apply w-2/5;
+
+        h1 {
+          max-width: 400px;
+        }
       }
       .people {
-        @apply w-1/2 relative;
+        @apply w-3/5 relative;
+
+        img {
+          max-heigth: 418px;
+        }
 
         .el5 {
           position: absolute;
@@ -50,10 +62,10 @@
     }
 
     &.whyImportant {
-      @apply relative flex items-center py-8 rounded-xl px-14;
+      @apply relative flex items-center py-8 gap-8;
 
       .importantItems {
-        @apply w-1/2 flex flex-wrap justify-around;
+        @apply w-1/2 pr-8 flex flex-wrap justify-between;
 
         .importantItem {
           @apply w-1/2 p-4;
@@ -65,8 +77,18 @@
         }
       }
 
+      .importantSplit {
+        @apply border-r self-stretch;
+        border-color: var(--purple-20);
+      }
+
       .importantText {
         @apply w-1/2;
+
+        & > div {
+          @apply mx-auto;
+          max-width: 417px;
+        }
       }
 
       .el4 {
@@ -83,7 +105,7 @@
     }
 
     &.trainingMaterials {
-      @apply flex items-center py-8 px-14;
+      @apply flex items-center py-8;
 
       .trainingMaterialsText,
       .trainingMaterialsPicture {
@@ -92,24 +114,22 @@
     }
 
     &.howItWorks {
-      @apply px-14 py-8 w-full text-center;
+      @apply py-8 w-full text-center;
+      max-width: 780px;
     }
 
     &.howItWorksColumns {
-      @apply flex justify-start overflow-x-scroll px-8 my-8;
-      @apply -mx-5;
+      @apply flex justify-start overflow-x-scroll my-8;
 
-      padding-left: 3rem;
-      padding-right: 3rem;
       max-width: 100vw;
 
       &::-webkit-scrollbar {
         height: 6px;
       }
       &::-webkit-scrollbar-track {
+        @apply mx-5;
+
         border-radius: 3px;
-        margin-left: 3rem;
-        margin-right: 3rem;
         background-color: var(--purple-20);
       }
       &::-webkit-scrollbar-thumb {
@@ -158,26 +178,22 @@
       }
       .dummy {
         @apply block;
-        min-width: 3rem;
+        min-width: 1.25rem;
       }
     }
 
     &.forParents {
-      @apply relative flex items-center p-14 rounded-xl;
-
-      gap: 1rem;
+      @apply relative flex items-center pt-16 pb-10;
 
       .forParentsItems {
         @apply w-1/2 flex flex-wrap justify-around;
 
-        gap: 2rem;
-
         .forParentsItem {
-          @apply flex flex-col rounded-xl border cursor-pointer;
+          @apply flex flex-col rounded-xl border cursor-pointer mb-6 mr-6;
 
-          width: calc(50% - 1rem);
+          width: calc(50% - 1.5rem);
           border-color: var(--purple-40);
-          //max-width: 200px;
+          min-height: 190px;
 
           h5 {
             @apply m-4 flex-grow;
@@ -228,7 +244,7 @@
   }
 }
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 1145px) {
   .HomeV2 {
     section.howItWorksColumns {
       @apply justify-center overflow-x-hidden;
@@ -239,18 +255,35 @@
   }
 }
 
+.HomeV2 {
+  .wrapper {
+    width: 100vw;
+  }
+
+  @media only screen and (min-width: 1320px) {
+    .wrapper {
+      @apply rounded-xl px-12 mx-auto box-content;
+      width: var(--max-width);
+    }
+  }
+}
+
 @mixin for-size-tablet-or-phone {
   .HomeV2 {
     @apply pb-0;
 
     section {
       &.testingProgram {
-        @apply px-8;
-
         h1 {
           @mixin h2;
         }
 
+        .testingProgramText {
+          @apply w-1/2;
+        }
+        .people {
+          @apply w-1/2 relative;
+        }
         .el5 {
           @apply hidden;
         }
@@ -258,19 +291,15 @@
 
       &.whyImportant {
         @apply flex-col rounded-none;
-        @apply -mx-5;
 
-        h1 {
+        h2 {
           @mixin h3;
         }
 
         .importantItems {
-          @apply w-full flex-nowrap m-0 px-14 pt-4 pb-6 mb-4 justify-start overflow-x-scroll;
+          @apply w-full flex-nowrap m-0 px-5 pt-4 pb-6 mb-4 justify-start overflow-x-scroll;
 
-          margin-right: -3.5rem;
-          margin-left: -3.5rem;
           width: 100vw;
-          gap: 1.5rem;
 
           &::-webkit-scrollbar {
             height: 6px;
@@ -293,14 +322,14 @@
           }
 
           .importantItem {
-            @apply rounded-xl;
+            @apply rounded-xl mr-6;
 
             min-width: 200px;
             box-shadow: 0px 4px 20px #6d71f91e;
           }
           .dummy {
             @apply block;
-            min-width: 2rem;
+            min-width: 0rem;
           }
         }
 
@@ -315,22 +344,19 @@
       }
 
       &.trainingMaterials {
-        @apply px-8;
-
-        h1 {
+        h2 {
           @mixin h3;
         }
       }
 
       &.howItWorks {
-        h1 {
+        h2 {
           @mixin h2;
         }
       }
 
       &.howItWorksColumns {
-        @apply justify-start overflow-x-scroll px-8;
-        @apply -mx-5;
+        @apply justify-start overflow-x-scroll;
 
         padding-left: 3.5rem;
         padding-right: 3.5rem;
@@ -349,15 +375,18 @@
 
       &.forParents {
         @apply flex-col-reverse rounded-none;
-        @apply -mx-5;
 
-        h1 {
+        h2 {
           @mixin h3;
         }
 
         .forParentsItems,
         .forParentsText {
           @apply w-full px-0;
+        }
+
+        .forParentsText {
+          @apply mb-6;
         }
 
         .el11,
@@ -374,7 +403,7 @@
   .HomeV2 {
     section {
       &.testingProgram {
-        @apply flex-col px-0;
+        @apply flex-col;
 
         .testingProgramText {
           @apply w-full;
@@ -384,7 +413,6 @@
         }
       }
       &.whyImportant {
-        @apply px-5;
         .importantItems {
           @apply px-5;
           .dummy {
@@ -393,7 +421,7 @@
         }
       }
       &.trainingMaterials {
-        @apply flex-col-reverse px-0;
+        @apply flex-col-reverse;
 
         .trainingMaterialsText {
           @apply w-full;
@@ -402,11 +430,8 @@
           @apply w-full mb-8;
         }
       }
-      &.howItWorks {
-        @apply px-0;
-      }
       &.howItWorksColumns {
-        @apply flex-col items-center m-0 px-0 overflow-auto;
+        @apply flex-col items-center m-0 overflow-auto;
 
         hr {
           @apply hidden;
@@ -417,12 +442,15 @@
           }
           > div {
             @apply flex-row;
-            gap: 3rem;
 
             .subStep {
               @apply mt-3 mb-0;
               width: unset;
               min-width: unset;
+
+              & + .subStep {
+                @apply ml-8;
+              }
             }
             .wide {
               @apply flex;
@@ -445,10 +473,9 @@
         }
       }
       &.forParents {
-        @apply px-5;
         .forParentsItems {
           .forParentsItem {
-            @apply w-full;
+            @apply w-full mr-0;
           }
         }
       }

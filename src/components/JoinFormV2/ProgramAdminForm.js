@@ -42,7 +42,8 @@ const ProgramAdminForm = ({ setRequestSubmitted }) => {
   return (
     <form className="w-full mt-0" onSubmit={handleSubmit(onSubmit)}>
       <p className="mt-4">
-        The program is currently available only in Pennsylvania and Washington
+        The program is currently available only in Pennsylvania, Texas and
+        Washington
       </p>
       <section>
         <Select

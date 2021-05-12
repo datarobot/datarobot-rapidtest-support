@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import cls from 'classnames';
 import { ToastContainer } from 'react-toastify';
 
 import Loading from 'components/Loading';
@@ -22,14 +23,15 @@ const LayoutV2 = ({
   hideFooter = false,
   authBackground = false,
   landingBackground = false,
+  wide = false,
 }) => (
   <div className="LayoutV2">
     {authBackground && (
       <>
-        <div className="bg bga1">
+        <div className="bga bga1">
           <img src={bga1} alt="" />
         </div>
-        <div className="bg bga2">
+        <div className="bga bga2">
           <img src={bga2} alt="" />
         </div>
       </>
@@ -54,7 +56,7 @@ const LayoutV2 = ({
       </>
     )}
     {hideHeader ? null : <HeaderV2 />}
-    <main className="content">
+    <main className={cls('content', { limitWidth: !wide })}>
       <Suspense
         fallback={
           <Loading

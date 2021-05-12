@@ -10,6 +10,7 @@ import { startProgramDetails } from 'rt-store';
 import LayoutV2 from 'components/Layouts/LayoutV2';
 import ProgramAdminForm from 'components/JoinFormV2/ProgramAdminForm';
 import NoProgramForm from 'components/JoinFormV2/NoProgramForm';
+import ContactSupport from 'components/ContactSupport';
 
 import LogoV2 from 'components/LogoV2';
 import Button from 'components/Button';
@@ -84,13 +85,7 @@ const JoinV2 = () => {
                 </>
               )}
             </div>
-            <div className="contactSupport">
-              <img src={support} alt="" />
-              <span>If you have any questions</span>
-              <a href="mailto:mack.heiser@datarobot.com?subject=rapidtestingapp.org%20Support%20Request">
-                Contact support
-              </a>
-            </div>
+            <ContactSupport />
           </>
         )}
       </div>
