@@ -333,7 +333,7 @@
           }
           .dummy {
             @apply block;
-            min-width: 0rem;
+            min-width: 0;
           }
         }
 
@@ -355,7 +355,7 @@
 
       &.howItWorks {
         h2 {
-          @mixin h2;
+          @mixin h3;
         }
       }
 
