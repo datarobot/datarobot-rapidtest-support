@@ -6,11 +6,10 @@
   .wrapper {
     @apply px-5 flex justify-between items-center mx-auto;
 
+    max-width: var(--max-width);
     height: 96px;
     /* Map z-index is 400 */
     z-index: 401;
-
-    max-width: 1224px;
   }
 
   .copy {

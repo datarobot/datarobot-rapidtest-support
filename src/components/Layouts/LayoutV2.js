@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import cls from 'classnames';
 import { ToastContainer } from 'react-toastify';
 
 import Loading from 'components/Loading';
@@ -22,6 +23,7 @@ const LayoutV2 = ({
   hideFooter = false,
   authBackground = false,
   landingBackground = false,
+  wide = false,
 }) => (
   <div className="LayoutV2">
     {authBackground && (
@@ -54,7 +56,7 @@ const LayoutV2 = ({
       </>
     )}
     {hideHeader ? null : <HeaderV2 />}
-    <main className="content">
+    <main className={cls('content', { limitWidth: !wide })}>
       <Suspense
         fallback={
           <Loading

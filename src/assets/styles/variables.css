@@ -1,4 +1,6 @@
 :root {
+  --max-width: 1168px;
+
   --black: #000000;
   --white: #ffffff;
 
