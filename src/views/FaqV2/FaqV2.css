@@ -45,10 +45,19 @@
 
 @mixin for-size-phone {
   .FaqV2 {
+    & > h2 {
+      @mixin h3;
+    }
     .contactSupport {
       @apply flex-col;
       .flex-grow {
         @apply text-center;
+      }
+      a {
+        @apply w-full;
+        button {
+          @apply w-full;
+        }
       }
     }
   }

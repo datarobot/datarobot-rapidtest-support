@@ -16,11 +16,11 @@ import Button, { KIND } from 'components/Button';
 import { ControlledInput as Input } from 'components/Input';
 import ErrorMessage from 'components/ErrorMessage';
 import ProgramList from 'components/ProgramList';
+import ContactSupport from 'components/ContactSupport';
 
 import LayoutV2 from 'components/Layouts/LayoutV2';
 import LogoV2 from 'components/LogoV2';
 
-import support from 'assets/images/auth/support.svg';
 import './LogInV2.css';
 
 const LogInV2 = ({ location, history }) => {
@@ -110,7 +110,6 @@ const LogInV2 = ({ location, history }) => {
                 v2
                 name="email"
                 label="Email address"
-                placeholder="you@example.com"
                 ref={register({
                   required: {
                     value: true,
@@ -127,7 +126,6 @@ const LogInV2 = ({ location, history }) => {
               <Input
                 v2
                 label="Password"
-                placeholder="••••••••"
                 type="password"
                 name="password"
                 ref={register({
@@ -159,13 +157,7 @@ const LogInV2 = ({ location, history }) => {
             </Link>
           </p>
         </div>
-        <div className="contactSupport">
-          <img src={support} alt="" />
-          <span>If you have any questions</span>
-          <a href="mailto:mack.heiser@datarobot.com?subject=rapidtestingapp.org%20Support%20Request">
-            Contact support
-          </a>
-        </div>
+        <ContactSupport />
       </div>
     </LayoutV2>
   );

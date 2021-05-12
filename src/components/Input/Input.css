@@ -15,6 +15,7 @@
 
     &:focus {
       border: solid 1px var(--purple-70);
+      background-color: var(--white);
     }
 
     &::placeholder {

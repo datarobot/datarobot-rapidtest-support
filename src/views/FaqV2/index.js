@@ -86,7 +86,7 @@ const FaqV2 = () => {
         <img src={support} alt="" />
         <div className="flex-grow">
           <div className="badge">Can't find an answer</div>
-          <h2 className="mt-2">Contact support</h2>
+          <h2 className="mt-2 mb-4">Contact support</h2>
         </div>
 
         <a

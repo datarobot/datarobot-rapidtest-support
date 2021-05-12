@@ -68,7 +68,7 @@
         @apply w-1/2 pr-8 flex flex-wrap justify-between;
 
         .importantItem {
-          @apply w-1/2 py-4;
+          @apply w-1/2 p-4;
 
           max-width: 200px;
         }
@@ -183,19 +183,15 @@
     }
 
     &.forParents {
-      @apply relative flex items-center py-16;
-
-      gap: 1rem;
+      @apply relative flex items-center pt-16 pb-10;
 
       .forParentsItems {
         @apply w-1/2 flex flex-wrap justify-around;
 
-        gap: 1.5rem;
-
         .forParentsItem {
-          @apply flex flex-col rounded-xl border cursor-pointer;
+          @apply flex flex-col rounded-xl border cursor-pointer mb-6 mr-6;
 
-          width: calc(50% - 1rem);
+          width: calc(50% - 1.5rem);
           border-color: var(--purple-40);
           min-height: 190px;
 
@@ -301,12 +297,9 @@
         }
 
         .importantItems {
-          @apply w-full flex-nowrap m-0 px-14 pt-4 pb-6 mb-4 justify-start overflow-x-scroll;
+          @apply w-full flex-nowrap m-0 px-5 pt-4 pb-6 mb-4 justify-start overflow-x-scroll;
 
-          margin-right: -3.5rem;
-          margin-left: -3.5rem;
           width: 100vw;
-          gap: 1.5rem;
 
           &::-webkit-scrollbar {
             height: 6px;
@@ -329,14 +322,14 @@
           }
 
           .importantItem {
-            @apply rounded-xl;
+            @apply rounded-xl mr-6;
 
             min-width: 200px;
             box-shadow: 0px 4px 20px #6d71f91e;
           }
           .dummy {
             @apply block;
-            min-width: 2rem;
+            min-width: 0rem;
           }
         }
 
@@ -392,6 +385,10 @@
           @apply w-full px-0;
         }
 
+        .forParentsText {
+          @apply mb-6;
+        }
+
         .el11,
         .el12,
         .el13 {
@@ -445,12 +442,15 @@
           }
           > div {
             @apply flex-row;
-            gap: 3rem;
 
             .subStep {
               @apply mt-3 mb-0;
               width: unset;
               min-width: unset;
+
+              & + .subStep {
+                @apply ml-8;
+              }
             }
             .wide {
               @apply flex;
@@ -475,7 +475,7 @@
       &.forParents {
         .forParentsItems {
           .forParentsItem {
-            @apply w-full;
+            @apply w-full mr-0;
           }
         }
       }

@@ -35,7 +35,7 @@ const Select = forwardRef(
         onChange={onChange}
         id={name}
         className={cls(className, 'select', { v2 })}
-        value={value || 'DEFAULT'}
+        value={value ?? 'DEFAULT'}
         name={name}
         {...rest}
       >

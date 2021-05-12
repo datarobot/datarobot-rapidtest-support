@@ -30,9 +30,12 @@
 
   .links {
     @apply flex justify-around items-center whitespace-nowrap;
-    gap: 1rem;
 
     grid-area: links;
+
+    & > * {
+      @apply ml-4;
+    }
   }
 
   .nav {
