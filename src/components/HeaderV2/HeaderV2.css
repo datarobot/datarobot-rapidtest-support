@@ -63,5 +63,10 @@
   a {
     @apply no-underline whitespace-nowrap;
     color: var(--purple-90);
+
+    &:hover h5,
+    &:hover h6 {
+      color: var(--purple-70);
+    }
   }
 }
