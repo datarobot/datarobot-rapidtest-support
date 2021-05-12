@@ -480,6 +480,7 @@
         .forParentsItems {
           .forParentsItem {
             @apply w-full mr-0;
+            min-height: unset;
           }
         }
       }
