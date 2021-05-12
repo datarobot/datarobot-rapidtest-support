@@ -65,10 +65,10 @@
       @apply relative flex items-center py-8 gap-8;
 
       .importantItems {
-        @apply w-1/2 pr-8 flex flex-wrap justify-between;
+        @apply w-1/2 flex flex-wrap justify-between;
 
         .importantItem {
-          @apply w-1/2 p-4;
+          @apply w-1/2 p-4 pl-0;
 
           max-width: 200px;
         }
@@ -264,6 +264,10 @@
     .wrapper {
       @apply rounded-xl px-12 mx-auto box-content;
       width: var(--max-width);
+
+      .importantItems {
+        @apply pr-8;
+      }
     }
   }
 }
@@ -322,7 +326,7 @@
           }
 
           .importantItem {
-            @apply rounded-xl mr-6;
+            @apply rounded-xl mr-6 pl-4;
 
             min-width: 200px;
             box-shadow: 0px 4px 20px #6d71f91e;
