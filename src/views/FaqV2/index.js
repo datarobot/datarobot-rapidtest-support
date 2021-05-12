@@ -6,6 +6,7 @@ import {
   Redirect,
   useHistory,
   useLocation,
+  generatePath,
 } from 'react-router-dom';
 
 import { ROUTES } from 'rt-constants';
@@ -21,15 +22,15 @@ import support from 'assets/images/auth/support.svg';
 import './FaqV2.css';
 
 const paths = [
-  ROUTES.FAQ_V2.GENERAL.path,
-  ROUTES.FAQ_V2.PROGRAM.path,
-  ROUTES.FAQ_V2.TEST.path,
+  generatePath(ROUTES.FAQ_V2.path, { id: 'general' }),
+  generatePath(ROUTES.FAQ_V2.path, { id: 'program' }),
+  generatePath(ROUTES.FAQ_V2.path, { id: 'test' }),
 ];
 
 const pathToIndex = {
-  [ROUTES.FAQ_V2.GENERAL.path]: 0,
-  [ROUTES.FAQ_V2.PROGRAM.path]: 1,
-  [ROUTES.FAQ_V2.TEST.path]: 2,
+  [generatePath(ROUTES.FAQ_V2.path, { id: 'general' })]: 0,
+  [generatePath(ROUTES.FAQ_V2.path, { id: 'program' })]: 1,
+  [generatePath(ROUTES.FAQ_V2.path, { id: 'test' })]: 2,
 };
 
 const options = [
@@ -71,10 +72,12 @@ const FaqV2 = () => {
 
       <section className="faq-content">
         <Switch>
-          <Route exact path={ROUTES.FAQ_V2.path}>
-            <Redirect to={ROUTES.FAQ_V2.GENERAL.path} />
+          <Route exact path={ROUTES.FAQ_V2_LANDING.path}>
+            <Redirect
+              to={generatePath(ROUTES.FAQ_V2.path, { id: 'general' })}
+            />
           </Route>
-          <Route path={ROUTES.FAQ_V2.ALL.path}>
+          <Route path={ROUTES.FAQ_V2.path}>
             <StaticContainerV2 headline="FAQ" />
           </Route>
         </Switch>
