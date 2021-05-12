@@ -96,7 +96,7 @@ const Menu = ({ authenticated }) => {
           <NavLink
             exact
             className="p-4"
-            to={ROUTES.FAQ_V2.path}
+            to={ROUTES.FAQ_V2_LANDING.path}
             onClick={() => {
               closeMenu();
             }}

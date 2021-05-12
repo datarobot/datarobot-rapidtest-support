@@ -36,37 +36,32 @@ const SuggestImprovement = lazy(() => import('views/SuggestImprovement'));
 const Contact = lazy(() => import('views/Contact'));
 const FourOhFour = lazy(() => import('views/404'));
 
-export const PublicRoute = ({ layout: Layout = LayoutV1, ...props }) => (
+export const PublicRoute = ({ layout: Layout = LayoutV1, ...route }) => (
   <Layout>
-    <Route {...props} />
+    <Route {...route} />
   </Layout>
 );
 
 const PrivateRoute = ({
   layout: Layout = LayoutV1,
   component: Component,
-  authenticated,
-  path,
+  auth: { authenticated, user },
   roles,
-  route,
-  ...rest
+  ...route
 }) => {
-  const authorized = () => {
-    if (!route.roles) {
-      return true;
-    }
-
-    return route.roles.includes(getUserRole(roles));
-  };
+  const authorized = roles ? roles.includes(getUserRole(user?.roles)) : true;
 
   return (
     <Layout>
       <Route
-        path={path}
-        {...rest}
+        {...route}
         render={(props) =>
           authenticated ? (
-            <>{authorized() ? <Component {...props} /> : <Unauthorized />}</>
+            authorized ? (
+              <Component {...props} />
+            ) : (
+              <Unauthorized />
+            )
           ) : (
             <Redirect
               to={{
@@ -82,138 +77,78 @@ const PrivateRoute = ({
 };
 
 export const Routes = () => {
-  const { authenticated, loadingAuthState, user } = useContext(AuthContext);
-  const roles = user?.roles;
+  const { loadingAuthState, ...auth } = useContext(AuthContext);
 
   return loadingAuthState ? (
-    <LayoutV1>
-      <Loading color="#00528D" size={256} containerClassName="full-height" />
-    </LayoutV1>
+    <Loading color="#00528D" size={256} containerClassName="full-height" />
   ) : (
     <Switch>
-      <PublicRoute path={ROUTES.JOIN.path} component={Join} />
+      <PublicRoute exact {...ROUTES.LANDING_PAGE} component={Home} />
       <PublicRoute
+        exact
+        {...ROUTES.LANDING_PAGE_V2}
+        component={HomeV2}
         layout={NullLayout}
-        path={ROUTES.JOIN_V2.path}
-        component={JoinV2}
       />
-      <PrivateRoute
-        authenticated={authenticated}
+      <PublicRoute exact {...ROUTES.LOG_IN} component={LogIn} />
+      <PublicRoute
         exact
-        path={ROUTES.SITES.path}
-        route={ROUTES.SITES}
-        roles={roles}
-        component={Sites}
+        {...ROUTES.LOG_IN_V2}
+        component={LogInV2}
+        layout={NullLayout}
       />
-      <PrivateRoute
-        authenticated={authenticated}
+      <PublicRoute {...ROUTES.JOIN} component={Join} />
+      <PublicRoute {...ROUTES.JOIN_V2} component={JoinV2} layout={NullLayout} />
+      <PublicRoute {...ROUTES.FAQ} component={Faq} />
+      <PublicRoute {...ROUTES.FAQ_V2} component={FaqV2} layout={LayoutV2} />
+      <PublicRoute
         exact
-        path={ROUTES.ADMIN.path}
-        route={ROUTES.ADMIN}
-        roles={roles}
-        component={Admin}
+        {...ROUTES.TRAINING_MATERIALS}
+        component={TrainingMaterials}
       />
+      <PublicRoute exact {...ROUTES.CONTACT} component={Contact} />
+      <PublicRoute {...ROUTES.REQUEST_ACCOUNT} component={RequestAccount} />
+      <PrivateRoute auth={auth} exact {...ROUTES.SITES} component={Sites} />
+      <PrivateRoute auth={auth} exact {...ROUTES.ADMIN} component={Admin} />
+      <PrivateRoute auth={auth} {...ROUTES.ADD_SITE} component={AddSite} />
+      <PrivateRoute auth={auth} {...ROUTES.EDIT_SITE} component={EditSite} />
       <PrivateRoute
-        authenticated={authenticated}
-        path={ROUTES.ADD_SITE.path}
-        route={ROUTES.ADD_SITE}
-        roles={roles}
-        component={AddSite}
-      />
-      <PrivateRoute
-        authenticated={authenticated}
-        path={`${ROUTES.EDIT_SITE.path}/:id`}
-        route={ROUTES.EDIT_SITE}
-        roles={roles}
-        component={EditSite}
-      />
-      <PrivateRoute
-        authenticated={authenticated}
-        path={ROUTES.UPLOAD_SITES.path}
-        route={ROUTES.UPLOAD_SITES}
-        roles={roles}
+        auth={auth}
+        {...ROUTES.UPLOAD_SITES}
         component={UploadSites}
       />
       <PrivateRoute
-        authenticated={authenticated}
+        auth={auth}
         exact
-        path={ROUTES.ACCOUNTS.path}
-        route={ROUTES.ACCOUNTS}
-        roles={roles}
+        {...ROUTES.ACCOUNTS}
         component={Accounts}
       />
       <PrivateRoute
-        authenticated={authenticated}
-        path={ROUTES.ADD_ACCOUNT.path}
-        route={ROUTES.ADD_ACCOUNT}
-        roles={roles}
+        auth={auth}
+        {...ROUTES.ADD_ACCOUNT}
         component={AddAccount}
       />
       <PrivateRoute
-        authenticated={authenticated}
-        path={`${ROUTES.EDIT_ACCOUNT.path}/:id`}
-        route={ROUTES.EDIT_ACCOUNT}
-        roles={roles}
+        auth={auth}
+        {...ROUTES.EDIT_ACCOUNT}
         component={EditAccount}
       />
       <PrivateRoute
-        authenticated={authenticated}
-        path={ROUTES.UPLOAD_ACCOUNTS.path}
-        route={ROUTES.UPLOAD_ACCOUNTS}
-        roles={roles}
+        auth={auth}
+        {...ROUTES.UPLOAD_ACCOUNTS}
         component={UploadAccounts}
       />
+      <PrivateRoute auth={auth} {...ROUTES.DASHBOARD} component={Dashboard} />
       <PrivateRoute
-        authenticated={authenticated}
-        path={ROUTES.DASHBOARD.path}
-        route={ROUTES.DASHBOARD}
-        roles={roles}
-        component={Dashboard}
-      />
-      <PublicRoute
-        path={ROUTES.REQUEST_ACCOUNT.path}
-        component={RequestAccount}
-      />
-      <PrivateRoute
-        authenticated={authenticated}
-        path={ROUTES.REQUEST_SITE.path}
-        route={ROUTES.REQUEST_SITE}
-        roles={roles}
+        auth={auth}
+        {...ROUTES.REQUEST_SITE}
         component={RequestSite}
       />
-      <PublicRoute path={ROUTES.FAQ.path} component={Faq} />
-      <PublicRoute
-        layout={LayoutV2}
-        path={ROUTES.FAQ_V2.path}
-        component={FaqV2}
-      />
-      <PublicRoute
-        exact
-        path={ROUTES.TRAINING_MATERIALS.path}
-        component={TrainingMaterials}
-      />
       <PrivateRoute
-        authenticated={authenticated}
-        path={ROUTES.SUGGEST_IMPROVEMENT.path}
-        route={ROUTES.SUGGEST_IMPROVEMENT}
-        roles={roles}
+        auth={auth}
+        {...ROUTES.SUGGEST_IMPROVEMENT}
         component={SuggestImprovement}
       />
-      <PublicRoute exact path={ROUTES.CONTACT.path} component={Contact} />
-      <PublicRoute exact path={ROUTES.LOG_IN.path} component={LogIn} />
-      <PublicRoute
-        layout={NullLayout}
-        exact
-        path={ROUTES.LOG_IN_V2.path}
-        component={LogInV2}
-      />
-      <PublicRoute
-        layout={NullLayout}
-        exact
-        path={ROUTES.LANDING_PAGE_V2.path}
-        component={HomeV2}
-      />
-      <PublicRoute exact path={ROUTES.LANDING_PAGE.path} component={Home} />
       <PublicRoute component={FourOhFour} />
     </Switch>
   );

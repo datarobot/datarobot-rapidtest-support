@@ -29,7 +29,7 @@ const Nav = ({ authenticated }) => (
       </a>
     </li>
     <li>
-      <NavLink exact className="p-4" to={ROUTES.FAQ_V2.path}>
+      <NavLink exact className="p-4" to={ROUTES.FAQ_V2_LANDING.path}>
         <h6>FAQ</h6>
       </NavLink>
     </li>
