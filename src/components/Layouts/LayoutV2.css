@@ -13,6 +13,11 @@
     z-index: 0;
   }
 
+  .bga {
+    position: fixed;
+    z-index: 0;
+  }
+
   .bga1 {
     left: 0;
     bottom: 0;

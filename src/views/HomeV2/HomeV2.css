@@ -13,6 +13,10 @@
     color: var(--purple-100);
   }
 
+  h2 {
+    @apply mt-4 mb-3;
+  }
+
   .path {
     stroke-width: 2;
     stroke-dasharray: 4 6;
@@ -33,13 +37,21 @@
 
   section {
     &.testingProgram {
-      @apply flex items-center py-8;
+      @apply flex items-center py-8 gap-8;
 
       .testingProgramText {
-        @apply w-1/2;
+        @apply w-2/5;
+
+        h1 {
+          max-width: 400px;
+        }
       }
       .people {
-        @apply w-1/2 relative;
+        @apply w-3/5 relative;
+
+        img {
+          max-heigth: 418px;
+        }
 
         .el5 {
           position: absolute;
@@ -50,10 +62,10 @@
     }
 
     &.whyImportant {
-      @apply relative flex items-center py-8;
+      @apply relative flex items-center py-8 gap-8;
 
       .importantItems {
-        @apply w-1/2 flex flex-wrap justify-between;
+        @apply w-1/2 pr-8 flex flex-wrap justify-between;
 
         .importantItem {
           @apply w-1/2 py-4;
@@ -65,8 +77,18 @@
         }
       }
 
+      .importantSplit {
+        @apply border-r self-stretch;
+        border-color: var(--purple-20);
+      }
+
       .importantText {
         @apply w-1/2;
+
+        & > div {
+          @apply mx-auto;
+          max-width: 417px;
+        }
       }
 
       .el4 {
@@ -92,7 +114,8 @@
     }
 
     &.howItWorks {
-      @apply px-14 py-8 w-full text-center;
+      @apply py-8 w-full text-center;
+      max-width: 780px;
     }
 
     &.howItWorksColumns {
@@ -160,21 +183,21 @@
     }
 
     &.forParents {
-      @apply relative flex items-center py-14;
+      @apply relative flex items-center py-16;
 
       gap: 1rem;
 
       .forParentsItems {
         @apply w-1/2 flex flex-wrap justify-around;
 
-        gap: 2rem;
+        gap: 1.5rem;
 
         .forParentsItem {
           @apply flex flex-col rounded-xl border cursor-pointer;
 
           width: calc(50% - 1rem);
           border-color: var(--purple-40);
-          //max-width: 200px;
+          min-height: 190px;
 
           h5 {
             @apply m-4 flex-grow;
@@ -255,12 +278,16 @@
 
     section {
       &.testingProgram {
-        @apply px-8;
-
         h1 {
           @mixin h2;
         }
 
+        .testingProgramText {
+          @apply w-1/2;
+        }
+        .people {
+          @apply w-1/2 relative;
+        }
         .el5 {
           @apply hidden;
         }
@@ -268,9 +295,8 @@
 
       &.whyImportant {
         @apply flex-col rounded-none;
-        @apply -mx-5;
 
-        h1 {
+        h2 {
           @mixin h3;
         }
 
@@ -325,22 +351,19 @@
       }
 
       &.trainingMaterials {
-        @apply px-8;
-
-        h1 {
+        h2 {
           @mixin h3;
         }
       }
 
       &.howItWorks {
-        h1 {
+        h2 {
           @mixin h2;
         }
       }
 
       &.howItWorksColumns {
-        @apply justify-start overflow-x-scroll px-8;
-        @apply -mx-5;
+        @apply justify-start overflow-x-scroll;
 
         padding-left: 3.5rem;
         padding-right: 3.5rem;
@@ -359,9 +382,8 @@
 
       &.forParents {
         @apply flex-col-reverse rounded-none;
-        @apply -mx-5;
 
-        h1 {
+        h2 {
           @mixin h3;
         }
 
@@ -384,7 +406,7 @@
   .HomeV2 {
     section {
       &.testingProgram {
-        @apply flex-col px-0;
+        @apply flex-col;
 
         .testingProgramText {
           @apply w-full;
@@ -394,7 +416,6 @@
         }
       }
       &.whyImportant {
-        @apply px-5;
         .importantItems {
           @apply px-5;
           .dummy {
@@ -403,7 +424,7 @@
         }
       }
       &.trainingMaterials {
-        @apply flex-col-reverse px-0;
+        @apply flex-col-reverse;
 
         .trainingMaterialsText {
           @apply w-full;
@@ -412,11 +433,8 @@
           @apply w-full mb-8;
         }
       }
-      &.howItWorks {
-        @apply px-0;
-      }
       &.howItWorksColumns {
-        @apply flex-col items-center m-0 px-0 overflow-auto;
+        @apply flex-col items-center m-0 overflow-auto;
 
         hr {
           @apply hidden;
@@ -455,7 +473,6 @@
         }
       }
       &.forParents {
-        @apply px-5;
         .forParentsItems {
           .forParentsItem {
             @apply w-full;

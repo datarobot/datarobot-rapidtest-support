@@ -77,16 +77,19 @@ const HomeV2 = () => (
             </div>
             <div className="dummy">&nbsp;</div>
           </div>
+          <div className="importantSplit" />
           <div className="importantText">
-            <div className="badge">About RAPIDTEST</div>
-            <h1 className="my-4">Why it’s important</h1>
-            <p>
-              As the COVID-19 pandemic continues, finding ways to safely reopen
-              schools for in-person learning is a pressing need. Schools provide
-              a critical outlet for children through education, safety,
-              nutrition, behavioral health care and important social
-              interaction.
-            </p>
+            <div>
+              <div className="badge">About RAPIDTEST</div>
+              <h2>Why it’s important</h2>
+              <p>
+                As the COVID-19 pandemic continues, finding ways to safely
+                reopen schools for in-person learning is a pressing need.
+                Schools provide a critical outlet for children through
+                education, safety, nutrition, behavioral health care and
+                important social interaction.
+              </p>
+            </div>
           </div>
           <img src={el4} alt="" className="el4" />
           <img src={el7} alt="" className="el7" />
@@ -95,7 +98,7 @@ const HomeV2 = () => (
       <section className="limitWidth trainingMaterials">
         <div className="trainingMaterialsText">
           <div className="badge">PLAYBOOK</div>
-          <h1 className="my-4">Training materials</h1>
+          <h2>Training materials</h2>
           <p>
             The information found in the training materials will outline the
             steps required to successfully develop an application-supported
@@ -118,7 +121,7 @@ const HomeV2 = () => (
       </section>
       <section className="limitWidth howItWorks">
         <div className="badge">ONSITE TESTING GUIDANCE</div>
-        <h1 className="my-4">How it works</h1>
+        <h2>How it works</h2>
         <p>
           Conducting rapid COVID-19 antigen tests at schools for assurance and
           symptom-induced testing is a cost effective, easy, and reliable way to
@@ -353,7 +356,7 @@ const HomeV2 = () => (
           </div>
           <div className="forParentsText">
             <div className="badge">For Parents and Students</div>
-            <h1 className="my-4">If you are getting tested</h1>
+            <h2>If you are getting tested</h2>
             <p>
               Utilizing rapid COVID-19 antigen tests requires adherence to state
               and federal reporting regulations. These regulations instruct test

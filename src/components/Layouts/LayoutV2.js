@@ -28,10 +28,10 @@ const LayoutV2 = ({
   <div className="LayoutV2">
     {authBackground && (
       <>
-        <div className="bg bga1">
+        <div className="bga bga1">
           <img src={bga1} alt="" />
         </div>
-        <div className="bg bga2">
+        <div className="bga bga2">
           <img src={bga2} alt="" />
         </div>
       </>
