@@ -10,10 +10,9 @@
 }
 
 .menuModalOverlay {
-  @apply fixed overflow-scroll;
+  @apply fixed overflow-scroll right-0 left-0 bottom-0;
 
   background-color: var(--background-color);
-  inset: 0;
   top: 70px;
   z-index: 2;
 }
