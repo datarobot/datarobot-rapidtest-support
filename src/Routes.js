@@ -106,16 +106,65 @@ export const Routes = () => {
         {...ROUTES.TRAINING_MATERIALS}
         component={TrainingMaterials}
       />
+      <PublicRoute
+        exact
+        {...ROUTES.TRAINING_MATERIALS_V2}
+        component={TrainingMaterials}
+        layout={LayoutV2}
+      />
       <PublicRoute exact {...ROUTES.CONTACT} component={Contact} />
+      <PublicRoute
+        exact
+        {...ROUTES.CONTACT_V2}
+        component={Contact}
+        layout={LayoutV2}
+      />
       <PublicRoute {...ROUTES.REQUEST_ACCOUNT} component={RequestAccount} />
+      <PublicRoute
+        {...ROUTES.REQUEST_ACCOUNT_V2}
+        component={RequestAccount}
+        layout={LayoutV2}
+      />
       <PrivateRoute auth={auth} exact {...ROUTES.SITES} component={Sites} />
+      <PrivateRoute
+        auth={auth}
+        exact
+        {...ROUTES.SITES_V2}
+        component={Sites}
+        layout={LayoutV2}
+      />
       <PrivateRoute auth={auth} exact {...ROUTES.ADMIN} component={Admin} />
+      <PrivateRoute
+        auth={auth}
+        exact
+        {...ROUTES.ADMIN_V2}
+        component={Admin}
+        layout={LayoutV2}
+      />
       <PrivateRoute auth={auth} {...ROUTES.ADD_SITE} component={AddSite} />
+      <PrivateRoute
+        auth={auth}
+        {...ROUTES.ADD_SITE_V2}
+        component={AddSite}
+        layout={LayoutV2}
+      />
       <PrivateRoute auth={auth} {...ROUTES.EDIT_SITE} component={EditSite} />
+      <PrivateRoute
+        auth={auth}
+        {...ROUTES.EDIT_SITE_V2}
+        component={EditSite}
+        layout={LayoutV2}
+      />
       <PrivateRoute
         auth={auth}
         {...ROUTES.UPLOAD_SITES}
         component={UploadSites}
+      />
+      <PrivateRoute
+        auth={auth}
+        {...ROUTES.UPLOAD_SITES_V2}
+        component={UploadSites}
+        layout={LayoutV2}
       />
       <PrivateRoute
         auth={auth}
@@ -125,8 +174,21 @@ export const Routes = () => {
       />
       <PrivateRoute
         auth={auth}
+        exact
+        {...ROUTES.ACCOUNTS_V2}
+        component={Accounts}
+        layout={LayoutV2}
+      />
+      <PrivateRoute
+        auth={auth}
         {...ROUTES.ADD_ACCOUNT}
         component={AddAccount}
+      />
+      <PrivateRoute
+        auth={auth}
+        {...ROUTES.ADD_ACCOUNT_V2}
+        component={AddAccount}
+        layout={LayoutV2}
       />
       <PrivateRoute
         auth={auth}
@@ -135,10 +197,28 @@ export const Routes = () => {
       />
       <PrivateRoute
         auth={auth}
+        {...ROUTES.EDIT_ACCOUNT_V2}
+        component={EditAccount}
+        layout={LayoutV2}
+      />
+      <PrivateRoute
+        auth={auth}
         {...ROUTES.UPLOAD_ACCOUNTS}
         component={UploadAccounts}
       />
+      <PrivateRoute
+        auth={auth}
+        {...ROUTES.UPLOAD_ACCOUNTS_V2}
+        component={UploadAccounts}
+        layout={LayoutV2}
+      />
       <PrivateRoute auth={auth} {...ROUTES.DASHBOARD} component={Dashboard} />
+      <PrivateRoute
+        auth={auth}
+        {...ROUTES.DASHBOARD_V2}
+        component={Dashboard}
+        layout={LayoutV2}
+      />
       <PrivateRoute
         auth={auth}
         {...ROUTES.REQUEST_SITE}
@@ -146,8 +226,20 @@ export const Routes = () => {
       />
       <PrivateRoute
         auth={auth}
+        {...ROUTES.REQUEST_SITE_V2}
+        component={RequestSite}
+        layout={LayoutV2}
+      />
+      <PrivateRoute
+        auth={auth}
         {...ROUTES.SUGGEST_IMPROVEMENT}
         component={SuggestImprovement}
+      />
+      <PrivateRoute
+        auth={auth}
+        {...ROUTES.SUGGEST_IMPROVEMENT_V2}
+        component={SuggestImprovement}
+        layout={LayoutV2}
       />
       <PublicRoute component={FourOhFour} />
     </Switch>

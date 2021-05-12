@@ -6,14 +6,14 @@ const Nav = ({ authenticated }) => (
   <ul className="nav">
     {authenticated && (
       <li>
-        <NavLink exact className="p-4" to={ROUTES.SITES.path}>
+        <NavLink exact className="p-4" to={ROUTES.SITES_V2.path}>
           <h6>Sites</h6>
         </NavLink>
       </li>
     )}
     {authenticated && (
       <li>
-        <NavLink exact className="p-4" to={ROUTES.ACCOUNTS.path}>
+        <NavLink exact className="p-4" to={ROUTES.ACCOUNTS_V2.path}>
           <h6>Test Operators</h6>
         </NavLink>
       </li>
