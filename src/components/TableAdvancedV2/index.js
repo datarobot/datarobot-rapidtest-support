@@ -111,9 +111,7 @@ const TableAdvancedV2 = ({
     <>
       {!tableOnly && (
         <>
-          {tableName && (
-            <h1 className="headline text-blue mb-4">{tableName}</h1>
-          )}
+          {tableName && <h1 className="mb-4">{tableName}</h1>}
           <div className="grid grid-cols-2 lg:mb-4 xl:mb-4 mt-2">
             <div className="flex flex-col justify-center">
               <div className="flex items-center">
@@ -174,11 +172,6 @@ const TableAdvancedV2 = ({
                       />
                     )}
                   </>
-                )}
-                {!isSearchFocused && !isFilterFocused && (
-                  <span className="w-full truncate">
-                    Your program: <strong>{currentProgram}</strong>
-                  </span>
                 )}
               </div>
             </div>

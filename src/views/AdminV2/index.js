@@ -37,7 +37,7 @@ const AdminV2 = () => {
               <div className="content">
                 <img src={sites} alt="" />
                 <div>
-                  <h4>Manage Sites</h4>
+                  <h4>Sites</h4>
                   <p>
                     Add, remove, and edit sites from your state’s RapidTest
                     application.
@@ -54,7 +54,7 @@ const AdminV2 = () => {
               <div className="content">
                 <img src={operators} alt="" />
                 <div>
-                  <h4>Manage Accounts</h4>
+                  <h4>Test Operators</h4>
                   <p>
                     Approve, add, and disable test administrator accounts from
                     your state's RapidTest application.

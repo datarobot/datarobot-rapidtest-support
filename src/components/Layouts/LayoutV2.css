@@ -75,7 +75,7 @@
   }
 
   .limitWidth {
-    @apply px-5 mx-auto;
+    @apply px-5 mx-auto w-full;
     max-width: var(--max-width);
   }
 }
