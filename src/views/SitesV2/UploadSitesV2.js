@@ -39,7 +39,7 @@ const UploadSitesV2 = ({ history }) => {
       .all(batch)
       .then(() => {
         dismiss();
-        history.push(ROUTES.SITES.path);
+        history.push(ROUTES.SITES_V2.path);
         toast.success(`Uploaded ${data.length} sites!`, {
           autoClose: 5000,
         });

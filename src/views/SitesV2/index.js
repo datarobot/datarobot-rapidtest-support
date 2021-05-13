@@ -188,8 +188,8 @@ const SitesV2 = () => {
         addButtonText={t('buttons.addSite')}
         addButtonIcon="building"
         uploadButtonText={`+ ${t('buttons.uploadList')}`}
-        addRoute={ROUTES.ADD_SITE.path}
-        uploadRoute={ROUTES.UPLOAD_SITES.path}
+        addRoute={ROUTES.ADD_SITE_V2.path}
+        uploadRoute={ROUTES.UPLOAD_SITES_V2.path}
         isLoading={isLoading}
         onExportData={handleExportData}
         onActivate={handleBatchActivate}

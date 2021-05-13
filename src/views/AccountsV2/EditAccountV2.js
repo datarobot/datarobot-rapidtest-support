@@ -33,7 +33,7 @@ const EditAccountV2 = ({ history }) => {
           toast.success('Success!', {
             onClose: () => {
               setCurrentAccount({});
-              history.push(ROUTES.ACCOUNTS.path);
+              history.push(ROUTES.ACCOUNTS_V2.path);
             },
             closeButton: false,
             hideProgressBar: true,

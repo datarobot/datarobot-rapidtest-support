@@ -265,8 +265,8 @@ const AccountsV2 = () => {
         addButtonText={t('buttons.addAccount')}
         addButtonIcon="user-plus"
         uploadButtonText={t('buttons.uploadList')}
-        addRoute={ROUTES.ADD_ACCOUNT.path}
-        uploadRoute={ROUTES.UPLOAD_ACCOUNTS.path}
+        addRoute={ROUTES.ADD_ACCOUNT_V2.path}
+        uploadRoute={ROUTES.UPLOAD_ACCOUNTS_V2.path}
         isLoading={isLoading}
         onExportData={handleExportData}
         onActivate={handleBatchActivate}

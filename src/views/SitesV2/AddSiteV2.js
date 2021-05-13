@@ -43,7 +43,7 @@ const AddSiteV2 = ({ history }) => {
       .then(() => {
         toast.success('Success!', {
           onClose: () => {
-            history.push(ROUTES.SITES.path);
+            history.push(ROUTES.SITES_V2.path);
           },
           closeButton: false,
           hideProgressBar: true,
