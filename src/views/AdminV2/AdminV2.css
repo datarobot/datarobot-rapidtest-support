@@ -1,0 +1,41 @@
+.AdminV2 {
+  h1 {
+    color: var(--purple-100);
+  }
+
+  .tile {
+    @apply flex flex-col rounded-xl cursor-pointer mb-6 mr-6 bg-white;
+
+    min-height: 190px;
+
+    img {
+      @apply mr-6;
+    }
+
+    h4 {
+      @apply mb-1 flex-grow;
+      color: var(--purple-100);
+    }
+
+    p {
+      color: var(--purple-80);
+    }
+
+    .content {
+      @apply flex p-8 items-start;
+      min-height: 180px;
+    }
+
+    .arrow {
+      @apply flex p-4 border-t;
+
+      border-color: var(--purple-20);
+    }
+
+    &:hover {
+      .arrow {
+        @apply justify-end;
+      }
+    }
+  }
+}

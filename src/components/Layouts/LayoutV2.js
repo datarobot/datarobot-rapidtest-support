@@ -8,6 +8,7 @@ import FooterV2 from 'components/FooterV2';
 
 import bga1 from 'assets/images/backgrounds/a1.svg';
 import bga2 from 'assets/images/backgrounds/a2.svg';
+import bga3 from 'assets/images/backgrounds/a3.svg';
 
 import bg1 from 'assets/images/backgrounds/1.svg';
 import bg2 from 'assets/images/backgrounds/2.svg';
@@ -22,6 +23,7 @@ const LayoutV2 = ({
   hideHeader = false,
   hideFooter = false,
   authBackground = false,
+  adminBackground = false,
   landingBackground = false,
   wide = false,
 }) => (
@@ -33,6 +35,16 @@ const LayoutV2 = ({
         </div>
         <div className="bga bga2">
           <img src={bga2} alt="" />
+        </div>
+      </>
+    )}
+    {adminBackground && (
+      <>
+        <div className="bgd bgd1">
+          <img src={bga1} alt="" />
+        </div>
+        <div className="bgd bgd3">
+          <img src={bga3} alt="" />
         </div>
       </>
     )}

@@ -14,6 +14,7 @@ import Loading from 'components/Loading';
 const Home = lazy(() => import('views/Home'));
 const HomeV2 = lazy(() => import('views/HomeV2'));
 const Admin = lazy(() => import('views/Admin'));
+const AdminV2 = lazy(() => import('views/AdminV2'));
 const Join = lazy(() => import('views/Join'));
 const JoinV2 = lazy(() => import('views/JoinV2'));
 const Sites = lazy(() => import('views/Sites'));
@@ -138,8 +139,8 @@ export const Routes = () => {
         auth={auth}
         exact
         {...ROUTES.ADMIN_V2}
-        component={Admin}
-        layout={LayoutV2}
+        component={AdminV2}
+        layout={NullLayout}
       />
       <PrivateRoute auth={auth} {...ROUTES.ADD_SITE} component={AddSite} />
       <PrivateRoute

@@ -61,7 +61,7 @@ const LogInV2 = ({ location, history }) => {
         if (location?.state?.from) {
           history.push(location.state.from);
         } else {
-          history.push('/admin');
+          history.push(ROUTES.ADMIN_V2.path);
         }
       })
       .catch((err) => {

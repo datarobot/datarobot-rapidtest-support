@@ -328,26 +328,26 @@ const HomeV2 = () => (
       </section>
       <div className="wrapper inverted">
         <section className="limitWidth forParents">
-          <div className="forParentsItems">
-            <div className="forParentsItem">
+          <div className="forParentsTiles">
+            <div className="forParentsTile">
               <h5>CDC guidance for school and childcare programs</h5>
               <div className="arrow">
                 <img src={arrowRight} alt="" />
               </div>
             </div>
-            <div className="forParentsItem">
+            <div className="forParentsTile">
               <h5>COVID testing guidance</h5>
               <div className="arrow">
                 <img src={arrowRight} alt="" />
               </div>
             </div>
-            <div className="forParentsItem">
+            <div className="forParentsTile">
               <h5>Children, teens, young adults (CDC)</h5>
               <div className="arrow">
                 <img src={arrowRight} alt="" />
               </div>
             </div>
-            <div className="forParentsItem">
+            <div className="forParentsTile">
               <h5>Screen for COVID among school population</h5>
               <div className="arrow">
                 <img src={arrowRight} alt="" />
