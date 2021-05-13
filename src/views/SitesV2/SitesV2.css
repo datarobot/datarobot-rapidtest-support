@@ -1,0 +1,31 @@
+.request-site-form {
+  @apply w-2/5 mr-8;
+}
+
+.request-site-form.isSuccess {
+  @apply hidden;
+}
+
+.request-site-success {
+  @apply flex justify-center pt-24 opacity-0 h-0 w-0;
+}
+
+.request-site-success.isSuccess {
+  @apply opacity-100 h-full w-full;
+
+  transition: opacity 500ms ease-in-out;
+}
+
+.column-list {
+  sup {
+    @apply font-bold text-dark-red;
+  }
+}
+
+.upload-error-message {
+  @apply text-dark-red font-medium mb-1 flex justify-between;
+}
+
+.upload-error-message:last-of-type {
+  @apply mb-0;
+}

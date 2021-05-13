@@ -6,18 +6,28 @@ import { useAtom } from 'jotai';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-import { getSiteList, editSite } from 'services/api';
+import { getSiteList, editSite, getPrograms } from 'services/api';
 import { ROUTES } from 'rt-constants';
-import SiteNameCell from 'components/TableAdvanced/SiteRenderers/SiteNameCell';
-import DisableSiteCell from 'components/TableAdvanced/SiteRenderers/DisableSiteCell';
-import TableAdvanced from 'components/TableAdvanced';
+import SiteNameCell from 'components/TableAdvancedV2/SiteRenderers/SiteNameCell';
+import DisableSiteCell from 'components/TableAdvancedV2/SiteRenderers/DisableSiteCell';
+import TableAdvancedV2 from 'components/TableAdvancedV2';
 
-import { download, toCsv } from 'utils';
+import { download, get, toCsv } from 'utils';
 
 import { sitesAtom, sitesToDisableAtom, siteIdsToDisableAtom } from 'rt-store';
 
-const Sites = () => {
+const SitesV2 = () => {
   const { t } = useTranslation();
+
+  const [currentProgram, setCurrentProgram] = useState('');
+  useEffect(() => {
+    const fetchCurrentProgram = async () => {
+      const programs = await getPrograms();
+      setCurrentProgram(programs[get('program')][0].name);
+    };
+    fetchCurrentProgram();
+  }, []);
+
   const [sites, setSites] = useAtom(sitesAtom);
   const [, setSitesToDisable] = useAtom(sitesToDisableAtom);
   const [siteIdsToDisable, setSiteIdsToDisable] = useAtom(siteIdsToDisableAtom);
@@ -168,12 +178,13 @@ const Sites = () => {
 
   return (
     <div>
-      <TableAdvanced
+      <p className="mt-8">Your program: {currentProgram || '...'}</p>
+      <TableAdvancedV2
         rows={sites}
         cols={cols}
         defaultSortCol="siteName"
         renderers={renderers}
-        tableName="Manage Sites"
+        tableName="Sites"
         addButtonText={t('buttons.addSite')}
         addButtonIcon="building"
         uploadButtonText={`+ ${t('buttons.uploadList')}`}
@@ -188,4 +199,4 @@ const Sites = () => {
   );
 };
 
-export default Sites;
+export default SitesV2;

@@ -1,0 +1,90 @@
+.ag-theme-rt-v2 {
+  color: rgba(31, 41, 55, 1);
+
+  .ag-root-wrapper-body {
+    min-height: 24rem;
+  }
+
+  .ag-header-cell {
+    @apply font-bold text-left text-sm uppercase border-b border-gray-400 text-gray-500 px-2;
+  }
+
+  .ag-row {
+    @apply bg-white;
+  }
+
+  .ag-row:hover {
+    @apply bg-gray-100;
+  }
+
+  .ag-cell {
+    @apply border-b border-gray-400 flex items-center px-2;
+  }
+
+  .ag-header-cell-resize {
+    height: 50%;
+    margin-top: 12px;
+    transition: all 250ms ease-in-out;
+  }
+
+  .ag-header-cell:hover {
+    .ag-header-cell-resize {
+      @apply border-l border-gray-300;
+    }
+  }
+
+  * {
+    @apply outline-none;
+  }
+
+  .ag-react-container {
+    @apply w-full;
+  }
+
+  .ag-paging-panel {
+    @apply flex justify-between;
+  }
+
+  .ag-paging-row-summary-panel-number {
+    @apply font-bold;
+  }
+
+  .pagination-panel {
+    @apply pb-8 pt-6 flex fixed bottom-0 left-0 right-0 flex-1 justify-between items-center mb-8;
+
+    background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 80%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    padding-left: 8.5vw;
+    padding-right: 8.5vw;
+  }
+
+  .paging-button {
+    @apply px-2;
+  }
+
+  .paging-button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+
+  .ag-overlay-wrapper .ag-react-container {
+    @apply h-full;
+  }
+
+  .ag-overlay-loading-center {
+    @apply w-full h-full flex items-center justify-center bg-white bg-opacity-75;
+  }
+
+  .header-sort {
+    @apply opacity-50 transition-opacity;
+  }
+
+  .header-cell:hover {
+    .header-sort {
+      @apply opacity-100;
+    }
+  }
+}

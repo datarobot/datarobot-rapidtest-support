@@ -185,10 +185,10 @@
     &.forParents {
       @apply relative flex items-center pt-16 pb-10;
 
-      .forParentsItems {
+      .forParentsTiles {
         @apply w-1/2 flex flex-wrap justify-around;
 
-        .forParentsItem {
+        .forParentsTile {
           @apply flex flex-col rounded-xl border cursor-pointer mb-6 mr-6;
 
           width: calc(50% - 1.5rem);
@@ -384,7 +384,7 @@
           @mixin h3;
         }
 
-        .forParentsItems,
+        .forParentsTiles,
         .forParentsText {
           @apply w-full px-0;
         }
@@ -477,8 +477,8 @@
         }
       }
       &.forParents {
-        .forParentsItems {
-          .forParentsItem {
+        .forParentsTiles {
+          .forParentsTile {
             @apply w-full mr-0;
             min-height: unset;
           }

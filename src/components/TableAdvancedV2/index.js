@@ -8,17 +8,17 @@ import { IconButton } from 'components/Button';
 import Icon from 'components/Icon';
 import Input from 'components/Input';
 import Radio from 'components/Radio';
-import HeaderCell from 'components/Table2/HeaderCell';
-import LoadingOverlay from 'components/Table2/LoadingOverlay';
-import Pagination from 'components/Table2/Pagination';
+import HeaderCell from 'components/TableAdvancedV2/HeaderCell';
+import LoadingOverlay from 'components/TableAdvancedV2/LoadingOverlay';
+import Pagination from 'components/TableAdvancedV2/Pagination';
 import { get } from 'utils';
 import { getPrograms } from 'services/api';
 
 import 'ag-grid-community';
 import 'ag-grid-community/dist/styles/ag-grid.css';
-import './Table2.css';
+import './TableAdvancedV2.css';
 
-const Table2 = ({
+const TableAdvancedV2 = ({
   rows,
   cols,
   renderers,
@@ -111,9 +111,7 @@ const Table2 = ({
     <>
       {!tableOnly && (
         <>
-          {tableName && (
-            <h1 className="headline text-blue mb-4">{tableName}</h1>
-          )}
+          {tableName && <h1 className="mb-4">{tableName}</h1>}
           <div className="grid grid-cols-2 lg:mb-4 xl:mb-4 mt-2">
             <div className="flex flex-col justify-center">
               <div className="flex items-center">
@@ -174,11 +172,6 @@ const Table2 = ({
                       />
                     )}
                   </>
-                )}
-                {!isSearchFocused && !isFilterFocused && (
-                  <span className="w-full truncate">
-                    Your program: <strong>{currentProgram}</strong>
-                  </span>
                 )}
               </div>
             </div>
@@ -246,7 +239,10 @@ const Table2 = ({
         </>
       )}
       <div style={{ height: '100%', width: '100%', marginBottom: '6.5rem' }}>
-        <div className="ag-theme-rt" style={{ height: '100%', width: '100%' }}>
+        <div
+          className="ag-theme-rt-v2"
+          style={{ height: '100%', width: '100%' }}
+        >
           <AgGridReact
             onGridReady={onGridReady}
             rowData={rows}
@@ -323,4 +319,4 @@ const Table2 = ({
   );
 };
 
-export default Table2;
+export default TableAdvancedV2;

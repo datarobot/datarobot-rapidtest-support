@@ -5,7 +5,7 @@ import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 
-import { getAccountList, editAccount } from 'services/api';
+import { getAccountList, editAccount, getPrograms } from 'services/api';
 import { ROUTES } from 'rt-constants';
 import {
   accountsAtom,
@@ -14,9 +14,9 @@ import {
   activeFilterAtom,
 } from 'rt-store';
 
-import TableAdvanced from 'components/TableAdvanced';
+import TableAdvancedV2 from 'components/TableAdvancedV2';
 
-import { download, toCsv } from 'utils';
+import { download, get, toCsv } from 'utils';
 import { dateComparator } from 'utils/table';
 import {
   AccountAddedCell,
@@ -24,12 +24,22 @@ import {
   AccountStatusCell,
   EditAccountCell,
   AccountEmailCell,
-} from 'components/TableAdvanced/AccountRenderers';
+} from 'components/TableAdvancedV2/AccountRenderers';
 
 import { toast } from 'react-toastify';
 
-const Accounts = () => {
+const AccountsV2 = () => {
   const { t } = useTranslation();
+
+  const [currentProgram, setCurrentProgram] = useState('');
+  useEffect(() => {
+    const fetchCurrentProgram = async () => {
+      const programs = await getPrograms();
+      setCurrentProgram(programs[get('program')][0].name);
+    };
+    fetchCurrentProgram();
+  }, []);
+
   const [accounts, setAccounts] = useAtom(accountsAtom);
   const [initialAccounts, setInitialAccounts] = useState([]);
   const [accountsToDisable, setAccountsToDisable] = useAtom(
@@ -243,29 +253,32 @@ const Accounts = () => {
   }, []);
 
   return (
-    <TableAdvanced
-      rows={accounts}
-      cols={cols}
-      renderers={renderers}
-      onFilter={onFilter}
-      onFilterReset={onFilterReset}
-      defaultSortCol="name"
-      tableName="Manage Accounts"
-      addButtonText={t('buttons.addAccount')}
-      addButtonIcon="user-plus"
-      uploadButtonText={t('buttons.uploadList')}
-      addRoute={ROUTES.ADD_ACCOUNT.path}
-      uploadRoute={ROUTES.UPLOAD_ACCOUNTS.path}
-      isLoading={isLoading}
-      onExportData={handleExportData}
-      onActivate={handleBatchActivate}
-      onDeactivate={handleBatchDeactivate}
-      showResendEmail={showResendEmail}
-      showActivate={showActivate}
-      showDeactivate={showDeactivate}
-      handleResendEmail={handleResendEmail}
-    />
+    <div>
+      <p className="mt-8">Your program: {currentProgram || '...'}</p>
+      <TableAdvancedV2
+        rows={accounts}
+        cols={cols}
+        renderers={renderers}
+        onFilter={onFilter}
+        onFilterReset={onFilterReset}
+        defaultSortCol="name"
+        tableName="Test Operators"
+        addButtonText={t('buttons.addAccount')}
+        addButtonIcon="user-plus"
+        uploadButtonText={t('buttons.uploadList')}
+        addRoute={ROUTES.ADD_ACCOUNT.path}
+        uploadRoute={ROUTES.UPLOAD_ACCOUNTS.path}
+        isLoading={isLoading}
+        onExportData={handleExportData}
+        onActivate={handleBatchActivate}
+        onDeactivate={handleBatchDeactivate}
+        showResendEmail={showResendEmail}
+        showActivate={showActivate}
+        showDeactivate={showDeactivate}
+        handleResendEmail={handleResendEmail}
+      />
+    </div>
   );
 };
 
-export default Accounts;
+export default AccountsV2;

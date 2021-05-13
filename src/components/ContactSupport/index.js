@@ -6,7 +6,7 @@ import './ContactSupport.css';
 
 const ContactSupport = () => {
   return (
-    <div className="contactSupport">
+    <div className="ContactSupport">
       <img src={support} alt="" />
       <div>
         <span>If you have any questions</span>

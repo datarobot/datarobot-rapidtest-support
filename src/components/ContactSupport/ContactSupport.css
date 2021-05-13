@@ -1,7 +1,7 @@
 @import '../../assets/styles/mixins.css';
 @import '../../assets/styles/typography.css';
 
-.contactSupport {
+.ContactSupport {
   @apply bg-white flex justify-center items-center rounded-xl p-4 mb-12;
 
   div {
@@ -20,7 +20,7 @@
 }
 
 @mixin for-size-phone {
-  .contactSupport {
+  .ContactSupport {
     div {
       @apply flex-col items-start;
       a {

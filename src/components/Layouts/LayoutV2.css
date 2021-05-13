@@ -28,6 +28,21 @@
     bottom: 0;
   }
 
+  .bgd {
+    position: fixed;
+    z-index: 0;
+  }
+
+  .bgd1 {
+    left: 0;
+    bottom: 96px;
+  }
+
+  .bgd3 {
+    right: 0;
+    bottom: 96px;
+  }
+
   .bg1 {
     left: 0;
     top: 5%;
@@ -60,14 +75,14 @@
   }
 
   .limitWidth {
-    @apply px-5 mx-auto;
+    @apply px-5 mx-auto w-full;
     max-width: var(--max-width);
   }
 }
 
 @mixin for-size-phone {
-  .bga1,
-  .bga2 {
+  .bga,
+  .bgd {
     @apply hidden;
   }
 }

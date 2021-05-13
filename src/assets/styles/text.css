@@ -15,6 +15,7 @@
   h1,
   .h1 {
     @mixin h1;
+    color: var(--purple-100);
   }
   .inverted h1 {
     color: var(--white);
