@@ -37,7 +37,7 @@ import trainingMaterials from 'assets/static/TrainingMaterials.pdf';
 import './HomeV2.css';
 
 const HomeV2 = () => (
-  <LayoutV2 landingBackground wide>
+  <LayoutV2 backgroundLanding wide>
     <div className="HomeV2">
       <section className="limitWidth testingProgram">
         <div className="testingProgramText">

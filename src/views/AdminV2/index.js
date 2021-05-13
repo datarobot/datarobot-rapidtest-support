@@ -17,7 +17,7 @@ const AdminV2 = () => {
   } = useContext(AuthContext);
 
   return (
-    <LayoutV2 adminBackground>
+    <LayoutV2 backgroundAdmin>
       <div className="AdminV2">
         <section className="mt-8 flex flex-col content-between items-between justify-between">
           <h1>

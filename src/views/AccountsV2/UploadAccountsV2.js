@@ -37,7 +37,7 @@ const UploadAccountsV2 = ({ history }) => {
       .all(batch)
       .then(() => {
         dismiss();
-        history.push(ROUTES.ACCOUNTS.path);
+        history.push(ROUTES.ACCOUNTS_V2.path);
         toast.success(`Uploaded ${data.length} accounts!`, { autoClose: 5000 });
       })
       .catch((err) => {

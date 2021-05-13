@@ -81,7 +81,7 @@ const DisableSiteCell = ({ value, data: { id } }) => {
         ) : (
           <>
             <Link
-              to={generatePath(ROUTES.EDIT_SITE.path, { id })}
+              to={generatePath(ROUTES.EDIT_SITE_V2.path, { id })}
               className="mr-4 text-blue-lighter"
             >
               <Icon iconName="pen" type="fas" className="cursor-pointer" />

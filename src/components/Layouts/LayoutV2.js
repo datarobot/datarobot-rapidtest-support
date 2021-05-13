@@ -20,15 +20,16 @@ import './LayoutV2.css';
 
 const LayoutV2 = ({
   children,
-  hideHeader = false,
-  hideFooter = false,
-  authBackground = false,
-  adminBackground = false,
-  landingBackground = false,
+  headerHidden = false,
+  footerHidden = false,
+  footerFixed = false,
+  backgroundAuth = false,
+  backgroundAdmin = false,
+  backgroundLanding = false,
   wide = false,
 }) => (
   <div className="LayoutV2">
-    {authBackground && (
+    {backgroundAuth && (
       <>
         <div className="bga bga1">
           <img src={bga1} alt="" />
@@ -38,7 +39,7 @@ const LayoutV2 = ({
         </div>
       </>
     )}
-    {adminBackground && (
+    {backgroundAdmin && (
       <>
         <div className="bgd bgd1">
           <img src={bga1} alt="" />
@@ -48,7 +49,7 @@ const LayoutV2 = ({
         </div>
       </>
     )}
-    {landingBackground && (
+    {backgroundLanding && (
       <>
         <div className="bg bg1">
           <img src={bg1} alt="" />
@@ -67,7 +68,7 @@ const LayoutV2 = ({
         </div>
       </>
     )}
-    {hideHeader ? null : <HeaderV2 />}
+    {headerHidden ? null : <HeaderV2 />}
     <main className={cls('content', { limitWidth: !wide })}>
       <Suspense
         fallback={
@@ -81,7 +82,7 @@ const LayoutV2 = ({
         {children}
       </Suspense>
     </main>
-    {hideFooter ? null : <FooterV2 />}
+    {footerHidden ? null : <FooterV2 footerFixed={footerFixed} />}
     <ToastContainer
       position="bottom-center"
       toastClassName="rt-toast"
