@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import { getAccountList, editAccount, getPrograms } from 'services/api';
 import { ROUTES } from 'rt-constants';
@@ -13,11 +14,11 @@ import {
   accountIdsToDisableAtom,
   activeFilterAtom,
 } from 'rt-store';
-
-import TableAdvancedV2 from 'components/TableAdvancedV2';
-
 import { download, get, toCsv } from 'utils';
 import { dateComparator } from 'utils/table';
+
+import LayoutV2 from 'components/Layouts/LayoutV2';
+import TableAdvancedV2 from 'components/TableAdvancedV2';
 import {
   AccountAddedCell,
   AccountNameCell,
@@ -25,8 +26,6 @@ import {
   EditAccountCell,
   AccountEmailCell,
 } from 'components/TableAdvancedV2/AccountRenderers';
-
-import { toast } from 'react-toastify';
 
 const AccountsV2 = () => {
   const { t } = useTranslation();
@@ -253,7 +252,7 @@ const AccountsV2 = () => {
   }, []);
 
   return (
-    <div>
+    <LayoutV2 footerFixed>
       <p className="mt-8">Your program: {currentProgram || '...'}</p>
       <TableAdvancedV2
         rows={accounts}
@@ -277,7 +276,7 @@ const AccountsV2 = () => {
         showDeactivate={showDeactivate}
         handleResendEmail={handleResendEmail}
       />
-    </div>
+    </LayoutV2>
   );
 };
 

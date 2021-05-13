@@ -3,6 +3,13 @@
 .footer-v2 {
   @apply bg-white;
 
+  &.footerFixed {
+    @apply fixed right-0 bottom-0 left-0 z-10;
+    .wrapper {
+      height: 56px;
+    }
+  }
+
   .wrapper {
     @apply px-5 flex justify-between items-center mx-auto;
 

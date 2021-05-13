@@ -238,7 +238,7 @@ const TableAdvancedV2 = ({
           </div>
         </>
       )}
-      <div style={{ height: '100%', width: '100%', marginBottom: '6.5rem' }}>
+      <div style={{ height: '100%', width: '100%', marginBottom: '8rem' }}>
         <div
           className="ag-theme-rt-v2"
           style={{ height: '100%', width: '100%' }}

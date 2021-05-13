@@ -8,13 +8,13 @@ import { toast } from 'react-toastify';
 
 import { getSiteList, editSite, getPrograms } from 'services/api';
 import { ROUTES } from 'rt-constants';
-import SiteNameCell from 'components/TableAdvancedV2/SiteRenderers/SiteNameCell';
-import DisableSiteCell from 'components/TableAdvancedV2/SiteRenderers/DisableSiteCell';
-import TableAdvancedV2 from 'components/TableAdvancedV2';
-
+import { sitesAtom, sitesToDisableAtom, siteIdsToDisableAtom } from 'rt-store';
 import { download, get, toCsv } from 'utils';
 
-import { sitesAtom, sitesToDisableAtom, siteIdsToDisableAtom } from 'rt-store';
+import LayoutV2 from 'components/Layouts/LayoutV2';
+import TableAdvancedV2 from 'components/TableAdvancedV2';
+import SiteNameCell from 'components/TableAdvancedV2/SiteRenderers/SiteNameCell';
+import DisableSiteCell from 'components/TableAdvancedV2/SiteRenderers/DisableSiteCell';
 
 const SitesV2 = () => {
   const { t } = useTranslation();
@@ -177,7 +177,7 @@ const SitesV2 = () => {
   }, [setSites]);
 
   return (
-    <div>
+    <LayoutV2 footerFixed>
       <p className="mt-8">Your program: {currentProgram || '...'}</p>
       <TableAdvancedV2
         rows={sites}
@@ -195,7 +195,7 @@ const SitesV2 = () => {
         onActivate={handleBatchActivate}
         onDeactivate={handleBatchDeactivate}
       />
-    </div>
+    </LayoutV2>
   );
 };
 

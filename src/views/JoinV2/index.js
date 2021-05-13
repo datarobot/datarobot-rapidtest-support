@@ -30,7 +30,7 @@ const JoinV2 = () => {
   const [requestSubmitted, setRequestSubmitted] = useState(false);
 
   return (
-    <LayoutV2 hideHeader hideFooter authBackground>
+    <LayoutV2 headerHidden footerHidden backgroundAuth>
       <div className="JoinV2">
         <Link to={ROUTES.LANDING_PAGE_V2.path} className="logoV2">
           <LogoV2 />

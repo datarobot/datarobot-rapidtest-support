@@ -170,7 +170,7 @@ export const Routes = () => {
         exact
         {...ROUTES.SITES_V2}
         component={SitesV2}
-        layout={LayoutV2}
+        layout={NullLayout}
       />
       <PrivateRoute auth={auth} {...ROUTES.ADD_SITE} component={AddSite} />
       <PrivateRoute
@@ -209,7 +209,7 @@ export const Routes = () => {
         exact
         {...ROUTES.ACCOUNTS_V2}
         component={AccountsV2}
-        layout={LayoutV2}
+        layout={NullLayout}
       />
       <PrivateRoute
         auth={auth}

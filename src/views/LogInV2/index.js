@@ -84,7 +84,7 @@ const LogInV2 = ({ location, history }) => {
   };
 
   return (
-    <LayoutV2 hideHeader hideFooter authBackground>
+    <LayoutV2 headerHidden footerHidden backgroundAuth>
       <div className="LogInV2">
         <Link to={ROUTES.LANDING_PAGE_V2.path} className="logoV2">
           <LogoV2 />
