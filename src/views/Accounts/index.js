@@ -14,7 +14,7 @@ import {
   activeFilterAtom,
 } from 'rt-store';
 
-import Table2 from 'components/Table2';
+import TableAdvanced from 'components/TableAdvanced';
 
 import { download, toCsv } from 'utils';
 import { dateComparator } from 'utils/table';
@@ -24,7 +24,7 @@ import {
   AccountStatusCell,
   EditAccountCell,
   AccountEmailCell,
-} from 'components/Table2/AccountRenderers';
+} from 'components/TableAdvanced/AccountRenderers';
 
 import { toast } from 'react-toastify';
 
@@ -243,7 +243,7 @@ const Accounts = () => {
   }, []);
 
   return (
-    <Table2
+    <TableAdvanced
       rows={accounts}
       cols={cols}
       renderers={renderers}
