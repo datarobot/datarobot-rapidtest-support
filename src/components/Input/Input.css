@@ -78,7 +78,6 @@
   @apply w-full border outline-none;
 
   min-width: 100%;
-  border-color: var(--purple-70);
 }
 
 .placeholder-icon {
