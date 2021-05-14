@@ -3,6 +3,7 @@ import cls from 'classnames';
 import Icon from 'components/Icon';
 
 const IconButton = ({
+  v2 = false,
   btnType = 'button',
   className,
   label,
@@ -15,7 +16,7 @@ const IconButton = ({
 }) => (
   <div className="btn-icon-container">
     <button
-      className={cls('btn-icon items-center', className)}
+      className={cls('btn-icon items-center', className, { v2 })}
       type={btnType}
       onClick={onClick}
       disabled={isDisabled}

@@ -1,6 +1,13 @@
 @import '../../assets/styles/mixins.css';
 @import '../../assets/styles/typography.css';
 
+.LayoutV2 {
+  .table-buttons-2 {
+    @apply ml-1 pl-1 border-l;
+    border-color: var(--purple-20);
+  }
+}
+
 .ag-theme-rt-v2 {
   color: rgba(31, 41, 55, 1);
 
@@ -117,12 +124,5 @@
       color: var(--red);
       background-color: var(--orange-10);
     }
-  }
-}
-
-.actionIcon {
-  span {
-    @mixin h6;
-    color: var(--purple-70);
   }
 }
