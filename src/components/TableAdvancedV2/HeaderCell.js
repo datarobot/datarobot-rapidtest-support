@@ -82,6 +82,7 @@ const HeaderCell = (props) => {
     <div className="flex pr-4 items-center header-cell">
       {props.showCheck && (
         <Checkbox
+          v2
           checkClass="z-10"
           onChange={() => {
             setIsChecked(!isChecked);
