@@ -1,10 +1,8 @@
 /* eslint-disable no-unused-vars */
 // @ts-nocheck
-import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import Icon from 'components/Icon';
-import Modal from 'components/Modal';
 
 import {
   accountsAtom,
@@ -37,13 +35,10 @@ const Pagination = ({
   isLastPage,
   pageSize,
   rowCount,
-  onActivate,
-  onDeactivate,
   onPageSizeChange,
   // totalPages,
 }) => {
   const { pathname } = useLocation();
-  const [showModal, setShowModal] = useState(false);
   const [accountsToDisable, setAccountsToDisable] = useAtom(
     accountsToDisableAtom
   );
@@ -68,14 +63,10 @@ const Pagination = ({
     return rowData;
   };
 
-  const handleDeactivate = () => {
-    pathname.includes('sites') ? setShowModal(true) : onDeactivate();
-  };
-
   const selectAllAccounts = () => {
-    const acctIds = getAllRows().map(({ id }) => id);
+    const ids = getAllRows().map(({ id }) => id);
     setAccountsToDisable(getAllRows());
-    setAccountIdsToDisable(acctIds);
+    setAccountIdsToDisable(ids);
     setIsHeaderChecked(true);
   };
 
@@ -86,9 +77,9 @@ const Pagination = ({
   };
 
   const selectAllSites = () => {
-    const acctIds = getAllRows().map(({ id }) => id);
+    const ids = getAllRows().map(({ id }) => id);
     setSitesToDisable(getAllRows());
-    setSiteIdsToDisable(acctIds);
+    setSiteIdsToDisable(ids);
     setIsHeaderChecked(true);
   };
 
@@ -230,25 +221,6 @@ const Pagination = ({
           <Icon iconName="angle-double-right" type="fal" />
         </button>
       </div>
-      <Modal
-        show={showModal}
-        title="Are you sure?"
-        modalClassName="max-w-lg my-12"
-        confirmButtonText="Yes, disable them"
-        closeButtonText="No, keep them"
-        handleClose={() => {
-          setShowModal(false);
-        }}
-        confirmationAction={() => {
-          onDeactivate();
-          setShowModal(false);
-        }}
-      >
-        <p className="p-16 text-center">
-          Disabling these sites will make it unavailable to users in the
-          RapidTest app
-        </p>
-      </Modal>
     </div>
   );
 };
