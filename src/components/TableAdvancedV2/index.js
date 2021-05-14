@@ -9,6 +9,7 @@ import Input from 'components/Input';
 import Radio from 'components/Radio';
 import HeaderCell from 'components/TableAdvancedV2/HeaderCell';
 import LoadingOverlay from 'components/TableAdvancedV2/LoadingOverlay';
+import Selector from 'components/TableAdvancedV2/Selector';
 import Pagination from 'components/TableAdvancedV2/Pagination';
 
 import 'ag-grid-community';
@@ -225,16 +226,19 @@ const TableAdvancedV2 = ({
             )}
           </AgGridReact>
 
-          <Pagination
-            currentPage={currentPage}
-            gridApi={gridApi}
-            isFirstPage={isFirstPage}
-            isLastPage={isLastPage}
-            totalPages={totalPages}
-            pageSize={pageSize}
-            rowCount={rowCount}
-            onPageSizeChange={handlePageSizeChange}
-          />
+          <div className="pagination-panel">
+            <Selector gridApi={gridApi} pageSize={pageSize} />
+            <Pagination
+              currentPage={currentPage}
+              gridApi={gridApi}
+              isFirstPage={isFirstPage}
+              isLastPage={isLastPage}
+              totalPages={totalPages}
+              pageSize={pageSize}
+              rowCount={rowCount}
+              onPageSizeChange={handlePageSizeChange}
+            />
+          </div>
         </div>
       </div>
     </>
