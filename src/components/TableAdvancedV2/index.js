@@ -31,7 +31,6 @@ const TableAdvancedV2 = ({
   const { pathname } = useLocation();
 
   const [gridApi, setGridApi] = useState(null);
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isFilterFocused, setIsFilterFocused] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
@@ -94,32 +93,19 @@ const TableAdvancedV2 = ({
           <div className="grid grid-cols-2 lg:mb-4 xl:mb-4 mt-2">
             <div className="flex flex-col justify-center">
               <div className="flex items-center">
-                {!isFilterFocused && (
-                  <>
-                    <Icon iconName="search" type="fal" />
-                    <Input
-                      onChange={handleFilterChange}
-                      placeholder="Search"
-                      onFocus={() => setIsSearchFocused(true)}
-                      onBlur={() => setIsSearchFocused(false)}
-                      isSearch
-                      wrapperClass={cls({
-                        'w-3/5': isSearchFocused,
-                      })}
-                      className={cls('self-center search', {
-                        'rounded-r-none': !isSearchFocused,
-                      })}
-                    />
-                  </>
-                )}
-                {!isSearchFocused && isAccounts && (
+                <Input
+                  v2
+                  onChange={handleFilterChange}
+                  placeholder="Search"
+                  icon="search"
+                  isSearch
+                  className="self-center"
+                />
+                {isAccounts && (
                   <>
                     <span
                       style={{ minHeight: 42 }}
-                      className={cls(
-                        'flex mr-8 border-gray-300 py-2 cursor-pointer',
-                        { 'pr-6 border-r': !isFilterFocused }
-                      )}
+                      className="flex ml-8 py-2 cursor-pointer"
                       onClick={() => setIsFilterFocused(!isFilterFocused)}
                     >
                       {!isFilterFocused ? (
@@ -130,7 +116,7 @@ const TableAdvancedV2 = ({
                       ) : (
                         <button
                           type="button"
-                          className="btn-clear px-2 py-0 border-0"
+                          className="btn-clear px-0 py-0 border-0"
                           onClick={onFilterReset}
                         >
                           <Icon iconName="times" type="fal" className="mx-2" />
