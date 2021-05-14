@@ -60,24 +60,6 @@ const HeaderCell = (props) => {
     return dataArr;
   };
 
-  let sort = null;
-  if (props.enableSorting) {
-    sort = (
-      <div className="inline-block ml-2 header-sort">
-        {props.column.isSortAscending() && (
-          <Icon iconName="sort-down" type="fal" />
-        )}
-        {props.column.isSortDescending() && (
-          <Icon iconName="sort-up" type="fal" />
-        )}
-        {!props.column.isSortAscending() &&
-          !props.column.isSortDescending() && (
-            <Icon iconName="sort" type="fal" />
-          )}
-      </div>
-    );
-  }
-
   return (
     <div className="flex pr-4 items-center header-cell">
       {props.showCheck && (
@@ -92,13 +74,26 @@ const HeaderCell = (props) => {
         />
       )}
       <span
-        className={cls('flex w-full', {
+        className={cls('flex w-full items-center', {
           'justify-end': props.textEnd,
         })}
         onClick={onSortRequested}
       >
         <div className="customHeaderLabel">{props.displayName}</div>
-        {sort}
+        {props.enableSorting && (
+          <div className="inline-block ml-2 header-sort">
+            {props.column.isSortAscending() && (
+              <Icon iconName="sort-down" type="fas" />
+            )}
+            {props.column.isSortDescending() && (
+              <Icon iconName="sort-up" type="fas" />
+            )}
+            {!props.column.isSortAscending() &&
+              !props.column.isSortDescending() && (
+                <Icon iconName="sort" type="fas" />
+              )}
+          </div>
+        )}
       </span>
     </div>
   );
