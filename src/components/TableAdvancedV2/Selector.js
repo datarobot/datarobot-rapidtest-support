@@ -62,10 +62,10 @@ const Selector = ({ gridApi, pageSize }) => {
   };
 
   return (
-    <span className="flex items-center">
+    <span className="selector">
       {isAccounts && accountsToDisable.length > 0 && (
         <>
-          <p className="text-sm">
+          <p>
             Accounts selected: <strong>{accountsToDisable.length}</strong>
           </p>
           {accounts.length !== accountIdsToDisable.length ? (
@@ -103,7 +103,7 @@ const Selector = ({ gridApi, pageSize }) => {
 
       {isSites && sitesToDisable.length > 0 && (
         <>
-          <p className="text-sm">
+          <p>
             Sites selected: <strong>{sitesToDisable.length}</strong>
           </p>
           {sites.length !== siteIdsToDisable.length ? (

@@ -266,24 +266,24 @@ const AccountsV2 = () => {
     <>
       {showResendEmail && (
         <IconButton
+          v2
           label="Re-send email"
-          className="px-2 actionIcon"
           image={mailIcon}
           onClick={handleResendEmail}
         />
       )}
       {showActivate && (
         <IconButton
+          v2
           label="Activate user(s)"
-          className="pl-2 pr-1"
           image={activateIcon}
           onClick={handleBatchActivate}
         />
       )}
       {showDeactivate && (
         <IconButton
+          v2
           label="Deactivate user(s)"
-          className="px-2 actionIcon"
           image={deactivateIcon}
           onClick={handleBatchDeactivate}
         />
@@ -291,25 +291,24 @@ const AccountsV2 = () => {
 
       <span
         className={cls('flex', {
-          'ml-1 pl-1': true,
-          'border-l': showResendEmail || showActivate || showDeactivate,
+          'table-buttons-2': showResendEmail || showActivate || showDeactivate,
         })}
       >
         <IconButton
+          v2
           label={t('buttons.uploadList')}
-          className="px-2 actionIcon"
           image={uploadIcon}
           onClick={() => history.push(ROUTES.UPLOAD_ACCOUNTS_V2.path)}
         />
         <IconButton
+          v2
           label="Export data"
-          className="px-2 actionIcon"
           image={exportIcon}
           onClick={handleExportData}
         />
         <IconButton
+          v2
           label={t('buttons.addAccount')}
-          className="px-2 actionIcon"
           image={addIcon}
           onClick={() => history.push(ROUTES.ADD_ACCOUNT_V2.path)}
         />

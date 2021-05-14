@@ -1,9 +1,18 @@
 .checkboxWrapper {
   @apply bg-white border-2 rounded border-gray-400 w-4 h-4 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500;
+
+  &.v2 {
+    border-color: var(--purple-30);
+  }
 }
 
 .checkboxWrapper.isChecked {
   @apply bg-blue-light border-blue-light;
+
+  &.v2 {
+    background-color: var(--purple-70);
+    border-color: var(--purple-70);
+  }
 }
 
 .checkbox + svg {
@@ -14,7 +23,8 @@
   @apply block;
 }
 
-.checkboxDisabled .labelText, .checkboxDisabled .checkbox {
+.checkboxDisabled .labelText,
+.checkboxDisabled .checkbox {
   @apply cursor-not-allowed;
 }
 

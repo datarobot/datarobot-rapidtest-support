@@ -1,3 +1,5 @@
+@import '../../assets/styles/typography.css';
+
 .btn-icon-container {
   position: relative;
   @apply relative text-blue-lighter;
@@ -16,6 +18,19 @@
 
   .icon {
     @apply mr-2;
+  }
+
+  &.v2 {
+    @apply mx-2;
+
+    .btn-text {
+      @mixin h6;
+      color: var(--purple-70);
+    }
+
+    .icon {
+      @apply mr-0;
+    }
   }
 }
 

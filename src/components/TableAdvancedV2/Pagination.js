@@ -9,7 +9,7 @@ const CalculateCurrentView = ({ pageIndex, pageSize, rows }) => {
   const totalEntries = rows;
 
   return (
-    <p style={{ marginTop: '-4px' }} className="text-sm mx-2">
+    <p className="paging-text">
       <strong>{offset}</strong> - <strong>{totalOffset}</strong> of{' '}
       <strong>{totalEntries}</strong>
     </p>

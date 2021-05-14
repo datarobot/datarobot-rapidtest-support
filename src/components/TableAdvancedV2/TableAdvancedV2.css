@@ -1,8 +1,19 @@
 @import '../../assets/styles/mixins.css';
 @import '../../assets/styles/typography.css';
 
+.LayoutV2 {
+  .table-buttons-2 {
+    @apply ml-1 pl-1 border-l;
+    border-color: var(--purple-20);
+  }
+}
+
 .ag-theme-rt-v2 {
-  color: rgba(31, 41, 55, 1);
+  color: var(--purple-90);
+
+  strong {
+    color: var(--purple-100);
+  }
 
   .ag-root-wrapper-body {
     min-height: 24rem;
@@ -75,12 +86,36 @@
     min-height: 70px;
   }
 
-  .paging-button {
+  .selector {
+    @apply flex items-center;
+    @mixin tooltip;
+
+    p {
+      @apply mr-2;
+    }
+
+    strong,
+    button {
+      @mixin h6;
+    }
+  }
+
+  .paging-text {
     @apply px-2;
+    @mixin body-small;
+    strong {
+      @mixin h6;
+    }
+  }
+
+  .paging-button {
+    @apply px-2 text-3xl;
+    color: var(--purple-70);
   }
 
   .paging-button:disabled {
     @apply opacity-50 cursor-not-allowed;
+    color: var(--purple-30);
   }
 
   .ag-overlay-wrapper .ag-react-container {
@@ -117,12 +152,5 @@
       color: var(--red);
       background-color: var(--orange-10);
     }
-  }
-}
-
-.actionIcon {
-  span {
-    @mixin h6;
-    color: var(--purple-70);
   }
 }

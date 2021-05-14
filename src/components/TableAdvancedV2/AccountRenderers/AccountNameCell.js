@@ -27,7 +27,7 @@ const AccountNameCell = ({ data }) => {
 
   return (
     <span className="flex items-center">
-      <Checkbox onChange={handleSelectAccount} isChecked={isChecked} />
+      <Checkbox v2 onChange={handleSelectAccount} isChecked={isChecked} />
       {data.last_name}, {data.first_name}
     </span>
   );

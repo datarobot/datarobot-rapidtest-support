@@ -28,6 +28,7 @@ const SiteNameCell = ({ data }) => {
   return (
     <span className="flex items-center">
       <Checkbox
+        v2
         onChange={handleSelectSite}
         isChecked={isChecked}
         isDisabled={data.id === 3}

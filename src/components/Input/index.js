@@ -12,6 +12,7 @@ const Input = ({
   v2 = false,
   name,
   label,
+  icon,
   type,
   value,
   onChange,
@@ -52,6 +53,11 @@ const Input = ({
           {optional && <span className="optional">Optional</span>}
         </label>
       )}
+      {icon && (
+        <span className="placeholder-icon">
+          <Icon iconName={icon} type="fal" />
+        </span>
+      )}
       <span
         className={cls(wrapperClass, {
           'w-full': !isSearch,
@@ -66,7 +72,9 @@ const Input = ({
             className={cls(className, 'input', {
               isRounded: rounded,
               v2,
+              isSearch,
               error: errorMessage,
+              'pl-9': icon,
             })}
             type={getInputType()}
             value={value}
@@ -81,7 +89,9 @@ const Input = ({
             className={cls(className, 'input', {
               isRounded: rounded,
               v2,
+              isSearch,
               error: errorMessage,
+              'pl-9': icon,
             })}
             type={getInputType()}
             value={value}
