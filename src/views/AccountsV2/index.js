@@ -2,6 +2,8 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
+import cls from 'classnames';
+import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -18,6 +20,7 @@ import { download, get, toCsv } from 'utils';
 import { dateComparator } from 'utils/table';
 
 import LayoutV2 from 'components/Layouts/LayoutV2';
+import { IconButton } from 'components/Button';
 import TableAdvancedV2 from 'components/TableAdvancedV2';
 import {
   AccountAddedCell,
@@ -251,6 +254,65 @@ const AccountsV2 = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const history = useHistory();
+  const tableButtons = (
+    <>
+      {showResendEmail && (
+        <IconButton
+          label="Re-send email"
+          className="px-2"
+          icon="envelope"
+          onClick={handleResendEmail}
+        />
+      )}
+
+      {showDeactivate && (
+        <IconButton
+          label="Deactivate user(s)"
+          className="px-2"
+          icon="user-times"
+          onClick={handleBatchDeactivate}
+        />
+      )}
+
+      {showActivate && (
+        <IconButton
+          label="Activate user(s)"
+          className="pl-2 pr-1"
+          icon="user-check"
+          onClick={handleBatchActivate}
+        />
+      )}
+      <span
+        className={cls('flex', {
+          'ml-1 pl-1': true,
+          'border-l': showResendEmail || showActivate || showDeactivate,
+        })}
+      >
+        <IconButton
+          label={t('buttons.uploadList')}
+          className="px-2"
+          icon="upload"
+          onClick={() => history.push(ROUTES.UPLOAD_ACCOUNTS_V2.path)}
+        />
+
+        <IconButton
+          label="Export data"
+          className="px-2"
+          icon="file-export"
+          onClick={handleExportData}
+        />
+
+        <IconButton
+          label={t('buttons.addAccount')}
+          className="px-2"
+          icon={'user-plus'}
+          onClick={() => history.push(ROUTES.ADD_ACCOUNT_V2.path)}
+        />
+      </span>
+    </>
+  );
+
   return (
     <LayoutV2 footerFixed>
       <p className="mt-8">Your program: {currentProgram || '...'}</p>
@@ -262,19 +324,8 @@ const AccountsV2 = () => {
         onFilterReset={onFilterReset}
         defaultSortCol="name"
         tableName="Test Operators"
-        addButtonText={t('buttons.addAccount')}
-        addButtonIcon="user-plus"
-        uploadButtonText={t('buttons.uploadList')}
-        addRoute={ROUTES.ADD_ACCOUNT_V2.path}
-        uploadRoute={ROUTES.UPLOAD_ACCOUNTS_V2.path}
         isLoading={isLoading}
-        onExportData={handleExportData}
-        onActivate={handleBatchActivate}
-        onDeactivate={handleBatchDeactivate}
-        showResendEmail={showResendEmail}
-        showActivate={showActivate}
-        showDeactivate={showDeactivate}
-        handleResendEmail={handleResendEmail}
+        tableButtons={tableButtons}
       />
     </LayoutV2>
   );

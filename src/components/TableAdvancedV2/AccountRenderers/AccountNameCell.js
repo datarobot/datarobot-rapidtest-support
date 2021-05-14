@@ -13,14 +13,12 @@ const AccountNameCell = ({ data }) => {
 
   const handleSelectAccount = () => {
     if (isChecked) {
-      const updatedIds = accountIds.filter((a) => a !== data.id);
-      const updatedAccounts = accounts.filter((a) => a.id !== data.id);
-      setAccounts(updatedAccounts);
-      return setAccountIds(updatedIds);
+      setAccounts(accounts.filter((a) => a.id !== data.id));
+      setAccountIds(accountIds.filter((a) => a !== data.id));
+    } else {
+      setAccounts([...accounts, data]);
+      setAccountIds([...accountIds, data.id]);
     }
-
-    setAccounts([...accounts, data]);
-    setAccountIds([...accountIds, data.id]);
   };
 
   useEffect(() => {

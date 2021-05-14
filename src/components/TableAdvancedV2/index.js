@@ -1,18 +1,15 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 import cls from 'classnames';
 
-import { IconButton } from 'components/Button';
 import Icon from 'components/Icon';
 import Input from 'components/Input';
 import Radio from 'components/Radio';
 import HeaderCell from 'components/TableAdvancedV2/HeaderCell';
 import LoadingOverlay from 'components/TableAdvancedV2/LoadingOverlay';
 import Pagination from 'components/TableAdvancedV2/Pagination';
-import { get } from 'utils';
-import { getPrograms } from 'services/api';
 
 import 'ag-grid-community';
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -25,23 +22,11 @@ const TableAdvancedV2 = ({
   onFilter,
   onFilterReset,
   defaultSortCol,
-  addButtonText,
-  addButtonIcon,
-  uploadButtonText,
   tableName,
-  addRoute,
-  uploadRoute,
   tableOnly = false,
-  onExportData,
   isLoading = false,
-  onActivate,
-  onDeactivate,
-  showResendEmail,
-  showActivate,
-  showDeactivate,
-  handleResendEmail,
+  tableButtons,
 }) => {
-  const history = useHistory();
   const { pathname } = useLocation();
 
   const [gridApi, setGridApi] = useState(null);
@@ -53,7 +38,6 @@ const TableAdvancedV2 = ({
   const [pageSize, setPageSize] = useState(50);
   const [isLastPage, setIsLastPage] = useState(false);
   const [isFirstPage, setIsFirstPage] = useState(false);
-  const [currentProgram, setCurrentProgram] = useState('');
   const [columnApi, setColumnApi] = useState();
 
   const isAccounts = pathname.includes('/accounts');
@@ -75,9 +59,6 @@ const TableAdvancedV2 = ({
   const onGridReady = async (params) => {
     setGridApi(params.api);
     setColumnApi(params.columnApi);
-    const programs = await getPrograms();
-
-    setCurrentProgram(programs[get('program')][0].name);
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -103,9 +84,6 @@ const TableAdvancedV2 = ({
     setPageSize(parseInt(value, 10));
     gridApi.paginationSetPageSize(parseInt(value, 10));
   };
-
-  const handleUploadClick = () => history.push(uploadRoute);
-  const handleAddClick = () => history.push(addRoute);
 
   return (
     <>
@@ -177,63 +155,7 @@ const TableAdvancedV2 = ({
             </div>
 
             <div className="table-buttons flex justify-end items-center">
-              {isAccounts && (
-                <>
-                  {showResendEmail && (
-                    <IconButton
-                      label="Re-send email"
-                      className="px-2"
-                      icon="envelope"
-                      onClick={handleResendEmail}
-                    />
-                  )}
-
-                  {showDeactivate && (
-                    <IconButton
-                      label="Deactivate user(s)"
-                      className="px-2"
-                      icon="user-times"
-                      onClick={onDeactivate}
-                    />
-                  )}
-
-                  {showActivate && (
-                    <IconButton
-                      label="Activate user(s)"
-                      className="pl-2 pr-1"
-                      icon="user-check"
-                      onClick={onActivate}
-                    />
-                  )}
-                </>
-              )}
-              <span
-                className={cls('flex', {
-                  'ml-1 pl-1': isAccounts,
-                  'border-l': showResendEmail || showActivate || showDeactivate,
-                })}
-              >
-                <IconButton
-                  label={uploadButtonText}
-                  className="px-2"
-                  icon="upload"
-                  onClick={handleUploadClick}
-                />
-
-                <IconButton
-                  label="Export data"
-                  className="px-2"
-                  icon="file-export"
-                  onClick={onExportData}
-                />
-
-                <IconButton
-                  label={addButtonText}
-                  className="px-2"
-                  icon={addButtonIcon}
-                  onClick={handleAddClick}
-                />
-              </span>
+              {tableButtons}
             </div>
           </div>
         </>

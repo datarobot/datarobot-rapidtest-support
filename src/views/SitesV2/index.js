@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
@@ -12,6 +13,8 @@ import { sitesAtom, sitesToDisableAtom, siteIdsToDisableAtom } from 'rt-store';
 import { download, get, toCsv } from 'utils';
 
 import LayoutV2 from 'components/Layouts/LayoutV2';
+import Modal from 'components/Modal';
+import { IconButton } from 'components/Button';
 import TableAdvancedV2 from 'components/TableAdvancedV2';
 import SiteNameCell from 'components/TableAdvancedV2/SiteRenderers/SiteNameCell';
 import DisableSiteCell from 'components/TableAdvancedV2/SiteRenderers/DisableSiteCell';
@@ -29,9 +32,11 @@ const SitesV2 = () => {
   }, []);
 
   const [sites, setSites] = useAtom(sitesAtom);
-  const [, setSitesToDisable] = useAtom(sitesToDisableAtom);
+  const [sitesToDisable, setSitesToDisable] = useAtom(sitesToDisableAtom);
   const [siteIdsToDisable, setSiteIdsToDisable] = useAtom(siteIdsToDisableAtom);
   const [isLoading, setIsLoading] = useState(false);
+  const [showDeactivate, setShowDeactivate] = useState(false);
+  const [showActivate, setShowActivate] = useState(false);
 
   const sanitizedSites = sites.map(
     ({
@@ -119,6 +124,19 @@ const SitesV2 = () => {
     setSiteIdsToDisable(isChecked ? [] : siteIds);
   };
 
+  useEffect(() => {
+    const deactivate = sitesToDisable.every((acc) => !acc.archive);
+    const activate = sitesToDisable.every((acc) => acc.archive);
+
+    if (sitesToDisable.length > 0) {
+      setShowActivate(activate);
+      setShowDeactivate(deactivate);
+    } else {
+      setShowActivate(false);
+      setShowDeactivate(false);
+    }
+  }, [sitesToDisable]);
+
   const cols = [
     {
       renderer: 'siteNameCell',
@@ -176,6 +194,72 @@ const SitesV2 = () => {
     })();
   }, [setSites]);
 
+  const history = useHistory();
+  const [showModal, setShowModal] = useState(false);
+  const tableButtons = (
+    <>
+      <span className="flex">
+        {showDeactivate && (
+          <IconButton
+            label="Deactivate"
+            className="px-2"
+            icon="user-times"
+            onClick={() => setShowModal(true)}
+          />
+        )}
+        <Modal
+          show={showModal}
+          title="Are you sure?"
+          modalClassName="max-w-lg my-12"
+          confirmButtonText="Yes, disable them"
+          closeButtonText="No, keep them"
+          handleClose={() => {
+            setShowModal(false);
+          }}
+          confirmationAction={() => {
+            handleBatchDeactivate();
+            setShowModal(false);
+          }}
+        >
+          <p className="p-16 text-center">
+            Disabling these sites will make it unavailable to users in the
+            RapidTest app
+          </p>
+        </Modal>
+
+        {showActivate && (
+          <IconButton
+            label="Activate"
+            className="px-2"
+            icon="user-check"
+            onClick={handleBatchActivate}
+          />
+        )}
+
+        <IconButton
+          label={`+ ${t('buttons.uploadList')}`}
+          className="px-2"
+          icon="upload"
+          onClick={() => history.push(ROUTES.UPLOAD_SITES_V2.path)}
+        />
+
+        <IconButton
+          label="Export data"
+          className="px-2"
+          icon="file-export"
+          onClick={handleExportData}
+        />
+
+        <IconButton
+          label={t('buttons.addSite')}
+          className="px-2"
+          icon="building"
+          onClick={() => history.push(ROUTES.ADD_SITE_V2.path)}
+        />
+      </span>
+    </>
+  );
+
   return (
     <LayoutV2 footerFixed>
       <p className="mt-8">Your program: {currentProgram || '...'}</p>
@@ -185,15 +269,8 @@ const SitesV2 = () => {
         defaultSortCol="siteName"
         renderers={renderers}
         tableName="Sites"
-        addButtonText={t('buttons.addSite')}
-        addButtonIcon="building"
-        uploadButtonText={`+ ${t('buttons.uploadList')}`}
-        addRoute={ROUTES.ADD_SITE_V2.path}
-        uploadRoute={ROUTES.UPLOAD_SITES_V2.path}
         isLoading={isLoading}
-        onExportData={handleExportData}
-        onActivate={handleBatchActivate}
-        onDeactivate={handleBatchDeactivate}
+        tableButtons={tableButtons}
       />
     </LayoutV2>
   );

@@ -138,59 +138,45 @@ const Pagination = ({
             )}
           </>
         )}
-        {isSites && (
-          <>
-            <button
-              type="button"
-              className="btn-clear mr-1"
-              onClick={handleDeactivate}
-            >
-              Deactivate
-            </button>
-            <button type="button" className="btn-primary" onClick={onActivate}>
-              Activate
-            </button>
-          </>
-        )}
-      </span>
 
-      {isSites && sitesToDisable.length > 0 && (
-        <span className="flex items-center">
-          <p className="text-sm">
-            Sites selected: <strong>{sitesToDisable.length}</strong>
-          </p>
-          {sites.length !== siteIdsToDisable.length ? (
-            <>
-              <button
-                type="button"
-                className="btn-clear ml-2 px-2"
-                onClick={selectAllSites}
-              >
-                Select all?
-              </button>
-              <button
-                type="button"
-                className="btn-clear ml-2 px-2"
-                onClick={deselectAllSites}
-              >
-                Clear selection
-              </button>
-            </>
-          ) : (
-            <>
-              {siteIdsToDisable.length > pageSize && (
+        {isSites && sitesToDisable.length > 0 && (
+          <>
+            <p className="text-sm">
+              Sites selected: <strong>{sitesToDisable.length}</strong>
+            </p>
+            {sites.length !== siteIdsToDisable.length ? (
+              <>
+                <button
+                  type="button"
+                  className="btn-clear ml-2 px-2"
+                  onClick={selectAllSites}
+                >
+                  Select all?
+                </button>
                 <button
                   type="button"
                   className="btn-clear ml-2 px-2"
                   onClick={deselectAllSites}
                 >
-                  Deselect all?
+                  Clear selection
                 </button>
-              )}
-            </>
-          )}
-        </span>
-      )}
+              </>
+            ) : (
+              <>
+                {siteIdsToDisable.length > pageSize && (
+                  <button
+                    type="button"
+                    className="btn-clear ml-2 px-2"
+                    onClick={deselectAllSites}
+                  >
+                    Deselect all?
+                  </button>
+                )}
+              </>
+            )}
+          </>
+        )}
+      </span>
 
       {process.env.REACT_APP_ENABLE_PAGINATION_SIZE === 'true' && (
         <span className="text-sm">
