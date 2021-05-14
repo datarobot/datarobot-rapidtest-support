@@ -30,6 +30,13 @@ import {
   AccountEmailCell,
 } from 'components/TableAdvancedV2/AccountRenderers';
 
+import mailIcon from 'assets/images/icons/mail.svg';
+import activateIcon from 'assets/images/icons/account-activate.svg';
+import deactivateIcon from 'assets/images/icons/account-deactivate.svg';
+import uploadIcon from 'assets/images/icons/upload.svg';
+import exportIcon from 'assets/images/icons/export.svg';
+import addIcon from 'assets/images/icons/add.svg';
+
 const AccountsV2 = () => {
   const { t } = useTranslation();
 
@@ -178,17 +185,17 @@ const AccountsV2 = () => {
       renderer: 'accountStatusCell',
       comparator: sortStatus,
       header: 'Status',
-      colWidth: 200,
+      colWidth: 100,
       value: statusValueGetter,
       headerParams: {
-        textEnd: true,
+        // textEnd: true,
       },
     },
     {
       renderer: 'editAccountCell',
       header: 'Edit',
       disableSort: true,
-      colWidth: 50,
+      colWidth: 56,
       resizable: false,
     },
   ];
@@ -260,29 +267,28 @@ const AccountsV2 = () => {
       {showResendEmail && (
         <IconButton
           label="Re-send email"
-          className="px-2"
-          icon="envelope"
+          className="px-2 actionIcon"
+          image={mailIcon}
           onClick={handleResendEmail}
         />
       )}
-
-      {showDeactivate && (
-        <IconButton
-          label="Deactivate user(s)"
-          className="px-2"
-          icon="user-times"
-          onClick={handleBatchDeactivate}
-        />
-      )}
-
       {showActivate && (
         <IconButton
           label="Activate user(s)"
           className="pl-2 pr-1"
-          icon="user-check"
+          image={activateIcon}
           onClick={handleBatchActivate}
         />
       )}
+      {showDeactivate && (
+        <IconButton
+          label="Deactivate user(s)"
+          className="px-2 actionIcon"
+          image={deactivateIcon}
+          onClick={handleBatchDeactivate}
+        />
+      )}
+
       <span
         className={cls('flex', {
           'ml-1 pl-1': true,
@@ -291,22 +297,20 @@ const AccountsV2 = () => {
       >
         <IconButton
           label={t('buttons.uploadList')}
-          className="px-2"
-          icon="upload"
+          className="px-2 actionIcon"
+          image={uploadIcon}
           onClick={() => history.push(ROUTES.UPLOAD_ACCOUNTS_V2.path)}
         />
-
         <IconButton
           label="Export data"
-          className="px-2"
-          icon="file-export"
+          className="px-2 actionIcon"
+          image={exportIcon}
           onClick={handleExportData}
         />
-
         <IconButton
           label={t('buttons.addAccount')}
-          className="px-2"
-          icon={'user-plus'}
+          className="px-2 actionIcon"
+          image={addIcon}
           onClick={() => history.push(ROUTES.ADD_ACCOUNT_V2.path)}
         />
       </span>

@@ -5,6 +5,7 @@ import cls from 'classnames';
 import './ToggleButton.css';
 
 const ToggleButton = ({
+  v2 = false,
   defaultChecked = false,
   onChange = () => {},
   disabled = false,
@@ -30,6 +31,7 @@ const ToggleButton = ({
   const toggleClasses = cls(
     'toggle',
     {
+      v2,
       'toggle--checked': toggle,
       'toggle--disabled': disabled,
     },
@@ -38,7 +40,7 @@ const ToggleButton = ({
 
   return (
     <div onClick={onChange} className={toggleClasses}>
-      <div className={cls('toggle-container', { checked: toggle })}>
+      <div className={cls('toggle-container', { v2, checked: toggle })}>
         <div className="toggle-check" />
         <div className="toggle-uncheck" />
       </div>

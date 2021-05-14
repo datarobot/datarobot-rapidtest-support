@@ -19,6 +19,12 @@ import TableAdvancedV2 from 'components/TableAdvancedV2';
 import SiteNameCell from 'components/TableAdvancedV2/SiteRenderers/SiteNameCell';
 import DisableSiteCell from 'components/TableAdvancedV2/SiteRenderers/DisableSiteCell';
 
+import activateIcon from 'assets/images/icons/site-activate.svg';
+import deactivateIcon from 'assets/images/icons/site-deactivate.svg';
+import uploadIcon from 'assets/images/icons/upload.svg';
+import exportIcon from 'assets/images/icons/export.svg';
+import addIcon from 'assets/images/icons/add.svg';
+
 const SitesV2 = () => {
   const { t } = useTranslation();
 
@@ -199,11 +205,19 @@ const SitesV2 = () => {
   const tableButtons = (
     <>
       <span className="flex">
+        {showActivate && (
+          <IconButton
+            label="Activate"
+            className="px-2 actionIcon"
+            image={activateIcon}
+            onClick={handleBatchActivate}
+          />
+        )}
         {showDeactivate && (
           <IconButton
             label="Deactivate"
-            className="px-2"
-            icon="user-times"
+            className="px-2 actionIcon"
+            image={deactivateIcon}
             onClick={() => setShowModal(true)}
           />
         )}
@@ -227,33 +241,22 @@ const SitesV2 = () => {
           </p>
         </Modal>
 
-        {showActivate && (
-          <IconButton
-            label="Activate"
-            className="px-2"
-            icon="user-check"
-            onClick={handleBatchActivate}
-          />
-        )}
-
         <IconButton
           label={`+ ${t('buttons.uploadList')}`}
-          className="px-2"
-          icon="upload"
+          className="px-2 actionIcon"
+          image={uploadIcon}
           onClick={() => history.push(ROUTES.UPLOAD_SITES_V2.path)}
         />
-
         <IconButton
           label="Export data"
-          className="px-2"
-          icon="file-export"
+          className="px-2 actionIcon"
+          image={exportIcon}
           onClick={handleExportData}
         />
-
         <IconButton
           label={t('buttons.addSite')}
-          className="px-2"
-          icon="building"
+          className="px-2 actionIcon"
+          image={addIcon}
           onClick={() => history.push(ROUTES.ADD_SITE_V2.path)}
         />
       </span>
