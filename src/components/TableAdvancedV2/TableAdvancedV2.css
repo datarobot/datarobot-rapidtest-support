@@ -1,3 +1,6 @@
+@import '../../assets/styles/mixins.css';
+@import '../../assets/styles/typography.css';
+
 .ag-theme-rt-v2 {
   color: rgba(31, 41, 55, 1);
 
@@ -5,8 +8,15 @@
     min-height: 24rem;
   }
 
+  .ag-header-row {
+    @apply bg-white;
+  }
+
   .ag-header-cell {
-    @apply font-bold text-left text-sm uppercase border-b border-gray-400 text-gray-500 px-2;
+    @apply text-left uppercase border-b px-2;
+    @mixin label;
+    color: var(--purple-40);
+    border-color: var(--purple-30);
   }
 
   .ag-row {
@@ -14,23 +24,25 @@
   }
 
   .ag-row:hover {
-    @apply bg-gray-100;
+    background-color: var(--purple-10);
   }
 
   .ag-cell {
     @apply border-b border-gray-400 flex items-center px-2;
+    @mixin body-small;
+    color: var(--purple-90);
+    border-color: var(--purple-30);
+
+    img.cursor-pointer {
+      width: 40px;
+      height: 40px;
+    }
   }
 
   .ag-header-cell-resize {
     height: 50%;
     margin-top: 12px;
     transition: all 250ms ease-in-out;
-  }
-
-  .ag-header-cell:hover {
-    .ag-header-cell-resize {
-      @apply border-l border-gray-300;
-    }
   }
 
   * {
@@ -87,5 +99,30 @@
     .header-sort {
       @apply opacity-100;
     }
+  }
+
+  .status {
+    @apply px-2 py-1 rounded-lg;
+    &.active {
+      color: var(--green-80);
+      background-color: var(--green-10);
+    }
+
+    &.inactive {
+      color: var(--purple-80);
+      background-color: var(--purple-10);
+    }
+
+    &.pending {
+      color: var(--red);
+      background-color: var(--orange-10);
+    }
+  }
+}
+
+.actionIcon {
+  span {
+    @mixin h6;
+    color: var(--purple-70);
   }
 }

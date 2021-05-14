@@ -61,6 +61,15 @@
   letter-spacing: 0.02em;
 }
 
+@define-mixin body-small {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+}
+
 @define-mixin text-link {
   font-family: 'Open Sans', sans-serif;
   font-weight: 400;
@@ -70,7 +79,7 @@
   letter-spacing: 0.02em;
 }
 
-@define-mixin badge {
+@define-mixin label {
   font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   font-style: normal;

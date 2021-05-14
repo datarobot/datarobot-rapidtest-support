@@ -4,13 +4,14 @@ import { Link, generatePath } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import { toast } from 'react-toastify';
 
+import { ROUTES } from 'rt-constants';
+import { editSite } from 'services/api';
+
 import Modal from 'components/Modal';
 import ToggleButton from 'components/ToggleButton';
 import SuccessCheck from 'components/Notifications/SuccessCheck';
-import Icon from 'components/Icon';
 
-import { ROUTES } from 'rt-constants';
-import { editSite } from 'services/api';
+import pencil from 'assets/images/icons/pencil.svg';
 
 const DisableSiteCell = ({ value, data: { id } }) => {
   const [selected, setSelected] = useState(!value);
@@ -84,9 +85,10 @@ const DisableSiteCell = ({ value, data: { id } }) => {
               to={generatePath(ROUTES.EDIT_SITE_V2.path, { id })}
               className="mr-4 text-blue-lighter"
             >
-              <Icon iconName="pen" type="fas" className="cursor-pointer" />
+              <img src={pencil} alt="" className="cursor-pointer" />
             </Link>
             <ToggleButton
+              v2
               defaultChecked={selected}
               disabled={isLoading || id === 3}
               onChange={handleToggle}

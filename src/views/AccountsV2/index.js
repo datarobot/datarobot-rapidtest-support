@@ -2,6 +2,8 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
+import cls from 'classnames';
+import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -18,6 +20,7 @@ import { download, get, toCsv } from 'utils';
 import { dateComparator } from 'utils/table';
 
 import LayoutV2 from 'components/Layouts/LayoutV2';
+import { IconButton } from 'components/Button';
 import TableAdvancedV2 from 'components/TableAdvancedV2';
 import {
   AccountAddedCell,
@@ -26,6 +29,13 @@ import {
   EditAccountCell,
   AccountEmailCell,
 } from 'components/TableAdvancedV2/AccountRenderers';
+
+import mailIcon from 'assets/images/icons/mail.svg';
+import activateIcon from 'assets/images/icons/account-activate.svg';
+import deactivateIcon from 'assets/images/icons/account-deactivate.svg';
+import uploadIcon from 'assets/images/icons/upload.svg';
+import exportIcon from 'assets/images/icons/export.svg';
+import addIcon from 'assets/images/icons/add.svg';
 
 const AccountsV2 = () => {
   const { t } = useTranslation();
@@ -175,17 +185,17 @@ const AccountsV2 = () => {
       renderer: 'accountStatusCell',
       comparator: sortStatus,
       header: 'Status',
-      colWidth: 200,
+      colWidth: 100,
       value: statusValueGetter,
       headerParams: {
-        textEnd: true,
+        // textEnd: true,
       },
     },
     {
       renderer: 'editAccountCell',
       header: 'Edit',
       disableSort: true,
-      colWidth: 50,
+      colWidth: 56,
       resizable: false,
     },
   ];
@@ -251,6 +261,62 @@ const AccountsV2 = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const history = useHistory();
+  const tableButtons = (
+    <>
+      {showResendEmail && (
+        <IconButton
+          label="Re-send email"
+          className="px-2 actionIcon"
+          image={mailIcon}
+          onClick={handleResendEmail}
+        />
+      )}
+      {showActivate && (
+        <IconButton
+          label="Activate user(s)"
+          className="pl-2 pr-1"
+          image={activateIcon}
+          onClick={handleBatchActivate}
+        />
+      )}
+      {showDeactivate && (
+        <IconButton
+          label="Deactivate user(s)"
+          className="px-2 actionIcon"
+          image={deactivateIcon}
+          onClick={handleBatchDeactivate}
+        />
+      )}
+
+      <span
+        className={cls('flex', {
+          'ml-1 pl-1': true,
+          'border-l': showResendEmail || showActivate || showDeactivate,
+        })}
+      >
+        <IconButton
+          label={t('buttons.uploadList')}
+          className="px-2 actionIcon"
+          image={uploadIcon}
+          onClick={() => history.push(ROUTES.UPLOAD_ACCOUNTS_V2.path)}
+        />
+        <IconButton
+          label="Export data"
+          className="px-2 actionIcon"
+          image={exportIcon}
+          onClick={handleExportData}
+        />
+        <IconButton
+          label={t('buttons.addAccount')}
+          className="px-2 actionIcon"
+          image={addIcon}
+          onClick={() => history.push(ROUTES.ADD_ACCOUNT_V2.path)}
+        />
+      </span>
+    </>
+  );
+
   return (
     <LayoutV2 footerFixed>
       <p className="mt-8">Your program: {currentProgram || '...'}</p>
@@ -262,19 +328,8 @@ const AccountsV2 = () => {
         onFilterReset={onFilterReset}
         defaultSortCol="name"
         tableName="Test Operators"
-        addButtonText={t('buttons.addAccount')}
-        addButtonIcon="user-plus"
-        uploadButtonText={t('buttons.uploadList')}
-        addRoute={ROUTES.ADD_ACCOUNT_V2.path}
-        uploadRoute={ROUTES.UPLOAD_ACCOUNTS_V2.path}
         isLoading={isLoading}
-        onExportData={handleExportData}
-        onActivate={handleBatchActivate}
-        onDeactivate={handleBatchDeactivate}
-        showResendEmail={showResendEmail}
-        showActivate={showActivate}
-        showDeactivate={showDeactivate}
-        handleResendEmail={handleResendEmail}
+        tableButtons={tableButtons}
       />
     </LayoutV2>
   );

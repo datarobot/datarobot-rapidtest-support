@@ -7,6 +7,7 @@ const IconButton = ({
   className,
   label,
   onClick,
+  image,
   icon,
   iconType = 'fas',
   isDisabled,
@@ -14,15 +15,18 @@ const IconButton = ({
 }) => (
   <div className="btn-icon-container">
     <button
-      className={cls('btn-icon', className)}
+      className={cls('btn-icon items-center', className)}
       type={btnType}
       onClick={onClick}
       disabled={isDisabled}
       {...rest}
     >
-      <span className="icon">
-        <Icon iconName={icon} type={iconType} />
-      </span>
+      {image && <img className="icon" src={image} alt="" />}
+      {icon && (
+        <span className="icon">
+          <Icon iconName={icon} type={iconType} />
+        </span>
+      )}
       {label && <span className="btn-text">{label}</span>}
     </button>
   </div>

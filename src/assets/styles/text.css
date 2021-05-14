@@ -68,7 +68,7 @@
   }
 
   .badge {
-    @mixin badge;
+    @mixin label;
     color: var(--purple-100);
 
     display: inline-block;

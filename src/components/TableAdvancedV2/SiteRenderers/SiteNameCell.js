@@ -13,14 +13,12 @@ const SiteNameCell = ({ data }) => {
 
   const handleSelectSite = () => {
     if (isChecked) {
-      const updatedIds = siteIds.filter((a) => a !== data.id);
-      const updatedSites = sites.filter((s) => s !== data.id);
-      setSiteIds(updatedIds);
-      return setSites(updatedSites);
+      setSites(sites.filter((a) => a.id !== data.id));
+      setSiteIds(siteIds.filter((a) => a !== data.id));
+    } else {
+      setSites([...sites, data]);
+      setSiteIds([...siteIds, data.id]);
     }
-
-    setSites([...sites, data.id]);
-    setSiteIds([...siteIds, data.id]);
   };
 
   useEffect(() => {

@@ -22,6 +22,9 @@
 
   --red: #e93535;
 
+  --green-80: #294728;
+  --green-10: #d9f9d9;
+
   --text-color: var(--purple-90);
   --background-color: var(--purple-10);
 }
