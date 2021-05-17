@@ -187,6 +187,10 @@ export const FIREBASE_CONFIG = {
 
 export const FIREBASE_PA_CONFIG = {};
 
+export const SENTRY_DSN_DEV = process.env.REACT_APP_SENTRY_DSN_DEV;
+export const SENTRY_DSN = process.env.REACT_APP_SENTRY_DSN;
+export const SENTRY_SAMPLE_RATE = process.env.REACT_APP_SENTRY_SAMPLE_RATE;
+
 export const LANDING_PAGE_LINKS = {
   TESTING_OTHERS: [
     {
