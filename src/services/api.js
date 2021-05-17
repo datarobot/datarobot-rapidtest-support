@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { http } from 'services/http';
 import { emptyToNull } from 'utils';
+import { captureException } from '@sentry/react';
 
 export const addSite = async (payload) => {
   // Change empty strings to null, since the API validates against an empty string
@@ -84,9 +85,13 @@ export const verifyCaptcha = async (token) => {
 };
 
 export const getPrograms = async () => {
-  const { data } = await axios.get(
-    'https://rapidtest.stracdata.org/sites.json'
-  );
-
-  return data;
+  try {
+    const { data } = await axios.get(
+      'https://rapidtest.stracdata.org/sites.json'
+    );
+    return data;
+  } catch (err) {
+    captureException(err);
+    return [];
+  }
 };
