@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { ControlledInput } from 'components/Input';
 import { ControlledTextarea } from 'components/Textarea';
 import ErrorMessage from 'components/ErrorMessage';
-import PageHeader from 'components/PageHeader';
+import PageHeaderV2 from 'components/PageHeaderV2';
 
 const ContactV2 = () => {
   const { register, handleSubmit, errors } = useForm();
@@ -19,7 +19,7 @@ const ContactV2 = () => {
 
   return (
     <>
-      <PageHeader headline="Contact support" />
+      <PageHeaderV2 headline="Contact support" />
 
       {process.env.REACT_APP_ENABLE_CONTACT_FORM === 'false' ? (
         <section className="w-full flex flex-col place-items-center">

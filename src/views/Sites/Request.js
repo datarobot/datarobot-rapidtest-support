@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import cls from 'classnames';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import Autocomplete from 'components/Autocomplete';
@@ -22,7 +23,8 @@ import { LIVE_PROGRAMS, STATE_OPTIONS } from 'rt-constants';
 
 import './Sites.css';
 
-const RequestSite = ({ history }) => {
+const RequestSite = () => {
+  const history = useHistory();
   const [showSuccessMsg, setShowSuccessMsg] = useState(false);
   const [schools, setSchools] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');

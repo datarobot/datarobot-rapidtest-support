@@ -2,13 +2,15 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import Autocomplete from 'components/Autocomplete';
 import ErrorMessage from 'components/ErrorMessage';
 import Input from 'components/Input';
-import PageHeader from 'components/PageHeader';
+import PageHeaderV2 from 'components/PageHeaderV2';
 import Select from 'components/Select';
+import Button from 'components/Button';
 import Map from 'components/Map';
 
 import { ROUTES, STATE_OPTIONS } from 'rt-constants';
@@ -17,7 +19,8 @@ import { useDebounce } from 'hooks';
 import { loadGoogleScript } from 'utils';
 import { addSite, searchSchool, getSchool } from 'services/api';
 
-const AddSiteV2 = ({ history }) => {
+const AddSiteV2 = () => {
+  const history = useHistory();
   const { t } = useTranslation();
   const { control, handleSubmit, errors, setValue } = useForm();
   const [schools, setSchools] = useState([]);
@@ -163,7 +166,7 @@ const AddSiteV2 = ({ history }) => {
 
   return (
     <section className="mb-12">
-      <PageHeader headline={t('addSite.title')} />
+      <PageHeaderV2 headline={t('addSite.title')} />
 
       <div className="flex">
         <form className="w-1/2 mr-4" onSubmit={handleSubmit(onSubmit)}>
@@ -179,9 +182,9 @@ const AddSiteV2 = ({ history }) => {
             }}
             render={({ onChange, value }) => (
               <Autocomplete
+                v2
                 inputName="site_name"
                 label={t('site.label.name')} // "Site Name"
-                placeholder={t('site.label.name')}
                 onChange={({ target }) => {
                   setSearchTerm(target.value);
                   onChange(target.value);
@@ -217,9 +220,9 @@ const AddSiteV2 = ({ history }) => {
             }}
             render={({ onChange, value }) => (
               <Input
+                v2
                 name="district"
                 label="District"
-                placeholder="District"
                 onChange={onChange}
                 value={
                   currentSchool?.district
@@ -248,9 +251,9 @@ const AddSiteV2 = ({ history }) => {
                 }}
                 render={({ onChange, value }) => (
                   <Input
+                    v2
                     name="street"
                     label={t('site.label.street')} // "Street address"
-                    placeholder={t('site.label.street')}
                     onChange={onChange}
                     value={
                       currentSchool?.street
@@ -279,9 +282,9 @@ const AddSiteV2 = ({ history }) => {
                 }}
                 render={({ onChange, value }) => (
                   <Input
+                    v2
                     name="city"
                     label={t('site.label.city')} // "City"
-                    placeholder={t('site.label.city')}
                     onChange={onChange}
                     value={
                       currentSchool?.city ? currentSchool?.city : value || ''
@@ -310,9 +313,9 @@ const AddSiteV2 = ({ history }) => {
                 }}
                 render={({ onChange, value }) => (
                   <Input
+                    v2
                     name="county"
                     label={t('site.label.county')}
-                    placeholder={t('site.label.county')}
                     onChange={onChange}
                     value={
                       currentSchool?.county
@@ -341,6 +344,7 @@ const AddSiteV2 = ({ history }) => {
                 }}
                 render={({ onChange, value }) => (
                   <Select
+                    v2
                     name="state"
                     label="State"
                     options={STATE_OPTIONS}
@@ -348,7 +352,6 @@ const AddSiteV2 = ({ history }) => {
                     onChange={onChange}
                     value={currentSchool?.state || value}
                     className="mt-1"
-                    placeholder="State"
                     onBlur={updateForm}
                   />
                 )}
@@ -373,9 +376,9 @@ const AddSiteV2 = ({ history }) => {
                 }}
                 render={({ onChange, value }) => (
                   <Input
+                    v2
                     name="zip"
                     label={t('site.label.zip')}
-                    placeholder={t('site.label.zip')}
                     onChange={onChange}
                     value={
                       currentSchool?.zip ? currentSchool?.zip : value || ''
@@ -396,11 +399,12 @@ const AddSiteV2 = ({ history }) => {
             defaultValue=""
             render={({ onChange, value }) => (
               <Input
+                v2
                 name="contact_name"
                 label={t('site.label.contactName')}
-                placeholder={t('site.label.contactName')}
                 onChange={onChange}
                 value={value}
+                optional
                 className="mt-1"
               />
             )}
@@ -412,12 +416,13 @@ const AddSiteV2 = ({ history }) => {
             defaultValue=""
             render={({ onChange, value }) => (
               <Input
+                v2
                 name="contact_email"
                 label={t('site.label.contactEmail')}
                 type="email"
-                placeholder={t('site.label.contactEmail')}
                 onChange={onChange}
                 value={value}
+                optional
                 className="mt-1"
               />
             )}
@@ -447,9 +452,9 @@ const AddSiteV2 = ({ history }) => {
             }}
             render={({ onChange, value }) => (
               <Input
+                v2
                 name="clia"
                 label={t('site.label.cliaNumber')}
-                placeholder={t('site.label.cliaNumber')}
                 onChange={onChange}
                 value={value}
                 className="mt-1"
@@ -460,8 +465,10 @@ const AddSiteV2 = ({ history }) => {
           <ErrorMessage errors={errors} errorKey="clia" />
 
           <div className="btn-row end mt-4">
-            <button
-              className="btn-clear mr-1"
+            <Button
+              v2
+              outline
+              small
               type="button"
               onClick={() => {
                 handleClearState();
@@ -469,14 +476,14 @@ const AddSiteV2 = ({ history }) => {
               }}
             >
               Cancel
-            </button>
+            </Button>
 
-            <button className="btn-primary mr-2" type="submit">
+            <Button v2 primary small className="ml-4" type="submit">
               Add site
-            </button>
+            </Button>
           </div>
         </form>
-        <div className="w-1/2 2xl:w-full">
+        <div className="w-1/2 2xl:w-full mt-6">
           <Map center={mapCenter} zoom={mapZoom} />
         </div>
       </div>

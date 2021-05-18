@@ -1,17 +1,20 @@
 // @ts-nocheck
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
+
+import { ROUTES } from 'rt-constants';
+import { addAccount } from 'services/api';
 
 import ErrorMessage from 'components/ErrorMessage';
 import InfoBox from 'components/InfoBox';
 import Input from 'components/Input';
 import PageHeader from 'components/PageHeader';
-import { ROUTES } from 'rt-constants';
-import { addAccount } from 'services/api';
 
-const AddAccount = ({ history }) => {
+const AddAccount = () => {
+  const history = useHistory();
   const { control, handleSubmit, errors } = useForm();
   const { t } = useTranslation();
 

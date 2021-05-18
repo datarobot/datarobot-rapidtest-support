@@ -3,14 +3,15 @@ import { useEffect, useState } from 'react';
 import cls from 'classnames';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import Captcha from 'components/Captcha';
-import InfoBox from 'components/InfoBox';
 import Input, { ControlledInput } from 'components/Input';
 import ErrorMessage from 'components/ErrorMessage';
-import PageHeader from 'components/PageHeader';
+import PageHeaderV2 from 'components/PageHeaderV2';
 import Select from 'components/Select';
+import Button from 'components/Button';
 
 import { LIVE_PROGRAMS } from 'rt-constants';
 
@@ -19,7 +20,8 @@ import { get, set, sortArrayOfObjects } from 'utils';
 
 import './AccountsV2.css';
 
-const RequestAccountV2 = ({ history }) => {
+const RequestAccountV2 = () => {
+  const history = useHistory();
   const [showSuccessMsg, setShowSuccessMsg] = useState(false);
   const [programList, setProgramList] = useState([]);
   const [captchaVerified, setCaptchaVerified] = useState(false);
@@ -85,13 +87,13 @@ const RequestAccountV2 = ({ history }) => {
 
   return (
     <>
-      <PageHeader headline="Request an account" />
+      <PageHeaderV2 headline="Request an account" />
       <section className="flex mb-4">
         <form
           className={cls('w-full request-form', { isSuccess: showSuccessMsg })}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <p className="sub-heading text-blue mb-2">What program are you in?</p>
+          <p className="sub-heading my-2">What program are you in?</p>
 
           <Controller
             control={control}
@@ -105,8 +107,8 @@ const RequestAccountV2 = ({ history }) => {
             }}
             render={({ onChange, value }) => (
               <Select
+                v2
                 name="state"
-                placeholder="Select a program"
                 options={programList}
                 isRequired
                 onChange={(e) => {
@@ -120,18 +122,14 @@ const RequestAccountV2 = ({ history }) => {
           />
           <ErrorMessage errors={errors} errorKey="state" />
 
-          <p className="sub-heading text-blue mb-2 mt-8">Personal Info</p>
+          <p className="sub-heading mb-2 mt-8">Personal Info</p>
 
           <div className="form-grid">
-            <fieldset
-              className={cls('bg-blue-lightest p-8 mr-4 form', {
-                // 'col-span-2': !showSuccessMsg,
-              })}
-            >
+            <fieldset className="mr-4 form">
               <ControlledInput
+                v2
                 name="first_name"
                 label="First name"
-                placeholder="John/Jane"
                 isRequired
                 ref={register({
                   required: {
@@ -143,9 +141,9 @@ const RequestAccountV2 = ({ history }) => {
               <ErrorMessage errors={errors} errorKey="first_name" />
 
               <ControlledInput
+                v2
                 name="last_name"
                 label="Last name"
-                placeholder="Doe"
                 isRequired
                 ref={register({
                   required: {
@@ -157,8 +155,8 @@ const RequestAccountV2 = ({ history }) => {
               <ErrorMessage errors={errors} errorKey="last_name" />
 
               <ControlledInput
+                v2
                 name="email_address"
-                placeholder="contact@example.com"
                 label="Email address"
                 isRequired
                 ref={register({
@@ -182,9 +180,12 @@ const RequestAccountV2 = ({ history }) => {
                 // eslint-disable-next-line no-unused-vars
                 render={({ onChange, value }) => (
                   <Input
+                    v2
                     name="phone_number_office"
                     label="Phone number"
-                    placeholder="(555) 867-5309"
+                    placeholder="(000) 000-0000"
+                    mask="(999) 999-9999"
+                    optional
                     onChange={({ target }) => {
                       const x = target.value
                         .replace(/\D/g, '')
@@ -207,33 +208,29 @@ const RequestAccountV2 = ({ history }) => {
               </div>
 
               <div className="btn-row end mt-4">
-                <button className="btn-clear" type="button" onClick={() => {}}>
+                <Button v2 outline small type="button" onClick={() => {}}>
                   Cancel
-                </button>
+                </Button>
 
-                <button
-                  className="btn-primary mr-2"
+                <Button
+                  v2
+                  primary
+                  small
+                  className="ml-4"
                   type="submit"
                   disabled={!captchaVerified}
                 >
                   Request Account
-                </button>
+                </Button>
               </div>
             </fieldset>
-
-            <div className="info w-1/4">
-              <InfoBox
-                heading="Why do we need this?"
-                subtext="Information for health workers and school personnel"
-              />
-            </div>
           </div>
         </form>
         <section
           className={cls('request-success', { isSuccess: showSuccessMsg })}
         >
           <div className="text-center">
-            <p className="sub-heading text-blue mb-6">
+            <p className="sub-heading mb-6">
               Thanks for submitting your request!
             </p>
             <p>Someone will contact you shortly.</p>

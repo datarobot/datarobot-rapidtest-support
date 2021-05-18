@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import cls from 'classnames';
@@ -16,7 +17,8 @@ import { ROUTES, VALID_ACCOUNT_COLUMNS } from 'rt-constants';
 
 import fileTemplate from 'assets/static/rapidtest_accounts_template.csv';
 
-const UploadAccounts = ({ history }) => {
+const UploadAccounts = () => {
+  const history = useHistory();
   const [errors, setErrors] = useState([]);
   const toastId = useRef(null);
 

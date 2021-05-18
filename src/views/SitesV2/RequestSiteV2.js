@@ -3,15 +3,17 @@ import { useEffect, useState } from 'react';
 import cls from 'classnames';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import Autocomplete from 'components/Autocomplete';
 import Input, { ControlledInput } from 'components/Input';
 import ErrorMessage from 'components/ErrorMessage';
 import Map from 'components/Map';
-import PageHeader from 'components/PageHeader';
+import PageHeaderV2 from 'components/PageHeaderV2';
 import ProgramList from 'components/ProgramList';
 import Select from 'components/Select';
+import Button from 'components/Button';
 
 import { useDebounce } from 'hooks';
 
@@ -22,7 +24,8 @@ import { LIVE_PROGRAMS, STATE_OPTIONS } from 'rt-constants';
 
 import './SitesV2.css';
 
-const RequestSiteV2 = ({ history }) => {
+const RequestSiteV2 = () => {
+  const history = useHistory();
   const [showSuccessMsg, setShowSuccessMsg] = useState(false);
   const [schools, setSchools] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -154,13 +157,14 @@ const RequestSiteV2 = ({ history }) => {
 
   return (
     <>
-      <PageHeader headline="Request a site" />
+      <PageHeaderV2 headline="Request a site" />
       <section className="flex mb-12">
         <form
           className={cls('request-site-form', { isSuccess: showSuccessMsg })}
           onSubmit={handleSubmit(onSubmit)}
         >
           <ProgramList
+            v2
             name="program"
             onChange={handleProgramChange}
             selected={selectedProgram}
@@ -177,9 +181,9 @@ const RequestSiteV2 = ({ history }) => {
             }}
             render={({ onChange, value, ref }) => (
               <Autocomplete
+                v2
                 inputName="site_name"
                 label={t('site.label.name')} // "Site Name"
-                placeholder={t('site.label.name')}
                 onChange={({ target }) => {
                   setSearchTerm(target.value);
                   onChange(target.value);
@@ -208,9 +212,9 @@ const RequestSiteV2 = ({ history }) => {
           <fieldset className="flex">
             <div className="w-1/2 mr-2">
               <ControlledInput
+                v2
                 name="street"
                 label="Street Address"
-                placeholder="1234 Street Rd."
                 isRequired
                 ref={register({
                   required: {
@@ -223,9 +227,9 @@ const RequestSiteV2 = ({ history }) => {
             </div>
             <div className="w-1/2">
               <ControlledInput
+                v2
                 name="city"
                 label="City"
-                placeholder="Hill Valley"
                 isRequired
                 ref={register({
                   required: {
@@ -241,9 +245,9 @@ const RequestSiteV2 = ({ history }) => {
           <fieldset className="flex">
             <div className="w-1/2 mr-2">
               <ControlledInput
+                v2
                 name="county"
                 label="County"
-                placeholder="Your County"
                 isRequired
                 ref={register({
                   required: {
@@ -268,6 +272,7 @@ const RequestSiteV2 = ({ history }) => {
                 }}
                 render={({ onChange, value }) => (
                   <Select
+                    v2
                     name="state"
                     label="State"
                     options={STATE_OPTIONS}
@@ -283,9 +288,9 @@ const RequestSiteV2 = ({ history }) => {
 
             <div className="w-1/4 ml-2">
               <ControlledInput
+                v2
                 name="zip"
                 label="Zip Code"
-                placeholder="43035"
                 isRequired
                 ref={register({
                   required: {
@@ -300,9 +305,9 @@ const RequestSiteV2 = ({ history }) => {
           </fieldset>
 
           <ControlledInput
+            v2
             name="contact_name"
             label="Contact name"
-            placeholder="John/Jane Doe"
             isRequired
             ref={register({
               required: {
@@ -314,9 +319,9 @@ const RequestSiteV2 = ({ history }) => {
           <ErrorMessage errors={errors} errorKey="contact_name" />
 
           <ControlledInput
+            v2
             name="contact_email"
             label="Contact email address"
-            placeholder="contact@example.com"
             isRequired
             ref={register({
               required: {
@@ -338,9 +343,12 @@ const RequestSiteV2 = ({ history }) => {
             // eslint-disable-next-line no-unused-vars
             render={({ onChange, value }) => (
               <Input
+                v2
                 name="contact_phone_number"
                 label="Contact phone number"
-                placeholder="(555) 867-5309"
+                placeholder="(000) 000-0000"
+                mask="(999) 999-9999"
+                optional
                 onChange={({ target }) => {
                   const x = target.value
                     .replace(/\D/g, '')
@@ -356,9 +364,9 @@ const RequestSiteV2 = ({ history }) => {
           />
 
           <ControlledInput
+            v2
             name="clia"
             label="CLIA Number"
-            placeholder="CLIA Number"
             isRequired
             ref={register({
               required: {
@@ -370,26 +378,25 @@ const RequestSiteV2 = ({ history }) => {
           <ErrorMessage errors={errors} errorKey="clia" />
 
           <div className="btn-row end mt-4">
-            <button
-              className="btn-clear"
-              type="button"
-              onClick={handleClearState}
-            >
+            <Button v2 outline small type="button" onClick={handleClearState}>
               Cancel
-            </button>
+            </Button>
 
-            <button
-              className="btn-primary mr-2"
+            <Button
+              v2
+              primary
+              small
+              className="ml-4"
               type="submit"
               disabled={!selectedProgram}
             >
               Request Site
-            </button>
+            </Button>
           </div>
         </form>
 
         {!showSuccessMsg && (
-          <section className="w-3/5 flex justify-center items-center">
+          <section className="w-3/5 flex justify-center items-center mt-6">
             <Map center={mapCenter} zoom={mapZoom} />
           </section>
         )}
@@ -398,7 +405,7 @@ const RequestSiteV2 = ({ history }) => {
           className={cls('request-site-success', { isSuccess: showSuccessMsg })}
         >
           <div className="text-center">
-            <p className="sub-heading text-blue mb-6">
+            <p className="sub-heading mb-6">
               Thanks for submitting your request!
             </p>
             <p>Someone will contact you shortly.</p>

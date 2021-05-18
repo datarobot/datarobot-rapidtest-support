@@ -2,16 +2,19 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import ErrorMessage from 'components/ErrorMessage';
 import InfoBox from 'components/InfoBox';
 import Input from 'components/Input';
-import PageHeader from 'components/PageHeader';
+import PageHeaderV2 from 'components/PageHeaderV2';
 import { ROUTES } from 'rt-constants';
 import { addAccount } from 'services/api';
+import Button from '../../components/Button';
 
-const AddAccountV2 = ({ history }) => {
+const AddAccountV2 = () => {
+  const history = useHistory();
   const { control, handleSubmit, errors } = useForm();
   const { t } = useTranslation();
 
@@ -34,11 +37,11 @@ const AddAccountV2 = ({ history }) => {
 
   return (
     <>
-      <PageHeader headline="Add New Account" />
+      <PageHeaderV2 headline="Add New Account" />
 
       <section className="flex">
         <form className="w-1/2 mr-8" onSubmit={handleSubmit(onSubmit)}>
-          <p className="sub-heading text-blue">Personal Info</p>
+          <h3>Personal Info</h3>
           <fieldset className="flex">
             <div className="w-1/2 mr-2">
               <Controller
@@ -47,9 +50,9 @@ const AddAccountV2 = ({ history }) => {
                 defaultValue=""
                 render={({ onChange, value }) => (
                   <Input
+                    v2
                     name="first_name"
                     label="First Name"
-                    placeholder="First name"
                     onChange={onChange}
                     value={value}
                     isRequired
@@ -66,9 +69,9 @@ const AddAccountV2 = ({ history }) => {
                 defaultValue=""
                 render={({ onChange, value }) => (
                   <Input
+                    v2
                     name="last_name"
                     label="Last Name"
-                    placeholder="Last name"
                     onChange={onChange}
                     value={value}
                     isRequired
@@ -95,10 +98,10 @@ const AddAccountV2 = ({ history }) => {
             }}
             render={({ onChange, value }) => (
               <Input
+                v2
                 name="email_address"
                 label="Email"
                 type="email"
-                placeholder="Email"
                 onChange={onChange}
                 value={value}
                 className="mt-2"
@@ -114,9 +117,11 @@ const AddAccountV2 = ({ history }) => {
             defaultValue=""
             render={({ onChange, value }) => (
               <Input
+                v2
                 name="phone_number_office"
                 label="Phone"
-                placeholder="(555) 867-5309"
+                placeholder="(000) 000-0000"
+                mask="(999) 999-9999"
                 onChange={({ target }) => {
                   const x = target.value
                     .replace(/\D/g, '')
@@ -128,31 +133,27 @@ const AddAccountV2 = ({ history }) => {
                   onChange(target.value);
                 }}
                 value={value}
+                optional
                 className="mt-2"
               />
             )}
           />
 
           <div className="btn-row end mt-4">
-            <button
-              className="btn-clear mr-1"
+            <Button
+              v2
+              outline
+              small
               onClick={() => history.goBack()}
               type="button"
             >
               Cancel
-            </button>
-            <button className="btn-primary mr-2" type="submit">
+            </Button>
+            <Button v2 primary small className="ml-4" type="submit">
               Save Info
-            </button>
+            </Button>
           </div>
         </form>
-
-        <div className="w-1/4">
-          <InfoBox
-            heading="Account Requirements"
-            subtext="To create an account, first name, last name, and email are required."
-          />
-        </div>
       </section>
     </>
   );

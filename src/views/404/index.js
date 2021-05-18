@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import PageHeader from 'components/PageHeader';
 
 import { ROUTES } from 'rt-constants';
 
-const Subtext = ({ history }) => {
-  const goBack = () => history.goBack();
+const Subtext = () => {
+  const history = useHistory();
 
   return (
     <>
@@ -15,7 +15,7 @@ const Subtext = ({ history }) => {
       </p>
       <p className="mt-8">
         Or, you can{' '}
-        <button className="btn-link" onClick={goBack}>
+        <button className="btn-link" onClick={() => history.goBack()}>
           go back to the previous page
         </button>
         .
@@ -24,11 +24,14 @@ const Subtext = ({ history }) => {
   );
 };
 
-const FourOhFour = ({ history }) => (
-  <PageHeader
-    headline="Page not found"
-    subtext={<Subtext history={history} />}
-  />
-);
+const FourOhFour = () => {
+  const history = useHistory();
+  return (
+    <PageHeader
+      headline="Page not found"
+      subtext={<Subtext history={history} />}
+    />
+  );
+};
 
 export default FourOhFour;

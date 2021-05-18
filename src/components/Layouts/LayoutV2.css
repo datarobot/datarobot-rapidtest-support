@@ -78,6 +78,16 @@
     @apply px-5 mx-auto w-full;
     max-width: var(--max-width);
   }
+
+  .text-blue {
+    color: unset !important;
+  }
+
+  .leaflet-container {
+    a {
+      @apply no-underline;
+    }
+  }
 }
 
 @mixin for-size-phone {

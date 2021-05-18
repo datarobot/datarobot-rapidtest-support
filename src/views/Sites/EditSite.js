@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
 
@@ -19,7 +19,8 @@ import { currentSiteAtom } from 'rt-store';
 
 import { editSite, getSite } from 'services/api';
 
-const Edit = ({ history }) => {
+const Edit = () => {
+  const history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
   const { handleSubmit, errors, register } = useForm();

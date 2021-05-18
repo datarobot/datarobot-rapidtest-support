@@ -138,7 +138,7 @@ const TableAdvancedV2 = ({
         >
           <AgGridReact
             onGridReady={onGridReady}
-            rowData={rows}
+            rowData={isLoading ? null : rows}
             domLayout={'autoHeight'}
             rowHeight={40}
             headerHeight={45}
@@ -195,20 +195,21 @@ const TableAdvancedV2 = ({
               )
             )}
           </AgGridReact>
-
-          <div className="pagination-panel">
-            <Selector gridApi={gridApi} pageSize={pageSize} />
-            <Pagination
-              currentPage={currentPage}
-              gridApi={gridApi}
-              isFirstPage={isFirstPage}
-              isLastPage={isLastPage}
-              totalPages={totalPages}
-              pageSize={pageSize}
-              rowCount={rowCount}
-              onPageSizeChange={handlePageSizeChange}
-            />
-          </div>
+          {currentPage > 0 && (
+            <div className="pagination-panel">
+              <Selector gridApi={gridApi} pageSize={pageSize} />
+              <Pagination
+                currentPage={currentPage}
+                gridApi={gridApi}
+                isFirstPage={isFirstPage}
+                isLastPage={isLastPage}
+                totalPages={totalPages}
+                pageSize={pageSize}
+                rowCount={rowCount}
+                onPageSizeChange={handlePageSizeChange}
+              />
+            </div>
+          )}
         </div>
       </div>
     </>
