@@ -41,7 +41,7 @@ const SitesV2 = () => {
   const [sites, setSites] = useAtom(sitesAtom);
   const [sitesToDisable, setSitesToDisable] = useAtom(sitesToDisableAtom);
   const [siteIdsToDisable, setSiteIdsToDisable] = useAtom(siteIdsToDisableAtom);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [showDeactivate, setShowDeactivate] = useState(false);
   const [showActivate, setShowActivate] = useState(false);
 

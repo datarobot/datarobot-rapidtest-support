@@ -16,6 +16,8 @@ import UploadHeaderText from 'components/UploadHeaderText';
 
 import fileTemplate from 'assets/static/rapidtest_accounts_template.csv';
 
+import './AccountsV2.css';
+
 const UploadAccountsV2 = () => {
   const history = useHistory();
   const [errors, setErrors] = useState([]);

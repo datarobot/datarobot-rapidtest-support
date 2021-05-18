@@ -21,7 +21,7 @@
   }
 
   &.v2 {
-    @apply mx-2;
+    @apply mx-2 outline-none;
 
     .btn-text {
       @mixin h6;

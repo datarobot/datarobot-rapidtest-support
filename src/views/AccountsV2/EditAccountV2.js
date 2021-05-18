@@ -11,6 +11,7 @@ import Loading from 'components/Loading';
 import { ControlledCheckbox } from 'components/Checkbox';
 import InfoBox from 'components/InfoBox';
 import { ControlledInput } from 'components/Input';
+import Button from 'components/Button';
 import PageHeaderV2 from 'components/PageHeaderV2';
 
 import { ROUTES } from 'rt-constants';
@@ -74,7 +75,7 @@ const EditAccountV2 = () => {
 
   return (
     <section className="mb-12">
-      {currentAccount.first_name && (
+      {!isLoading && (
         <PageHeaderV2
           headline={`${t('editSite.title')} ${currentAccount?.first_name} ${
             currentAccount?.last_name
@@ -88,6 +89,7 @@ const EditAccountV2 = () => {
         <section className="flex">
           <form className="w-2/5 mr-8" onSubmit={handleSubmit(onSubmit)}>
             <ControlledInput
+              v2
               name="first_name"
               label="First name"
               placeholder="First name"
@@ -106,6 +108,7 @@ const EditAccountV2 = () => {
             <ErrorMessage errors={errors} errorKey="first_name" />
 
             <ControlledInput
+              v2
               name="last_name"
               label="Last name"
               placeholder="Last name"
@@ -118,6 +121,7 @@ const EditAccountV2 = () => {
             <ErrorMessage errors={errors} errorKey="last_name" />
 
             <ControlledInput
+              v2
               name="email_address"
               label="Email address"
               placeholder="Email address"
@@ -128,6 +132,7 @@ const EditAccountV2 = () => {
             <ErrorMessage errors={errors} errorKey="email_address" />
 
             <ControlledInput
+              v2
               name="phone_number_office"
               label="Phone number"
               placeholder="Phone number"
@@ -142,9 +147,11 @@ const EditAccountV2 = () => {
                 handleOnChange('phone_number_office', target.value);
               }}
               value={currentAccount?.phone_number_office || ''}
+              optional
             />
 
             <ControlledCheckbox
+              v2
               name="archive"
               ref={register}
               isChecked={!currentAccount?.archive || false}
@@ -156,30 +163,28 @@ const EditAccountV2 = () => {
             />
 
             <div className="btn-row end mt-4">
-              <button
-                className="btn-clear mr-1"
+              <Button
+                v2
+                outline
+                small
                 type="button"
                 onClick={() => history.goBack()}
               >
                 Cancel
-              </button>
+              </Button>
 
-              <button
-                className="btn-primary mr-2"
+              <Button
+                v2
+                primary
+                small
+                className="ml-4"
                 type="submit"
                 disabled={!patchData}
               >
                 Save Info
-              </button>
+              </Button>
             </div>
           </form>
-
-          <div className="w-1/4">
-            <InfoBox
-              heading="Account requirements"
-              subtext="First name, last name, and email are required."
-            />
-          </div>
         </section>
       )}
     </section>

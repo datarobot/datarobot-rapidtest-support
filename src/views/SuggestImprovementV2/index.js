@@ -26,7 +26,7 @@ const SuggestImprovementV2 = () => {
       <section className="flex">
         {process.env.REACT_APP_ENABLE_CONTACT_FORM === 'false' ? (
           <section className="w-full flex flex-col place-items-center">
-            <p className="headline pt-32 pb-12">Coming Soon</p>
+            <h2 className="pt-32 pb-12">Coming Soon</h2>
             <div className="text-lg text-center">
               <p className="pb-4">We're working hard to enable this feature.</p>
               <p>

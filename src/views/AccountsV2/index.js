@@ -58,7 +58,7 @@ const AccountsV2 = () => {
     accountIdsToDisableAtom
   );
   const [accountFilter, setAccountFilter] = useAtom(accountFilterAtom);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [showResendEmail, setShowResendEmail] = useState(false);
   const [showDeactivate, setShowDeactivate] = useState(false);
   const [showActivate, setShowActivate] = useState(false);

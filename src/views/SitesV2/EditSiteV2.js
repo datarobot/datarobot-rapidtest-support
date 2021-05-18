@@ -11,6 +11,7 @@ import ErrorMessage from 'components/ErrorMessage';
 import Loading from 'components/Loading';
 import PageHeaderV2 from 'components/PageHeaderV2';
 import Select from 'components/Select';
+import Button from 'components/Button';
 import Map from 'components/Map';
 
 import { STATE_OPTIONS, ROUTES } from 'rt-constants';
@@ -78,9 +79,11 @@ const EditSiteV2 = () => {
 
   return (
     <section className="mb-12">
-      {currentSite.site_name && (
+      {!isLoading && (
         <PageHeaderV2
-          headline={`${t('editSite.title')} ${currentSite.site_name}`}
+          headline={`${t('editSite.title')} ${
+            currentSite.site_name || 'untitled'
+          }`}
         />
       )}
 
@@ -90,9 +93,9 @@ const EditSiteV2 = () => {
         <div className="flex">
           <form className="w-1/2 mr-4" onSubmit={handleSubmit(onSubmit)}>
             <ControlledInput
+              v2
               name="site_name"
               label={t('site.label.name')}
-              placeholder={t('site.label.name')}
               onChange={({ target }) =>
                 handleOnChange('site_name', target.value)
               }
@@ -108,9 +111,9 @@ const EditSiteV2 = () => {
             />
 
             <ControlledInput
+              v2
               name="district"
               label="District"
-              placeholder="District"
               onChange={({ target }) =>
                 handleOnChange('district', target.value, true)
               }
@@ -128,9 +131,9 @@ const EditSiteV2 = () => {
             <fieldset className="flex">
               <div className="w-1/2 mr-2">
                 <ControlledInput
+                  v2
                   name="street"
                   label={t('site.label.street')}
-                  placeholder={t('site.label.street')}
                   onChange={({ target }) =>
                     handleOnChange('street', target.value, true)
                   }
@@ -148,9 +151,9 @@ const EditSiteV2 = () => {
 
               <div className="w-1/2">
                 <ControlledInput
+                  v2
                   name="city"
                   label={t('site.label.city')}
-                  placeholder={t('site.label.city')}
                   onChange={({ target }) =>
                     handleOnChange('city', target.value, true)
                   }
@@ -169,9 +172,9 @@ const EditSiteV2 = () => {
             <fieldset className="flex">
               <div className="w-1/2 mr-2">
                 <ControlledInput
+                  v2
                   name="county"
                   label={t('site.label.county')}
-                  placeholder={t('site.label.county')}
                   onChange={({ target }) =>
                     handleOnChange('county', target.value)
                   }
@@ -192,6 +195,7 @@ const EditSiteV2 = () => {
 
               <div className="w-1/4 mr-2">
                 <Select
+                  v2
                   name="state"
                   label={t('site.label.state')}
                   options={STATE_OPTIONS}
@@ -212,9 +216,9 @@ const EditSiteV2 = () => {
 
               <div className="w-1/4">
                 <ControlledInput
+                  v2
                   name="zip"
                   label={t('site.label.zip')}
-                  placeholder={t('site.label.zip')}
                   onChange={({ target }) => handleOnChange('zip', target.value)}
                   value={currentSite?.zip || ''}
                   className="mt-1"
@@ -233,33 +237,36 @@ const EditSiteV2 = () => {
             </fieldset>
 
             <ControlledInput
+              v2
               name="contact_name"
               label={t('site.label.contactName')}
-              placeholder={t('site.label.contactName')}
               onChange={({ target }) =>
                 handleOnChange('contact_name', target.value)
               }
+              optional
               ref={register}
               value={currentSite?.contact_name || ''}
             />
 
             <ControlledInput
+              v2
               name="contactEmail"
               label={t('site.label.contactEmail')}
               type="email"
-              placeholder={t('site.label.contactEmail')}
               onChange={({ target }) =>
                 handleOnChange('contactEmail', target.value)
               }
               value={currentSite?.contact_email || ''}
+              optional
               ref={register}
             />
             <ControlledInput
+              v2
               name="clia"
               label={t('site.label.cliaNumber')}
-              placeholder={t('site.label.cliaNumber')}
               onChange={({ target }) => handleOnChange('clia', target.value)}
               value={currentSite?.clia || ''}
+              optional
               ref={register({
                 rules: {
                   required: {
@@ -283,20 +290,22 @@ const EditSiteV2 = () => {
             />
 
             <div className="btn-row end mt-4">
-              <button
-                className="btn-clear mr-1"
+              <Button
+                v2
+                small
+                transparent
                 type="button"
                 onClick={() => history.goBack()}
               >
                 Cancel
-              </button>
+              </Button>
 
-              <button className="btn-primary mr-2" type="submit">
+              <Button v2 small primary className="ml-4" type="submit">
                 Save Info
-              </button>
+              </Button>
             </div>
           </form>
-          <div className="w-1/2 2xl:w-full">
+          <div className="w-1/2 2xl:w-full mt-6">
             <Map center={mapCenter} zoom={mapZoom} />
           </div>
         </div>

@@ -50,7 +50,9 @@ const Input = ({
         >
           {label}
           {label && ' '}
-          {optional && <span className="optional">Optional</span>}
+          {optional && (
+            <span className={cls('optional', { 'ml-2': label })}>Optional</span>
+          )}
         </label>
       )}
       {icon && (
@@ -161,7 +163,11 @@ export const ControlledInput = forwardRef(
             htmlFor={name}
           >
             {label}
-            {optional && <span className="optional">Optional</span>}
+            {optional && (
+              <span className={cls('optional', { 'ml-2': label })}>
+                Optional
+              </span>
+            )}
           </label>
         )}
         <span className={cls('w-full', { relative: type === 'password' })}>

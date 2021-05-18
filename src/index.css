@@ -118,8 +118,8 @@ body {
   }
 
   .full-height {
-    min-height: calc(100vh - 130px);
-    max-height: calc(100vh - 130px);
+    min-height: calc(100vh - 230px);
+    max-height: calc(100vh - 230px);
   }
 
   .headline {

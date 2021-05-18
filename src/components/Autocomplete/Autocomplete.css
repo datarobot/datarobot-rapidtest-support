@@ -4,6 +4,10 @@
   position: absolute;
   top: 2.15rem;
   right: 0;
+
+  &.v2 {
+    top: 3.15rem;
+  }
 }
 
 .clearIcon:hover {
