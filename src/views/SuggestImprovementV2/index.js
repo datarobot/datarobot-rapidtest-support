@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { ControlledInput } from 'components/Input';
 import { ControlledTextarea } from 'components/Textarea';
 import ErrorMessage from 'components/ErrorMessage';
-import PageHeader from 'components/PageHeader';
+import PageHeaderV2 from 'components/PageHeaderV2';
 
 const SuggestImprovementV2 = () => {
   const [showSuccessMsg, setShowSuccessMsg] = useState(false);
@@ -21,7 +21,7 @@ const SuggestImprovementV2 = () => {
 
   return (
     <>
-      <PageHeader headline="Suggest an improvement" />
+      <PageHeaderV2 headline="Suggest an improvement" />
 
       <section className="flex">
         {process.env.REACT_APP_ENABLE_CONTACT_FORM === 'false' ? (

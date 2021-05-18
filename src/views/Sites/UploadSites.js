@@ -2,6 +2,7 @@
 import { Fragment, useRef, useState } from 'react';
 import cls from 'classnames';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import FileUpload from 'components/FileUpload';
@@ -18,7 +19,8 @@ import fileTemplate from 'assets/static/rapidtest_sites_template.csv';
 
 import './Sites.css';
 
-const UploadSites = ({ history }) => {
+const UploadSites = () => {
+  const history = useHistory();
   const [errors, setErrors] = useState([]);
   const toastId = useRef(null);
 

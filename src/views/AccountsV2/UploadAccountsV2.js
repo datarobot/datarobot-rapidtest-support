@@ -1,22 +1,23 @@
 // @ts-nocheck
 import { useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import cls from 'classnames';
 
-import FileUpload from 'components/FileUpload';
-import PageHeader from 'components/PageHeader';
-import UploadHeaderText from 'components/UploadHeaderText';
-
+import { ROUTES, VALID_ACCOUNT_COLUMNS } from 'rt-constants';
 import { addAccount } from 'services/api';
 import { isValidAccountList, getAccountError } from 'utils/validate';
 import { parseError } from 'utils/errors';
 
-import { ROUTES, VALID_ACCOUNT_COLUMNS } from 'rt-constants';
+import FileUpload from 'components/FileUpload';
+import PageHeaderV2 from 'components/PageHeaderV2';
+import UploadHeaderText from 'components/UploadHeaderText';
 
 import fileTemplate from 'assets/static/rapidtest_accounts_template.csv';
 
-const UploadAccountsV2 = ({ history }) => {
+const UploadAccountsV2 = () => {
+  const history = useHistory();
   const [errors, setErrors] = useState([]);
   const toastId = useRef(null);
 
@@ -49,7 +50,7 @@ const UploadAccountsV2 = ({ history }) => {
 
   return (
     <>
-      <PageHeader
+      <PageHeaderV2
         headline="Upload a list of accounts"
         subtext={
           <UploadHeaderText

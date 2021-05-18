@@ -2,12 +2,13 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import Autocomplete from 'components/Autocomplete';
 import ErrorMessage from 'components/ErrorMessage';
 import Input from 'components/Input';
-import PageHeader from 'components/PageHeader';
+import PageHeaderV2 from 'components/PageHeaderV2';
 import Select from 'components/Select';
 import Map from 'components/Map';
 
@@ -17,7 +18,8 @@ import { useDebounce } from 'hooks';
 import { loadGoogleScript } from 'utils';
 import { addSite, searchSchool, getSchool } from 'services/api';
 
-const AddSiteV2 = ({ history }) => {
+const AddSiteV2 = () => {
+  const history = useHistory();
   const { t } = useTranslation();
   const { control, handleSubmit, errors, setValue } = useForm();
   const [schools, setSchools] = useState([]);
@@ -163,7 +165,7 @@ const AddSiteV2 = ({ history }) => {
 
   return (
     <section className="mb-12">
-      <PageHeader headline={t('addSite.title')} />
+      <PageHeaderV2 headline={t('addSite.title')} />
 
       <div className="flex">
         <form className="w-1/2 mr-4" onSubmit={handleSubmit(onSubmit)}>

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { useAtom } from 'jotai';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import ErrorMessage from 'components/ErrorMessage';
@@ -11,14 +11,15 @@ import Loading from 'components/Loading';
 import { ControlledCheckbox } from 'components/Checkbox';
 import InfoBox from 'components/InfoBox';
 import { ControlledInput } from 'components/Input';
-import PageHeader from 'components/PageHeader';
+import PageHeaderV2 from 'components/PageHeaderV2';
 
 import { ROUTES } from 'rt-constants';
 
 import { currentAccountAtom } from 'rt-store';
 import { editAccount, getAccount } from 'services/api';
 
-const EditAccountV2 = ({ history }) => {
+const EditAccountV2 = () => {
+  const history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
   const { handleSubmit, errors, register } = useForm();
@@ -74,7 +75,7 @@ const EditAccountV2 = ({ history }) => {
   return (
     <section className="mb-12">
       {currentAccount.first_name && (
-        <PageHeader
+        <PageHeaderV2
           headline={`${t('editSite.title')} ${currentAccount?.first_name} ${
             currentAccount?.last_name
           }`}

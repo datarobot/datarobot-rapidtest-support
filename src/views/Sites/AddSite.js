@@ -2,7 +2,13 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
+import { ROUTES, STATE_OPTIONS } from 'rt-constants';
+import { useDebounce } from 'hooks';
+import { loadGoogleScript } from 'utils';
+import { addSite, searchSchool, getSchool } from 'services/api';
 
 import Autocomplete from 'components/Autocomplete';
 import ErrorMessage from 'components/ErrorMessage';
@@ -11,13 +17,8 @@ import PageHeader from 'components/PageHeader';
 import Select from 'components/Select';
 import Map from 'components/Map';
 
-import { ROUTES, STATE_OPTIONS } from 'rt-constants';
-
-import { useDebounce } from 'hooks';
-import { loadGoogleScript } from 'utils';
-import { addSite, searchSchool, getSchool } from 'services/api';
-
-const AddSite = ({ history }) => {
+const AddSite = () => {
+  const history = useHistory();
   const { t } = useTranslation();
   const { control, handleSubmit, errors, setValue } = useForm();
   const [schools, setSchools] = useState([]);

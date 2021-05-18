@@ -2,14 +2,14 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
 
 import { ControlledInput } from 'components/Input';
 import ErrorMessage from 'components/ErrorMessage';
 import Loading from 'components/Loading';
-import PageHeader from 'components/PageHeader';
+import PageHeaderV2 from 'components/PageHeaderV2';
 import Select from 'components/Select';
 import Map from 'components/Map';
 
@@ -19,7 +19,8 @@ import { currentSiteAtom } from 'rt-store';
 
 import { editSite, getSite } from 'services/api';
 
-const EditSiteV2 = ({ history }) => {
+const EditSiteV2 = () => {
+  const history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
   const { handleSubmit, errors, register } = useForm();
@@ -78,7 +79,7 @@ const EditSiteV2 = ({ history }) => {
   return (
     <section className="mb-12">
       {currentSite.site_name && (
-        <PageHeader
+        <PageHeaderV2
           headline={`${t('editSite.title')} ${currentSite.site_name}`}
         />
       )}

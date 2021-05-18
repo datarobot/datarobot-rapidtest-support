@@ -3,13 +3,14 @@ import { useEffect, useState } from 'react';
 import cls from 'classnames';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import Captcha from 'components/Captcha';
 import InfoBox from 'components/InfoBox';
 import Input, { ControlledInput } from 'components/Input';
 import ErrorMessage from 'components/ErrorMessage';
-import PageHeader from 'components/PageHeader';
+import PageHeaderV2 from 'components/PageHeaderV2';
 import Select from 'components/Select';
 
 import { LIVE_PROGRAMS } from 'rt-constants';
@@ -19,7 +20,8 @@ import { get, set, sortArrayOfObjects } from 'utils';
 
 import './AccountsV2.css';
 
-const RequestAccountV2 = ({ history }) => {
+const RequestAccountV2 = () => {
+  const history = useHistory();
   const [showSuccessMsg, setShowSuccessMsg] = useState(false);
   const [programList, setProgramList] = useState([]);
   const [captchaVerified, setCaptchaVerified] = useState(false);
@@ -85,7 +87,7 @@ const RequestAccountV2 = ({ history }) => {
 
   return (
     <>
-      <PageHeader headline="Request an account" />
+      <PageHeaderV2 headline="Request an account" />
       <section className="flex mb-4">
         <form
           className={cls('w-full request-form', { isSuccess: showSuccessMsg })}

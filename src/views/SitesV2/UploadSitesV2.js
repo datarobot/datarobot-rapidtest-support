@@ -2,10 +2,11 @@
 import { Fragment, useRef, useState } from 'react';
 import cls from 'classnames';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 import FileUpload from 'components/FileUpload';
-import PageHeader from 'components/PageHeader';
+import PageHeaderV2 from 'components/PageHeaderV2';
 import UploadHeaderText from 'components/UploadHeaderText';
 
 import { addSite } from 'services/api';
@@ -18,7 +19,8 @@ import fileTemplate from 'assets/static/rapidtest_sites_template.csv';
 
 import './SitesV2.css';
 
-const UploadSitesV2 = ({ history }) => {
+const UploadSitesV2 = () => {
+  const history = useHistory();
   const [errors, setErrors] = useState([]);
   const toastId = useRef(null);
 
@@ -53,7 +55,7 @@ const UploadSitesV2 = ({ history }) => {
 
   return (
     <>
-      <PageHeader
+      <PageHeaderV2
         headline="Upload a list of sites"
         subtext={
           <UploadHeaderText

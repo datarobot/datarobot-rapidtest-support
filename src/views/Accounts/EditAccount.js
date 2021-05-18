@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { useAtom } from 'jotai';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import ErrorMessage from 'components/ErrorMessage';
@@ -18,7 +18,8 @@ import { ROUTES } from 'rt-constants';
 import { currentAccountAtom } from 'rt-store';
 import { editAccount, getAccount } from 'services/api';
 
-const EditAccount = ({ history }) => {
+const EditAccount = () => {
+  const history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
   const { handleSubmit, errors, register } = useForm();

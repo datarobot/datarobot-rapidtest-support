@@ -3,13 +3,14 @@ import { useEffect, useState } from 'react';
 import cls from 'classnames';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import Autocomplete from 'components/Autocomplete';
 import Input, { ControlledInput } from 'components/Input';
 import ErrorMessage from 'components/ErrorMessage';
 import Map from 'components/Map';
-import PageHeader from 'components/PageHeader';
+import PageHeaderV2 from 'components/PageHeaderV2';
 import ProgramList from 'components/ProgramList';
 import Select from 'components/Select';
 
@@ -22,7 +23,8 @@ import { LIVE_PROGRAMS, STATE_OPTIONS } from 'rt-constants';
 
 import './SitesV2.css';
 
-const RequestSiteV2 = ({ history }) => {
+const RequestSiteV2 = () => {
+  const history = useHistory();
   const [showSuccessMsg, setShowSuccessMsg] = useState(false);
   const [schools, setSchools] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -154,7 +156,7 @@ const RequestSiteV2 = ({ history }) => {
 
   return (
     <>
-      <PageHeader headline="Request a site" />
+      <PageHeaderV2 headline="Request a site" />
       <section className="flex mb-12">
         <form
           className={cls('request-site-form', { isSuccess: showSuccessMsg })}

@@ -2,16 +2,18 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import ErrorMessage from 'components/ErrorMessage';
 import InfoBox from 'components/InfoBox';
 import Input from 'components/Input';
-import PageHeader from 'components/PageHeader';
+import PageHeaderV2 from 'components/PageHeaderV2';
 import { ROUTES } from 'rt-constants';
 import { addAccount } from 'services/api';
 
-const AddAccountV2 = ({ history }) => {
+const AddAccountV2 = () => {
+  const history = useHistory();
   const { control, handleSubmit, errors } = useForm();
   const { t } = useTranslation();
 
@@ -34,7 +36,7 @@ const AddAccountV2 = ({ history }) => {
 
   return (
     <>
-      <PageHeader headline="Add New Account" />
+      <PageHeaderV2 headline="Add New Account" />
 
       <section className="flex">
         <form className="w-1/2 mr-8" onSubmit={handleSubmit(onSubmit)}>
