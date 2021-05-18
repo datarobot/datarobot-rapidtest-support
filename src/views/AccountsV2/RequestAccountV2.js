@@ -125,7 +125,7 @@ const RequestAccountV2 = () => {
           <p className="sub-heading mb-2 mt-8">Personal Info</p>
 
           <div className="form-grid">
-            <fieldset className="mr-4 form">
+            <fieldset className="form">
               <ControlledInput
                 v2
                 name="first_name"
