@@ -1,12 +1,13 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
+import { useAtom } from 'jotai';
 import { useLocation } from 'react-router-dom';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
-import cls from 'classnames';
+import Select from 'react-select';
 
-import Icon from 'components/Icon';
+import { accountFilterAtom } from 'rt-store';
+
 import Input from 'components/Input';
-import Radio from 'components/Radio';
 import HeaderCell from 'components/TableAdvancedV2/HeaderCell';
 import LoadingOverlay from 'components/TableAdvancedV2/LoadingOverlay';
 import Selector from 'components/TableAdvancedV2/Selector';
@@ -16,12 +17,32 @@ import 'ag-grid-community';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import './TableAdvancedV2.css';
 
+const AccountFilter = () => {
+  const [, setAccountFilter] = useAtom(accountFilterAtom);
+
+  return (
+    <Select
+      className="Filter ml-4"
+      classNamePrefix="Filter"
+      placeholder="Filter"
+      isClearable={true}
+      isSearchable={false}
+      options={[
+        { label: 'Active', value: 'active' },
+        { label: 'Inactive', value: 'inactive' },
+        { label: 'Pending', value: 'pending' },
+      ]}
+      onChange={(newValue) => {
+        setAccountFilter(newValue?.value);
+      }}
+    />
+  );
+};
+
 const TableAdvancedV2 = ({
   rows,
   cols,
   renderers,
-  onFilter,
-  onFilterReset,
   defaultSortCol,
   tableName,
   tableOnly = false,
@@ -31,7 +52,6 @@ const TableAdvancedV2 = ({
   const { pathname } = useLocation();
 
   const [gridApi, setGridApi] = useState(null);
-  const [isFilterFocused, setIsFilterFocused] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [rowCount, setRowCount] = useState(0);
@@ -101,43 +121,7 @@ const TableAdvancedV2 = ({
                   isSearch
                   className="self-center"
                 />
-                {isAccounts && (
-                  <>
-                    <span
-                      style={{ minHeight: 42 }}
-                      className="flex ml-8 py-2 cursor-pointer"
-                      onClick={() => setIsFilterFocused(!isFilterFocused)}
-                    >
-                      {!isFilterFocused ? (
-                        <>
-                          <Icon iconName="filter" type="fal" className="mr-2" />
-                          <span className="text-gray-400">Filter</span>
-                        </>
-                      ) : (
-                        <button
-                          type="button"
-                          className="btn-clear px-0 py-0 border-0"
-                          onClick={onFilterReset}
-                        >
-                          <Icon iconName="times" type="fal" className="mx-2" />
-                        </button>
-                      )}
-                    </span>
-
-                    {isFilterFocused && (
-                      <Radio
-                        wrapperClass="flex"
-                        name="table-filter"
-                        values={[
-                          { label: 'Active', value: 'active' },
-                          { label: 'Inactive', value: 'inactive' },
-                          { label: 'Pending', value: 'pending' },
-                        ]}
-                        onChange={onFilter}
-                      />
-                    )}
-                  </>
-                )}
+                {isAccounts && <AccountFilter />}
               </div>
             </div>
 

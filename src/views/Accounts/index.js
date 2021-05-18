@@ -11,7 +11,7 @@ import {
   accountsAtom,
   accountsToDisableAtom,
   accountIdsToDisableAtom,
-  activeFilterAtom,
+  accountFilterAtom,
 } from 'rt-store';
 
 import TableAdvanced from 'components/TableAdvanced';
@@ -38,7 +38,7 @@ const Accounts = () => {
   const [accountIdsToDisable, setAccountIdsToDisable] = useAtom(
     accountIdsToDisableAtom
   );
-  const [, setActiveFilter] = useAtom(activeFilterAtom);
+  const [, setActiveFilter] = useAtom(accountFilterAtom);
   const [isLoading, setIsLoading] = useState(false);
   const [showResendEmail, setShowResendEmail] = useState(false);
   const [showDeactivate, setShowDeactivate] = useState(false);
