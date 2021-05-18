@@ -12,9 +12,13 @@ export const ROUTES = {
   LANDING_PAGE: { path: '/' },
   LANDING_PAGE_V2: { path: '/v2' },
   JOIN: { path: '/join' },
-  JOIN_V2: { path: '/join-v2' },
+  JOIN_V2: { path: '/v2/join' },
   SITES: {
     path: '/sites',
+    roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
+  },
+  SITES_V2: {
+    path: '/v2/sites',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
   },
   ADMIN: {
@@ -25,67 +29,89 @@ export const ROUTES = {
       USER_ROLES.siteAdmin,
     ],
   },
+  ADMIN_V2: {
+    path: '/v2/admin',
+    roles: [
+      USER_ROLES.dashboard,
+      USER_ROLES.proctorAdmin,
+      USER_ROLES.siteAdmin,
+    ],
+  },
   ADD_SITE: {
     path: '/sites/new',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
   },
+  ADD_SITE_V2: {
+    path: '/v2/sites/new',
+    roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
+  },
   EDIT_SITE: {
-    path: '/sites/edit',
+    path: '/sites/edit/:id',
+    roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
+  },
+  EDIT_SITE_V2: {
+    path: '/v2/sites/edit/:id',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
   },
   REQUEST_SITE: { path: '/sites/request' },
+  REQUEST_SITE_V2: { path: '/v2/sites/request' },
   UPLOAD_SITES: {
     path: '/sites/upload',
+    roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
+  },
+  UPLOAD_SITES_V2: {
+    path: '/v2/sites/upload',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
   },
   ACCOUNTS: {
     path: '/accounts',
     roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
   },
+  ACCOUNTS_V2: {
+    path: '/v2/accounts',
+    roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
+  },
   ADD_ACCOUNT: {
     path: '/accounts/new',
     roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
   },
+  ADD_ACCOUNT_V2: {
+    path: '/v2/accounts/new',
+    roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
+  },
   EDIT_ACCOUNT: {
-    path: '/accounts/edit',
+    path: '/accounts/edit/:id',
+    roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
+  },
+  EDIT_ACCOUNT_V2: {
+    path: '/v2/accounts/edit/:id',
     roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
   },
   REQUEST_ACCOUNT: { path: '/accounts/request' },
+  REQUEST_ACCOUNT_V2: { path: '/v2/accounts/request' },
   UPLOAD_ACCOUNTS: {
     path: '/accounts/upload',
     roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
   },
+  UPLOAD_ACCOUNTS_V2: {
+    path: '/v2/accounts/upload',
+    roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
+  },
   FAQ: {
     path: '/faq',
-    GENERAL: {
-      path: '/faq/general',
-    },
-    PROGRAM: {
-      path: '/faq/program',
-    },
-    TEST: {
-      path: '/faq/test',
-    },
   },
   FAQ_V2: {
-    path: '/faq-v2',
-    ALL: {
-      path: '/faq-v2/:id',
-    },
-    GENERAL: {
-      path: '/faq-v2/general',
-    },
-    PROGRAM: {
-      path: '/faq-v2/program',
-    },
-    TEST: {
-      path: '/faq-v2/test',
-    },
+    path: '/v2/faq/:id?',
+  },
+  FAQ_V2_LANDING: {
+    path: '/v2/faq',
   },
   DASHBOARD: { path: '/dashboard' },
+  DASHBOARD_V2: { path: '/v2/dashboard' },
   LOG_IN: { path: '/login' },
-  LOG_IN_V2: { path: '/login-v2' },
+  LOG_IN_V2: { path: '/v2/login' },
   TRAINING_MATERIALS: { path: '/training-materials' },
+  TRAINING_MATERIALS_V2: { path: '/v2/training-materials' },
   SUGGEST_IMPROVEMENT: {
     path: '/suggestions',
     roles: [
@@ -94,7 +120,16 @@ export const ROUTES = {
       USER_ROLES.siteAdmin,
     ],
   },
+  SUGGEST_IMPROVEMENT_V2: {
+    path: '/v2/suggestions',
+    roles: [
+      USER_ROLES.dashboard,
+      USER_ROLES.proctorAdmin,
+      USER_ROLES.siteAdmin,
+    ],
+  },
   CONTACT: { path: '/contact' },
+  CONTACT_V2: { path: '/v2/contact' },
 };
 
 export const VALID_SITE_COLUMNS = {
@@ -151,6 +186,10 @@ export const FIREBASE_CONFIG = {
 };
 
 export const FIREBASE_PA_CONFIG = {};
+
+export const SENTRY_DSN_DEV = process.env.REACT_APP_SENTRY_DSN_DEV;
+export const SENTRY_DSN = process.env.REACT_APP_SENTRY_DSN;
+export const SENTRY_SAMPLE_RATE = process.env.REACT_APP_SENTRY_SAMPLE_RATE;
 
 export const LANDING_PAGE_LINKS = {
   TESTING_OTHERS: [

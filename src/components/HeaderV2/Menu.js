@@ -28,6 +28,8 @@ const Menu = ({ authenticated }) => {
     document.body.style.overflow = 'unset';
   };
 
+  ReactModal.setAppElement('body');
+
   return (
     <div className="Menu">
       <div className="menuButton">
@@ -47,7 +49,7 @@ const Menu = ({ authenticated }) => {
               <NavLink
                 exact
                 className="p-4"
-                to={ROUTES.SITES.path}
+                to={ROUTES.SITES_V2.path}
                 onClick={() => {
                   closeMenu();
                 }}
@@ -58,7 +60,7 @@ const Menu = ({ authenticated }) => {
               <NavLink
                 exact
                 className="p-4"
-                to={ROUTES.ACCOUNTS.path}
+                to={ROUTES.ACCOUNTS_V2.path}
                 onClick={() => {
                   closeMenu();
                 }}
@@ -69,7 +71,7 @@ const Menu = ({ authenticated }) => {
               <NavLink
                 exact
                 className="p-4"
-                to={ROUTES.ADMIN.path}
+                to={ROUTES.ADMIN_V2.path}
                 onClick={() => {
                   closeMenu();
                 }}
@@ -94,7 +96,7 @@ const Menu = ({ authenticated }) => {
           <NavLink
             exact
             className="p-4"
-            to={ROUTES.FAQ_V2.path}
+            to={ROUTES.FAQ_V2_LANDING.path}
             onClick={() => {
               closeMenu();
             }}

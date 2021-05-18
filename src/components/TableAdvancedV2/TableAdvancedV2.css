@@ -1,0 +1,224 @@
+@import '../../assets/styles/mixins.css';
+@import '../../assets/styles/typography.css';
+
+.LayoutV2 {
+  .table-buttons-2 {
+    @apply ml-1 pl-1 border-l;
+    border-color: var(--purple-20);
+  }
+}
+
+.Filter {
+  min-width: 130px;
+  .Filter__control {
+    height: 48px;
+    border-radius: 8px;
+    cursor: pointer;
+    border-color: var(--purple-20);
+    background-color: var(--purple-20);
+    box-shadow: none;
+    &:hover {
+      border-color: var(--purple-20);
+    }
+  }
+  .Filter__value-container {
+    padding-right: 0;
+    justify-content: center;
+  }
+  .Filter__placeholder,
+  .Filter__single-value {
+    @mixin label;
+    color: var(--purple-90);
+  }
+  .Filter__clear-indicator {
+    padding-left: 0;
+    color: var(--purple-70);
+    &:hover {
+      color: var(--purple-70);
+    }
+  }
+  .Filter__indicator-separator {
+    background-color: transparent;
+  }
+  .Filter__dropdown-indicator {
+    color: var(--purple-70);
+    &:hover {
+      color: var(--purple-70);
+    }
+  }
+  .Filter__clear-indicator
+    + .Filter__indicator-separator
+    + .Filter__dropdown-indicator {
+    display: none;
+  }
+  .Filter__clear-indicator
+    + .Filter__indicator-separator
+    + .Filter__dropdown-indicator {
+    display: none;
+  }
+  .Filter__menu {
+    border: 1px solid var(--purple-10);
+    box-sizing: border-box;
+    box-shadow: 0px 8px 20px rgba(109, 113, 249, 0.12);
+    border-radius: 12px;
+  }
+  .Filter__menu-list {
+    padding: 11px 0;
+  }
+  .Filter__option {
+    @mixin body-small;
+    color: var(--purple-90);
+    padding: 5px 15px;
+  }
+  .Filter__option--is-focused {
+    color: var(--purple-70);
+    background-color: var(--purple-10);
+  }
+}
+
+.ag-theme-rt-v2 {
+  color: var(--purple-90);
+
+  strong {
+    color: var(--purple-100);
+  }
+
+  .ag-root-wrapper-body {
+    min-height: 24rem;
+  }
+
+  .ag-header-row {
+    @apply bg-white;
+  }
+
+  .ag-header-cell {
+    @apply text-left uppercase border-b px-2;
+    @mixin label;
+    color: var(--purple-40);
+    border-color: var(--purple-30);
+  }
+
+  .ag-row {
+    @apply bg-white;
+  }
+
+  .ag-row:hover {
+    background-color: var(--purple-10);
+  }
+
+  .ag-cell {
+    @apply border-b border-gray-400 flex items-center px-2;
+    @mixin body-small;
+    color: var(--purple-90);
+    border-color: var(--purple-30);
+
+    img.cursor-pointer {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .ag-header-cell-resize {
+    height: 50%;
+    margin-top: 12px;
+    transition: all 250ms ease-in-out;
+  }
+
+  * {
+    @apply outline-none;
+  }
+
+  .ag-react-container {
+    @apply w-full;
+  }
+
+  .ag-paging-panel {
+    @apply flex justify-between;
+  }
+
+  .ag-paging-row-summary-panel-number {
+    @apply font-bold;
+  }
+
+  .pagination-panel {
+    @apply pb-2 pt-6 flex fixed bottom-0 left-0 right-0 flex-1 justify-between items-center mb-14;
+
+    background-image: linear-gradient(
+      0deg,
+      var(--purple-10-ff) 0%,
+      var(--purple-10-ff) 80%,
+      var(--purple-10-00) 100%
+    );
+    padding-left: 8.5vw;
+    padding-right: 8.5vw;
+    min-height: 70px;
+  }
+
+  .selector {
+    @apply flex items-center;
+    @mixin tooltip;
+
+    p {
+      @apply mr-2;
+    }
+
+    strong,
+    button {
+      @mixin h6;
+    }
+  }
+
+  .paging-text {
+    @apply px-2;
+    @mixin body-small;
+    strong {
+      @mixin h6;
+    }
+  }
+
+  .paging-button {
+    @apply px-2 text-3xl;
+    color: var(--purple-70);
+  }
+
+  .paging-button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+    color: var(--purple-30);
+  }
+
+  .ag-overlay-wrapper .ag-react-container {
+    @apply h-full;
+  }
+
+  .ag-overlay-loading-center {
+    @apply w-full h-full flex items-center justify-center bg-white bg-opacity-75;
+  }
+
+  .header-sort {
+    @apply opacity-50 transition-opacity;
+  }
+
+  .header-cell:hover {
+    .header-sort {
+      @apply opacity-100;
+    }
+  }
+
+  .status {
+    @apply px-2 py-1 rounded-lg;
+    &.active {
+      color: var(--green-80);
+      background-color: var(--green-10);
+    }
+
+    &.inactive {
+      color: var(--purple-80);
+      background-color: var(--purple-10);
+    }
+
+    &.pending {
+      color: var(--red);
+      background-color: var(--orange-10);
+    }
+  }
+}

@@ -18,17 +18,20 @@
   .formContainer {
     @apply bg-white rounded-xl px-12 py-10 mb-6;
   }
-  .contactSupport {
-    @apply bg-white flex justify-center items-center rounded-xl p-4 mb-12;
-
-    gap: 0.5rem;
-
-    img {
-      @apply mr-2;
-    }
-    span {
-      @mixin h6;
-    }
+  .bgs {
+    @apply absolute;
+  }
+  .bgs1 {
+    top: 10px;
+    left: 10px;
+  }
+  .bgs2 {
+    right: 10px;
+    top: 60%;
+  }
+  .bgs3 {
+    bottom: 10px;
+    right: 20%;
   }
 }
 
@@ -36,6 +39,14 @@
   .JoinV2 {
     .formContainer {
       @apply bg-transparent p-0;
+    }
+
+    h2 {
+      @mixin h3;
+    }
+
+    .bgs {
+      @apply hidden;
     }
   }
 }

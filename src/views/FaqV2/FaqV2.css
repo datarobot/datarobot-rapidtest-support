@@ -1,3 +1,4 @@
+@import '../../assets/styles/mixins.css';
 @import '../../assets/styles/typography.css';
 
 .FaqV2 {
@@ -38,6 +39,26 @@
     img {
       @apply mr-6;
       width: 96px;
+    }
+  }
+}
+
+@mixin for-size-phone {
+  .FaqV2 {
+    & > h2 {
+      @mixin h3;
+    }
+    .contactSupport {
+      @apply flex-col;
+      .flex-grow {
+        @apply text-center;
+      }
+      a {
+        @apply w-full;
+        button {
+          @apply w-full;
+        }
+      }
     }
   }
 }

@@ -10,10 +10,9 @@
 }
 
 .menuModalOverlay {
-  @apply fixed overflow-scroll;
+  @apply fixed overflow-scroll right-0 left-0 bottom-0;
 
   background-color: var(--background-color);
-  inset: 0;
   top: 70px;
   z-index: 2;
 }
@@ -21,7 +20,7 @@
 .menuModalContent {
   @apply w-full mx-auto px-6 pb-12;
 
-  max-width: 375px;
+  max-width: 440px;
   outline: none;
 
   hr {

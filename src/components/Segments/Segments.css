@@ -6,8 +6,8 @@
   background-color: var(--purple-20);
 
   .segment {
-    @apply flex items-center justify-center w-1/3 rounded-full m-1 px-8 py-3 flex-grow text-center uppercase;
-    @mixin badge;
+    @apply flex items-center justify-center w-1/3 rounded-full m-1 px-8 py-3 flex-grow text-center uppercase cursor-pointer;
+    @mixin label;
 
     color: var(--purple-80);
 

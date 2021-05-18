@@ -5,6 +5,7 @@ import cls from 'classnames';
 import './Checkbox.css';
 
 const Checkbox = ({
+  v2 = false,
   name,
   isChecked,
   isDisabled,
@@ -19,11 +20,11 @@ const Checkbox = ({
         checkboxDisabled: isDisabled,
       })}
     >
-      <div className={cls('checkboxWrapper', checkClass, { isChecked })}>
+      <div className={cls('checkboxWrapper', checkClass, { v2, isChecked })}>
         <input
           type="checkbox"
           name={name}
-          className="checkbox opacity-0 absolute cursor-pointer"
+          className={cls('checkbox opacity-0 absolute cursor-pointer', { v2 })}
           checked={isChecked}
           onChange={onChange}
           disabled={isDisabled}
@@ -41,19 +42,29 @@ const Checkbox = ({
 );
 
 export const ControlledCheckbox = forwardRef(
-  ({ name, isChecked, isDisabled, onChange, label, labelClass }, ref) => (
+  (
+    { v2 = false, name, isChecked, isDisabled, onChange, label, labelClass },
+    ref
+  ) => (
     <div>
       <label
         className={cls('flex justify-start items-start', labelClass, {
           checkboxDisabled: isDisabled,
         })}
       >
-        <div className="checkboxWrapper bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500">
+        <div
+          className={cls(
+            'checkboxWrapper bg-white border-2 rounded border-gray-400 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-blue-500',
+            { v2 }
+          )}
+        >
           <input
             ref={ref}
             type="checkbox"
             name={name}
-            className="checkbox opacity-0 absolute cursor-pointer"
+            className={cls('checkbox opacity-0 absolute cursor-pointer', {
+              v2,
+            })}
             checked={isChecked}
             onChange={onChange}
             disabled={isDisabled}

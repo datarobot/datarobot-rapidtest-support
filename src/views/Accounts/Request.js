@@ -3,7 +3,13 @@ import { useEffect, useState } from 'react';
 import cls from 'classnames';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
+import { LIVE_PROGRAMS } from 'rt-constants';
+
+import { addAccount, getPrograms } from 'services/api';
+import { get, set, sortArrayOfObjects } from 'utils';
 
 import Captcha from 'components/Captcha';
 import InfoBox from 'components/InfoBox';
@@ -12,14 +18,10 @@ import ErrorMessage from 'components/ErrorMessage';
 import PageHeader from 'components/PageHeader';
 import Select from 'components/Select';
 
-import { LIVE_PROGRAMS } from 'rt-constants';
-
-import { addAccount, getPrograms } from 'services/api';
-import { get, set, sortArrayOfObjects } from 'utils';
-
 import './Accounts.css';
 
-const RequestAccount = ({ history }) => {
+const RequestAccount = () => {
+  const history = useHistory();
   const [showSuccessMsg, setShowSuccessMsg] = useState(false);
   const [programList, setProgramList] = useState([]);
   const [captchaVerified, setCaptchaVerified] = useState(false);

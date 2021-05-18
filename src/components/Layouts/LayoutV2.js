@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import cls from 'classnames';
 import { ToastContainer } from 'react-toastify';
 
 import Loading from 'components/Loading';
@@ -7,6 +8,7 @@ import FooterV2 from 'components/FooterV2';
 
 import bga1 from 'assets/images/backgrounds/a1.svg';
 import bga2 from 'assets/images/backgrounds/a2.svg';
+import bga3 from 'assets/images/backgrounds/a3.svg';
 
 import bg1 from 'assets/images/backgrounds/1.svg';
 import bg2 from 'assets/images/backgrounds/2.svg';
@@ -18,23 +20,36 @@ import './LayoutV2.css';
 
 const LayoutV2 = ({
   children,
-  hideHeader = false,
-  hideFooter = false,
-  authBackground = false,
-  landingBackground = false,
+  headerHidden = false,
+  footerHidden = false,
+  footerFixed = false,
+  backgroundAuth = false,
+  backgroundAdmin = false,
+  backgroundLanding = false,
+  wide = false,
 }) => (
   <div className="LayoutV2">
-    {authBackground && (
+    {backgroundAuth && (
       <>
-        <div className="bg bga1">
+        <div className="bga bga1">
           <img src={bga1} alt="" />
         </div>
-        <div className="bg bga2">
+        <div className="bga bga2">
           <img src={bga2} alt="" />
         </div>
       </>
     )}
-    {landingBackground && (
+    {backgroundAdmin && (
+      <>
+        <div className="bgd bgd1">
+          <img src={bga1} alt="" />
+        </div>
+        <div className="bgd bgd3">
+          <img src={bga3} alt="" />
+        </div>
+      </>
+    )}
+    {backgroundLanding && (
       <>
         <div className="bg bg1">
           <img src={bg1} alt="" />
@@ -53,8 +68,8 @@ const LayoutV2 = ({
         </div>
       </>
     )}
-    {hideHeader ? null : <HeaderV2 />}
-    <main className="content">
+    {headerHidden ? null : <HeaderV2 />}
+    <main className={cls('content', { limitWidth: !wide })}>
       <Suspense
         fallback={
           <Loading
@@ -67,7 +82,7 @@ const LayoutV2 = ({
         {children}
       </Suspense>
     </main>
-    {hideFooter ? null : <FooterV2 />}
+    {footerHidden ? null : <FooterV2 footerFixed={footerFixed} />}
     <ToastContainer
       position="bottom-center"
       toastClassName="rt-toast"

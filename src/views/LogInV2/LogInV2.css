@@ -14,24 +14,16 @@
   .formContainer {
     @apply bg-white rounded-xl px-12 py-10 mb-6;
   }
-  .contactSupport {
-    @apply bg-white flex justify-center items-center rounded-xl p-4 mb-12;
-
-    gap: 0.5rem;
-
-    img {
-      @apply mr-2;
-    }
-    span {
-      @mixin h6;
-    }
-  }
 }
 
 @mixin for-size-phone {
   .LogInV2 {
     .formContainer {
       @apply bg-transparent p-0;
+    }
+
+    h2 {
+      @mixin h3;
     }
   }
 }

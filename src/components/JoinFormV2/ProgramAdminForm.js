@@ -10,7 +10,7 @@ import Input from 'components/Input';
 import Button from 'components/Button';
 import Select from 'components/Select';
 
-const ProgramAdminForm = () => {
+const ProgramAdminForm = ({ setRequestSubmitted }) => {
   const { t } = useTranslation();
 
   const [currentState, setCurrentState] = useState('');
@@ -22,7 +22,7 @@ const ProgramAdminForm = () => {
   const onSubmit = (data) => {
     addAccount(data)
       .then(() => {
-        toast.success('Request submitted!');
+        setRequestSubmitted(true);
       })
       .then(() => {
         window.dataLayer = window.dataLayer || [];
@@ -42,7 +42,8 @@ const ProgramAdminForm = () => {
   return (
     <form className="w-full mt-0" onSubmit={handleSubmit(onSubmit)}>
       <p className="mt-4">
-        The program is currently available only in Pennsylvania and Washington
+        The program is currently available only in Pennsylvania, Texas and
+        Washington
       </p>
       <section>
         <Select
@@ -136,6 +137,7 @@ const ProgramAdminForm = () => {
             label="Phone Number"
             optional
             placeholder="(000) 000-0000"
+            mask="(999) 999-9999"
             onChange={({ target }) => {
               const x = target.value
                 .replace(/\D/g, '')

@@ -1,18 +1,19 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, generatePath } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import { toast } from 'react-toastify';
-
-import Modal from 'components/Modal';
-import ToggleButton from 'components/ToggleButton';
-import SuccessCheck from 'components/Notifications/SuccessCheck';
-import Icon from 'components/Icon';
 
 import { ROUTES } from 'rt-constants';
 import { editSite } from 'services/api';
 
-const DisableSiteCell = ({ value, data }) => {
+import Modal from 'components/Modal';
+import ToggleButton from 'components/ToggleButton';
+import SuccessCheck from 'components/Notifications/SuccessCheck';
+
+import pencil from 'assets/images/icons/pencil.svg';
+
+const DisableSiteCell = ({ value, data: { id } }) => {
   const [selected, setSelected] = useState(!value);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -52,7 +53,7 @@ const DisableSiteCell = ({ value, data }) => {
       setShowModal(false);
     }
     setSelected(!selected);
-    editSite(data.id, { archive: !e })
+    editSite(id, { archive: !e })
       .then(async () => {
         setIsLoading(false);
         setIsSuccess(true);
@@ -81,14 +82,15 @@ const DisableSiteCell = ({ value, data }) => {
         ) : (
           <>
             <Link
-              to={`${ROUTES.EDIT_SITE.path}/${data.id}`}
+              to={generatePath(ROUTES.EDIT_SITE_V2.path, { id })}
               className="mr-4 text-blue-lighter"
             >
-              <Icon iconName="pen" type="fas" className="cursor-pointer" />
+              <img src={pencil} alt="" className="cursor-pointer" />
             </Link>
             <ToggleButton
+              v2
               defaultChecked={selected}
-              disabled={isLoading || data.id === 3}
+              disabled={isLoading || id === 3}
               onChange={handleToggle}
             />
           </>

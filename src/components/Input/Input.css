@@ -15,6 +15,7 @@
 
     &:focus {
       border: solid 1px var(--purple-70);
+      background-color: var(--white);
     }
 
     &::placeholder {
@@ -23,6 +24,10 @@
 
     &.error {
       border: solid 1px var(--red);
+    }
+
+    &.isSearch {
+      @apply rounded-lg;
     }
   }
 }
@@ -73,6 +78,11 @@
   @apply w-full border outline-none;
 
   min-width: 100%;
+}
+
+.placeholder-icon {
+  @apply -mr-7 ml-4 z-10;
+  color: var(--purple-70);
 }
 
 form {

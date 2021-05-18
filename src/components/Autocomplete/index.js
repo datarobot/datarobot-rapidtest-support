@@ -1,4 +1,6 @@
 // @ts-nocheck
+import cls from 'classnames';
+
 import Button, { KIND } from 'components/Button';
 import Input from 'components/Input';
 import Icon from 'components/Icon';
@@ -6,6 +8,7 @@ import Icon from 'components/Icon';
 import './Autocomplete.css';
 
 const Autocomplete = ({
+  v2,
   label,
   inputName,
   onChange,
@@ -19,6 +22,7 @@ const Autocomplete = ({
 }) => (
   <div className="relative">
     <Input
+      v2={v2}
       name={inputName}
       label={label}
       placeholder={placeholder}
@@ -30,7 +34,7 @@ const Autocomplete = ({
 
     <Button
       kind={KIND.CLEAR}
-      className="clearIcon"
+      className={cls('clearIcon', { v2 })}
       onClick={onClearClick}
       label={<Icon iconName="times" type="fal" />}
     />

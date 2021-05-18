@@ -5,7 +5,7 @@ import { Provider } from 'jotai';
 
 import './i18n';
 
-import 'assets/styles/colors.css';
+import 'assets/styles/variables.css';
 import 'assets/styles/fonts.css';
 import 'assets/styles/text.css';
 import './index.css';

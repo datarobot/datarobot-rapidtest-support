@@ -13,6 +13,11 @@
     z-index: 0;
   }
 
+  .bga {
+    position: fixed;
+    z-index: 0;
+  }
+
   .bga1 {
     left: 0;
     bottom: 0;
@@ -21,6 +26,21 @@
   .bga2 {
     right: 0;
     bottom: 0;
+  }
+
+  .bgd {
+    position: fixed;
+    z-index: 0;
+  }
+
+  .bgd1 {
+    left: 0;
+    bottom: 96px;
+  }
+
+  .bgd3 {
+    right: 0;
+    bottom: 96px;
   }
 
   .bg1 {
@@ -49,19 +69,30 @@
   }
 
   .content {
-    @apply px-6;
+    @apply flex-grow;
 
     z-index: 1;
-    flex-grow: 1;
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
+  }
+
+  .limitWidth {
+    @apply px-5 mx-auto w-full;
+    max-width: var(--max-width);
+  }
+
+  .text-blue {
+    color: unset !important;
+  }
+
+  .leaflet-container {
+    a {
+      @apply no-underline;
+    }
   }
 }
 
 @mixin for-size-phone {
-  .bga1,
-  .bga2 {
+  .bga,
+  .bgd {
     @apply hidden;
   }
 }

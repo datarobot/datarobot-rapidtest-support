@@ -1,4 +1,6 @@
 :root {
+  --max-width: 1168px;
+
   --black: #000000;
   --white: #ffffff;
 
@@ -10,6 +12,8 @@
   --purple-30: #c7c8eb;
   --purple-20: #e3e4ff;
   --purple-10: #f8f8fd;
+  --purple-10-ff: #f8f8fdff;
+  --purple-10-00: #f8f8fd00;
 
   --orange-80: #faa95f;
   --orange-10: #ffeede;
@@ -17,6 +21,9 @@
   --yellow-90: #f9da6d;
 
   --red: #e93535;
+
+  --green-80: #294728;
+  --green-10: #d9f9d9;
 
   --text-color: var(--purple-90);
   --background-color: var(--purple-10);

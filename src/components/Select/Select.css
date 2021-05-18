@@ -22,6 +22,7 @@ select {
 
   &.v2 {
     outline: none;
+    background-color: var(--white);
     background-image: linear-gradient(
         45deg,
         transparent 50%,
@@ -40,6 +41,7 @@ select {
 
     &:focus {
       border: solid 1px var(--purple-70);
+      background-color: var(--white);
     }
 
     &::placeholder {

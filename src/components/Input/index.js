@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { forwardRef, useState } from 'react';
 import cls from 'classnames';
+import InputMask from 'react-input-mask';
 
 import Button, { KIND } from 'components/Button';
 import Icon from 'components/Icon';
@@ -11,10 +12,12 @@ const Input = ({
   v2 = false,
   name,
   label,
+  icon,
   type,
   value,
   onChange,
   placeholder,
+  mask,
   className,
   labelClass,
   rounded,
@@ -47,8 +50,15 @@ const Input = ({
         >
           {label}
           {label && ' '}
-          {optional && <span className="optional">Optional</span>}
+          {optional && (
+            <span className={cls('optional', { 'ml-2': label })}>Optional</span>
+          )}
         </label>
+      )}
+      {icon && (
+        <span className="placeholder-icon">
+          <Icon iconName={icon} type="fal" />
+        </span>
       )}
       <span
         className={cls(wrapperClass, {
@@ -56,20 +66,42 @@ const Input = ({
           relative: type === 'password',
         })}
       >
-        <input
-          name={name}
-          id={name}
-          className={cls(className, 'input', {
-            isRounded: rounded,
-            v2,
-            error: errorMessage,
-          })}
-          type={getInputType()}
-          value={value}
-          placeholder={placeholder}
-          onChange={onChange}
-          {...rest}
-        />
+        {mask ? (
+          <InputMask
+            mask={mask}
+            name={name}
+            id={name}
+            className={cls(className, 'input', {
+              isRounded: rounded,
+              v2,
+              isSearch,
+              error: errorMessage,
+              'pl-9': icon,
+            })}
+            type={getInputType()}
+            value={value}
+            placeholder={placeholder}
+            onChange={onChange}
+            {...rest}
+          />
+        ) : (
+          <input
+            name={name}
+            id={name}
+            className={cls(className, 'input', {
+              isRounded: rounded,
+              v2,
+              isSearch,
+              error: errorMessage,
+              'pl-9': icon,
+            })}
+            type={getInputType()}
+            value={value}
+            placeholder={placeholder}
+            onChange={onChange}
+            {...rest}
+          />
+        )}
         {type === 'password' && (
           <Button
             kind={KIND.DEFAULT}
@@ -131,7 +163,11 @@ export const ControlledInput = forwardRef(
             htmlFor={name}
           >
             {label}
-            {optional && <span className="optional">Optional</span>}
+            {optional && (
+              <span className={cls('optional', { 'ml-2': label })}>
+                Optional
+              </span>
+            )}
           </label>
         )}
         <span className={cls('w-full', { relative: type === 'password' })}>

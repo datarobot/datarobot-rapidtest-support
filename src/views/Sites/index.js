@@ -8,9 +8,9 @@ import { toast } from 'react-toastify';
 
 import { getSiteList, editSite } from 'services/api';
 import { ROUTES } from 'rt-constants';
-import SiteNameCell from 'components/Table2/SiteRenderers/SiteNameCell';
-import DisableSiteCell from 'components/Table2/SiteRenderers/DisableSiteCell';
-import Table2 from 'components/Table2';
+import SiteNameCell from 'components/TableAdvanced/SiteRenderers/SiteNameCell';
+import DisableSiteCell from 'components/TableAdvanced/SiteRenderers/DisableSiteCell';
+import TableAdvanced from 'components/TableAdvanced';
 
 import { download, toCsv } from 'utils';
 
@@ -168,7 +168,7 @@ const Sites = () => {
 
   return (
     <div>
-      <Table2
+      <TableAdvanced
         rows={sites}
         cols={cols}
         defaultSortCol="siteName"

@@ -2,7 +2,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import ReactTooltip from 'react-tooltip';
 
 import { useResponsive } from 'hooks';
 
@@ -62,7 +61,7 @@ const HeaderV2 = () => {
               {authenticated ? (
                 <div className="flex items-center justify-end">
                   <span className="mr-3">
-                    <Link to={ROUTES.ADMIN.path}>
+                    <Link to={ROUTES.ADMIN_V2.path}>
                       <h5>{user?.displayName || user?.email}</h5>
                       {roleType && <h6>{roleType}</h6>}
                     </Link>
@@ -73,8 +72,7 @@ const HeaderV2 = () => {
                     onClick={() => {
                       signOut();
                     }}
-                    data-tip="Sign Out"
-                    data-for="sign-out"
+                    title="Sign Out"
                   >
                     <Icon iconName="sign-out" type="fal" size="lg" />
                   </Link>
@@ -96,7 +94,6 @@ const HeaderV2 = () => {
           </>
         )}
       </div>
-      <ReactTooltip id="sign-out" effect="solid" />
     </div>
   );
 };

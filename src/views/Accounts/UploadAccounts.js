@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { useRef, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import cls from 'classnames';
@@ -16,7 +17,8 @@ import { ROUTES, VALID_ACCOUNT_COLUMNS } from 'rt-constants';
 
 import fileTemplate from 'assets/static/rapidtest_accounts_template.csv';
 
-const UploadAccounts = ({ history }) => {
+const UploadAccounts = () => {
+  const history = useHistory();
   const [errors, setErrors] = useState([]);
   const toastId = useRef(null);
 
@@ -28,14 +30,6 @@ const UploadAccounts = ({ history }) => {
 
   const dismiss = () => toast.dismiss(toastId.current);
 
-  const update = (msg, type, { ...rest }) => {
-    toast.update(toastId.current, {
-      render: msg,
-      type,
-      ...rest,
-    });
-  };
-
   const handleUpload = (data) => {
     notify();
 
@@ -44,12 +38,9 @@ const UploadAccounts = ({ history }) => {
     axios
       .all(batch)
       .then(() => {
-        update(`Uploaded ${data.length} accounts!`, toast.TYPE.SUCCESS, {
-          autoClose: 5000,
-          onClose: () => {
-            history.push(ROUTES.SITES.path);
-          },
-        });
+        dismiss();
+        history.push(ROUTES.ACCOUNTS.path);
+        toast.success(`Uploaded ${data.length} accounts!`, { autoClose: 5000 });
       })
       .catch((err) => {
         dismiss();

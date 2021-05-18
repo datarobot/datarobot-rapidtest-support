@@ -1,12 +1,17 @@
+@import '../../assets/styles/mixins.css';
+
 .rt-header-v2 {
-  @apply shadow;
+  @apply border-b;
 
   width: 100%;
   background-color: var(--background-color);
+  border-color: var(--purple-20);
+  z-index: 1;
 
   .wrapper {
-    @apply px-12 flex justify-between;
+    @apply px-5 flex justify-between mx-auto;
 
+    max-width: var(--max-width);
     height: 72px;
     /* Map z-index is 400 */
     z-index: 401;
@@ -14,10 +19,6 @@
     grid-template-rows: 1fr;
     gap: 0px 0px;
     grid-template-areas: 'logo nav links';
-
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
   .logo {
@@ -29,9 +30,12 @@
 
   .links {
     @apply flex justify-around items-center whitespace-nowrap;
-    gap: 1rem;
 
     grid-area: links;
+
+    & > * {
+      @apply ml-4;
+    }
   }
 
   .nav {
@@ -59,5 +63,10 @@
   a {
     @apply no-underline whitespace-nowrap;
     color: var(--purple-90);
+
+    &:hover h5,
+    &:hover h6 {
+      color: var(--purple-70);
+    }
   }
 }

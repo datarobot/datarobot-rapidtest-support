@@ -102,9 +102,24 @@ body {
     }
   }
 
+  .LayoutV2 {
+    .btn-clear {
+      color: var(--purple-70);
+    }
+
+    .btn-clear:hover:not(:disabled) {
+      @apply border-transparent;
+      color: var(--purple-70);
+    }
+
+    .btn-clear:disabled {
+      color: var(--purple-70);
+    }
+  }
+
   .full-height {
-    min-height: calc(100vh - 130px);
-    max-height: calc(100vh - 130px);
+    min-height: calc(100vh - 230px);
+    max-height: calc(100vh - 230px);
   }
 
   .headline {

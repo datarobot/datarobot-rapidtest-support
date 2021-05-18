@@ -8,17 +8,17 @@ import { IconButton } from 'components/Button';
 import Icon from 'components/Icon';
 import Input from 'components/Input';
 import Radio from 'components/Radio';
-import HeaderCell from 'components/Table2/HeaderCell';
-import LoadingOverlay from 'components/Table2/LoadingOverlay';
-import Pagination from 'components/Table2/Pagination';
+import HeaderCell from 'components/TableAdvanced/HeaderCell';
+import LoadingOverlay from 'components/TableAdvanced/LoadingOverlay';
+import Pagination from 'components/TableAdvanced/Pagination';
 import { get } from 'utils';
 import { getPrograms } from 'services/api';
 
 import 'ag-grid-community';
 import 'ag-grid-community/dist/styles/ag-grid.css';
-import './Table2.css';
+import './TableAdvanced.css';
 
-const Table2 = ({
+const TableAdvanced = ({
   rows,
   cols,
   renderers,
@@ -323,4 +323,4 @@ const Table2 = ({
   );
 };
 
-export default Table2;
+export default TableAdvanced;

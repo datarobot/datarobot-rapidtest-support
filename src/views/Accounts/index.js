@@ -11,10 +11,10 @@ import {
   accountsAtom,
   accountsToDisableAtom,
   accountIdsToDisableAtom,
-  activeFilterAtom,
+  accountFilterAtom,
 } from 'rt-store';
 
-import Table2 from 'components/Table2';
+import TableAdvanced from 'components/TableAdvanced';
 
 import { download, toCsv } from 'utils';
 import { dateComparator } from 'utils/table';
@@ -24,7 +24,7 @@ import {
   AccountStatusCell,
   EditAccountCell,
   AccountEmailCell,
-} from 'components/Table2/AccountRenderers';
+} from 'components/TableAdvanced/AccountRenderers';
 
 import { toast } from 'react-toastify';
 
@@ -38,7 +38,7 @@ const Accounts = () => {
   const [accountIdsToDisable, setAccountIdsToDisable] = useAtom(
     accountIdsToDisableAtom
   );
-  const [, setActiveFilter] = useAtom(activeFilterAtom);
+  const [, setActiveFilter] = useAtom(accountFilterAtom);
   const [isLoading, setIsLoading] = useState(false);
   const [showResendEmail, setShowResendEmail] = useState(false);
   const [showDeactivate, setShowDeactivate] = useState(false);
@@ -72,6 +72,7 @@ const Accounts = () => {
         setAccounts(await getAccountList());
         setAccountIdsToDisable([]);
         setAccountsToDisable([]);
+        toast.success('Email was successfully sent!');
         setIsLoading(false);
       })
       .catch(() => {
@@ -242,7 +243,7 @@ const Accounts = () => {
   }, []);
 
   return (
-    <Table2
+    <TableAdvanced
       rows={accounts}
       cols={cols}
       renderers={renderers}
