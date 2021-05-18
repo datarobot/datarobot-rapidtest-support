@@ -14,7 +14,7 @@ import {
   accountsAtom,
   accountsToDisableAtom,
   accountIdsToDisableAtom,
-  activeFilterAtom,
+  accountFilterAtom,
 } from 'rt-store';
 import { download, get, toCsv } from 'utils';
 import { dateComparator } from 'utils/table';
@@ -57,7 +57,7 @@ const AccountsV2 = () => {
   const [accountIdsToDisable, setAccountIdsToDisable] = useAtom(
     accountIdsToDisableAtom
   );
-  const [, setActiveFilter] = useAtom(activeFilterAtom);
+  const [accountFilter, setAccountFilter] = useAtom(accountFilterAtom);
   const [isLoading, setIsLoading] = useState(false);
   const [showResendEmail, setShowResendEmail] = useState(false);
   const [showDeactivate, setShowDeactivate] = useState(false);
@@ -200,41 +200,33 @@ const AccountsV2 = () => {
     },
   ];
 
-  const onFilter = ({ target }) => {
-    const { value } = target;
-    let filtered;
-
-    setActiveFilter(value);
-
-    switch (value) {
+  useEffect(() => {
+    switch (accountFilter) {
       case 'active':
-        filtered = initialAccounts.filter(
-          (acc) => acc.archive === false && acc.last_login_ip
+        setAccounts(
+          initialAccounts.filter(
+            (acc) => acc.archive === false && acc.last_login_ip
+          )
         );
         break;
 
       case 'inactive':
-        filtered = initialAccounts.filter((acc) => acc.archive === true);
+        setAccounts(initialAccounts.filter((acc) => acc.archive === true));
         break;
 
       case 'pending':
-        filtered = initialAccounts.filter(
-          (acc) => acc.last_login_ip === null && !acc.archive
+        setAccounts(
+          initialAccounts.filter(
+            (acc) => acc.last_login_ip === null && !acc.archive
+          )
         );
         break;
 
       default:
-        filtered = initialAccounts;
+        setAccounts(initialAccounts);
         break;
     }
-
-    setAccounts(filtered);
-  };
-
-  const onFilterReset = () => {
-    setAccounts(initialAccounts);
-    setActiveFilter();
-  };
+  }, [accountFilter]);
 
   const renderers = {
     accountAddedCell: AccountAddedCell,
@@ -323,8 +315,6 @@ const AccountsV2 = () => {
         rows={accounts}
         cols={cols}
         renderers={renderers}
-        onFilter={onFilter}
-        onFilterReset={onFilterReset}
         defaultSortCol="name"
         tableName="Test Operators"
         isLoading={isLoading}
