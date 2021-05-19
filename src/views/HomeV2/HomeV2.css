@@ -189,7 +189,7 @@
         @apply w-1/2 flex flex-wrap justify-around;
 
         .forParentsTile {
-          @apply flex flex-col rounded-xl border cursor-pointer mb-6 mr-6;
+          @apply flex flex-col rounded-xl border cursor-pointer mb-6 mr-6 no-underline;
 
           width: calc(50% - 1.5rem);
           border-color: var(--purple-40);
