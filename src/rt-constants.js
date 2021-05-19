@@ -9,20 +9,20 @@ export const USER_ROLES = {
 };
 
 export const ROUTES = {
-  LANDING_PAGE: { path: '/' },
-  LANDING_PAGE_V2: { path: '/v2' },
-  JOIN: { path: '/join' },
-  JOIN_V2: { path: '/v2/join' },
+  LANDING_PAGE: { path: '/v1' },
+  LANDING_PAGE_V2: { path: '/' },
+  JOIN: { path: '/v1/join' },
+  JOIN_V2: { path: '/join' },
   SITES: {
-    path: '/sites',
+    path: '/v1/sites',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
   },
   SITES_V2: {
-    path: '/v2/sites',
+    path: '/sites',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
   },
   ADMIN: {
-    path: '/admin',
+    path: '/v1/admin',
     roles: [
       USER_ROLES.dashboard,
       USER_ROLES.proctorAdmin,
@@ -30,7 +30,7 @@ export const ROUTES = {
     ],
   },
   ADMIN_V2: {
-    path: '/v2/admin',
+    path: '/admin',
     roles: [
       USER_ROLES.dashboard,
       USER_ROLES.proctorAdmin,
@@ -38,82 +38,82 @@ export const ROUTES = {
     ],
   },
   ADD_SITE: {
-    path: '/sites/new',
+    path: '/v1/sites/new',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
   },
   ADD_SITE_V2: {
-    path: '/v2/sites/new',
+    path: '/sites/new',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
   },
   EDIT_SITE: {
-    path: '/sites/edit/:id',
+    path: '/v1/sites/edit/:id',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
   },
   EDIT_SITE_V2: {
-    path: '/v2/sites/edit/:id',
+    path: '/sites/edit/:id',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
   },
-  REQUEST_SITE: { path: '/sites/request' },
-  REQUEST_SITE_V2: { path: '/v2/sites/request' },
+  REQUEST_SITE: { path: '/v1/sites/request' },
+  REQUEST_SITE_V2: { path: '/sites/request' },
   UPLOAD_SITES: {
-    path: '/sites/upload',
+    path: '/v1/sites/upload',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
   },
   UPLOAD_SITES_V2: {
-    path: '/v2/sites/upload',
+    path: '/sites/upload',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
   },
   ACCOUNTS: {
-    path: '/accounts',
+    path: '/v1/accounts',
     roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
   },
   ACCOUNTS_V2: {
-    path: '/v2/accounts',
+    path: '/accounts',
     roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
   },
   ADD_ACCOUNT: {
-    path: '/accounts/new',
+    path: '/v1/accounts/new',
     roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
   },
   ADD_ACCOUNT_V2: {
-    path: '/v2/accounts/new',
+    path: '/accounts/new',
     roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
   },
   EDIT_ACCOUNT: {
-    path: '/accounts/edit/:id',
+    path: '/v1/accounts/edit/:id',
     roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
   },
   EDIT_ACCOUNT_V2: {
-    path: '/v2/accounts/edit/:id',
+    path: '/accounts/edit/:id',
     roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
   },
-  REQUEST_ACCOUNT: { path: '/accounts/request' },
-  REQUEST_ACCOUNT_V2: { path: '/v2/accounts/request' },
+  REQUEST_ACCOUNT: { path: '/v1/accounts/request' },
+  REQUEST_ACCOUNT_V2: { path: '/accounts/request' },
   UPLOAD_ACCOUNTS: {
-    path: '/accounts/upload',
+    path: '/v1/accounts/upload',
     roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
   },
   UPLOAD_ACCOUNTS_V2: {
-    path: '/v2/accounts/upload',
+    path: '/accounts/upload',
     roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
   },
   FAQ: {
-    path: '/faq',
+    path: '/v1/faq',
   },
   FAQ_V2: {
-    path: '/v2/faq/:id?',
+    path: '/faq/:id?',
   },
   FAQ_V2_LANDING: {
-    path: '/v2/faq',
+    path: '/faq',
   },
-  DASHBOARD: { path: '/dashboard' },
-  DASHBOARD_V2: { path: '/v2/dashboard' },
-  LOG_IN: { path: '/login' },
-  LOG_IN_V2: { path: '/v2/login' },
-  TRAINING_MATERIALS: { path: '/training-materials' },
-  TRAINING_MATERIALS_V2: { path: '/v2/training-materials' },
+  DASHBOARD: { path: '/v1/dashboard' },
+  DASHBOARD_V2: { path: '/dashboard' },
+  LOG_IN: { path: '/v1/login' },
+  LOG_IN_V2: { path: '/login' },
+  TRAINING_MATERIALS: { path: '/v1/training-materials' },
+  TRAINING_MATERIALS_V2: { path: '/training-materials' },
   SUGGEST_IMPROVEMENT: {
-    path: '/suggestions',
+    path: '/v1/suggestions',
     roles: [
       USER_ROLES.dashboard,
       USER_ROLES.proctorAdmin,
@@ -121,15 +121,15 @@ export const ROUTES = {
     ],
   },
   SUGGEST_IMPROVEMENT_V2: {
-    path: '/v2/suggestions',
+    path: '/suggestions',
     roles: [
       USER_ROLES.dashboard,
       USER_ROLES.proctorAdmin,
       USER_ROLES.siteAdmin,
     ],
   },
-  CONTACT: { path: '/contact' },
-  CONTACT_V2: { path: '/v2/contact' },
+  CONTACT: { path: '/v1/contact' },
+  CONTACT_V2: { path: '/contact' },
 };
 
 export const VALID_SITE_COLUMNS = {
