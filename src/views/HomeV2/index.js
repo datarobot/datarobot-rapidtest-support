@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ROUTES } from 'rt-constants';
+import { LANDING_PAGE_LINKS, ROUTES } from 'rt-constants';
 
 import LayoutV2 from 'components/Layouts/LayoutV2';
 import Button from 'components/Button';
@@ -35,6 +35,8 @@ import el13 from 'assets/images/home/el13.svg';
 import trainingMaterials from 'assets/static/TrainingMaterials.pdf';
 
 import './HomeV2.css';
+
+const { GETTING_TESTED } = LANDING_PAGE_LINKS;
 
 const HomeV2 = () => (
   <LayoutV2 backgroundLanding wide>
@@ -329,30 +331,20 @@ const HomeV2 = () => (
       <div className="wrapper inverted">
         <section className="limitWidth forParents">
           <div className="forParentsTiles">
-            <div className="forParentsTile">
-              <h5>CDC guidance for school and childcare programs</h5>
-              <div className="arrow">
-                <img src={arrowRight} alt="" />
-              </div>
-            </div>
-            <div className="forParentsTile">
-              <h5>COVID testing guidance</h5>
-              <div className="arrow">
-                <img src={arrowRight} alt="" />
-              </div>
-            </div>
-            <div className="forParentsTile">
-              <h5>Children, teens, young adults (CDC)</h5>
-              <div className="arrow">
-                <img src={arrowRight} alt="" />
-              </div>
-            </div>
-            <div className="forParentsTile">
-              <h5>Screen for COVID among school population</h5>
-              <div className="arrow">
-                <img src={arrowRight} alt="" />
-              </div>
-            </div>
+            {GETTING_TESTED.map(({ text, url }) => (
+              <a
+                key={text}
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="forParentsTile"
+              >
+                <h5>{text}</h5>
+                <div className="arrow">
+                  <img src={arrowRight} alt="" />
+                </div>
+              </a>
+            ))}
           </div>
           <div className="forParentsText">
             <div className="badge">For Parents and Students</div>
