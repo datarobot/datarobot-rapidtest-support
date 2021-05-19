@@ -11,8 +11,7 @@ import Radio from 'components/Radio';
 import HeaderCell from 'components/TableAdvanced/HeaderCell';
 import LoadingOverlay from 'components/TableAdvanced/LoadingOverlay';
 import Pagination from 'components/TableAdvanced/Pagination';
-import { get } from 'utils';
-import { getPrograms } from 'services/api';
+import useCurrentProgram from 'hooks/useCurrentProgram';
 
 import 'ag-grid-community';
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -44,6 +43,8 @@ const TableAdvanced = ({
   const history = useHistory();
   const { pathname } = useLocation();
 
+  const { name: currentProgram } = useCurrentProgram();
+
   const [gridApi, setGridApi] = useState(null);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isFilterFocused, setIsFilterFocused] = useState(false);
@@ -53,7 +54,6 @@ const TableAdvanced = ({
   const [pageSize, setPageSize] = useState(50);
   const [isLastPage, setIsLastPage] = useState(false);
   const [isFirstPage, setIsFirstPage] = useState(false);
-  const [currentProgram, setCurrentProgram] = useState('');
   const [columnApi, setColumnApi] = useState();
 
   const isAccounts = pathname.includes('/accounts');
@@ -75,9 +75,6 @@ const TableAdvanced = ({
   const onGridReady = async (params) => {
     setGridApi(params.api);
     setColumnApi(params.columnApi);
-    const programs = await getPrograms();
-
-    setCurrentProgram(programs[get('program')][0].name);
   };
 
   // eslint-disable-next-line no-unused-vars
