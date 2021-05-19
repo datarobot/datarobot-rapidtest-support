@@ -149,22 +149,23 @@ const SitesV2 = () => {
       },
       colId: 'siteName',
       value: ({ data }) => data.site_name,
+      // colWidth: 650,
     },
     {
       header: 'Address',
       value: ({ data }) =>
         `${data.street}, ${data.city} ${data.state} ${data.zip}`,
-      colWidth: 650,
+      // colWidth: 650,
     },
     {
       header: 'District',
       value: ({ data }) => data.district || '-',
-      // colWidth: 200,
+      colWidth: 160,
     },
     {
       header: 'Contact',
       value: ({ data }) => data.contact_name || '-',
-      colWidth: 200,
+      colWidth: 160,
     },
     {
       field: 'archive',

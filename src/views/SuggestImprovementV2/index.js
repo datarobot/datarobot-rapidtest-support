@@ -21,7 +21,7 @@ const SuggestImprovementV2 = () => {
 
   return (
     <>
-      <PageHeaderV2 headline="Suggest an improvement" />
+      <PageHeaderV2 headline="Suggest an improvement" hideBack />
 
       <section className="flex">
         {process.env.REACT_APP_ENABLE_CONTACT_FORM === 'false' ? (

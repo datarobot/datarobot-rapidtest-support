@@ -55,17 +55,17 @@ const Input = ({
           )}
         </label>
       )}
-      {icon && (
-        <span className="placeholder-icon">
-          <Icon iconName={icon} type="fal" />
-        </span>
-      )}
       <span
         className={cls(wrapperClass, {
           'w-full': !isSearch,
-          relative: type === 'password',
+          relative: icon || type === 'password',
         })}
       >
+        {icon && (
+          <span className="placeholder-icon">
+            <Icon iconName={icon} type="fal" />
+          </span>
+        )}
         {mask ? (
           <InputMask
             mask={mask}
