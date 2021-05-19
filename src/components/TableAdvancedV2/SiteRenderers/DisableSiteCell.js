@@ -1,10 +1,10 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
-import { Link, generatePath } from 'react-router-dom';
+import { useAtom } from 'jotai';
 import ReactTooltip from 'react-tooltip';
 import { toast } from 'react-toastify';
 
-import { ROUTES } from 'rt-constants';
+import { sitesSidebarAtom } from 'rt-store';
 import { editSite } from 'services/api';
 
 import Modal from 'components/Modal';
@@ -14,6 +14,7 @@ import SuccessCheck from 'components/Notifications/SuccessCheck';
 import pencil from 'assets/images/icons/pencil.svg';
 
 const DisableSiteCell = ({ value, data: { id } }) => {
+  const [, setSitesSidebar] = useAtom(sitesSidebarAtom);
   const [selected, setSelected] = useState(!value);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -81,12 +82,12 @@ const DisableSiteCell = ({ value, data: { id } }) => {
           <SuccessCheck onAnimationEnd={handleUpdateData} />
         ) : (
           <>
-            <Link
-              to={generatePath(ROUTES.EDIT_SITE_V2.path, { id })}
-              className="mr-4 text-blue-lighter"
+            <div
+              onClick={() => setSitesSidebar({ id, mode: 'edit' })}
+              className="mr-4"
             >
               <img src={pencil} alt="" className="cursor-pointer" />
-            </Link>
+            </div>
             <ToggleButton
               v2
               defaultChecked={selected}

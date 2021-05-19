@@ -8,6 +8,22 @@
   }
 }
 
+.sidebarModalOverlay {
+  @apply fixed top-0 right-0 bottom-0 left-0;
+  background-color: var(--purple-100-cc);
+}
+.sidebarModalContent {
+  @apply absolute top-0 right-0 bottom-0;
+  width: 100%;
+  max-width: 440px;
+
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  outline: none;
+  padding: 20px;
+}
+
 .Filter {
   min-width: 130px;
   .Filter__control {
