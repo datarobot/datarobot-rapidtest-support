@@ -7,10 +7,11 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-import { getSiteList, editSite, getPrograms } from 'services/api';
+import { getSiteList, editSite } from 'services/api';
 import { ROUTES } from 'rt-constants';
 import { sitesAtom, sitesToDisableAtom, siteIdsToDisableAtom } from 'rt-store';
-import { download, get, toCsv } from 'utils';
+import { download, toCsv } from 'utils';
+import useCurrentProgram from 'hooks/useCurrentProgram';
 
 import LayoutV2 from 'components/Layouts/LayoutV2';
 import Modal from 'components/Modal';
@@ -29,14 +30,7 @@ import cls from 'classnames';
 const SitesV2 = () => {
   const { t } = useTranslation();
 
-  const [currentProgram, setCurrentProgram] = useState('');
-  useEffect(() => {
-    const fetchCurrentProgram = async () => {
-      const programs = await getPrograms();
-      setCurrentProgram(programs[get('program')][0].name);
-    };
-    fetchCurrentProgram();
-  }, []);
+  const { name: currentProgram } = useCurrentProgram();
 
   const [sites, setSites] = useAtom(sitesAtom);
   const [sitesToDisable, setSitesToDisable] = useAtom(sitesToDisableAtom);

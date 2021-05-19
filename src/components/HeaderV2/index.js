@@ -79,15 +79,17 @@ const HeaderV2 = () => {
                 </div>
               ) : (
                 <>
-                  <Button v2 outline small>
-                    <Link to={ROUTES.LOG_IN_V2.path}>
+                  <Link to={ROUTES.LOG_IN_V2.path}>
+                    <Button v2 outline small>
                       {t('buttons.signin')}
-                    </Link>
-                  </Button>
+                    </Button>
+                  </Link>
 
-                  <Button v2 secondary small>
-                    <Link to={ROUTES.JOIN_V2.path}>{t('buttons.join')}</Link>
-                  </Button>
+                  <Link to={ROUTES.JOIN_V2.path}>
+                    <Button v2 secondary small>
+                      {t('buttons.join')}
+                    </Button>
+                  </Link>
                 </>
               )}
             </section>

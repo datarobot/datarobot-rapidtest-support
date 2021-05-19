@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-import { getAccountList, editAccount, getPrograms } from 'services/api';
+import { getAccountList, editAccount } from 'services/api';
 import { ROUTES } from 'rt-constants';
 import {
   accountsAtom,
@@ -16,8 +16,9 @@ import {
   accountIdsToDisableAtom,
   accountFilterAtom,
 } from 'rt-store';
-import { download, get, toCsv } from 'utils';
+import { download, toCsv } from 'utils';
 import { dateComparator } from 'utils/table';
+import useCurrentProgram from 'hooks/useCurrentProgram';
 
 import LayoutV2 from 'components/Layouts/LayoutV2';
 import { IconButton } from 'components/Button';
@@ -40,14 +41,7 @@ import addIcon from 'assets/images/icons/add.svg';
 const AccountsV2 = () => {
   const { t } = useTranslation();
 
-  const [currentProgram, setCurrentProgram] = useState('');
-  useEffect(() => {
-    const fetchCurrentProgram = async () => {
-      const programs = await getPrograms();
-      setCurrentProgram(programs[get('program')][0].name);
-    };
-    fetchCurrentProgram();
-  }, []);
+  const { name: currentProgram } = useCurrentProgram();
 
   const [accounts, setAccounts] = useAtom(accountsAtom);
   const [initialAccounts, setInitialAccounts] = useState([]);
