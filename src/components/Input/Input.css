@@ -28,6 +28,7 @@
 
     &.isSearch {
       @apply rounded-lg;
+      min-width: 264px;
     }
   }
 }
@@ -81,8 +82,10 @@
 }
 
 .placeholder-icon {
-  @apply -mr-7 ml-4 z-10;
+  @apply absolute z-10;
   color: var(--purple-70);
+  top: 9px;
+  left: 11px;
 }
 
 form {

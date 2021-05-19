@@ -25,6 +25,7 @@ const AccountFilter = () => {
       className="Filter ml-4"
       classNamePrefix="Filter"
       placeholder="Filter"
+      // menuIsOpen={true}
       isClearable={true}
       isSearchable={false}
       options={[
@@ -109,7 +110,7 @@ const TableAdvancedV2 = ({
     <>
       {!tableOnly && (
         <>
-          {tableName && <h1 className="mb-4">{tableName}</h1>}
+          {tableName && <h2 className="mb-4">{tableName}</h2>}
           <div className="grid grid-cols-2 lg:mb-4 xl:mb-4 mt-2">
             <div className="flex flex-col justify-center">
               <div className="flex items-center">
@@ -196,7 +197,7 @@ const TableAdvancedV2 = ({
             )}
           </AgGridReact>
           {currentPage > 0 && (
-            <div className="pagination-panel">
+            <div className="pagination-panel limitWidth">
               <Selector gridApi={gridApi} pageSize={pageSize} />
               <Pagination
                 currentPage={currentPage}

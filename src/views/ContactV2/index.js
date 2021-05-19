@@ -19,7 +19,7 @@ const ContactV2 = () => {
 
   return (
     <>
-      <PageHeaderV2 headline="Contact support" />
+      <PageHeaderV2 headline="Contact support" hideBack />
 
       {process.env.REACT_APP_ENABLE_CONTACT_FORM === 'false' ? (
         <section className="w-full flex flex-col place-items-center">
