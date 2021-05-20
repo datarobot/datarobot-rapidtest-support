@@ -7,7 +7,7 @@ import axios from 'axios';
 
 import FileUpload from 'components/FileUpload';
 import PageHeader from 'components/PageHeader';
-import UploadHeaderText from 'components/UploadHeaderText';
+import ValidColumns from 'components/ValidColumns';
 
 import { addSite } from 'services/api';
 import { isValidSitesList, getSiteError } from 'utils/validate';
@@ -58,14 +58,14 @@ const UploadSites = () => {
       <PageHeader
         headline="Upload a list of sites"
         subtext={
-          <UploadHeaderText
-            pageType="sites"
-            validColumns={VALID_SITE_COLUMNS}
-            errors={errors}
-            clearErrors={() => setErrors([])}
-          />
+          <p>Upload a CSV file with a list of sites to add to your program.</p>
         }
         subtextClass={cls({ 'w-1/2': errors.length > 0 })}
+      />
+      <ValidColumns
+        validColumns={VALID_SITE_COLUMNS}
+        errors={errors}
+        clearErrors={() => setErrors([])}
       />
       <FileUpload
         validator={isValidSitesList}

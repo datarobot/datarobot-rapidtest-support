@@ -67,10 +67,10 @@ const EditAccountV2 = () => {
 
   return (
     <>
-      <h2>
+      <h3>
         {t('editSite.title')} {currentAccount?.first_name}{' '}
         {currentAccount?.last_name}
-      </h2>
+      </h3>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <ControlledInput
@@ -148,7 +148,7 @@ const EditAccountV2 = () => {
             v2
             primary
             small
-            className="ml-4"
+            className="w-full"
             type="submit"
             disabled={!patchData}
           >

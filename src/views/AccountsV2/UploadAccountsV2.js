@@ -7,13 +7,16 @@ import { VALID_ACCOUNT_COLUMNS } from 'rt-constants';
 import { addAccount } from 'services/api';
 import { isValidAccountList, getAccountError } from 'utils/validate';
 import { parseError } from 'utils/errors';
+import { accountsSidebarAtom } from 'rt-store';
 
 import FileUpload from 'components/FileUpload';
-import UploadHeaderText from 'components/UploadHeaderText';
+import ValidColumns from 'components/ValidColumns';
 
 import fileTemplate from 'assets/static/rapidtest_accounts_template.csv';
 
 import './AccountsV2.css';
+import { useAtom } from 'jotai';
+import Button from '../../components/Button';
 
 const UploadAccountsV2 = () => {
   const [errors, setErrors] = useState([]);
@@ -45,22 +48,49 @@ const UploadAccountsV2 = () => {
       });
   };
 
+  const [, setAccountsSidebar] = useAtom(accountsSidebarAtom);
+
   return (
     <>
-      <h2>Upload a list of accounts</h2>
-      <UploadHeaderText
-        pageType="accounts"
-        validColumns={VALID_ACCOUNT_COLUMNS}
-        errors={errors}
-        clearErrors={() => setErrors([])}
-      />
+      <h3>Upload a list of accounts</h3>
+      <p>Upload a CSV file with a list of accounts to add to your program.</p>
+
       <FileUpload
-        validator={isValidAccountList}
+        v2
+        validator={(list) => {
+          const valid = isValidAccountList(list);
+          console.log({ valid });
+          setAccountsSidebar({ mode: 'upload', wide: valid });
+          return valid;
+        }}
         handleError={(e) => getAccountError(e)}
         handleUpload={handleUpload}
         templateFile={fileTemplate}
         templateName="rapidtest_accounts_template.csv"
+        clearErrors={() => {
+          setAccountsSidebar({ mode: 'upload', wide: false });
+          setErrors([]);
+        }}
       />
+      <br />
+      <ValidColumns
+        validColumns={VALID_ACCOUNT_COLUMNS}
+        errors={errors}
+        clearErrors={() => {
+          setAccountsSidebar({ mode: 'upload', wide: false });
+          setErrors([]);
+        }}
+      />
+
+      <a
+        href={fileTemplate}
+        download="rapidtest_accounts_template.csv"
+        className="no-underline"
+      >
+        <Button v2 transparent small className="w-full mt-6">
+          Download a template file.
+        </Button>
+      </a>
     </>
   );
 };

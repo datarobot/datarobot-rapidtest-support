@@ -22,6 +22,10 @@
   overflow: auto;
   outline: none;
   padding: 20px;
+
+  &.wide {
+    max-width: unset;
+  }
 }
 
 .Filter {

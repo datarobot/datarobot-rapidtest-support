@@ -159,7 +159,7 @@ const AddSiteV2 = () => {
 
   return (
     <>
-      <h2>{t('addSite.title')}</h2>
+      <h3>{t('addSite.title')}</h3>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller
@@ -231,155 +231,139 @@ const AddSiteV2 = () => {
         />
         <ErrorMessage errors={errors} errorKey="street" />
 
-        <fieldset className="flex">
-          <div className="w-1/2 mr-2">
-            <Controller
+        <Controller
+          name="street"
+          control={control}
+          defaultValue=""
+          rules={{
+            required: {
+              value: true,
+              message: t('errorMessages.common.required'),
+            },
+          }}
+          render={({ onChange, value }) => (
+            <Input
+              v2
               name="street"
-              control={control}
-              defaultValue=""
-              rules={{
-                required: {
-                  value: true,
-                  message: t('errorMessages.common.required'),
-                },
-              }}
-              render={({ onChange, value }) => (
-                <Input
-                  v2
-                  name="street"
-                  label={t('site.label.street')} // "Street address"
-                  onChange={onChange}
-                  value={
-                    currentSchool?.street ? currentSchool?.street : value || ''
-                  }
-                  className="mt-1"
-                  isRequired
-                  onBlur={updateForm}
-                />
-              )}
+              label={t('site.label.street')} // "Street address"
+              onChange={onChange}
+              value={
+                currentSchool?.street ? currentSchool?.street : value || ''
+              }
+              className="mt-1"
+              isRequired
+              onBlur={updateForm}
             />
-            <ErrorMessage errors={errors} errorKey="street" />
-          </div>
+          )}
+        />
+        <ErrorMessage errors={errors} errorKey="street" />
 
-          <div className="w-1/2">
-            <Controller
+        <Controller
+          name="city"
+          control={control}
+          defaultValue=""
+          rules={{
+            required: {
+              value: true,
+              message: t('errorMessages.common.required'),
+            },
+          }}
+          render={({ onChange, value }) => (
+            <Input
+              v2
               name="city"
-              control={control}
-              defaultValue=""
-              rules={{
-                required: {
-                  value: true,
-                  message: t('errorMessages.common.required'),
-                },
-              }}
-              render={({ onChange, value }) => (
-                <Input
-                  v2
-                  name="city"
-                  label={t('site.label.city')} // "City"
-                  onChange={onChange}
-                  value={
-                    currentSchool?.city ? currentSchool?.city : value || ''
-                  }
-                  className="mt-1"
-                  isRequired
-                  onBlur={updateForm}
-                />
-              )}
+              label={t('site.label.city')} // "City"
+              onChange={onChange}
+              value={currentSchool?.city ? currentSchool?.city : value || ''}
+              className="mt-1"
+              isRequired
+              onBlur={updateForm}
             />
-            <ErrorMessage errors={errors} errorKey="city" />
-          </div>
-        </fieldset>
+          )}
+        />
+        <ErrorMessage errors={errors} errorKey="city" />
 
-        <fieldset className="flex">
-          <div className="w-1/2 mr-2">
-            <Controller
+        <Controller
+          name="county"
+          control={control}
+          defaultValue=""
+          rules={{
+            required: {
+              value: true,
+              message: t('errorMessages.common.required'),
+            },
+          }}
+          render={({ onChange, value }) => (
+            <Input
+              v2
               name="county"
-              control={control}
-              defaultValue=""
-              rules={{
-                required: {
-                  value: true,
-                  message: t('errorMessages.common.required'),
-                },
-              }}
-              render={({ onChange, value }) => (
-                <Input
-                  v2
-                  name="county"
-                  label={t('site.label.county')}
-                  onChange={onChange}
-                  value={
-                    currentSchool?.county ? currentSchool?.county : value || ''
-                  }
-                  className="mt-1"
-                  isRequired
-                />
-              )}
+              label={t('site.label.county')}
+              onChange={onChange}
+              value={
+                currentSchool?.county ? currentSchool?.county : value || ''
+              }
+              className="mt-1"
+              isRequired
             />
-            <ErrorMessage errors={errors} errorKey="county" />
-          </div>
+          )}
+        />
+        <ErrorMessage errors={errors} errorKey="county" />
 
-          <div className="w-1/4 mr-2">
-            <Controller
-              control={control}
+        <Controller
+          control={control}
+          name="state"
+          label="State"
+          defaultValue={currentSchool?.state || ''}
+          rules={{
+            required: {
+              value: true,
+              message: t('errorMessages.common.required'),
+            },
+          }}
+          render={({ onChange, value }) => (
+            <Select
+              v2
               name="state"
               label="State"
-              defaultValue={currentSchool?.state || ''}
-              rules={{
-                required: {
-                  value: true,
-                  message: t('errorMessages.common.required'),
-                },
-              }}
-              render={({ onChange, value }) => (
-                <Select
-                  v2
-                  name="state"
-                  label="State"
-                  options={STATE_OPTIONS}
-                  isRequired
-                  onChange={onChange}
-                  value={currentSchool?.state || value}
-                  className="mt-1"
-                  onBlur={updateForm}
-                />
-              )}
+              options={STATE_OPTIONS}
+              isRequired
+              onChange={onChange}
+              value={currentSchool?.state || value}
+              className="mt-1"
+              onBlur={updateForm}
             />
-            <ErrorMessage errors={errors} errorKey="state" />
-          </div>
+          )}
+        />
+        <ErrorMessage errors={errors} errorKey="state" />
 
-          <div className="w-1/4">
-            <Controller
+        <Controller
+          name="zip"
+          control={control}
+          defaultValue=""
+          rules={{
+            required: {
+              value: true,
+              message: t('errorMessages.common.required'),
+            },
+            minLength: {
+              value: 5,
+              message: t('errorMessages.zip.invalid'),
+            },
+          }}
+          render={({ onChange, value }) => (
+            <Input
+              v2
               name="zip"
-              control={control}
-              defaultValue=""
-              rules={{
-                required: {
-                  value: true,
-                  message: t('errorMessages.common.required'),
-                },
-                minLength: {
-                  value: 5,
-                  message: t('errorMessages.zip.invalid'),
-                },
-              }}
-              render={({ onChange, value }) => (
-                <Input
-                  v2
-                  name="zip"
-                  label={t('site.label.zip')}
-                  onChange={onChange}
-                  value={currentSchool?.zip ? currentSchool?.zip : value || ''}
-                  className="mt-1"
-                  isRequired
-                  onBlur={updateForm}
-                />
-              )}
+              label={t('site.label.zip')}
+              onChange={onChange}
+              value={currentSchool?.zip ? currentSchool?.zip : value || ''}
+              className="mt-1"
+              isRequired
+              onBlur={updateForm}
             />
-            <ErrorMessage errors={errors} errorKey="zip" />
-          </div>
-        </fieldset>
+          )}
+        />
+        <ErrorMessage errors={errors} errorKey="zip" />
 
         <Controller
           name="contact_name"
@@ -453,7 +437,7 @@ const AddSiteV2 = () => {
         <ErrorMessage errors={errors} errorKey="clia" />
 
         <div className="btn-row end mt-4">
-          <Button v2 primary small className="ml-4" type="submit">
+          <Button v2 primary small className="w-full" type="submit">
             Add site
           </Button>
         </div>

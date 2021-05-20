@@ -74,9 +74,10 @@ const EditSiteV2 = () => {
 
   return (
     <>
-      <h2>
+      <h3>
         {t('editSite.title')} {currentSite.site_name || 'untitled'}
-      </h2>
+      </h3>
+
       <form onSubmit={handleSubmit(onSubmit)}>
         <ControlledInput
           v2
@@ -116,109 +117,91 @@ const EditSiteV2 = () => {
           }}
         />
 
-        <fieldset className="flex">
-          <div className="w-1/2 mr-2">
-            <ControlledInput
-              v2
-              name="street"
-              label={t('site.label.street')}
-              onChange={({ target }) =>
-                handleOnChange('street', target.value, true)
-              }
-              value={currentSite?.street || ''}
-              ref={register}
-              isRequired
-              rules={{
-                required: {
-                  value: true,
-                  message: t('errorMessages.common.required'),
-                },
-              }}
-            />
-          </div>
+        <ControlledInput
+          v2
+          name="street"
+          label={t('site.label.street')}
+          onChange={({ target }) =>
+            handleOnChange('street', target.value, true)
+          }
+          value={currentSite?.street || ''}
+          ref={register}
+          isRequired
+          rules={{
+            required: {
+              value: true,
+              message: t('errorMessages.common.required'),
+            },
+          }}
+        />
 
-          <div className="w-1/2">
-            <ControlledInput
-              v2
-              name="city"
-              label={t('site.label.city')}
-              onChange={({ target }) =>
-                handleOnChange('city', target.value, true)
-              }
-              value={currentSite?.city || ''}
-              isRequired
-              rules={{
-                required: {
-                  value: true,
-                  message: t('errorMessages.common.required'),
-                },
-              }}
-            />
-          </div>
-        </fieldset>
+        <ControlledInput
+          v2
+          name="city"
+          label={t('site.label.city')}
+          onChange={({ target }) => handleOnChange('city', target.value, true)}
+          value={currentSite?.city || ''}
+          isRequired
+          rules={{
+            required: {
+              value: true,
+              message: t('errorMessages.common.required'),
+            },
+          }}
+        />
 
-        <fieldset className="flex">
-          <div className="w-1/2 mr-2">
-            <ControlledInput
-              v2
-              name="county"
-              label={t('site.label.county')}
-              onChange={({ target }) => handleOnChange('county', target.value)}
-              value={currentSite?.county || ''}
-              className="mt-1"
-              isRequired
-              ref={register}
-              rules={{
-                required: {
-                  value: true,
-                  message: t('errorMessages.common.required'),
-                },
-              }}
-            />
+        <ControlledInput
+          v2
+          name="county"
+          label={t('site.label.county')}
+          onChange={({ target }) => handleOnChange('county', target.value)}
+          value={currentSite?.county || ''}
+          className="mt-1"
+          isRequired
+          ref={register}
+          rules={{
+            required: {
+              value: true,
+              message: t('errorMessages.common.required'),
+            },
+          }}
+        />
+        <ErrorMessage errors={errors} errorKey="county" />
 
-            <ErrorMessage errors={errors} errorKey="county" />
-          </div>
+        <Select
+          v2
+          name="state"
+          label={t('site.label.state')}
+          options={STATE_OPTIONS}
+          value={currentSite?.state || ''}
+          isRequired
+          onChange={({ target }) => handleOnChange('state', target.value)}
+          ref={register}
+          rules={{
+            required: {
+              value: true,
+              message: t('errorMessages.common.required'),
+            },
+          }}
+        />
 
-          <div className="w-1/4 mr-2">
-            <Select
-              v2
-              name="state"
-              label={t('site.label.state')}
-              options={STATE_OPTIONS}
-              value={currentSite?.state || ''}
-              isRequired
-              onChange={({ target }) => handleOnChange('state', target.value)}
-              ref={register}
-              rules={{
-                required: {
-                  value: true,
-                  message: t('errorMessages.common.required'),
-                },
-              }}
-            />
-          </div>
-
-          <div className="w-1/4">
-            <ControlledInput
-              v2
-              name="zip"
-              label={t('site.label.zip')}
-              onChange={({ target }) => handleOnChange('zip', target.value)}
-              value={currentSite?.zip || ''}
-              className="mt-1"
-              isRequired
-              ref={register}
-              rules={{
-                required: {
-                  value: true,
-                  message: t('errorMessages.common.required'),
-                },
-              }}
-            />
-
-            <ErrorMessage errors={errors} errorKey="zip" />
-          </div>
-        </fieldset>
+        <ControlledInput
+          v2
+          name="zip"
+          label={t('site.label.zip')}
+          onChange={({ target }) => handleOnChange('zip', target.value)}
+          value={currentSite?.zip || ''}
+          className="mt-1"
+          isRequired
+          ref={register}
+          rules={{
+            required: {
+              value: true,
+              message: t('errorMessages.common.required'),
+            },
+          }}
+        />
+        <ErrorMessage errors={errors} errorKey="zip" />
 
         <ControlledInput
           v2
@@ -244,6 +227,7 @@ const EditSiteV2 = () => {
           optional
           ref={register}
         />
+
         <ControlledInput
           v2
           name="clia"
@@ -274,7 +258,7 @@ const EditSiteV2 = () => {
         />
 
         <div className="btn-row end mt-4">
-          <Button v2 small primary className="ml-4" type="submit">
+          <Button v2 small primary className="w-full" type="submit">
             Save Info
           </Button>
         </div>

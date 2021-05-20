@@ -30,49 +30,44 @@ const AddAccountV2 = () => {
 
   return (
     <>
-      <h2>Add New Account</h2>
+      <h3>Add New Account</h3>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <h3>Personal Info</h3>
-        <fieldset className="flex">
-          <div className="w-1/2 mr-2">
-            <Controller
-              name="first_name"
-              control={control}
-              defaultValue=""
-              render={({ onChange, value }) => (
-                <Input
-                  v2
-                  name="first_name"
-                  label="First Name"
-                  onChange={onChange}
-                  value={value}
-                  isRequired
-                />
-              )}
-            />
-            <ErrorMessage errors={errors} errorKey="first_name" />
-          </div>
 
-          <div className="w-1/2">
-            <Controller
-              name="last_name"
-              control={control}
-              defaultValue=""
-              render={({ onChange, value }) => (
-                <Input
-                  v2
-                  name="last_name"
-                  label="Last Name"
-                  onChange={onChange}
-                  value={value}
-                  isRequired
-                />
-              )}
+        <Controller
+          name="first_name"
+          control={control}
+          defaultValue=""
+          render={({ onChange, value }) => (
+            <Input
+              v2
+              name="first_name"
+              label="First Name"
+              onChange={onChange}
+              value={value}
+              isRequired
             />
-            <ErrorMessage errors={errors} errorKey="last_name" />
-          </div>
-        </fieldset>
+          )}
+        />
+        <ErrorMessage errors={errors} errorKey="first_name" />
+
+        <Controller
+          name="last_name"
+          control={control}
+          defaultValue=""
+          render={({ onChange, value }) => (
+            <Input
+              v2
+              name="last_name"
+              label="Last Name"
+              onChange={onChange}
+              value={value}
+              isRequired
+            />
+          )}
+        />
+        <ErrorMessage errors={errors} errorKey="last_name" />
 
         <Controller
           name="email_address"
@@ -132,7 +127,7 @@ const AddAccountV2 = () => {
         />
 
         <div className="btn-row end mt-4">
-          <Button v2 primary small className="ml-4" type="submit">
+          <Button v2 primary small className="w-full" type="submit">
             Save Info
           </Button>
         </div>
