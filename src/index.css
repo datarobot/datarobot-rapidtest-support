@@ -133,6 +133,13 @@ body {
   .sub-heading {
     @apply text-2xl font-bold;
   }
+
+  .ReactModal__Body--open {
+    overflow: hidden;
+  }
+  .ReactModal__Overlay {
+    z-index: 20;
+  }
 }
 
 .Toastify__toast-container {

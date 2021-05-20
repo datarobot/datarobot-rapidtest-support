@@ -28,7 +28,7 @@ const LayoutV2 = ({
   backgroundLanding = false,
   wide = false,
 }) => (
-  <div className="LayoutV2">
+  <div className="LayoutV2 layout">
     {backgroundAuth && (
       <>
         <div className="bga bga1">

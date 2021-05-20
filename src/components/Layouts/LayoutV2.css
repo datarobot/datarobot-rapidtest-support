@@ -1,12 +1,15 @@
 @import '../../assets/styles/mixins.css';
 
 .LayoutV2 {
-  @apply flex flex-col;
-
-  position: relative;
-  min-height: 100vh;
   color: var(--text-color);
-  background-color: var(--background-color);
+
+  &.layout {
+    @apply flex flex-col;
+
+    position: relative;
+    min-height: 100vh;
+    background-color: var(--background-color);
+  }
 
   .bg {
     position: absolute;

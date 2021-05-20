@@ -1,26 +1,24 @@
 // @ts-nocheck
-import { Fragment, useRef, useState } from 'react';
-import cls from 'classnames';
+import { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-
-import FileUpload from 'components/FileUpload';
-import PageHeaderV2 from 'components/PageHeaderV2';
-import UploadHeaderText from 'components/UploadHeaderText';
 
 import { addSite } from 'services/api';
 import { isValidSitesList, getSiteError } from 'utils/validate';
 import { parseError } from 'utils/errors';
+import { VALID_SITE_COLUMNS } from 'rt-constants';
+import { sitesSidebarAtom } from 'rt-store';
 
-import { ROUTES, VALID_SITE_COLUMNS } from 'rt-constants';
+import FileUpload from 'components/FileUpload';
+import ValidColumns from 'components/ValidColumns';
 
 import fileTemplate from 'assets/static/rapidtest_sites_template.csv';
 
 import './SitesV2.css';
+import { useAtom } from 'jotai';
+import Button from '../../components/Button';
 
 const UploadSitesV2 = () => {
-  const history = useHistory();
   const [errors, setErrors] = useState([]);
   const toastId = useRef(null);
 
@@ -41,7 +39,6 @@ const UploadSitesV2 = () => {
       .all(batch)
       .then(() => {
         dismiss();
-        history.push(ROUTES.SITES_V2.path);
         toast.success(`Uploaded ${data.length} sites!`, {
           autoClose: 5000,
         });
@@ -53,28 +50,48 @@ const UploadSitesV2 = () => {
       });
   };
 
+  const [, setSitesSidebar] = useAtom(sitesSidebarAtom);
+
   return (
     <>
-      <PageHeaderV2
-        headline="Upload a list of sites"
-        subtext={
-          <UploadHeaderText
-            pageType="sites"
-            validColumns={VALID_SITE_COLUMNS}
-            errors={errors}
-            clearErrors={() => setErrors([])}
-          />
-        }
-        subtextClass={cls({ 'w-1/2': errors.length > 0 })}
-      />
+      <h3>Upload a list of sites</h3>
+      <p>Upload a CSV file with a list of sites to add to your program.</p>
+
       <FileUpload
-        validator={isValidSitesList}
+        v2
+        validator={(list) => {
+          const valid = isValidSitesList(list);
+          setSitesSidebar({ mode: 'upload', wide: valid });
+          return valid;
+        }}
         handleError={(e) => getSiteError(e)}
         handleUpload={handleUpload}
         templateFile={fileTemplate}
-        templateName="rapidtest_sites_template.csv"
-        clearErrors={() => setErrors([])}
+        templateName=".csv"
+        clearErrors={() => {
+          setSitesSidebar({ mode: 'upload', wide: false });
+          setErrors([]);
+        }}
       />
+      <br />
+      <ValidColumns
+        validColumns={VALID_SITE_COLUMNS}
+        errors={errors}
+        clearErrors={() => {
+          setSitesSidebar({ mode: 'upload', wide: false });
+          setErrors([]);
+        }}
+      />
+
+      <a
+        href={fileTemplate}
+        download="rapidtest_sites_template.csv"
+        className="no-underline"
+      >
+        <Button v2 transparent small className="w-full mt-6">
+          Download a template file.
+        </Button>
+      </a>
     </>
   );
 };

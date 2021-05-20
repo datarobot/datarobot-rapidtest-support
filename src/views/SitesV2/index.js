@@ -1,15 +1,19 @@
 /* eslint-disable no-param-reassign */
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
+import cls from 'classnames';
 import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import { getSiteList, editSite } from 'services/api';
-import { ROUTES } from 'rt-constants';
-import { sitesAtom, sitesToDisableAtom, siteIdsToDisableAtom } from 'rt-store';
+import {
+  sitesAtom,
+  sitesToDisableAtom,
+  siteIdsToDisableAtom,
+  sitesSidebarAtom,
+} from 'rt-store';
 import { download, toCsv } from 'utils';
 import useCurrentProgram from 'hooks/useCurrentProgram';
 
@@ -25,11 +29,13 @@ import deactivateIcon from 'assets/images/icons/site-deactivate.svg';
 import uploadIcon from 'assets/images/icons/upload.svg';
 import exportIcon from 'assets/images/icons/export.svg';
 import addIcon from 'assets/images/icons/add.svg';
-import cls from 'classnames';
+
+import SitesSidebar from './SitesSidebar';
 
 const SitesV2 = () => {
   const { t } = useTranslation();
 
+  const [, setSitesSidebar] = useAtom(sitesSidebarAtom);
   const { name: currentProgram } = useCurrentProgram();
 
   const [sites, setSites] = useAtom(sitesAtom);
@@ -196,7 +202,6 @@ const SitesV2 = () => {
     })();
   }, [setSites]);
 
-  const history = useHistory();
   const [showModal, setShowModal] = useState(false);
   const tableButtons = (
     <>
@@ -218,6 +223,7 @@ const SitesV2 = () => {
           />
         )}
         <Modal
+          v2
           show={showModal}
           title="Are you sure?"
           modalClassName="max-w-lg my-12"
@@ -246,7 +252,7 @@ const SitesV2 = () => {
             v2
             label={`+ ${t('buttons.uploadList')}`}
             image={uploadIcon}
-            onClick={() => history.push(ROUTES.UPLOAD_SITES_V2.path)}
+            onClick={() => setSitesSidebar({ mode: 'upload' })}
           />
           <IconButton
             v2
@@ -258,7 +264,7 @@ const SitesV2 = () => {
             v2
             label={t('buttons.addSite')}
             image={addIcon}
-            onClick={() => history.push(ROUTES.ADD_SITE_V2.path)}
+            onClick={() => setSitesSidebar({ mode: 'add' })}
           />
         </span>
       </span>
@@ -277,6 +283,7 @@ const SitesV2 = () => {
         isLoading={isLoading}
         tableButtons={tableButtons}
       />
+      <SitesSidebar />
     </LayoutV2>
   );
 };

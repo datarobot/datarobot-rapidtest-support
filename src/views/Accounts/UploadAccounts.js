@@ -7,7 +7,7 @@ import cls from 'classnames';
 
 import FileUpload from 'components/FileUpload';
 import PageHeader from 'components/PageHeader';
-import UploadHeaderText from 'components/UploadHeaderText';
+import ValidColumns from 'components/ValidColumns';
 
 import { addAccount } from 'services/api';
 import { isValidAccountList, getAccountError } from 'utils/validate';
@@ -51,18 +51,18 @@ const UploadAccounts = () => {
 
   return (
     <>
-      <PageHeader
-        headline="Upload a list of accounts"
-        subtext={
-          <UploadHeaderText
-            pageType="accounts"
-            validColumns={VALID_ACCOUNT_COLUMNS}
-            errors={errors}
-            clearErrors={() => setErrors([])}
-          />
-        }
-        subtextClass={cls({ 'w-1/2': errors.length > 0 })}
-      />
+      <PageHeader headline="Upload a list of accounts" />
+      <p className={cls({ 'w-1/2': errors.length > 0 })}>
+        Upload a CSV file with a list of accounts to add to your program.
+      </p>
+      <div className="w-3/5 mb-8">
+        <ValidColumns
+          validColumns={VALID_ACCOUNT_COLUMNS}
+          errors={errors}
+          clearErrors={() => setErrors([])}
+        />
+      </div>
+
       <FileUpload
         validator={isValidAccountList}
         handleError={(e) => getAccountError(e)}
