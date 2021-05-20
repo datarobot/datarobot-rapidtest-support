@@ -1,5 +1,5 @@
 import { Link, useHistory } from 'react-router-dom';
-import PageHeader from 'components/PageHeader';
+import PageHeaderV2 from 'components/PageHeaderV2';
 
 import { ROUTES } from 'rt-constants';
 
@@ -11,13 +11,13 @@ const Subtext = () => {
       <p>If you entered a web address, check it was entered correctly.</p>
       <p>
         You can more information on the{' '}
-        <Link to={ROUTES.LANDING_PAGE.path}>home page</Link>.
+        <Link to={ROUTES.LANDING_PAGE_V2.path}>home page</Link>.
       </p>
       <p className="mt-8">
         Or, you can{' '}
-        <button className="btn-link" onClick={() => history.goBack()}>
+        <a className="cursor-pointer" onClick={() => history.goBack()}>
           go back to the previous page
-        </button>
+        </a>
         .
       </p>
     </>
@@ -27,9 +27,10 @@ const Subtext = () => {
 const FourOhFour = () => {
   const history = useHistory();
   return (
-    <PageHeader
+    <PageHeaderV2
       headline="Page not found"
       subtext={<Subtext history={history} />}
+      hideBack
     />
   );
 };

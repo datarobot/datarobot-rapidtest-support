@@ -91,7 +91,7 @@ export const Routes = () => {
   const { loadingAuthState, ...auth } = useContext(AuthContext);
 
   return loadingAuthState ? (
-    <Loading color="#00528D" size={256} containerClassName="full-height" />
+    <Loading color="#4257AA" size={256} containerClassName="full-height" />
   ) : (
     <Switch>
       <PublicRoute exact {...ROUTES.LANDING_PAGE} component={Home} />
@@ -218,7 +218,7 @@ export const Routes = () => {
         component={SuggestImprovementV2}
         layout={LayoutV2}
       />
-      <PublicRoute component={FourOhFour} />
+      <PublicRoute component={FourOhFour} layout={LayoutV2} />
     </Switch>
   );
 };
