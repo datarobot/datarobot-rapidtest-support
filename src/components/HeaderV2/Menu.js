@@ -21,11 +21,9 @@ const Menu = ({ authenticated }) => {
   const openMenu = () => {
     setIsOpen(true);
     window.scrollTo(0, 0);
-    document.body.style.overflow = 'hidden';
   };
   const closeMenu = () => {
     setIsOpen(false);
-    document.body.style.overflow = 'unset';
   };
 
   ReactModal.setAppElement('body');

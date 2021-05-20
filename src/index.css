@@ -134,6 +134,9 @@ body {
     @apply text-2xl font-bold;
   }
 
+  .ReactModal__Body--open {
+    overflow: hidden;
+  }
   .ReactModal__Overlay {
     z-index: 20;
   }
