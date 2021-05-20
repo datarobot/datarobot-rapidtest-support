@@ -55,18 +55,18 @@ const UploadSites = () => {
 
   return (
     <>
-      <PageHeader
-        headline="Upload a list of sites"
-        subtext={
-          <p>Upload a CSV file with a list of sites to add to your program.</p>
-        }
-        subtextClass={cls({ 'w-1/2': errors.length > 0 })}
-      />
-      <ValidColumns
-        validColumns={VALID_SITE_COLUMNS}
-        errors={errors}
-        clearErrors={() => setErrors([])}
-      />
+      <PageHeader headline="Upload a list of sites" />
+      <p className={cls({ 'w-1/2': errors.length > 0 })}>
+        Upload a CSV file with a list of sites to add to your program.
+      </p>
+      <div className="w-3/5 mb-8">
+        <ValidColumns
+          validColumns={VALID_SITE_COLUMNS}
+          errors={errors}
+          clearErrors={() => setErrors([])}
+        />
+      </div>
+
       <FileUpload
         validator={isValidSitesList}
         handleError={(e) => getSiteError(e)}

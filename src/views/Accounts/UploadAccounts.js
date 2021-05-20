@@ -51,20 +51,18 @@ const UploadAccounts = () => {
 
   return (
     <>
-      <PageHeader
-        headline="Upload a list of accounts"
-        subtext={
-          <p>
-            Upload a CSV file with a list of accounts to add to your program.
-          </p>
-        }
-        subtextClass={cls({ 'w-1/2': errors.length > 0 })}
-      />
-      <ValidColumns
-        validColumns={VALID_ACCOUNT_COLUMNS}
-        errors={errors}
-        clearErrors={() => setErrors([])}
-      />
+      <PageHeader headline="Upload a list of accounts" />
+      <p className={cls({ 'w-1/2': errors.length > 0 })}>
+        Upload a CSV file with a list of accounts to add to your program.
+      </p>
+      <div className="w-3/5 mb-8">
+        <ValidColumns
+          validColumns={VALID_ACCOUNT_COLUMNS}
+          errors={errors}
+          clearErrors={() => setErrors([])}
+        />
+      </div>
+
       <FileUpload
         validator={isValidAccountList}
         handleError={(e) => getAccountError(e)}
