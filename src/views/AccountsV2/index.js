@@ -9,12 +9,12 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 import { getAccountList, editAccount } from 'services/api';
-import { ROUTES } from 'rt-constants';
 import {
   accountsAtom,
   accountsToDisableAtom,
   accountIdsToDisableAtom,
   accountFilterAtom,
+  accountsSidebarAtom,
 } from 'rt-store';
 import { download, toCsv } from 'utils';
 import { dateComparator } from 'utils/table';
@@ -37,10 +37,12 @@ import deactivateIcon from 'assets/images/icons/account-deactivate.svg';
 import uploadIcon from 'assets/images/icons/upload.svg';
 import exportIcon from 'assets/images/icons/export.svg';
 import addIcon from 'assets/images/icons/add.svg';
+import AccountsSidebar from './AccountsSidebar';
 
 const AccountsV2 = () => {
   const { t } = useTranslation();
 
+  const [, setAccountsSidebar] = useAtom(accountsSidebarAtom);
   const { name: currentProgram } = useCurrentProgram();
 
   const [accounts, setAccounts] = useAtom(accountsAtom);
@@ -284,7 +286,7 @@ const AccountsV2 = () => {
           v2
           label={t('buttons.uploadList')}
           image={uploadIcon}
-          onClick={() => history.push(ROUTES.UPLOAD_ACCOUNTS_V2.path)}
+          onClick={() => setAccountsSidebar({ mode: 'upload' })}
         />
         <IconButton
           v2
@@ -296,7 +298,7 @@ const AccountsV2 = () => {
           v2
           label={t('buttons.addAccount')}
           image={addIcon}
-          onClick={() => history.push(ROUTES.ADD_ACCOUNT_V2.path)}
+          onClick={() => setAccountsSidebar({ mode: 'add' })}
         />
       </span>
     </>
@@ -314,6 +316,7 @@ const AccountsV2 = () => {
         isLoading={isLoading}
         tableButtons={tableButtons}
       />
+      <AccountsSidebar />
     </LayoutV2>
   );
 };
