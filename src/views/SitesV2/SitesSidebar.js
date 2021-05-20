@@ -4,9 +4,9 @@ import ReactModal from 'react-modal';
 
 import { sitesSidebarAtom } from 'rt-store';
 
-import EditSiteV2 from './EditSite';
-import AddSiteV2 from './AddSite';
-import UploadSitesV2 from './UploadSites';
+import EditSiteV2 from './EditSiteV2';
+import AddSiteV2 from './AddSiteV2';
+import UploadSitesV2 from './UploadSitesV2';
 
 const SitesSidebar = () => {
   const [{ mode }, setSitesSidebar] = useAtom(sitesSidebarAtom);

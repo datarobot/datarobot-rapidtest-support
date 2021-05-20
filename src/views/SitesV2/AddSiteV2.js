@@ -4,18 +4,17 @@ import { useTranslation } from 'react-i18next';
 import { useForm, Controller } from 'react-hook-form';
 import { toast } from 'react-toastify';
 
+import { STATE_OPTIONS } from 'rt-constants';
+import { useDebounce } from 'hooks';
+import { loadGoogleScript } from 'utils';
+import { addSite, searchSchool, getSchool } from 'services/api';
+
 import Autocomplete from 'components/Autocomplete';
 import ErrorMessage from 'components/ErrorMessage';
 import Input from 'components/Input';
 import Select from 'components/Select';
 import Button from 'components/Button';
 import Map from 'components/Map';
-
-import { STATE_OPTIONS } from 'rt-constants';
-
-import { useDebounce } from 'hooks';
-import { loadGoogleScript } from 'utils';
-import { addSite, searchSchool, getSchool } from 'services/api';
 
 const AddSiteV2 = () => {
   const { t } = useTranslation();

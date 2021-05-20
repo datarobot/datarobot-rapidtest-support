@@ -5,18 +5,16 @@ import { useForm } from 'react-hook-form';
 import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
 
+import { STATE_OPTIONS } from 'rt-constants';
+import { sitesSidebarAtom, currentSiteAtom } from 'rt-store';
+import { editSite, getSite } from 'services/api';
+
 import { ControlledInput } from 'components/Input';
 import ErrorMessage from 'components/ErrorMessage';
 import Loading from 'components/Loading';
 import Select from 'components/Select';
 import Button from 'components/Button';
 import Map from 'components/Map';
-
-import { STATE_OPTIONS } from 'rt-constants';
-
-import { sitesSidebarAtom, currentSiteAtom } from 'rt-store';
-
-import { editSite, getSite } from 'services/api';
 
 const EditSiteV2 = () => {
   const [{ id }] = useAtom(sitesSidebarAtom);

@@ -3,14 +3,13 @@ import { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
-import FileUpload from 'components/FileUpload';
-import UploadHeaderText from 'components/UploadHeaderText';
-
 import { addSite } from 'services/api';
 import { isValidSitesList, getSiteError } from 'utils/validate';
 import { parseError } from 'utils/errors';
-
 import { VALID_SITE_COLUMNS } from 'rt-constants';
+
+import FileUpload from 'components/FileUpload';
+import UploadHeaderText from 'components/UploadHeaderText';
 
 import fileTemplate from 'assets/static/rapidtest_sites_template.csv';
 

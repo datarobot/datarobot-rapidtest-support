@@ -4,10 +4,11 @@ import { useForm, Controller } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
+import { addAccount } from 'services/api';
+
 import ErrorMessage from 'components/ErrorMessage';
 import Input from 'components/Input';
-import { addAccount } from 'services/api';
-import Button from '../../components/Button';
+import Button from 'components/Button';
 
 const AddAccountV2 = () => {
   const { control, handleSubmit, errors } = useForm();

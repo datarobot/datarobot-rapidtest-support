@@ -4,9 +4,9 @@ import ReactModal from 'react-modal';
 
 import { accountsSidebarAtom } from 'rt-store';
 
-import EditAccountV2 from './EditAccount';
-import AddAccountV2 from './AddAccount';
-import UploadAccountsV2 from './UploadAccounts';
+import EditAccountV2 from './EditAccountV2';
+import AddAccountV2 from './AddAccountV2';
+import UploadAccountsV2 from './UploadAccountsV2';
 
 const SitesSidebar = () => {
   const [{ mode }, setAccountsSidebar] = useAtom(accountsSidebarAtom);
