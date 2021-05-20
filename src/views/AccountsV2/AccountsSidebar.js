@@ -23,7 +23,7 @@ const SitesSidebar = () => {
       className={cls('sidebarModalContent', { wide })}
     >
       <img
-        className="mb-4"
+        className="mb-4 cursor-pointer"
         src={close}
         alt="close menu"
         onClick={() => setAccountsSidebar({})}
