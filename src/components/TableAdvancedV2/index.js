@@ -112,18 +112,16 @@ const TableAdvancedV2 = ({
         <>
           {tableName && <h2 className="mb-4">{tableName}</h2>}
           <div className="grid grid-cols-2 mb-4 mt-2">
-            <div className="flex flex-col justify-center">
-              <div className="flex items-center">
-                <Input
-                  v2
-                  onChange={handleFilterChange}
-                  placeholder="Search"
-                  icon="search"
-                  isSearch
-                  className="self-center"
-                />
-                {isAccounts && <AccountFilter />}
-              </div>
+            <div className="flex items-center">
+              <Input
+                v2
+                onChange={handleFilterChange}
+                placeholder="Search"
+                icon="search"
+                isSearch
+                className="self-center"
+              />
+              {isAccounts && <AccountFilter />}
             </div>
 
             <div className="table-buttons flex justify-end items-center">

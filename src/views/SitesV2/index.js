@@ -16,10 +16,12 @@ import {
 } from 'rt-store';
 import { download, toCsv } from 'utils';
 import useCurrentProgram from 'hooks/useCurrentProgram';
+import { useResponsive } from 'hooks';
 
 import LayoutV2 from 'components/Layouts/LayoutV2';
 import Modal from 'components/Modal';
 import { IconButton } from 'components/Button';
+import TableMobile from 'components/TableMobile';
 import TableAdvancedV2 from 'components/TableAdvancedV2';
 import SiteNameCell from 'components/TableAdvancedV2/SiteRenderers/SiteNameCell';
 import DisableSiteCell from 'components/TableAdvancedV2/SiteRenderers/DisableSiteCell';
@@ -182,11 +184,6 @@ const SitesV2 = () => {
     },
   ];
 
-  const renderers = {
-    siteNameCell: SiteNameCell,
-    disableSiteCell: DisableSiteCell,
-  };
-
   useEffect(() => {
     (async () => {
       setIsLoading(true);
@@ -271,18 +268,37 @@ const SitesV2 = () => {
     </>
   );
 
+  const renderers = {
+    siteNameCell: SiteNameCell,
+    disableSiteCell: DisableSiteCell,
+  };
+
+  const { isMobile } = useResponsive();
+
   return (
-    <LayoutV2 footerFixed>
-      <p className="mt-8">Your program: {currentProgram || '...'}</p>
-      <TableAdvancedV2
-        rows={sites}
-        cols={cols}
-        defaultSortCol="siteName"
-        renderers={renderers}
-        tableName="Sites"
-        isLoading={isLoading}
-        tableButtons={tableButtons}
-      />
+    <LayoutV2 footerFixed={!isMobile}>
+      <p className="mt-4 md:mt-8">
+        {!isMobile && 'Your program: '}
+        {currentProgram || '...'}
+      </p>
+      {isMobile ? (
+        <TableMobile
+          rows={sites}
+          defaultSortCol="siteName"
+          tableName="Sites"
+          isLoading={isLoading}
+        />
+      ) : (
+        <TableAdvancedV2
+          rows={sites}
+          cols={cols}
+          defaultSortCol="siteName"
+          renderers={renderers}
+          tableName="Sites"
+          isLoading={isLoading}
+          tableButtons={tableButtons}
+        />
+      )}
       <SitesSidebar />
     </LayoutV2>
   );

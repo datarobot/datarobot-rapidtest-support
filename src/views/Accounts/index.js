@@ -217,14 +217,6 @@ const Accounts = () => {
     setActiveFilter();
   };
 
-  const renderers = {
-    accountAddedCell: AccountAddedCell,
-    accountEmailCell: AccountEmailCell,
-    accountNameCell: AccountNameCell,
-    accountStatusCell: AccountStatusCell,
-    editAccountCell: EditAccountCell,
-  };
-
   useEffect(() => {
     (async () => {
       setIsLoading(true);
@@ -241,6 +233,14 @@ const Accounts = () => {
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const renderers = {
+    accountAddedCell: AccountAddedCell,
+    accountEmailCell: AccountEmailCell,
+    accountNameCell: AccountNameCell,
+    accountStatusCell: AccountStatusCell,
+    editAccountCell: EditAccountCell,
+  };
 
   return (
     <TableAdvanced

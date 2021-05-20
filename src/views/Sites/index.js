@@ -146,11 +146,6 @@ const Sites = () => {
     },
   ];
 
-  const renderers = {
-    siteNameCell: SiteNameCell,
-    disableSiteCell: DisableSiteCell,
-  };
-
   useEffect(() => {
     (async () => {
       setIsLoading(true);
@@ -165,6 +160,11 @@ const Sites = () => {
       setIsLoading(false);
     })();
   }, [setSites]);
+
+  const renderers = {
+    siteNameCell: SiteNameCell,
+    disableSiteCell: DisableSiteCell,
+  };
 
   return (
     <div>

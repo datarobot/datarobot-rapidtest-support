@@ -1,9 +1,7 @@
-/* eslint-disable no-param-reassign */
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import cls from 'classnames';
-import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -19,6 +17,7 @@ import {
 import { download, toCsv } from 'utils';
 import { dateComparator } from 'utils/table';
 import useCurrentProgram from 'hooks/useCurrentProgram';
+import { useResponsive } from 'hooks';
 
 import LayoutV2 from 'components/Layouts/LayoutV2';
 import { IconButton } from 'components/Button';
@@ -38,6 +37,7 @@ import uploadIcon from 'assets/images/icons/upload.svg';
 import exportIcon from 'assets/images/icons/export.svg';
 import addIcon from 'assets/images/icons/add.svg';
 import AccountsSidebar from './AccountsSidebar';
+import TableMobile from '../../components/TableMobile';
 
 const AccountsV2 = () => {
   const { t } = useTranslation();
@@ -224,14 +224,6 @@ const AccountsV2 = () => {
     }
   }, [accountFilter]);
 
-  const renderers = {
-    accountAddedCell: AccountAddedCell,
-    accountEmailCell: AccountEmailCell,
-    accountNameCell: AccountNameCell,
-    accountStatusCell: AccountStatusCell,
-    editAccountCell: EditAccountCell,
-  };
-
   useEffect(() => {
     (async () => {
       setIsLoading(true);
@@ -249,7 +241,6 @@ const AccountsV2 = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const history = useHistory();
   const tableButtons = (
     <>
       {showResendEmail && (
@@ -304,18 +295,40 @@ const AccountsV2 = () => {
     </>
   );
 
+  const renderers = {
+    accountAddedCell: AccountAddedCell,
+    accountEmailCell: AccountEmailCell,
+    accountNameCell: AccountNameCell,
+    accountStatusCell: AccountStatusCell,
+    editAccountCell: EditAccountCell,
+  };
+
+  const { isMobile } = useResponsive();
+
   return (
-    <LayoutV2 footerFixed>
-      <p className="mt-8">Your program: {currentProgram || '...'}</p>
-      <TableAdvancedV2
-        rows={accounts}
-        cols={cols}
-        renderers={renderers}
-        defaultSortCol="name"
-        tableName="Test Operators"
-        isLoading={isLoading}
-        tableButtons={tableButtons}
-      />
+    <LayoutV2 footerFixed={!isMobile}>
+      <p className="mt-4 md:mt-8">
+        {!isMobile && 'Your program: '}
+        {currentProgram || '...'}
+      </p>
+      {isMobile ? (
+        <TableMobile
+          rows={accounts}
+          defaultSortCol="name"
+          tableName="Test Operators"
+          isLoading={isLoading}
+        />
+      ) : (
+        <TableAdvancedV2
+          rows={accounts}
+          cols={cols}
+          renderers={renderers}
+          defaultSortCol="name"
+          tableName="Test Operators"
+          isLoading={isLoading}
+          tableButtons={tableButtons}
+        />
+      )}
       <AccountsSidebar />
     </LayoutV2>
   );
