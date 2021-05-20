@@ -223,6 +223,7 @@ const SitesV2 = () => {
           />
         )}
         <Modal
+          v2
           show={showModal}
           title="Are you sure?"
           modalClassName="max-w-lg my-12"

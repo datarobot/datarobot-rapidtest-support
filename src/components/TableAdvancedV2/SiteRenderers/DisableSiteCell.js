@@ -97,6 +97,7 @@ const DisableSiteCell = ({ value, data: { id } }) => {
           </>
         )}
         <Modal
+          v2
           show={showModal}
           title="Are you sure?"
           modalClassName="max-w-lg my-12"

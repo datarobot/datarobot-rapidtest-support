@@ -6,7 +6,7 @@ import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
 
 import { editAccount, getAccount } from 'services/api';
-import { currentAccountAtom, sitesSidebarAtom } from 'rt-store';
+import { currentAccountAtom, accountsSidebarAtom } from 'rt-store';
 
 import ErrorMessage from 'components/ErrorMessage';
 import Loading from 'components/Loading';
@@ -20,7 +20,7 @@ const EditAccountV2 = () => {
   const { handleSubmit, errors, register } = useForm();
   const [currentAccount, setCurrentAccount] = useAtom(currentAccountAtom);
   const [patchData, setPatchData] = useState();
-  const [{ id }] = useAtom(sitesSidebarAtom);
+  const [{ id }] = useAtom(accountsSidebarAtom);
 
   const onSubmit = () => {
     if (patchData) {
