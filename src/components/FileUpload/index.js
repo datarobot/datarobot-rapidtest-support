@@ -4,21 +4,33 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Papa from 'papaparse';
+import { toast } from 'react-toastify';
+import cls from 'classnames';
+
+import { isEqual } from 'utils';
 
 import Button, { KIND } from 'components/Button';
 import Icon from 'components/Icon';
 import Table from 'components/Table';
 
-import { isEqual } from 'utils';
+import upload2 from 'assets/images/icons/upload2.svg';
 
 import './FileUpload.css';
-import { toast } from 'react-toastify';
 
-const UploadLabel = () => (
+const UploadLabel = ({ v2 = false }) => (
   <>
-    <Icon iconName="cloud-upload-alt" size="2x" color="#00528D" type="far" />
+    {v2 ? (
+      <img src={upload2} alt="" />
+    ) : (
+      <Icon
+        iconName="cloud-upload-alt"
+        size="2x"
+        color={v2 ? '#5B5FF0' : '#00528D'}
+        type="far"
+      />
+    )}
     <p>Drop files here to upload or</p>
-    <p className="text-blue underline">Choose a file</p>
+    <a className={cls('underline', { 'text-blue': !v2 })}>Choose a file</a>
     <p className="absolute bottom-0 pb-2">
       Accepted formats:{' '}
       <span className="font-mono inline-block px-1 rounded-full bg-gray-200 border border-gray-300 text-sm">
@@ -29,6 +41,7 @@ const UploadLabel = () => (
 );
 
 const FileUpload = ({
+  v2 = false,
   validator,
   handleError,
   handleUpload,
@@ -120,18 +133,29 @@ const FileUpload = ({
       {files.length === 0 ? (
         <>
           <section className="flex justify-between items-center max-w-lg mb-4">
-            <p className="sub-heading text-blue">Select Files</p>
-            <a
-              href={templateFile}
-              download={templateName}
-              className="btn-clear"
-            >
-              Download a template file.
-            </a>
+            {v2 ? (
+              <h6 className="mt-4">Select Files</h6>
+            ) : (
+              <p className="sub-heading text-blue">Select Files</p>
+            )}
+
+            {!v2 && (
+              <a
+                href={templateFile}
+                download={templateName}
+                className="btn-clear"
+              >
+                Download a template file.
+              </a>
+            )}
           </section>
-          <div className="upload-container" {...getRootProps()}>
+          <div className={cls('upload-container', { v2 })} {...getRootProps()}>
             <input {...getInputProps()} />
-            {isDragActive ? <p>Drop the files here ...</p> : <UploadLabel />}
+            {isDragActive ? (
+              <p>Drop the files here ...</p>
+            ) : (
+              <UploadLabel v2={v2} />
+            )}
           </div>
         </>
       ) : (

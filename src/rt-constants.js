@@ -41,26 +41,14 @@ export const ROUTES = {
     path: '/sites/new',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
   },
-  ADD_SITE_V2: {
-    path: '/v2/sites/new',
-    roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
-  },
   EDIT_SITE: {
     path: '/sites/edit/:id',
-    roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
-  },
-  EDIT_SITE_V2: {
-    path: '/v2/sites/edit/:id',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
   },
   REQUEST_SITE: { path: '/sites/request' },
   REQUEST_SITE_V2: { path: '/v2/sites/request' },
   UPLOAD_SITES: {
     path: '/sites/upload',
-    roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
-  },
-  UPLOAD_SITES_V2: {
-    path: '/v2/sites/upload',
     roles: [USER_ROLES.dashboard, USER_ROLES.siteAdmin],
   },
   ACCOUNTS: {
@@ -75,26 +63,14 @@ export const ROUTES = {
     path: '/accounts/new',
     roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
   },
-  ADD_ACCOUNT_V2: {
-    path: '/v2/accounts/new',
-    roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
-  },
   EDIT_ACCOUNT: {
     path: '/accounts/edit/:id',
-    roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
-  },
-  EDIT_ACCOUNT_V2: {
-    path: '/v2/accounts/edit/:id',
     roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
   },
   REQUEST_ACCOUNT: { path: '/accounts/request' },
   REQUEST_ACCOUNT_V2: { path: '/v2/accounts/request' },
   UPLOAD_ACCOUNTS: {
     path: '/accounts/upload',
-    roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
-  },
-  UPLOAD_ACCOUNTS_V2: {
-    path: '/v2/accounts/upload',
     roles: [USER_ROLES.dashboard, USER_ROLES.proctorAdmin],
   },
   FAQ: {
