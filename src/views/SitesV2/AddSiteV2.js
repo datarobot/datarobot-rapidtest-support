@@ -17,7 +17,7 @@ import { useDebounce } from 'hooks';
 import { loadGoogleScript } from 'utils';
 import { addSite, searchSchool, getSchool } from 'services/api';
 
-const AddSite = () => {
+const AddSiteV2 = () => {
   const { t } = useTranslation();
   const { control, handleSubmit, errors, setValue } = useForm();
   const [schools, setSchools] = useState([]);
@@ -463,4 +463,4 @@ const AddSite = () => {
   );
 };
 
-export default AddSite;
+export default AddSiteV2;

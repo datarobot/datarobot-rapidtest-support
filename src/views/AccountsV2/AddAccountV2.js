@@ -9,7 +9,7 @@ import Input from 'components/Input';
 import { addAccount } from 'services/api';
 import Button from '../../components/Button';
 
-const AddAccount = () => {
+const AddAccountV2 = () => {
   const { control, handleSubmit, errors } = useForm();
   const { t } = useTranslation();
 
@@ -140,4 +140,4 @@ const AddAccount = () => {
   );
 };
 
-export default AddAccount;
+export default AddAccountV2;

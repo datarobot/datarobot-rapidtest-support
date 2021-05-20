@@ -16,7 +16,7 @@ import fileTemplate from 'assets/static/rapidtest_sites_template.csv';
 
 import './SitesV2.css';
 
-const UploadSites = () => {
+const UploadSitesV2 = () => {
   const [errors, setErrors] = useState([]);
   const toastId = useRef(null);
 
@@ -71,4 +71,4 @@ const UploadSites = () => {
   );
 };
 
-export default UploadSites;
+export default UploadSitesV2;

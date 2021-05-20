@@ -4,9 +4,9 @@ import ReactModal from 'react-modal';
 
 import { accountsSidebarAtom } from 'rt-store';
 
-import EditAccount from './EditAccount';
-import AddAccount from './AddAccount';
-import UploadAccounts from './UploadAccounts';
+import EditAccountV2 from './EditAccount';
+import AddAccountV2 from './AddAccount';
+import UploadAccountsV2 from './UploadAccounts';
 
 const SitesSidebar = () => {
   const [{ mode }, setAccountsSidebar] = useAtom(accountsSidebarAtom);
@@ -18,9 +18,9 @@ const SitesSidebar = () => {
       overlayClassName="LayoutV2 sidebarModalOverlay"
       className="sidebarModalContent"
     >
-      {mode === 'edit' && <EditAccount />}
-      {mode === 'add' && <AddAccount />}
-      {mode === 'upload' && <UploadAccounts />}
+      {mode === 'edit' && <EditAccountV2 />}
+      {mode === 'add' && <AddAccountV2 />}
+      {mode === 'upload' && <UploadAccountsV2 />}
     </ReactModal>
   );
 };

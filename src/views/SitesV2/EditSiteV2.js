@@ -18,7 +18,7 @@ import { sitesSidebarAtom, currentSiteAtom } from 'rt-store';
 
 import { editSite, getSite } from 'services/api';
 
-const EditSite = () => {
+const EditSiteV2 = () => {
   const [{ id }] = useAtom(sitesSidebarAtom);
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
@@ -285,4 +285,4 @@ const EditSite = () => {
   );
 };
 
-export default EditSite;
+export default EditSiteV2;

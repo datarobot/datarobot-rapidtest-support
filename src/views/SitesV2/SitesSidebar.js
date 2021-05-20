@@ -4,9 +4,9 @@ import ReactModal from 'react-modal';
 
 import { sitesSidebarAtom } from 'rt-store';
 
-import EditSite from './EditSite';
-import AddSite from './AddSite';
-import UploadSites from './UploadSites';
+import EditSiteV2 from './EditSite';
+import AddSiteV2 from './AddSite';
+import UploadSitesV2 from './UploadSites';
 
 const SitesSidebar = () => {
   const [{ mode }, setSitesSidebar] = useAtom(sitesSidebarAtom);
@@ -18,9 +18,9 @@ const SitesSidebar = () => {
       overlayClassName="LayoutV2 sidebarModalOverlay"
       className="sidebarModalContent"
     >
-      {mode === 'edit' && <EditSite />}
-      {mode === 'add' && <AddSite />}
-      {mode === 'upload' && <UploadSites />}
+      {mode === 'edit' && <EditSiteV2 />}
+      {mode === 'add' && <AddSiteV2 />}
+      {mode === 'upload' && <UploadSitesV2 />}
     </ReactModal>
   );
 };

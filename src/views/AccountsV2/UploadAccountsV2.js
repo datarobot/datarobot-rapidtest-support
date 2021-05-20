@@ -16,7 +16,7 @@ import fileTemplate from 'assets/static/rapidtest_accounts_template.csv';
 
 import './AccountsV2.css';
 
-const UploadAccounts = () => {
+const UploadAccountsV2 = () => {
   const [errors, setErrors] = useState([]);
   const toastId = useRef(null);
 
@@ -66,4 +66,4 @@ const UploadAccounts = () => {
   );
 };
 
-export default UploadAccounts;
+export default UploadAccountsV2;

@@ -14,7 +14,7 @@ import { ControlledCheckbox } from 'components/Checkbox';
 import { ControlledInput } from 'components/Input';
 import Button from 'components/Button';
 
-const EditAccount = () => {
+const EditAccountV2 = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { t } = useTranslation();
   const { handleSubmit, errors, register } = useForm();
@@ -160,4 +160,4 @@ const EditAccount = () => {
   );
 };
 
-export default EditAccount;
+export default EditAccountV2;
