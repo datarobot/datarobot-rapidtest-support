@@ -9,6 +9,7 @@ const ToggleButton = ({
   defaultChecked = false,
   onChange = () => {},
   disabled = false,
+  title,
   className,
 }) => {
   const [toggle, setToggle] = useState(false);
@@ -39,7 +40,7 @@ const ToggleButton = ({
   );
 
   return (
-    <div onClick={onChange} className={toggleClasses}>
+    <div onClick={onChange} className={toggleClasses} title={title}>
       <div className={cls('toggle-container', { v2, checked: toggle })}>
         <div className="toggle-check" />
         <div className="toggle-uncheck" />

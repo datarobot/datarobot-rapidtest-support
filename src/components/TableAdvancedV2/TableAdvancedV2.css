@@ -126,7 +126,7 @@
     border-color: var(--purple-30);
   }
 
-  .ag-row {
+  .ag-row:not(.ag-full-width-row) {
     @apply bg-white;
   }
 

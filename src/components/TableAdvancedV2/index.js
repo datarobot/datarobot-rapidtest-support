@@ -50,17 +50,16 @@ const TableAdvancedV2 = ({
   isLoading = false,
   tableButtons,
 }) => {
-  const { pathname } = useLocation();
-
   const [gridApi, setGridApi] = useState(null);
+  const [columnApi, setColumnApi] = useState();
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [rowCount, setRowCount] = useState(0);
   const [pageSize, setPageSize] = useState(50);
   const [isLastPage, setIsLastPage] = useState(false);
   const [isFirstPage, setIsFirstPage] = useState(false);
-  const [columnApi, setColumnApi] = useState();
 
+  const { pathname } = useLocation();
   const isAccounts = pathname.includes('/accounts');
 
   useEffect(() => {
@@ -130,86 +129,81 @@ const TableAdvancedV2 = ({
           </div>
         </>
       )}
-      <div style={{ height: '100%', width: '100%', marginBottom: '8rem' }}>
-        <div
-          className="ag-theme-rt-v2"
-          style={{ height: '100%', width: '100%' }}
+      <div className="ag-theme-rt-v2 mb-32">
+        <AgGridReact
+          onGridReady={onGridReady}
+          rowData={isLoading ? null : rows}
+          domLayout={'autoHeight'}
+          rowHeight={40}
+          headerHeight={45}
+          defaultColDef={{
+            flex: 1,
+            sortable: true,
+            resizable: true,
+            filter: true,
+            headerComponentParams: { showCheck: false },
+          }}
+          pagination={true}
+          paginationPageSize={pageSize}
+          onPaginationChanged={onPaginationChanged}
+          suppressPaginationPanel={true}
+          frameworkComponents={{
+            agColumnHeader: HeaderCell,
+            loadingOverlay: LoadingOverlay,
+            ...renderers,
+          }}
+          animateRows={true}
+          loadingOverlayComponent={'loadingOverlay'}
+          overlayNoRowsTemplate={'<span class="p-12">No data found.</span>'}
         >
-          <AgGridReact
-            onGridReady={onGridReady}
-            rowData={isLoading ? null : rows}
-            domLayout={'autoHeight'}
-            rowHeight={40}
-            headerHeight={45}
-            defaultColDef={{
-              flex: 1,
-              sortable: true,
-              resizable: true,
-              filter: true,
-              headerComponentParams: { showCheck: false },
-            }}
-            pagination={true}
-            paginationPageSize={pageSize}
-            onPaginationChanged={onPaginationChanged}
-            suppressPaginationPanel={true}
-            frameworkComponents={{
-              agColumnHeader: HeaderCell,
-              loadingOverlay: LoadingOverlay,
-              ...renderers,
-            }}
-            animateRows={true}
-            loadingOverlayComponent={'loadingOverlay'}
-            overlayNoRowsTemplate={'<span class="p-12">No data found.</span>'}
-          >
-            {cols.map(
-              (
-                {
-                  colId,
-                  colWidth,
-                  comparator,
-                  disableSort,
-                  field,
-                  header,
-                  headerParams,
-                  renderer,
-                  resizable = true,
-                  value,
-                },
-                i
-              ) => (
-                <AgGridColumn
-                  key={i}
-                  sortable={!disableSort}
-                  filter={true}
-                  field={field || null}
-                  resizable={resizable}
-                  valueGetter={value || null}
-                  headerName={header}
-                  cellRenderer={renderer}
-                  maxWidth={colWidth}
-                  comparator={comparator}
-                  headerComponentParams={headerParams}
-                  colId={colId}
-                />
-              )
-            )}
-          </AgGridReact>
-          {currentPage > 0 && (
-            <div className="pagination-panel limitWidth">
-              <Selector gridApi={gridApi} pageSize={pageSize} />
-              <Pagination
-                currentPage={currentPage}
-                gridApi={gridApi}
-                isFirstPage={isFirstPage}
-                isLastPage={isLastPage}
-                totalPages={totalPages}
-                pageSize={pageSize}
-                rowCount={rowCount}
-                onPageSizeChange={handlePageSizeChange}
+          {cols.map(
+            (
+              {
+                colId,
+                colWidth,
+                comparator,
+                disableSort,
+                field,
+                header,
+                headerParams,
+                renderer,
+                resizable = true,
+                value,
+              },
+              i
+            ) => (
+              <AgGridColumn
+                key={i}
+                sortable={!disableSort}
+                filter={true}
+                field={field || null}
+                resizable={resizable}
+                valueGetter={value || null}
+                headerName={header}
+                cellRenderer={renderer}
+                maxWidth={colWidth}
+                comparator={comparator}
+                headerComponentParams={headerParams}
+                colId={colId}
               />
-            </div>
+            )
           )}
-        </div>
+        </AgGridReact>
+        {currentPage > 0 && (
+          <div className="pagination-panel limitWidth">
+            <Selector gridApi={gridApi} pageSize={pageSize} />
+            <Pagination
+              currentPage={currentPage}
+              gridApi={gridApi}
+              isFirstPage={isFirstPage}
+              isLastPage={isLastPage}
+              totalPages={totalPages}
+              pageSize={pageSize}
+              rowCount={rowCount}
+              onPageSizeChange={handlePageSizeChange}
+            />
+          </div>
+        )}
       </div>
     </>
   );

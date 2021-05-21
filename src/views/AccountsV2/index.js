@@ -22,13 +22,11 @@ import { useResponsive } from 'hooks';
 import LayoutV2 from 'components/Layouts/LayoutV2';
 import { IconButton } from 'components/Button';
 import TableAdvancedV2 from 'components/TableAdvancedV2';
-import {
-  AccountAddedCell,
-  AccountNameCell,
-  AccountStatusCell,
-  EditAccountCell,
-  AccountEmailCell,
-} from 'components/TableAdvancedV2/AccountRenderers';
+import AccountAddedCell from 'components/TableAdvancedV2/AccountRenderers/AccountAddedCell';
+import AccountEmailCell from 'components/TableAdvancedV2/AccountRenderers/AccountEmailCell';
+import AccountIdCell from 'components/TableAdvancedV2/AccountRenderers/AccountIdCell';
+import AccountStatusCell from 'components/TableAdvancedV2/AccountRenderers/AccountStatusCell';
+import EditAccountCell from 'components/TableAdvancedV2/AccountRenderers/EditAccountCell';
 
 import mailIcon from 'assets/images/icons/mail.svg';
 import activateIcon from 'assets/images/icons/account-activate.svg';
@@ -155,13 +153,17 @@ const AccountsV2 = () => {
 
   const cols = [
     {
-      renderer: 'accountNameCell',
-      header: 'Name',
-      colId: 'name',
+      renderer: 'accountIdCell',
       headerParams: {
         showCheck: true,
         handleCheckChange,
       },
+      colId: 'id',
+      colWidth: 30,
+    },
+    {
+      header: 'Name',
+      colId: 'name',
       comparator: sortNames,
       value: ({ data }) => `${data.last_name}, ${data.first_name}`,
     },
@@ -298,7 +300,7 @@ const AccountsV2 = () => {
   const renderers = {
     accountAddedCell: AccountAddedCell,
     accountEmailCell: AccountEmailCell,
-    accountNameCell: AccountNameCell,
+    accountIdCell: AccountIdCell,
     accountStatusCell: AccountStatusCell,
     editAccountCell: EditAccountCell,
   };
@@ -314,6 +316,8 @@ const AccountsV2 = () => {
       {isMobile ? (
         <TableMobile
           rows={accounts}
+          cols={cols}
+          cellRenderer={MobileCellRenderer}
           defaultSortCol="name"
           tableName="Test Operators"
           isLoading={isLoading}
@@ -331,6 +335,15 @@ const AccountsV2 = () => {
       )}
       <AccountsSidebar />
     </LayoutV2>
+  );
+};
+
+const MobileCellRenderer = ({ data, ...props }) => {
+  return (
+    <>
+      <AccountIdCell data={data} />
+      <p>Account #{data.id}</p>
+    </>
   );
 };
 

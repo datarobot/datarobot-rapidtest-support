@@ -2,6 +2,28 @@
 @import '../../assets/styles/typography.css';
 
 .TableMobile {
+  .ag-theme-rt-v2 {
+    .ag-header-row {
+      background-color: transparent;
+
+      .ag-header-cell {
+        border-color: transparent;
+        background-color: transparent;
+      }
+    }
+    .ag-header-row-floating-filter {
+      background-color: transparent;
+
+      .ag-header-cell {
+        @apply p-0;
+      }
+    }
+  }
+
+  .selector {
+    @apply rounded-lg bg-white px-4 py-2;
+  }
+
   .pagination-panel {
     @apply pb-2 pt-6 flex justify-center items-center;
 

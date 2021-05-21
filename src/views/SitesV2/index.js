@@ -23,8 +23,9 @@ import Modal from 'components/Modal';
 import { IconButton } from 'components/Button';
 import TableMobile from 'components/TableMobile';
 import TableAdvancedV2 from 'components/TableAdvancedV2';
-import SiteNameCell from 'components/TableAdvancedV2/SiteRenderers/SiteNameCell';
+import SiteIdCell from 'components/TableAdvancedV2/SiteRenderers/SiteIdCell';
 import DisableSiteCell from 'components/TableAdvancedV2/SiteRenderers/DisableSiteCell';
+import SiteMobileCell from 'components/TableAdvancedV2/SiteRenderers/SiteMobileCell';
 
 import activateIcon from 'assets/images/icons/site-activate.svg';
 import deactivateIcon from 'assets/images/icons/site-deactivate.svg';
@@ -148,14 +149,18 @@ const SitesV2 = () => {
 
   const cols = [
     {
-      renderer: 'siteNameCell',
-      header: 'Name',
-      comparator: sortNames,
+      renderer: 'siteIdCell',
       headerParams: {
         showCheck: true,
         handleCheckChange,
       },
+      colId: 'id',
+      colWidth: 30,
+    },
+    {
+      header: 'Name',
       colId: 'siteName',
+      comparator: sortNames,
       value: ({ data }) => data.site_name,
       // colWidth: 650,
     },
@@ -269,7 +274,7 @@ const SitesV2 = () => {
   );
 
   const renderers = {
-    siteNameCell: SiteNameCell,
+    siteIdCell: SiteIdCell,
     disableSiteCell: DisableSiteCell,
   };
 
@@ -284,6 +289,8 @@ const SitesV2 = () => {
       {isMobile ? (
         <TableMobile
           rows={sites}
+          cols={cols}
+          cellRenderer={SiteMobileCell}
           defaultSortCol="siteName"
           tableName="Sites"
           isLoading={isLoading}

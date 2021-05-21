@@ -1,7 +1,6 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
-import ReactTooltip from 'react-tooltip';
 import { toast } from 'react-toastify';
 
 import { sitesSidebarAtom } from 'rt-store';
@@ -72,12 +71,7 @@ const DisableSiteCell = ({ value, data: { id } }) => {
 
   return (
     <>
-      <ReactTooltip id="toggle" effect="solid" />
-      <div
-        className="flex items-center"
-        data-tip={selected ? 'Deactivate' : 'Activate'}
-        data-for="toggle"
-      >
+      <div className="flex items-center">
         {isSuccess ? (
           <SuccessCheck onAnimationEnd={handleUpdateData} />
         ) : (
@@ -93,6 +87,7 @@ const DisableSiteCell = ({ value, data: { id } }) => {
               defaultChecked={selected}
               disabled={isLoading || id === 3}
               onChange={handleToggle}
+              title={selected ? 'Deactivate' : 'Activate'}
             />
           </>
         )}
