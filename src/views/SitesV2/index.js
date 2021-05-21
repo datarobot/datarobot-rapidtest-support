@@ -34,7 +34,6 @@ import exportIcon from 'assets/images/icons/export.svg';
 import addIcon from 'assets/images/icons/add.svg';
 
 import SitesSidebar from './SitesSidebar';
-import { SiteSort } from '../../components/TableMobile/Header';
 
 const SitesV2 = () => {
   const { t } = useTranslation();
@@ -161,6 +160,7 @@ const SitesV2 = () => {
     {
       header: 'Name',
       colId: 'siteName',
+      initialSort: 'asc',
       comparator: sortNames,
       value: ({ data }) => data.site_name,
       // colWidth: 650,
@@ -296,7 +296,6 @@ const SitesV2 = () => {
           rows={sites}
           cols={cols}
           cellRenderer={SiteMobileCell}
-          defaultSortCol="siteName"
           tableName="Sites"
           isLoading={isLoading}
           handleCheckChange={handleCheckChange}
@@ -305,7 +304,6 @@ const SitesV2 = () => {
         <TableAdvancedV2
           rows={sites}
           cols={cols}
-          defaultSortCol="siteName"
           renderers={renderers}
           tableName="Sites"
           isLoading={isLoading}

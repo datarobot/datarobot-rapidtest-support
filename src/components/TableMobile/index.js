@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
-// import { useLocation } from 'react-router-dom';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 
 import Loading from 'components/Loading';
 import Pagination from 'components/TableAdvancedV2/Pagination';
 
 import Header from './Header';
-// import FloatingFilter from './FloatingFilter';
 import LoadingOverlay from '../TableAdvancedV2/LoadingOverlay';
 import Selector from '../TableAdvancedV2/Selector';
 
@@ -16,7 +14,6 @@ const TableMobile = ({
   rows,
   cols,
   cellRenderer,
-  defaultSortCol,
   tableName,
   isLoading,
   handleCheckChange,
@@ -30,22 +27,12 @@ const TableMobile = ({
   const [isLastPage, setIsLastPage] = useState(false);
   const [isFirstPage, setIsFirstPage] = useState(false);
 
-  // const { pathname } = useLocation();
-  // const isAccounts = pathname.includes('/accounts');
-
   useEffect(() => {
     if (gridApi && isLoading) {
       gridApi.showLoadingOverlay();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
-
-  useEffect(() => {
-    if (columnApi && defaultSortCol) {
-      columnApi.getColumn(defaultSortCol).setSort('asc');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [columnApi]);
 
   const onGridReady = async (params) => {
     setGridApi(params.api);
@@ -126,6 +113,7 @@ const TableMobile = ({
                 colId,
                 colWidth,
                 comparator,
+                initialSort,
                 disableSort,
                 field,
                 header,
@@ -150,6 +138,7 @@ const TableMobile = ({
                 flex={i === 0 ? 1 : undefined}
                 maxWidth={i === 0 ? undefined : 0}
                 comparator={comparator}
+                initialSort={initialSort}
                 headerComponentParams={headerParams}
                 colId={colId}
               />

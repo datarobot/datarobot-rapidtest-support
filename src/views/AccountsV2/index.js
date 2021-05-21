@@ -27,6 +27,8 @@ import AccountEmailCell from 'components/TableAdvancedV2/AccountRenderers/Accoun
 import AccountIdCell from 'components/TableAdvancedV2/AccountRenderers/AccountIdCell';
 import AccountStatusCell from 'components/TableAdvancedV2/AccountRenderers/AccountStatusCell';
 import EditAccountCell from 'components/TableAdvancedV2/AccountRenderers/EditAccountCell';
+import AccountMobileCell from 'components/TableAdvancedV2/AccountRenderers/AccountMobileCell';
+import TableMobile from 'components/TableMobile';
 
 import mailIcon from 'assets/images/icons/mail.svg';
 import activateIcon from 'assets/images/icons/account-activate.svg';
@@ -34,8 +36,8 @@ import deactivateIcon from 'assets/images/icons/account-deactivate.svg';
 import uploadIcon from 'assets/images/icons/upload.svg';
 import exportIcon from 'assets/images/icons/export.svg';
 import addIcon from 'assets/images/icons/add.svg';
+
 import AccountsSidebar from './AccountsSidebar';
-import TableMobile from '../../components/TableMobile';
 
 const AccountsV2 = () => {
   const { t } = useTranslation();
@@ -164,6 +166,7 @@ const AccountsV2 = () => {
     {
       header: 'Name',
       colId: 'name',
+      initialSort: 'asc',
       comparator: sortNames,
       value: ({ data }) => `${data.last_name}, ${data.first_name}`,
     },
@@ -321,17 +324,16 @@ const AccountsV2 = () => {
         <TableMobile
           rows={accounts}
           cols={cols}
-          cellRenderer={MobileCellRenderer}
-          defaultSortCol="name"
+          cellRenderer={AccountMobileCell}
           tableName="Test Operators"
           isLoading={isLoading}
+          handleCheckChange={handleCheckChange}
         />
       ) : (
         <TableAdvancedV2
           rows={accounts}
           cols={cols}
           renderers={renderers}
-          defaultSortCol="name"
           tableName="Test Operators"
           isLoading={isLoading}
           tableButtons={tableButtons}
@@ -339,15 +341,6 @@ const AccountsV2 = () => {
       )}
       <AccountsSidebar />
     </LayoutV2>
-  );
-};
-
-const MobileCellRenderer = ({ data, ...props }) => {
-  return (
-    <>
-      <AccountIdCell data={data} />
-      <p>Account #{data.id}</p>
-    </>
   );
 };
 

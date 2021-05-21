@@ -5,8 +5,43 @@ import { headerCellCheckedAtom } from 'rt-store';
 
 import Checkbox from 'components/Checkbox';
 import Select from 'react-select';
+import { useLocation } from 'react-router-dom';
 
-export const SiteSort = ({ columnApi }) => {
+export const AccountsSort = ({ columnApi }) => {
+  const onChange = (newValue) => {
+    const state = [newValue?.value || { colId: 'name', sort: 'asc' }];
+    columnApi.applyColumnState({
+      state,
+      defaultState: { sort: null },
+    });
+  };
+
+  return (
+    <Select
+      className="Filter small ml-4 flex-1"
+      classNamePrefix="Filter"
+      placeholder="Sort"
+      isClearable={true}
+      isSearchable={false}
+      options={[
+        { label: 'Name A-Z', value: { colId: 'name', sort: 'asc' } },
+        { label: 'Name Z-A', value: { colId: 'name', sort: 'desc' } },
+        { label: 'Email A-Z', value: { colId: 'email', sort: 'asc' } },
+        { label: 'Email Z-A', value: { colId: 'email', sort: 'desc' } },
+        { label: 'Added A-Z', value: { colId: 'added', sort: 'asc' } },
+        {
+          label: 'Added Z-A',
+          value: { colId: 'added', sort: 'desc' },
+        },
+        { label: 'Status A-Z', value: { colId: 'status', sort: 'asc' } },
+        { label: 'Status Z-A', value: { colId: 'status', sort: 'desc' } },
+      ]}
+      onChange={onChange}
+    />
+  );
+};
+
+export const SitesSort = ({ columnApi }) => {
   const onChange = (newValue) => {
     const state = [newValue?.value || { colId: 'siteName', sort: 'asc' }];
     columnApi.applyColumnState({
@@ -56,8 +91,12 @@ const Header = ({ gridApi, columnApi, handleCheckChange }) => {
     return dataArr;
   };
 
+  const { pathname } = useLocation();
+  const isAccounts = pathname.includes('/accounts');
+  const isSites = pathname.includes('/sites');
+
   return (
-    <div className="flex pr-4 items-center header-cell">
+    <div className="flex items-center header-cell">
       <div className="header-cell-checkbox">
         <Checkbox
           v2
@@ -69,7 +108,8 @@ const Header = ({ gridApi, columnApi, handleCheckChange }) => {
           isChecked={isChecked}
         />
       </div>
-      <SiteSort columnApi={columnApi} />
+      {isAccounts && <AccountsSort columnApi={columnApi} />}
+      {isSites && <SitesSort columnApi={columnApi} />}
     </div>
   );
 };

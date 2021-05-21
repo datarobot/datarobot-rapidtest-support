@@ -16,7 +16,6 @@ import Pagination from 'components/TableAdvancedV2/Pagination';
 import 'ag-grid-community';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import './TableAdvancedV2.css';
-import { SiteSort } from '../TableMobile/Header';
 
 export const AccountFilter = () => {
   const [, setAccountFilter] = useAtom(accountFilterAtom);
@@ -45,7 +44,6 @@ const TableAdvancedV2 = ({
   rows,
   cols,
   renderers,
-  defaultSortCol,
   tableName,
   tableOnly = false,
   isLoading = false,
@@ -69,13 +67,6 @@ const TableAdvancedV2 = ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
-
-  useEffect(() => {
-    if (columnApi && defaultSortCol) {
-      // columnApi.getColumn(defaultSortCol).setSort('asc');
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [columnApi]);
 
   const onGridReady = async (params) => {
     setGridApi(params.api);
@@ -130,7 +121,6 @@ const TableAdvancedV2 = ({
           </div>
         </>
       )}
-      <SiteSort columnApi={columnApi} />
       <div className="ag-theme-rt-v2 mb-32">
         <AgGridReact
           onGridReady={onGridReady}
@@ -164,6 +154,7 @@ const TableAdvancedV2 = ({
                 colId,
                 colWidth,
                 comparator,
+                initialSort,
                 disableSort,
                 field,
                 header,
@@ -185,6 +176,7 @@ const TableAdvancedV2 = ({
                 cellRenderer={renderer}
                 maxWidth={colWidth}
                 comparator={comparator}
+                initialSort={initialSort}
                 headerComponentParams={headerParams}
                 colId={colId}
               />

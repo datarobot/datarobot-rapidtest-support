@@ -114,6 +114,7 @@ const Sites = () => {
       renderer: 'siteNameCell',
       header: 'Name',
       comparator: sortNames,
+      initialSort: 'asc',
       headerParams: {
         showCheck: true,
         handleCheckChange,

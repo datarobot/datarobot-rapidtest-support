@@ -5,7 +5,6 @@ import './SiteMobileCell.css';
 import DisableSiteCell from './DisableSiteCell';
 
 const SiteMobileCell = ({ data }) => {
-  console.log({ data });
   return (
     <div className="SiteMobileCell">
       <div className="head">

@@ -1,0 +1,35 @@
+@import '../../../assets/styles/mixins.css';
+@import '../../../assets/styles/typography.css';
+
+.AccountMobileCell {
+  @apply bg-white p-4 mt-4 border-b;
+
+  height: 220px;
+  border-color: var(--purple-30);
+
+  .head {
+    @apply flex justify-between items-center mb-2;
+  }
+
+  .field {
+    @apply flex items-baseline;
+
+    &.tall {
+      height: 48px;
+    }
+
+    > div {
+      &:first-child {
+        @apply flex-shrink-0;
+        @mixin label;
+
+        width: 85px;
+      }
+
+      &:last-child {
+        @apply whitespace-normal;
+        @mixin body-small;
+      }
+    }
+  }
+}
