@@ -176,7 +176,7 @@
   }
 
   .selector {
-    @apply flex items-center;
+    @apply flex items-baseline;
     @mixin tooltip;
 
     p {

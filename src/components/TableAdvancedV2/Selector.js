@@ -72,14 +72,14 @@ const Selector = ({ gridApi, pageSize }) => {
             <>
               <button
                 type="button"
-                className="btn-clear ml-2 px-2"
+                className="btn-clear px-2"
                 onClick={selectAllAccounts}
               >
                 Select all?
               </button>
               <button
                 type="button"
-                className="btn-clear ml-2 px-2"
+                className="btn-clear px-2"
                 onClick={deselectAllAccounts}
               >
                 Clear selection
@@ -90,7 +90,7 @@ const Selector = ({ gridApi, pageSize }) => {
               {accountIdsToDisable.length > pageSize && (
                 <button
                   type="button"
-                  className="btn-clear ml-2 px-2"
+                  className="btn-clear px-2"
                   onClick={deselectAllAccounts}
                 >
                   Deselect all?
@@ -110,14 +110,14 @@ const Selector = ({ gridApi, pageSize }) => {
             <>
               <button
                 type="button"
-                className="btn-clear ml-2 px-2"
+                className="btn-clear px-2"
                 onClick={selectAllSites}
               >
                 Select all?
               </button>
               <button
                 type="button"
-                className="btn-clear ml-2 px-2"
+                className="btn-clear px-2"
                 onClick={deselectAllSites}
               >
                 Clear selection
