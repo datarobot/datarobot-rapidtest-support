@@ -153,11 +153,13 @@ const Accounts = () => {
     {
       field: 'email_address',
       header: 'Email',
+      colId: 'email',
       renderer: 'accountEmailCell',
     },
     {
       field: 'welcome_email_sent',
       header: 'Added',
+      colId: 'added',
       renderer: 'accountAddedCell',
       comparator: dateComparator,
       colWidth: 120,
@@ -166,6 +168,7 @@ const Accounts = () => {
       renderer: 'accountStatusCell',
       comparator: sortStatus,
       header: 'Status',
+      colId: 'status',
       colWidth: 200,
       value: statusValueGetter,
       headerParams: {
@@ -175,6 +178,7 @@ const Accounts = () => {
     {
       renderer: 'editAccountCell',
       header: 'Edit',
+      colId: 'nosort-edit',
       disableSort: true,
       colWidth: 50,
       resizable: false,

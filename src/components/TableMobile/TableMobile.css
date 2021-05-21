@@ -3,10 +3,14 @@
 
 .TableMobile {
   .ag-theme-rt-v2 {
+    @apply mt-3;
+
     .ag-header-row {
-      background-color: transparent;
+      @apply bg-transparent overflow-visible;
 
       .ag-header-cell {
+        @apply p-0;
+
         border-color: transparent;
         background-color: transparent;
       }
@@ -21,7 +25,7 @@
   }
 
   .selector {
-    @apply rounded-lg bg-white px-4 py-2;
+    @apply rounded-lg bg-white px-4 py-2 mt-4;
   }
 
   .pagination-panel {
@@ -56,5 +60,17 @@
 
   .paging-button:last-child {
     @apply pr-0;
+  }
+
+  .header-cell {
+    .header-cell-checkbox {
+      @apply px-4 py-3 rounded-lg;
+
+      background-color: var(--purple-20);
+
+      .checkboxWrapper {
+        @apply mr-0;
+      }
+    }
   }
 }

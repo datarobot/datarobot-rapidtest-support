@@ -2,7 +2,7 @@
 @import '../../../assets/styles/typography.css';
 
 .SiteMobileCell {
-  @apply bg-white p-4 mt-6 border-b;
+  @apply bg-white p-4 mt-4 border-b;
 
   height: 220px;
   border-color: var(--purple-30);

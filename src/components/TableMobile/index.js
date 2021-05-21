@@ -5,7 +5,7 @@ import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 import Loading from 'components/Loading';
 import Pagination from 'components/TableAdvancedV2/Pagination';
 
-import HeaderCell from './HeaderCell';
+import Header from './Header';
 // import FloatingFilter from './FloatingFilter';
 import LoadingOverlay from '../TableAdvancedV2/LoadingOverlay';
 import Selector from '../TableAdvancedV2/Selector';
@@ -19,6 +19,7 @@ const TableMobile = ({
   defaultSortCol,
   tableName,
   isLoading,
+  handleCheckChange,
 }) => {
   const [gridApi, setGridApi] = useState(null);
   const [columnApi, setColumnApi] = useState();
@@ -82,13 +83,18 @@ const TableMobile = ({
       <h3>{tableName}</h3>
 
       <div className="ag-theme-rt-v2">
+        <Header
+          gridApi={gridApi}
+          columnApi={columnApi}
+          handleCheckChange={handleCheckChange}
+        />
         <Selector gridApi={gridApi} pageSize={pageSize} />
         <AgGridReact
           onGridReady={onGridReady}
           rowData={isLoading ? null : rows}
           domLayout={'autoHeight'}
-          rowHeight={220 + 24}
-          headerHeight={45}
+          rowHeight={220 + 16}
+          headerHeight={0}
           // floatingFiltersHeight={50}
           defaultColDef={{
             flex: 1,
@@ -102,7 +108,7 @@ const TableMobile = ({
           onPaginationChanged={onPaginationChanged}
           suppressPaginationPanel={true}
           frameworkComponents={{
-            agColumnHeader: HeaderCell,
+            // agColumnHeader: HeaderCell,
             loadingOverlay: LoadingOverlay,
             // floatingFilter: FloatingFilter,
             cellRenderer,

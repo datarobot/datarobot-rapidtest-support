@@ -30,6 +30,13 @@
 
 .Filter {
   min-width: 130px;
+
+  &.small {
+    .Filter__control {
+      height: 40px;
+    }
+  }
+
   .Filter__control {
     height: 48px;
     border-radius: 8px;

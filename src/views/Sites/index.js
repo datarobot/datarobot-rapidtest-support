@@ -123,17 +123,20 @@ const Sites = () => {
     },
     {
       header: 'Address',
+      colId: 'address',
       value: ({ data }) =>
         `${data.street}, ${data.city} ${data.state} ${data.zip}`,
       colWidth: 650,
     },
     {
       header: 'District',
+      colId: 'district',
       value: ({ data }) => data.district || '-',
       // colWidth: 200,
     },
     {
       header: 'Contact',
+      colId: 'contact',
       value: ({ data }) => data.contact_name || '-',
       colWidth: 200,
     },
@@ -141,6 +144,7 @@ const Sites = () => {
       field: 'archive',
       renderer: 'disableSiteCell',
       header: 'Status',
+      colId: 'nosort-status',
       disableSort: true,
       colWidth: 120,
     },

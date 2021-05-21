@@ -34,6 +34,7 @@ import exportIcon from 'assets/images/icons/export.svg';
 import addIcon from 'assets/images/icons/add.svg';
 
 import SitesSidebar from './SitesSidebar';
+import { SiteSort } from '../../components/TableMobile/Header';
 
 const SitesV2 = () => {
   const { t } = useTranslation();
@@ -166,17 +167,20 @@ const SitesV2 = () => {
     },
     {
       header: 'Address',
+      colId: 'address',
       value: ({ data }) =>
         `${data.street}, ${data.city} ${data.state} ${data.zip}`,
       // colWidth: 650,
     },
     {
       header: 'District',
+      colId: 'district',
       value: ({ data }) => data.district || '-',
       colWidth: 160,
     },
     {
       header: 'Contact',
+      colId: 'contact',
       value: ({ data }) => data.contact_name || '-',
       colWidth: 160,
     },
@@ -184,6 +188,7 @@ const SitesV2 = () => {
       field: 'archive',
       renderer: 'disableSiteCell',
       header: 'Status',
+      colId: 'status',
       disableSort: true,
       colWidth: 120,
     },
@@ -294,6 +299,7 @@ const SitesV2 = () => {
           defaultSortCol="siteName"
           tableName="Sites"
           isLoading={isLoading}
+          handleCheckChange={handleCheckChange}
         />
       ) : (
         <TableAdvancedV2
