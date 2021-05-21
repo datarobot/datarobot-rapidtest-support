@@ -6,6 +6,7 @@ import { headerCellCheckedAtom } from 'rt-store';
 import Checkbox from 'components/Checkbox';
 import Select from 'react-select';
 import { useLocation } from 'react-router-dom';
+import { AccountFilter } from '../TableAdvancedV2';
 
 export const AccountsSort = ({ columnApi }) => {
   const onChange = (newValue) => {
@@ -109,6 +110,7 @@ const Header = ({ gridApi, columnApi, handleCheckChange }) => {
         />
       </div>
       {isAccounts && <AccountsSort columnApi={columnApi} />}
+      {isAccounts && <AccountFilter small />}
       {isSites && <SitesSort columnApi={columnApi} />}
     </div>
   );

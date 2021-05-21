@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
+import cls from 'classnames';
 import { useAtom } from 'jotai';
 import { useLocation } from 'react-router-dom';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
@@ -17,12 +18,12 @@ import 'ag-grid-community';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import './TableAdvancedV2.css';
 
-export const AccountFilter = () => {
+export const AccountFilter = ({ small }) => {
   const [, setAccountFilter] = useAtom(accountFilterAtom);
 
   return (
     <Select
-      className="Filter ml-4"
+      className={cls('Filter ml-4', { small, 'flex-1': small })}
       classNamePrefix="Filter"
       placeholder="Filter"
       // menuIsOpen={true}
