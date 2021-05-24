@@ -33,6 +33,12 @@
     min-height: 70px;
   }
 
+  .pagination {
+    @apply flex items-center justify-between w-full;
+
+    max-width: 360px;
+  }
+
   .paging-text {
     @apply px-2;
     @mixin body-small;
@@ -42,17 +48,15 @@
   }
 
   .paging-button {
-    @apply px-2 text-3xl;
+    @apply px-2 text-3xl rounded-full bg-white;
     color: var(--purple-70);
+    width: 48px;
+    height: 48px;
   }
 
   .paging-button:disabled {
     @apply opacity-50 cursor-not-allowed;
     color: var(--purple-30);
-  }
-
-  .paging-button:last-child {
-    @apply pr-0;
   }
 
   .header-cell {

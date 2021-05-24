@@ -44,7 +44,7 @@ const Pagination = ({
       </span>
     )}
 
-    <div className="flex items-center justify-center">
+    <div className="pagination">
       <button
         className="paging-button"
         onClick={() => gridApi.paginationGoToFirstPage()}

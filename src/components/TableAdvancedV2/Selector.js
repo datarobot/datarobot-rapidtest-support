@@ -62,9 +62,9 @@ const Selector = ({ gridApi, pageSize }) => {
   };
 
   return (
-    <>
+    <span className="selector">
       {isAccounts && accountsToDisable.length > 0 && (
-        <span className="selector">
+        <>
           <p>
             Accounts selected: <strong>{accountsToDisable.length}</strong>
           </p>
@@ -98,11 +98,11 @@ const Selector = ({ gridApi, pageSize }) => {
               )}
             </>
           )}
-        </span>
+        </>
       )}
 
       {isSites && sitesToDisable.length > 0 && (
-        <span className="selector">
+        <>
           <p>
             Sites selected: <strong>{sitesToDisable.length}</strong>
           </p>
@@ -136,9 +136,9 @@ const Selector = ({ gridApi, pageSize }) => {
               )}
             </>
           )}
-        </span>
+        </>
       )}
-    </>
+    </span>
   );
 };
 

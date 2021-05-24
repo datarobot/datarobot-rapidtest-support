@@ -51,10 +51,19 @@
 
   .pagination-panel {
     @apply pb-8 pt-6 flex fixed bottom-0 left-0 right-0 flex-1 justify-between items-center mb-8;
-    
-    background: linear-gradient(0deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 80%, rgba(255, 255, 255, 0) 100%);
+
+    background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(255, 255, 255, 1) 80%,
+      rgba(255, 255, 255, 0) 100%
+    );
     padding-left: 8.5vw;
     padding-right: 8.5vw;
+  }
+
+  .pagination {
+    @apply flex items-center justify-center;
   }
 
   .paging-button {

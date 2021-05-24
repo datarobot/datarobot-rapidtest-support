@@ -207,6 +207,10 @@
     min-height: 70px;
   }
 
+  .pagination {
+    @apply flex items-center justify-center;
+  }
+
   .paging-text {
     @apply px-2;
     @mixin body-small;
