@@ -10853,6 +10853,11 @@ hicat@^0.8.0:
     highlight.js "^10.4.1"
     minimist "^1.2.5"
 
+highlight-words-core@^1.2.0:
+  version "1.2.2"
+  resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/highlight-words-core/-/highlight-words-core-1.2.2.tgz#1eff6d7d9f0a22f155042a00791237791b1eeaaa"
+  integrity sha1-Hv9tfZ8KIvFVBCoAeRI3eRse6qo=
+
 highlight.js@^10.4.1:
   version "10.7.2"
   resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/highlight.js/-/highlight.js-10.7.2.tgz#89319b861edc66c48854ed1e6da21ea89f847360"
@@ -13814,6 +13819,11 @@ memfs@^3.2.0:
   integrity sha1-XeRhOJ1Zbj8j1Iu3wq+2Fh9N9A4=
   dependencies:
     fs-monkey "1.0.3"
+
+memoize-one@^4.0.0:
+  version "4.1.0"
+  resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/memoize-one/-/memoize-one-4.1.0.tgz#a2387c58c03fff27ca390c31b764a79addf3f906"
+  integrity sha1-ojh8WMA//yfKOQwxt2Snmt3z+QY=
 
 memoize-one@^5.0.0:
   version "5.2.1"
@@ -17029,6 +17039,15 @@ react-helmet@^6.1.0:
     prop-types "^15.7.2"
     react-fast-compare "^3.1.1"
     react-side-effect "^2.1.0"
+
+react-highlight-words@0.17.0:
+  version "0.17.0"
+  resolved "https://artifactory.devinfra.drdev.io/artifactory/api/npm/npm-all/react-highlight-words/-/react-highlight-words-0.17.0.tgz#e79a559a2de301548339d7216264d6cd0f1eed6f"
+  integrity sha1-55pVmi3jAVSDOdchYmTWzQ8e7W8=
+  dependencies:
+    highlight-words-core "^1.2.0"
+    memoize-one "^4.0.0"
+    prop-types "^15.5.8"
 
 react-hook-form@^6.15.1:
   version "6.15.1"

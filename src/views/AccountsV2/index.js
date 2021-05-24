@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
+import { format } from 'date-fns';
 import cls from 'classnames';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
@@ -22,7 +23,7 @@ import { useResponsive } from 'hooks';
 import LayoutV2 from 'components/Layouts/LayoutV2';
 import IconButton from 'components/IconButton';
 import TableAdvancedV2 from 'components/TableAdvancedV2';
-import AccountAddedCell from 'components/TableAdvancedV2/AccountRenderers/AccountAddedCell';
+import HighlightValueCell from 'components/TableAdvancedV2/HighlightValueCell';
 import AccountEmailCell from 'components/TableAdvancedV2/AccountRenderers/AccountEmailCell';
 import AccountIdCell from 'components/TableAdvancedV2/AccountRenderers/AccountIdCell';
 import AccountStatusCell from 'components/TableAdvancedV2/AccountRenderers/AccountStatusCell';
@@ -153,58 +154,6 @@ const AccountsV2 = () => {
       setShowDeactivate(false);
     }
   }, [accountsToDisable]);
-
-  const cols = [
-    {
-      renderer: 'accountIdCell',
-      headerParams: {
-        showCheck: true,
-        handleCheckChange,
-      },
-      colId: 'id',
-      colWidth: 30,
-    },
-    {
-      header: 'Name',
-      colId: 'name',
-      initialSort: 'asc',
-      comparator: sortNames,
-      value: ({ data }) => `${data.last_name}, ${data.first_name}`,
-    },
-    {
-      field: 'email_address',
-      header: 'Email',
-      colId: 'email',
-      renderer: 'accountEmailCell',
-    },
-    {
-      field: 'welcome_email_sent',
-      header: 'Added',
-      colId: 'added',
-      renderer: 'accountAddedCell',
-      comparator: dateComparator,
-      colWidth: 120,
-    },
-    {
-      renderer: 'accountStatusCell',
-      comparator: sortStatus,
-      header: 'Status',
-      colId: 'status',
-      colWidth: 100,
-      value: statusValueGetter,
-      headerParams: {
-        // textEnd: true,
-      },
-    },
-    {
-      renderer: 'editAccountCell',
-      header: 'Edit',
-      colId: 'nosort-edit',
-      disableSort: true,
-      colWidth: 56,
-      resizable: false,
-    },
-  ];
 
   useEffect(() => {
     switch (accountFilter) {
@@ -355,12 +304,71 @@ const AccountsV2 = () => {
   );
 
   const renderers = {
-    accountAddedCell: AccountAddedCell,
-    accountEmailCell: AccountEmailCell,
+    highlightValueCell: HighlightValueCell,
+
     accountIdCell: AccountIdCell,
+    accountEmailCell: AccountEmailCell,
+
     accountStatusCell: AccountStatusCell,
     editAccountCell: EditAccountCell,
   };
+
+  const cols = [
+    {
+      renderer: 'accountIdCell',
+      headerParams: {
+        showCheck: true,
+        handleCheckChange,
+      },
+      colId: 'id',
+      colWidth: 30,
+    },
+    {
+      header: 'Name',
+      colId: 'name',
+      initialSort: 'asc',
+      comparator: sortNames,
+      value: ({ data }) => `${data.last_name}, ${data.first_name}`,
+      renderer: 'highlightValueCell',
+    },
+    {
+      field: 'email_address',
+      header: 'Email',
+      colId: 'email',
+      renderer: 'accountEmailCell',
+    },
+    {
+      field: 'welcome_email_sent',
+      header: 'Added',
+      colId: 'added',
+      comparator: dateComparator,
+      value: ({ data }) =>
+        data.welcome_email_sent
+          ? format(new Date(data.welcome_email_sent), 'MM-dd-yyyy')
+          : '-',
+      renderer: 'highlightValueCell',
+      colWidth: 120,
+    },
+    {
+      renderer: 'accountStatusCell',
+      comparator: sortStatus,
+      header: 'Status',
+      colId: 'status',
+      colWidth: 100,
+      value: statusValueGetter,
+      headerParams: {
+        // textEnd: true,
+      },
+    },
+    {
+      renderer: 'editAccountCell',
+      header: 'Edit',
+      colId: 'nosort-edit',
+      disableSort: true,
+      colWidth: 56,
+      resizable: false,
+    },
+  ];
 
   return (
     <LayoutV2 footerFixed={!isMobile}>

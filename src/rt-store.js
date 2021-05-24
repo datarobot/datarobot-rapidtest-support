@@ -3,6 +3,8 @@ import { atom } from 'jotai';
 export const authenticatedAtom = atom(false);
 export const userAtom = atom({});
 
+export const quickFilterAtom = atom([]);
+
 export const accountsAtom = atom([]);
 export const currentAccountAtom = atom({});
 export const accountsToDisableAtom = atom([]);

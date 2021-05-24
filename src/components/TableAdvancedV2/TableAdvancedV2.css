@@ -124,6 +124,10 @@
     color: var(--purple-100);
   }
 
+  mark {
+    background-color: var(--purple-20);
+  }
+
   .ag-root-wrapper-body {
     min-height: 24rem;
   }
