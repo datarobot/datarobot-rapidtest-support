@@ -3,10 +3,10 @@ import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 
 import Loading from 'components/Loading';
 import Pagination from 'components/TableAdvancedV2/Pagination';
+import LoadingOverlay from 'components/TableAdvancedV2/LoadingOverlay';
+import Selector from 'components/TableAdvancedV2/Selector';
 
 import Header from './Header';
-import LoadingOverlay from '../TableAdvancedV2/LoadingOverlay';
-import Selector from '../TableAdvancedV2/Selector';
 
 import './TableMobile.css';
 
@@ -85,7 +85,6 @@ const TableMobile = ({
           domLayout={'autoHeight'}
           rowHeight={220 + 16}
           headerHeight={0}
-          // floatingFiltersHeight={50}
           defaultColDef={{
             flex: 1,
             sortable: true,
@@ -98,11 +97,8 @@ const TableMobile = ({
           onPaginationChanged={onPaginationChanged}
           suppressPaginationPanel={true}
           frameworkComponents={{
-            // agColumnHeader: HeaderCell,
             loadingOverlay: LoadingOverlay,
-            // floatingFilter: FloatingFilter,
             cellRenderer,
-            // ...renderers,
           }}
           fullWidthCellRenderer="cellRenderer"
           isFullWidthCell={() => true}
@@ -131,8 +127,6 @@ const TableMobile = ({
                 key={i}
                 sortable={!disableSort}
                 filter={true}
-                // floatingFilter={i === 0}
-                // floatingFilterComponent="floatingFilter"
                 field={field || null}
                 resizable={resizable}
                 valueGetter={value || null}

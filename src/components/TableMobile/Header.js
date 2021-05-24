@@ -1,13 +1,14 @@
 // @ts-nocheck
 import { useAtom } from 'jotai';
+import { useLocation } from 'react-router-dom';
+import Select from 'react-select';
 
 import { headerCellCheckedAtom } from 'rt-store';
 
 import Checkbox from 'components/Checkbox';
-import Select from 'react-select';
-import { useLocation } from 'react-router-dom';
+import Input from 'components/Input';
+
 import { AccountFilter } from '../TableAdvancedV2';
-import Input from '../Input';
 
 export const AccountsSort = ({ columnApi }) => {
   const onChange = (newValue) => {
