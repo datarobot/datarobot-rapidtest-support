@@ -46,7 +46,6 @@ const TableAdvancedV2 = ({
   cols,
   renderers,
   tableName,
-  tableOnly = false,
   isLoading = false,
   tableButtons,
 }) => {
@@ -100,28 +99,24 @@ const TableAdvancedV2 = ({
 
   return (
     <>
-      {!tableOnly && (
-        <>
-          {tableName && <h2 className="mb-4">{tableName}</h2>}
-          <div className="grid grid-cols-2 mb-4 mt-2">
-            <div className="flex items-center">
-              <Input
-                v2
-                onChange={handleFilterChange}
-                placeholder="Search"
-                icon="search"
-                isSearch
-                className="self-center"
-              />
-              {isAccounts && <AccountFilter />}
-            </div>
+      {tableName && <h2 className="mb-4">{tableName}</h2>}
+      <div className="grid grid-cols-2 mb-4 mt-2">
+        <div className="flex items-center">
+          <Input
+            v2
+            onChange={handleFilterChange}
+            placeholder="Search"
+            icon="search"
+            isSearch
+            className="self-center"
+          />
+          {isAccounts && <AccountFilter />}
+        </div>
 
-            <div className="table-buttons flex justify-end items-center">
-              {tableButtons}
-            </div>
-          </div>
-        </>
-      )}
+        <div className="table-buttons flex justify-end items-center">
+          {tableButtons}
+        </div>
+      </div>
       <div className="ag-theme-rt-v2 mb-32">
         <AgGridReact
           onGridReady={onGridReady}

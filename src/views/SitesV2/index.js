@@ -20,7 +20,8 @@ import { useResponsive } from 'hooks';
 
 import LayoutV2 from 'components/Layouts/LayoutV2';
 import Modal from 'components/Modal';
-import { IconButton } from 'components/Button';
+import IconButton from 'components/IconButton';
+import Dropdown from 'components/Dropdown';
 import TableMobile from 'components/TableMobile';
 import TableAdvancedV2 from 'components/TableAdvancedV2';
 import SiteIdCell from 'components/TableAdvancedV2/SiteRenderers/SiteIdCell';
@@ -209,8 +210,69 @@ const SitesV2 = () => {
     })();
   }, [setSites]);
 
+  const { isMobile } = useResponsive();
   const [showModal, setShowModal] = useState(false);
-  const tableButtons = (
+  const tableButtons = isMobile ? (
+    <Dropdown>
+      <IconButton
+        v2
+        label={t('buttons.uploadList')}
+        image={uploadIcon}
+        onClick={() => setSitesSidebar({ mode: 'upload' })}
+      />
+      <IconButton
+        v2
+        label="Export data"
+        image={exportIcon}
+        onClick={handleExportData}
+      />
+      <IconButton
+        v2
+        label={t('buttons.addSite')}
+        image={addIcon}
+        onClick={() => setSitesSidebar({ mode: 'add' })}
+      />
+      {(showActivate || showDeactivate) && <div className="separator"></div>}
+      {showActivate && (
+        <IconButton
+          v2
+          label="Activate"
+          image={activateIcon}
+          onClick={handleBatchActivate}
+        />
+      )}
+      {showDeactivate && (
+        <>
+          <IconButton
+            v2
+            label="Deactivate"
+            image={deactivateIcon}
+            onClick={() => setShowModal(true)}
+          />
+          <Modal
+            v2
+            show={showModal}
+            title="Are you sure?"
+            modalClassName="max-w-lg my-12"
+            confirmButtonText="Yes, disable them"
+            closeButtonText="No, keep them"
+            handleClose={() => {
+              setShowModal(false);
+            }}
+            confirmationAction={() => {
+              handleBatchDeactivate();
+              setShowModal(false);
+            }}
+          >
+            <p className="p-16 text-center">
+              Disabling these sites will make it unavailable to users in the
+              RapidTest app
+            </p>
+          </Modal>
+        </>
+      )}
+    </Dropdown>
+  ) : (
     <>
       <span className="flex">
         {showActivate && (
@@ -222,33 +284,35 @@ const SitesV2 = () => {
           />
         )}
         {showDeactivate && (
-          <IconButton
-            v2
-            label="Deactivate"
-            image={deactivateIcon}
-            onClick={() => setShowModal(true)}
-          />
+          <>
+            <IconButton
+              v2
+              label="Deactivate"
+              image={deactivateIcon}
+              onClick={() => setShowModal(true)}
+            />
+            <Modal
+              v2
+              show={showModal}
+              title="Are you sure?"
+              modalClassName="max-w-lg my-12"
+              confirmButtonText="Yes, disable them"
+              closeButtonText="No, keep them"
+              handleClose={() => {
+                setShowModal(false);
+              }}
+              confirmationAction={() => {
+                handleBatchDeactivate();
+                setShowModal(false);
+              }}
+            >
+              <p className="p-16 text-center">
+                Disabling these sites will make it unavailable to users in the
+                RapidTest app
+              </p>
+            </Modal>
+          </>
         )}
-        <Modal
-          v2
-          show={showModal}
-          title="Are you sure?"
-          modalClassName="max-w-lg my-12"
-          confirmButtonText="Yes, disable them"
-          closeButtonText="No, keep them"
-          handleClose={() => {
-            setShowModal(false);
-          }}
-          confirmationAction={() => {
-            handleBatchDeactivate();
-            setShowModal(false);
-          }}
-        >
-          <p className="p-16 text-center">
-            Disabling these sites will make it unavailable to users in the
-            RapidTest app
-          </p>
-        </Modal>
 
         <span
           className={cls('flex', {
@@ -257,7 +321,7 @@ const SitesV2 = () => {
         >
           <IconButton
             v2
-            label={`+ ${t('buttons.uploadList')}`}
+            label={t('buttons.uploadList')}
             image={uploadIcon}
             onClick={() => setSitesSidebar({ mode: 'upload' })}
           />
@@ -283,8 +347,6 @@ const SitesV2 = () => {
     disableSiteCell: DisableSiteCell,
   };
 
-  const { isMobile } = useResponsive();
-
   return (
     <LayoutV2 footerFixed={!isMobile}>
       <p className="mt-4 md:mt-8">
@@ -299,6 +361,7 @@ const SitesV2 = () => {
           tableName="Sites"
           isLoading={isLoading}
           handleCheckChange={handleCheckChange}
+          tableButtons={tableButtons}
         />
       ) : (
         <TableAdvancedV2

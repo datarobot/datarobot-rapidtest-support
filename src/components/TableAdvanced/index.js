@@ -4,7 +4,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 import cls from 'classnames';
 
-import { IconButton } from 'components/Button';
+import IconButton from 'components/IconButton';
 import Icon from 'components/Icon';
 import Input from 'components/Input';
 import Radio from 'components/Radio';

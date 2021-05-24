@@ -7,6 +7,7 @@ import Checkbox from 'components/Checkbox';
 import Select from 'react-select';
 import { useLocation } from 'react-router-dom';
 import { AccountFilter } from '../TableAdvancedV2';
+import Input from '../Input';
 
 export const AccountsSort = ({ columnApi }) => {
   const onChange = (newValue) => {
@@ -76,7 +77,13 @@ export const SitesSort = ({ columnApi }) => {
   );
 };
 
-const Header = ({ gridApi, columnApi, handleCheckChange }) => {
+const Header = ({
+  gridApi,
+  columnApi,
+  handleCheckChange,
+  handleFilterChange,
+  tableButtons,
+}) => {
   const [isChecked, setIsChecked] = useAtom(headerCellCheckedAtom);
 
   const getData = () => {
@@ -97,22 +104,36 @@ const Header = ({ gridApi, columnApi, handleCheckChange }) => {
   const isSites = pathname.includes('/sites');
 
   return (
-    <div className="flex items-center header-cell">
-      <div className="header-cell-checkbox">
-        <Checkbox
+    <>
+      <div className="flex items-center header-cell mb-4">
+        <Input
           v2
-          checkClass="z-10"
-          onChange={() => {
-            setIsChecked(!isChecked);
-            handleCheckChange(getData(), isChecked);
-          }}
-          isChecked={isChecked}
+          onChange={handleFilterChange}
+          placeholder="Search"
+          icon="search"
+          isSearch
+          wrapperClass="flex-1 mr-3"
+          className="self-center"
         />
+        {tableButtons}
       </div>
-      {isAccounts && <AccountsSort columnApi={columnApi} />}
-      {isAccounts && <AccountFilter small />}
-      {isSites && <SitesSort columnApi={columnApi} />}
-    </div>
+      <div className="flex items-center header-cell">
+        <div className="header-cell-checkbox">
+          <Checkbox
+            v2
+            checkClass="z-10"
+            onChange={() => {
+              setIsChecked(!isChecked);
+              handleCheckChange(getData(), isChecked);
+            }}
+            isChecked={isChecked}
+          />
+        </div>
+        {isAccounts && <AccountsSort columnApi={columnApi} />}
+        {isAccounts && <AccountFilter small />}
+        {isSites && <SitesSort columnApi={columnApi} />}
+      </div>
+    </>
   );
 };
 

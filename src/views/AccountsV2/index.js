@@ -20,7 +20,7 @@ import useCurrentProgram from 'hooks/useCurrentProgram';
 import { useResponsive } from 'hooks';
 
 import LayoutV2 from 'components/Layouts/LayoutV2';
-import { IconButton } from 'components/Button';
+import IconButton from 'components/IconButton';
 import TableAdvancedV2 from 'components/TableAdvancedV2';
 import AccountAddedCell from 'components/TableAdvancedV2/AccountRenderers/AccountAddedCell';
 import AccountEmailCell from 'components/TableAdvancedV2/AccountRenderers/AccountEmailCell';
@@ -29,6 +29,7 @@ import AccountStatusCell from 'components/TableAdvancedV2/AccountRenderers/Accou
 import EditAccountCell from 'components/TableAdvancedV2/AccountRenderers/EditAccountCell';
 import AccountMobileCell from 'components/TableAdvancedV2/AccountRenderers/AccountMobileCell';
 import TableMobile from 'components/TableMobile';
+import Dropdown from 'components/Dropdown';
 
 import mailIcon from 'assets/images/icons/mail.svg';
 import activateIcon from 'assets/images/icons/account-activate.svg';
@@ -250,7 +251,65 @@ const AccountsV2 = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const tableButtons = (
+  const { isMobile } = useResponsive();
+  const tableButtons = isMobile ? (
+    <Dropdown>
+      {showResendEmail && (
+        <div>
+          <IconButton
+            v2
+            label="Re-send email"
+            image={mailIcon}
+            onClick={handleResendEmail}
+          />
+        </div>
+      )}
+      {showActivate && (
+        <div>
+          <IconButton
+            v2
+            label="Activate user(s)"
+            image={activateIcon}
+            onClick={handleBatchActivate}
+          />
+        </div>
+      )}
+      {showDeactivate && (
+        <div>
+          <IconButton
+            v2
+            label="Deactivate user(s)"
+            image={deactivateIcon}
+            onClick={handleBatchDeactivate}
+          />
+        </div>
+      )}
+      <div>
+        <IconButton
+          v2
+          label={t('buttons.uploadList')}
+          image={uploadIcon}
+          onClick={() => setAccountsSidebar({ mode: 'upload' })}
+        />
+      </div>
+      <div>
+        <IconButton
+          v2
+          label="Export data"
+          image={exportIcon}
+          onClick={handleExportData}
+        />
+      </div>
+      <div>
+        <IconButton
+          v2
+          label={t('buttons.addAccount')}
+          image={addIcon}
+          onClick={() => setAccountsSidebar({ mode: 'add' })}
+        />
+      </div>
+    </Dropdown>
+  ) : (
     <>
       {showResendEmail && (
         <IconButton
@@ -312,8 +371,6 @@ const AccountsV2 = () => {
     editAccountCell: EditAccountCell,
   };
 
-  const { isMobile } = useResponsive();
-
   return (
     <LayoutV2 footerFixed={!isMobile}>
       <p className="mt-4 md:mt-8">
@@ -328,6 +385,7 @@ const AccountsV2 = () => {
           tableName="Test Operators"
           isLoading={isLoading}
           handleCheckChange={handleCheckChange}
+          tableButtons={tableButtons}
         />
       ) : (
         <TableAdvancedV2

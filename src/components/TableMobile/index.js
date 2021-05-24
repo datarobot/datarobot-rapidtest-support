@@ -17,6 +17,7 @@ const TableMobile = ({
   tableName,
   isLoading,
   handleCheckChange,
+  tableButtons,
 }) => {
   const [gridApi, setGridApi] = useState(null);
   const [columnApi, setColumnApi] = useState();
@@ -74,6 +75,8 @@ const TableMobile = ({
           gridApi={gridApi}
           columnApi={columnApi}
           handleCheckChange={handleCheckChange}
+          handleFilterChange={handleFilterChange}
+          tableButtons={tableButtons}
         />
         <Selector gridApi={gridApi} pageSize={pageSize} />
         <AgGridReact

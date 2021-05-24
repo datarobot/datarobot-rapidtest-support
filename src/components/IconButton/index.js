@@ -2,6 +2,8 @@
 import cls from 'classnames';
 import Icon from 'components/Icon';
 
+import './IconButton.css';
+
 const IconButton = ({
   v2 = false,
   btnType = 'button',

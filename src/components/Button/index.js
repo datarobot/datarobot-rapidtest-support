@@ -1,8 +1,6 @@
 // @ts-nocheck
 import cls from 'classnames';
 
-import IconButton from 'components/Button/IconButton';
-
 import './Button.css';
 
 export const KIND = {
@@ -53,7 +51,5 @@ const Button = ({
       {children}
     </button>
   );
-
-export { IconButton };
 
 export default Button;
