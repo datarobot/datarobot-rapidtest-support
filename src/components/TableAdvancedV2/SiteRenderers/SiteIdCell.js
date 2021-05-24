@@ -6,7 +6,7 @@ import Checkbox from 'components/Checkbox';
 
 import { sitesToDisableAtom, siteIdsToDisableAtom } from 'rt-store';
 
-const SiteNameCell = ({ data }) => {
+const SiteIdCell = ({ data }) => {
   const [sites, setSites] = useAtom(sitesToDisableAtom);
   const [siteIds, setSiteIds] = useAtom(siteIdsToDisableAtom);
   const [isChecked, setIsChecked] = useState(false);
@@ -26,16 +26,13 @@ const SiteNameCell = ({ data }) => {
   }, [siteIds]);
 
   return (
-    <span className="flex items-center">
-      <Checkbox
-        v2
-        onChange={handleSelectSite}
-        isChecked={isChecked}
-        isDisabled={data.id === 3}
-      />
-      {data.site_name}
-    </span>
+    <Checkbox
+      v2
+      onChange={handleSelectSite}
+      isChecked={isChecked}
+      isDisabled={data.id === 3}
+    />
   );
 };
 
-export default SiteNameCell;
+export default SiteIdCell;

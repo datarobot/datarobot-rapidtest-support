@@ -1,45 +1,5 @@
 @import '../../assets/styles/typography.css';
 
-.btn-icon-container {
-  position: relative;
-  @apply relative text-blue-lighter;
-}
-
-.btn-icon {
-  @apply relative flex cursor-pointer outline-none;
-
-  transition: width 1000ms ease-in-out;
-
-  .btn-text {
-    @apply inline-block overflow-hidden whitespace-nowrap max-w-0 text-sm font-bold;
-
-    transition: max-width 1000ms ease-in-out;
-  }
-
-  .icon {
-    @apply mr-2;
-  }
-
-  &.v2 {
-    @apply mx-2 outline-none;
-
-    .btn-text {
-      @mixin h6;
-      color: var(--purple-70);
-    }
-
-    .icon {
-      @apply mr-0;
-    }
-  }
-}
-
-.btn-icon:hover {
-  .btn-text {
-    max-width: 300px;
-  }
-}
-
 .btn-v2 {
   display: flex;
   flex-direction: row;

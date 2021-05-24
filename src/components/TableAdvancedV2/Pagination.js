@@ -23,7 +23,7 @@ const Pagination = ({
   isLastPage,
   pageSize,
   rowCount,
-  onPageSizeChange,
+  onPageSizeChange = () => {},
   // totalPages,
 }) => (
   <>

@@ -30,6 +30,13 @@
 
 .Filter {
   min-width: 130px;
+
+  &.small {
+    .Filter__control {
+      height: 40px;
+    }
+  }
+
   .Filter__control {
     height: 48px;
     border-radius: 8px;
@@ -85,6 +92,12 @@
   .Filter__menu-list {
     padding: 11px 0;
   }
+  .Filter__group:not(:first-child) {
+    .Filter__group-heading {
+      @apply border-t mx-3 -mt-2 mb-2;
+      border-color: var(--purple-20);
+    }
+  }
   .Filter__option {
     @mixin body-small;
     color: var(--purple-90);
@@ -126,7 +139,7 @@
     border-color: var(--purple-30);
   }
 
-  .ag-row {
+  .ag-row:not(.ag-full-width-row) {
     @apply bg-white;
   }
 
@@ -168,20 +181,8 @@
     @apply font-bold;
   }
 
-  .pagination-panel {
-    @apply pb-2 pt-6 flex fixed bottom-0 left-0 right-0 flex-1 justify-between items-center mb-14;
-
-    background-image: linear-gradient(
-      0deg,
-      var(--purple-10-ff) 0%,
-      var(--purple-10-ff) 80%,
-      var(--purple-10-00) 100%
-    );
-    min-height: 70px;
-  }
-
   .selector {
-    @apply flex items-center;
+    @apply flex items-baseline;
     @mixin tooltip;
 
     p {
@@ -192,6 +193,18 @@
     button {
       @mixin h6;
     }
+  }
+
+  .pagination-panel {
+    @apply pb-2 pt-6 flex fixed bottom-0 left-0 right-0 flex-1 justify-between items-center mb-14;
+
+    background-image: linear-gradient(
+      0deg,
+      var(--purple-10-ff) 0%,
+      var(--purple-10-ff) 80%,
+      var(--purple-10-00) 100%
+    );
+    min-height: 70px;
   }
 
   .paging-text {

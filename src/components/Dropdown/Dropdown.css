@@ -1,0 +1,30 @@
+.Dropdown {
+  @apply relative;
+
+  .control {
+    @apply flex items-center justify-center rounded-full;
+    width: 48px;
+    height: 48px;
+
+    &:hover,
+    &.menuOpened {
+      background-color: var(--purple-20);
+    }
+  }
+  .menu {
+    @apply absolute hidden top-full right-0 mt-2 py-2 z-10 bg-white rounded-lg border;
+
+    &.menuOpened {
+      @apply block;
+    }
+
+    min-width: 185px;
+    border-color: var(--purple-10);
+    box-shadow: 0 8px 20px #6d71f91f;
+  }
+  .separator {
+    @apply border-b mx-3 my-2;
+
+    border-color: var(--purple-20);
+  }
+}

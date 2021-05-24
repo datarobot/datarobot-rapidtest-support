@@ -6,7 +6,7 @@ import Checkbox from 'components/Checkbox';
 
 import { accountsToDisableAtom, accountIdsToDisableAtom } from 'rt-store';
 
-const AccountNameCell = ({ data }) => {
+const AccountIdCell = ({ data }) => {
   const [accounts, setAccounts] = useAtom(accountsToDisableAtom);
   const [accountIds, setAccountIds] = useAtom(accountIdsToDisableAtom);
   const [isChecked, setIsChecked] = useState(false);
@@ -25,12 +25,7 @@ const AccountNameCell = ({ data }) => {
     setIsChecked(accountIds.includes(data.id));
   }, [accountIds]);
 
-  return (
-    <span className="flex items-center">
-      <Checkbox v2 onChange={handleSelectAccount} isChecked={isChecked} />
-      {data.last_name}, {data.first_name}
-    </span>
-  );
+  return <Checkbox v2 onChange={handleSelectAccount} isChecked={isChecked} />;
 };
 
-export default AccountNameCell;
+export default AccountIdCell;

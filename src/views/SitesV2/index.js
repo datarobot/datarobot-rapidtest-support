@@ -16,13 +16,17 @@ import {
 } from 'rt-store';
 import { download, toCsv } from 'utils';
 import useCurrentProgram from 'hooks/useCurrentProgram';
+import { useResponsive } from 'hooks';
 
 import LayoutV2 from 'components/Layouts/LayoutV2';
 import Modal from 'components/Modal';
-import { IconButton } from 'components/Button';
+import IconButton from 'components/IconButton';
+import Dropdown from 'components/Dropdown';
+import TableMobile from 'components/TableMobile';
 import TableAdvancedV2 from 'components/TableAdvancedV2';
-import SiteNameCell from 'components/TableAdvancedV2/SiteRenderers/SiteNameCell';
+import SiteIdCell from 'components/TableAdvancedV2/SiteRenderers/SiteIdCell';
 import DisableSiteCell from 'components/TableAdvancedV2/SiteRenderers/DisableSiteCell';
+import SiteMobileCell from 'components/TableAdvancedV2/SiteRenderers/SiteMobileCell';
 
 import activateIcon from 'assets/images/icons/site-activate.svg';
 import deactivateIcon from 'assets/images/icons/site-deactivate.svg';
@@ -146,30 +150,38 @@ const SitesV2 = () => {
 
   const cols = [
     {
-      renderer: 'siteNameCell',
-      header: 'Name',
-      comparator: sortNames,
+      renderer: 'siteIdCell',
       headerParams: {
         showCheck: true,
         handleCheckChange,
       },
+      colId: 'id',
+      colWidth: 30,
+    },
+    {
+      header: 'Name',
       colId: 'siteName',
+      initialSort: 'asc',
+      comparator: sortNames,
       value: ({ data }) => data.site_name,
       // colWidth: 650,
     },
     {
       header: 'Address',
+      colId: 'address',
       value: ({ data }) =>
         `${data.street}, ${data.city} ${data.state} ${data.zip}`,
       // colWidth: 650,
     },
     {
       header: 'District',
+      colId: 'district',
       value: ({ data }) => data.district || '-',
       colWidth: 160,
     },
     {
       header: 'Contact',
+      colId: 'contact',
       value: ({ data }) => data.contact_name || '-',
       colWidth: 160,
     },
@@ -177,15 +189,11 @@ const SitesV2 = () => {
       field: 'archive',
       renderer: 'disableSiteCell',
       header: 'Status',
+      colId: 'status',
       disableSort: true,
       colWidth: 120,
     },
   ];
-
-  const renderers = {
-    siteNameCell: SiteNameCell,
-    disableSiteCell: DisableSiteCell,
-  };
 
   useEffect(() => {
     (async () => {
@@ -202,8 +210,69 @@ const SitesV2 = () => {
     })();
   }, [setSites]);
 
+  const { isMobile } = useResponsive();
   const [showModal, setShowModal] = useState(false);
-  const tableButtons = (
+  const tableButtons = isMobile ? (
+    <Dropdown>
+      <IconButton
+        v2
+        label={t('buttons.uploadList')}
+        image={uploadIcon}
+        onClick={() => setSitesSidebar({ mode: 'upload' })}
+      />
+      <IconButton
+        v2
+        label="Export data"
+        image={exportIcon}
+        onClick={handleExportData}
+      />
+      <IconButton
+        v2
+        label={t('buttons.addSite')}
+        image={addIcon}
+        onClick={() => setSitesSidebar({ mode: 'add' })}
+      />
+      {(showActivate || showDeactivate) && <div className="separator"></div>}
+      {showActivate && (
+        <IconButton
+          v2
+          label="Activate"
+          image={activateIcon}
+          onClick={handleBatchActivate}
+        />
+      )}
+      {showDeactivate && (
+        <>
+          <IconButton
+            v2
+            label="Deactivate"
+            image={deactivateIcon}
+            onClick={() => setShowModal(true)}
+          />
+          <Modal
+            v2
+            show={showModal}
+            title="Are you sure?"
+            modalClassName="max-w-lg my-12"
+            confirmButtonText="Yes, disable them"
+            closeButtonText="No, keep them"
+            handleClose={() => {
+              setShowModal(false);
+            }}
+            confirmationAction={() => {
+              handleBatchDeactivate();
+              setShowModal(false);
+            }}
+          >
+            <p className="p-16 text-center">
+              Disabling these sites will make it unavailable to users in the
+              RapidTest app
+            </p>
+          </Modal>
+        </>
+      )}
+    </Dropdown>
+  ) : (
     <>
       <span className="flex">
         {showActivate && (
@@ -215,33 +284,35 @@ const SitesV2 = () => {
           />
         )}
         {showDeactivate && (
-          <IconButton
-            v2
-            label="Deactivate"
-            image={deactivateIcon}
-            onClick={() => setShowModal(true)}
-          />
+          <>
+            <IconButton
+              v2
+              label="Deactivate"
+              image={deactivateIcon}
+              onClick={() => setShowModal(true)}
+            />
+            <Modal
+              v2
+              show={showModal}
+              title="Are you sure?"
+              modalClassName="max-w-lg my-12"
+              confirmButtonText="Yes, disable them"
+              closeButtonText="No, keep them"
+              handleClose={() => {
+                setShowModal(false);
+              }}
+              confirmationAction={() => {
+                handleBatchDeactivate();
+                setShowModal(false);
+              }}
+            >
+              <p className="p-16 text-center">
+                Disabling these sites will make it unavailable to users in the
+                RapidTest app
+              </p>
+            </Modal>
+          </>
         )}
-        <Modal
-          v2
-          show={showModal}
-          title="Are you sure?"
-          modalClassName="max-w-lg my-12"
-          confirmButtonText="Yes, disable them"
-          closeButtonText="No, keep them"
-          handleClose={() => {
-            setShowModal(false);
-          }}
-          confirmationAction={() => {
-            handleBatchDeactivate();
-            setShowModal(false);
-          }}
-        >
-          <p className="p-16 text-center">
-            Disabling these sites will make it unavailable to users in the
-            RapidTest app
-          </p>
-        </Modal>
 
         <span
           className={cls('flex', {
@@ -250,7 +321,7 @@ const SitesV2 = () => {
         >
           <IconButton
             v2
-            label={`+ ${t('buttons.uploadList')}`}
+            label={t('buttons.uploadList')}
             image={uploadIcon}
             onClick={() => setSitesSidebar({ mode: 'upload' })}
           />
@@ -271,18 +342,37 @@ const SitesV2 = () => {
     </>
   );
 
+  const renderers = {
+    siteIdCell: SiteIdCell,
+    disableSiteCell: DisableSiteCell,
+  };
+
   return (
-    <LayoutV2 footerFixed>
-      <p className="mt-8">Your program: {currentProgram || '...'}</p>
-      <TableAdvancedV2
-        rows={sites}
-        cols={cols}
-        defaultSortCol="siteName"
-        renderers={renderers}
-        tableName="Sites"
-        isLoading={isLoading}
-        tableButtons={tableButtons}
-      />
+    <LayoutV2 footerFixed={!isMobile}>
+      <p className="mt-4 md:mt-8">
+        {!isMobile && 'Your program: '}
+        {currentProgram || '...'}
+      </p>
+      {isMobile ? (
+        <TableMobile
+          rows={sites}
+          cols={cols}
+          cellRenderer={SiteMobileCell}
+          tableName="Sites"
+          isLoading={isLoading}
+          handleCheckChange={handleCheckChange}
+          tableButtons={tableButtons}
+        />
+      ) : (
+        <TableAdvancedV2
+          rows={sites}
+          cols={cols}
+          renderers={renderers}
+          tableName="Sites"
+          isLoading={isLoading}
+          tableButtons={tableButtons}
+        />
+      )}
       <SitesSidebar />
     </LayoutV2>
   );
