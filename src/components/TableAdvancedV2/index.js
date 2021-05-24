@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 import Select from 'react-select';
 
-import { accountFilterAtom } from 'rt-store';
+import { accountFilterAtom, quickFilterAtom } from 'rt-store';
 
 import Input from 'components/Input';
 import HeaderCell from 'components/TableAdvancedV2/HeaderCell';
@@ -49,7 +49,8 @@ const TableAdvancedV2 = ({
   tableButtons,
 }) => {
   const [gridApi, setGridApi] = useState(null);
-  const [columnApi, setColumnApi] = useState();
+  const [, setColumnApi] = useState();
+  const [, setQuickFilter] = useAtom(quickFilterAtom);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [rowCount, setRowCount] = useState(0);
@@ -74,7 +75,9 @@ const TableAdvancedV2 = ({
 
   // eslint-disable-next-line no-unused-vars
   const handleFilterChange = ({ target }) => {
-    gridApi.setQuickFilter(target.value);
+    const value = target?.value || null;
+    setQuickFilter(value?.split(' '));
+    gridApi.setQuickFilter(value);
   };
 
   const onPaginationChanged = () => {

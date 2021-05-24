@@ -24,6 +24,7 @@ import IconButton from 'components/IconButton';
 import Dropdown from 'components/Dropdown';
 import TableMobile from 'components/TableMobile';
 import TableAdvancedV2 from 'components/TableAdvancedV2';
+import HighlightValueCell from 'components/TableAdvancedV2/HighlightValueCell';
 import SiteIdCell from 'components/TableAdvancedV2/SiteRenderers/SiteIdCell';
 import DisableSiteCell from 'components/TableAdvancedV2/SiteRenderers/DisableSiteCell';
 import SiteMobileCell from 'components/TableAdvancedV2/SiteRenderers/SiteMobileCell';
@@ -147,53 +148,6 @@ const SitesV2 = () => {
       setShowDeactivate(false);
     }
   }, [sitesToDisable]);
-
-  const cols = [
-    {
-      renderer: 'siteIdCell',
-      headerParams: {
-        showCheck: true,
-        handleCheckChange,
-      },
-      colId: 'id',
-      colWidth: 30,
-    },
-    {
-      header: 'Name',
-      colId: 'siteName',
-      initialSort: 'asc',
-      comparator: sortNames,
-      value: ({ data }) => data.site_name,
-      // colWidth: 650,
-    },
-    {
-      header: 'Address',
-      colId: 'address',
-      value: ({ data }) =>
-        `${data.street}, ${data.city} ${data.state} ${data.zip}`,
-      // colWidth: 650,
-    },
-    {
-      header: 'District',
-      colId: 'district',
-      value: ({ data }) => data.district || '-',
-      colWidth: 160,
-    },
-    {
-      header: 'Contact',
-      colId: 'contact',
-      value: ({ data }) => data.contact_name || '-',
-      colWidth: 160,
-    },
-    {
-      field: 'archive',
-      renderer: 'disableSiteCell',
-      header: 'Status',
-      colId: 'status',
-      disableSort: true,
-      colWidth: 120,
-    },
-  ];
 
   useEffect(() => {
     (async () => {
@@ -343,9 +297,61 @@ const SitesV2 = () => {
   );
 
   const renderers = {
+    highlightValueCell: HighlightValueCell,
     siteIdCell: SiteIdCell,
     disableSiteCell: DisableSiteCell,
   };
+
+  const cols = [
+    {
+      renderer: 'siteIdCell',
+      headerParams: {
+        showCheck: true,
+        handleCheckChange,
+      },
+      colId: 'id',
+      colWidth: 30,
+    },
+    {
+      header: 'Name',
+      colId: 'siteName',
+      initialSort: 'asc',
+      comparator: sortNames,
+      value: ({ data }) => data.site_name,
+      renderer: 'highlightValueCell',
+      // colWidth: 650,
+    },
+    {
+      header: 'Address',
+      colId: 'address',
+      value: ({ data }) =>
+        `${data.street}, ${data.city} ${data.state} ${data.zip}`,
+      renderer: 'highlightValueCell',
+      // colWidth: 650,
+    },
+    {
+      header: 'District',
+      colId: 'district',
+      value: ({ data }) => data.district || '-',
+      renderer: 'highlightValueCell',
+      colWidth: 160,
+    },
+    {
+      header: 'Contact',
+      colId: 'contact',
+      value: ({ data }) => data.contact_name || '-',
+      renderer: 'highlightValueCell',
+      colWidth: 160,
+    },
+    {
+      field: 'archive',
+      renderer: 'disableSiteCell',
+      header: 'Status',
+      colId: 'status',
+      disableSort: true,
+      colWidth: 120,
+    },
+  ];
 
   return (
     <LayoutV2 footerFixed={!isMobile}>

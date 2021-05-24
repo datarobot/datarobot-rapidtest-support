@@ -17,7 +17,7 @@ const SitesSidebar = () => {
 
   return (
     <ReactModal
-      isOpen={mode}
+      isOpen={!!mode}
       onRequestClose={() => setSitesSidebar({})}
       overlayClassName="LayoutV2 sidebarModalOverlay"
       className={cls('sidebarModalContent', { wide })}

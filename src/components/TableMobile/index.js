@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useAtom } from 'jotai';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+
+import { quickFilterAtom } from 'rt-store';
 
 import Loading from 'components/Loading';
 import Pagination from 'components/TableAdvancedV2/Pagination';
@@ -21,6 +24,7 @@ const TableMobile = ({
 }) => {
   const [gridApi, setGridApi] = useState(null);
   const [columnApi, setColumnApi] = useState();
+  const [, setQuickFilter] = useAtom(quickFilterAtom);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [rowCount, setRowCount] = useState(0);
@@ -42,7 +46,9 @@ const TableMobile = ({
 
   // eslint-disable-next-line no-unused-vars
   const handleFilterChange = ({ target }) => {
-    gridApi.setQuickFilter(target.value);
+    const value = target?.value || null;
+    setQuickFilter(value?.split(' '));
+    gridApi.setQuickFilter(value);
   };
 
   const onPaginationChanged = () => {
