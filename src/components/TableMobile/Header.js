@@ -74,7 +74,6 @@ export const SitesSort = ({ columnApi }) => {
       className="Filter small ml-4 flex-1"
       classNamePrefix="Filter"
       placeholder="Sort"
-      menuIsOpen={true}
       isClearable={true}
       isSearchable={false}
       options={[

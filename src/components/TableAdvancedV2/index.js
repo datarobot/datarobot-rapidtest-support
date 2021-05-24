@@ -26,7 +26,6 @@ export const AccountFilter = ({ small }) => {
       className={cls('Filter ml-4', { small, 'flex-1': small })}
       classNamePrefix="Filter"
       placeholder="Filter"
-      // menuIsOpen={true}
       isClearable={true}
       isSearchable={false}
       options={[
