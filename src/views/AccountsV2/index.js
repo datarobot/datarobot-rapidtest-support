@@ -254,60 +254,51 @@ const AccountsV2 = () => {
   const { isMobile } = useResponsive();
   const tableButtons = isMobile ? (
     <Dropdown>
+      <IconButton
+        v2
+        label={t('buttons.uploadList')}
+        image={uploadIcon}
+        onClick={() => setAccountsSidebar({ mode: 'upload' })}
+      />
+      <IconButton
+        v2
+        label="Export data"
+        image={exportIcon}
+        onClick={handleExportData}
+      />
+      <IconButton
+        v2
+        label={t('buttons.addAccount')}
+        image={addIcon}
+        onClick={() => setAccountsSidebar({ mode: 'add' })}
+      />
+      {(showResendEmail || showActivate || showDeactivate) && (
+        <div className="separator"></div>
+      )}
       {showResendEmail && (
-        <div>
-          <IconButton
-            v2
-            label="Re-send email"
-            image={mailIcon}
-            onClick={handleResendEmail}
-          />
-        </div>
+        <IconButton
+          v2
+          label="Re-send email"
+          image={mailIcon}
+          onClick={handleResendEmail}
+        />
       )}
       {showActivate && (
-        <div>
-          <IconButton
-            v2
-            label="Activate user(s)"
-            image={activateIcon}
-            onClick={handleBatchActivate}
-          />
-        </div>
+        <IconButton
+          v2
+          label="Activate user(s)"
+          image={activateIcon}
+          onClick={handleBatchActivate}
+        />
       )}
       {showDeactivate && (
-        <div>
-          <IconButton
-            v2
-            label="Deactivate user(s)"
-            image={deactivateIcon}
-            onClick={handleBatchDeactivate}
-          />
-        </div>
+        <IconButton
+          v2
+          label="Deactivate user(s)"
+          image={deactivateIcon}
+          onClick={handleBatchDeactivate}
+        />
       )}
-      <div>
-        <IconButton
-          v2
-          label={t('buttons.uploadList')}
-          image={uploadIcon}
-          onClick={() => setAccountsSidebar({ mode: 'upload' })}
-        />
-      </div>
-      <div>
-        <IconButton
-          v2
-          label="Export data"
-          image={exportIcon}
-          onClick={handleExportData}
-        />
-      </div>
-      <div>
-        <IconButton
-          v2
-          label={t('buttons.addAccount')}
-          image={addIcon}
-          onClick={() => setAccountsSidebar({ mode: 'add' })}
-        />
-      </div>
     </Dropdown>
   ) : (
     <>

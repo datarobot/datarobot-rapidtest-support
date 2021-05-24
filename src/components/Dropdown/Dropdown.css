@@ -23,7 +23,7 @@
     box-shadow: 0 8px 20px #6d71f91f;
   }
   .separator {
-    @apply border-b mx-3 my-1;
+    @apply border-b mx-3 my-2;
 
     border-color: var(--purple-20);
   }

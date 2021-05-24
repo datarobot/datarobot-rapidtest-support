@@ -26,17 +26,33 @@ export const AccountsSort = ({ columnApi }) => {
       isClearable={true}
       isSearchable={false}
       options={[
-        { label: 'Name A-Z', value: { colId: 'name', sort: 'asc' } },
-        { label: 'Name Z-A', value: { colId: 'name', sort: 'desc' } },
-        { label: 'Email A-Z', value: { colId: 'email', sort: 'asc' } },
-        { label: 'Email Z-A', value: { colId: 'email', sort: 'desc' } },
-        { label: 'Added A-Z', value: { colId: 'added', sort: 'asc' } },
         {
-          label: 'Added Z-A',
-          value: { colId: 'added', sort: 'desc' },
+          options: [
+            { label: 'Name (A-Z)', value: { colId: 'name', sort: 'asc' } },
+            { label: 'Name (Z-A)', value: { colId: 'name', sort: 'desc' } },
+          ],
         },
-        { label: 'Status A-Z', value: { colId: 'status', sort: 'asc' } },
-        { label: 'Status Z-A', value: { colId: 'status', sort: 'desc' } },
+        {
+          options: [
+            { label: 'Email (A-Z)', value: { colId: 'email', sort: 'asc' } },
+            { label: 'Email (Z-A)', value: { colId: 'email', sort: 'desc' } },
+          ],
+        },
+        {
+          options: [
+            { label: 'Added (A-Z)', value: { colId: 'added', sort: 'asc' } },
+            {
+              label: 'Added (Z-A)',
+              value: { colId: 'added', sort: 'desc' },
+            },
+          ],
+        },
+        {
+          options: [
+            { label: 'Status (A-Z)', value: { colId: 'status', sort: 'asc' } },
+            { label: 'Status (Z-A)', value: { colId: 'status', sort: 'desc' } },
+          ],
+        },
       ]}
       onChange={onChange}
     />
@@ -57,20 +73,52 @@ export const SitesSort = ({ columnApi }) => {
       className="Filter small ml-4 flex-1"
       classNamePrefix="Filter"
       placeholder="Sort"
+      menuIsOpen={true}
       isClearable={true}
       isSearchable={false}
       options={[
-        { label: 'Name A-Z', value: { colId: 'siteName', sort: 'asc' } },
-        { label: 'Name Z-A', value: { colId: 'siteName', sort: 'desc' } },
-        { label: 'Address A-Z', value: { colId: 'address', sort: 'asc' } },
-        { label: 'Address Z-A', value: { colId: 'address', sort: 'desc' } },
-        { label: 'District A-Z', value: { colId: 'district', sort: 'asc' } },
         {
-          label: 'District Z-A',
-          value: { colId: 'district', sort: 'desc' },
+          options: [
+            { label: 'Name (A-Z)', value: { colId: 'siteName', sort: 'asc' } },
+            { label: 'Name (Z-A)', value: { colId: 'siteName', sort: 'desc' } },
+          ],
         },
-        { label: 'Contact A-Z', value: { colId: 'contact', sort: 'asc' } },
-        { label: 'Contact Z-A', value: { colId: 'contact', sort: 'desc' } },
+        {
+          options: [
+            {
+              label: 'Address (A-Z)',
+              value: { colId: 'address', sort: 'asc' },
+            },
+            {
+              label: 'Address (Z-A)',
+              value: { colId: 'address', sort: 'desc' },
+            },
+          ],
+        },
+        {
+          options: [
+            {
+              label: 'District (A-Z)',
+              value: { colId: 'district', sort: 'asc' },
+            },
+            {
+              label: 'District (Z-A)',
+              value: { colId: 'district', sort: 'desc' },
+            },
+          ],
+        },
+        {
+          options: [
+            {
+              label: 'Contact (A-Z)',
+              value: { colId: 'contact', sort: 'asc' },
+            },
+            {
+              label: 'Contact (Z-A)',
+              value: { colId: 'contact', sort: 'desc' },
+            },
+          ],
+        },
       ]}
       onChange={onChange}
     />

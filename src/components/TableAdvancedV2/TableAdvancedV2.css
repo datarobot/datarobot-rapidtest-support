@@ -92,6 +92,12 @@
   .Filter__menu-list {
     padding: 11px 0;
   }
+  .Filter__group:not(:first-child) {
+    .Filter__group-heading {
+      @apply border-t mx-3 -mt-2 mb-2;
+      border-color: var(--purple-20);
+    }
+  }
   .Filter__option {
     @mixin body-small;
     color: var(--purple-90);
