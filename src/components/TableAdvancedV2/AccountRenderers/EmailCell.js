@@ -1,9 +1,9 @@
 import Highlight from 'components/Highlight';
 
-const EmailCell = ({ data }) => {
+const EmailCell = ({ value }) => {
   return (
-    <a href={`mailto:${data.email_address}`}>
-      <Highlight text={data.email_address} />
+    <a href={`mailto:${value}`}>
+      <Highlight text={value} />
     </a>
   );
 };

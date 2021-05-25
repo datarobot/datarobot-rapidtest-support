@@ -29,9 +29,8 @@ const AccountMobileCell = ({ data }) => {
         <div>Added</div>
         <Highlight
           text={
-            data.welcome_email_sent
-              ? format(new Date(data.welcome_email_sent), 'MM-dd-yyyy')
-              : '-'
+            data.welcome_email_sent &&
+            format(new Date(data.welcome_email_sent), 'MM-dd-yyyy')
           }
         />
       </div>

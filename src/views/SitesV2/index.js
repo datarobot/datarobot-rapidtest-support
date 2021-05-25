@@ -317,7 +317,7 @@ const SitesV2 = () => {
       colId: 'siteName',
       initialSort: 'asc',
       comparator: sortNames,
-      value: ({ data }) => data.site_name,
+      value: ({ data: { site_name } }) => site_name,
       renderer: 'HighlightValueCell',
       // colWidth: 650,
     },
@@ -332,16 +332,16 @@ const SitesV2 = () => {
     {
       header: 'District',
       colId: 'district',
-      value: ({ data }) => data.district || '-',
+      value: ({ data: { district } }) => district,
       renderer: 'HighlightValueCell',
-      colWidth: 160,
+      colWidth: 130,
     },
     {
       header: 'Contact',
       colId: 'contact',
-      value: ({ data }) => data.contact_name || '-',
+      value: ({ data: { contact_name } }) => contact_name,
       renderer: 'HighlightValueCell',
-      colWidth: 160,
+      colWidth: 130,
     },
     {
       field: 'archive',
@@ -349,7 +349,7 @@ const SitesV2 = () => {
       header: 'Status',
       colId: 'status',
       disableSort: true,
-      colWidth: 120,
+      colWidth: 100,
     },
   ];
 

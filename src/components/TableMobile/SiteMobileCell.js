@@ -25,11 +25,11 @@ const SiteMobileCell = ({ data }) => {
       </div>
       <div className="field">
         <div>District</div>
-        <Highlight text={data.district || '-'} />
+        <Highlight text={data.district} />
       </div>
       <div className="field">
         <div>Contact</div>
-        <Highlight text={data.contact_name || '-'} />
+        <Highlight text={data.contact_name} />
       </div>
     </div>
   );

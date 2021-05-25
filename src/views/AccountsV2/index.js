@@ -335,6 +335,7 @@ const AccountsV2 = () => {
       field: 'email_address',
       header: 'Email',
       colId: 'email',
+      value: ({ data: { email_address } }) => email_address,
       renderer: 'EmailCell',
     },
     {
@@ -342,12 +343,11 @@ const AccountsV2 = () => {
       header: 'Added',
       colId: 'added',
       comparator: dateComparator,
-      value: ({ data }) =>
-        data.welcome_email_sent
-          ? format(new Date(data.welcome_email_sent), 'MM-dd-yyyy')
-          : '-',
+      value: ({ data: { welcome_email_sent } }) =>
+        welcome_email_sent &&
+        format(new Date(welcome_email_sent), 'MM-dd-yyyy'),
       renderer: 'HighlightValueCell',
-      colWidth: 120,
+      colWidth: 100,
     },
     {
       renderer: 'StatusCell',
