@@ -24,11 +24,11 @@ import LayoutV2 from 'components/Layouts/LayoutV2';
 import IconButton from 'components/IconButton';
 import TableAdvancedV2 from 'components/TableAdvancedV2';
 import HighlightValueCell from 'components/TableAdvancedV2/HighlightValueCell';
-import AccountEmailCell from 'components/TableAdvancedV2/AccountRenderers/AccountEmailCell';
-import AccountIdCell from 'components/TableAdvancedV2/AccountRenderers/AccountIdCell';
-import AccountStatusCell from 'components/TableAdvancedV2/AccountRenderers/AccountStatusCell';
-import EditAccountCell from 'components/TableAdvancedV2/AccountRenderers/EditAccountCell';
-import AccountMobileCell from 'components/TableAdvancedV2/AccountRenderers/AccountMobileCell';
+import EmailCell from 'components/TableAdvancedV2/AccountRenderers/EmailCell';
+import IdCell from 'components/TableAdvancedV2/AccountRenderers/IdCell';
+import StatusCell from 'components/TableAdvancedV2/AccountRenderers/StatusCell';
+import EditCell from 'components/TableAdvancedV2/AccountRenderers/EditCell';
+import AccountMobileCell from 'components/TableMobile/AccountMobileCell';
 import TableMobile from 'components/TableMobile';
 import Dropdown from 'components/Dropdown';
 
@@ -40,6 +40,18 @@ import exportIcon from 'assets/images/icons/export.svg';
 import addIcon from 'assets/images/icons/add.svg';
 
 import AccountsSidebar from './AccountsSidebar';
+
+// const sortNames = (a, b) => {
+//   if (a > b) return 1;
+//   if (b > a) return -1;
+//   return 0;
+// };
+
+// const sortStatus = (a, b) => {
+//   if (a > b) return 1;
+//   if (b > a) return -1;
+//   return 0;
+// };
 
 const AccountsV2 = () => {
   const { t } = useTranslation();
@@ -108,29 +120,6 @@ const AccountsV2 = () => {
 
   const handleBatchDeactivate = () => {
     doBatch({ archive: true });
-  };
-
-  const sortNames = (a, b) => {
-    if (a > b) return 1;
-    if (b > a) return -1;
-    return 0;
-  };
-
-  const sortStatus = (a, b) => {
-    if (a > b) return 1;
-    if (b > a) return -1;
-    return 0;
-  };
-
-  const statusValueGetter = ({ data }) => {
-    if (data.archive) {
-      return 'Inactive';
-    }
-    if (!data.last_login_ip) {
-      return 'Pending';
-    }
-
-    return 'Active';
   };
 
   const handleCheckChange = (res, isChecked) => {
@@ -303,19 +292,30 @@ const AccountsV2 = () => {
     </>
   );
 
+  const statusValueGetter = ({ data }) => {
+    if (data.archive) {
+      return 'Inactive';
+    }
+    if (!data.last_login_ip) {
+      return 'Pending';
+    }
+
+    return 'Active';
+  };
+
   const renderers = {
-    highlightValueCell: HighlightValueCell,
+    HighlightValueCell,
 
-    accountIdCell: AccountIdCell,
-    accountEmailCell: AccountEmailCell,
+    IdCell,
+    EmailCell,
 
-    accountStatusCell: AccountStatusCell,
-    editAccountCell: EditAccountCell,
+    StatusCell,
+    EditCell,
   };
 
   const cols = [
     {
-      renderer: 'accountIdCell',
+      renderer: 'IdCell',
       headerParams: {
         showCheck: true,
         handleCheckChange,
@@ -327,41 +327,36 @@ const AccountsV2 = () => {
       header: 'Name',
       colId: 'name',
       initialSort: 'asc',
-      comparator: sortNames,
+      // comparator: sortNames,
       value: ({ data }) => `${data.last_name}, ${data.first_name}`,
-      renderer: 'highlightValueCell',
+      renderer: 'HighlightValueCell',
     },
     {
       field: 'email_address',
       header: 'Email',
       colId: 'email',
-      renderer: 'accountEmailCell',
+      renderer: 'EmailCell',
     },
     {
-      field: 'welcome_email_sent',
       header: 'Added',
       colId: 'added',
       comparator: dateComparator,
-      value: ({ data }) =>
-        data.welcome_email_sent
-          ? format(new Date(data.welcome_email_sent), 'MM-dd-yyyy')
-          : '-',
-      renderer: 'highlightValueCell',
-      colWidth: 120,
+      value: ({ data: { welcome_email_sent } }) =>
+        welcome_email_sent &&
+        format(new Date(welcome_email_sent), 'MM-dd-yyyy'),
+      renderer: 'HighlightValueCell',
+      colWidth: 100,
     },
     {
-      renderer: 'accountStatusCell',
-      comparator: sortStatus,
+      renderer: 'StatusCell',
+      // comparator: sortStatus,
       header: 'Status',
       colId: 'status',
       colWidth: 100,
       value: statusValueGetter,
-      headerParams: {
-        // textEnd: true,
-      },
     },
     {
-      renderer: 'editAccountCell',
+      renderer: 'EditCell',
       header: 'Edit',
       colId: 'nosort-edit',
       disableSort: true,

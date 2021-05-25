@@ -4,7 +4,7 @@ import { accountsSidebarAtom } from 'rt-store';
 
 import pencil from 'assets/images/icons/pencil.svg';
 
-const EditAccountCell = ({ data: { id } }) => {
+const EditCell = ({ data: { id } }) => {
   const [, setAccountsSidebar] = useAtom(accountsSidebarAtom);
 
   return (
@@ -14,4 +14,4 @@ const EditAccountCell = ({ data: { id } }) => {
   );
 };
 
-export default EditAccountCell;
+export default EditCell;

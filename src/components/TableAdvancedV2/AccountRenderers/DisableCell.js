@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { toast } from 'react-toastify';
 
-import Loading from 'components/Loading';
-import SuccessCheck from 'components/Notifications/SuccessCheck';
-
 import { accountsAtom } from 'rt-store';
 import { getAccountList, editAccount } from 'services/api';
 
-const DisableAccountCell = ({ value, data }) => {
+import Loading from 'components/Loading';
+import SuccessCheck from 'components/Notifications/SuccessCheck';
+
+const DisableCell = ({ value, data }) => {
   // const { t } = useTranslation();
   const [, setAccounts] = useAtom(accountsAtom);
   const [isLoading, setIsLoading] = useState(false);
@@ -77,4 +77,4 @@ const DisableAccountCell = ({ value, data }) => {
   );
 };
 
-export default DisableAccountCell;
+export default DisableCell;

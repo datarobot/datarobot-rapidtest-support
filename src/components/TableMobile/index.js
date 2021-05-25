@@ -40,6 +40,7 @@ const TableMobile = ({
   }, [isLoading]);
 
   const onGridReady = async (params) => {
+    setQuickFilter([]);
     setGridApi(params.api);
     setColumnApi(params.columnApi);
   };

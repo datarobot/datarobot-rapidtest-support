@@ -1,12 +1,10 @@
 // @ts-nocheck
 import { useEffect, useState } from 'react';
-import cls from 'classnames';
 import { useAtom } from 'jotai';
 import { useLocation } from 'react-router-dom';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
-import Select from 'react-select';
 
-import { accountFilterAtom, quickFilterAtom } from 'rt-store';
+import { quickFilterAtom } from 'rt-store';
 
 import Input from 'components/Input';
 import HeaderCell from 'components/TableAdvancedV2/HeaderCell';
@@ -16,29 +14,10 @@ import Pagination from 'components/TableAdvancedV2/Pagination';
 
 import 'ag-grid-community';
 import 'ag-grid-community/dist/styles/ag-grid.css';
+
+import AccountFilter from './AccountRenderers/Filter';
+
 import './TableAdvancedV2.css';
-
-export const AccountFilter = ({ small }) => {
-  const [, setAccountFilter] = useAtom(accountFilterAtom);
-
-  return (
-    <Select
-      className={cls('Filter ml-4', { small, 'flex-1': small })}
-      classNamePrefix="Filter"
-      placeholder="Filter"
-      isClearable={true}
-      isSearchable={false}
-      options={[
-        { label: 'Active', value: 'active' },
-        { label: 'Inactive', value: 'inactive' },
-        { label: 'Pending', value: 'pending' },
-      ]}
-      onChange={(newValue) => {
-        setAccountFilter(newValue?.value);
-      }}
-    />
-  );
-};
 
 const TableAdvancedV2 = ({
   rows,
@@ -69,6 +48,7 @@ const TableAdvancedV2 = ({
   }, [isLoading]);
 
   const onGridReady = async (params) => {
+    setQuickFilter([]);
     setGridApi(params.api);
     setColumnApi(params.columnApi);
   };

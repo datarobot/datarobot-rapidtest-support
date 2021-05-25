@@ -25,9 +25,9 @@ import Dropdown from 'components/Dropdown';
 import TableMobile from 'components/TableMobile';
 import TableAdvancedV2 from 'components/TableAdvancedV2';
 import HighlightValueCell from 'components/TableAdvancedV2/HighlightValueCell';
-import SiteIdCell from 'components/TableAdvancedV2/SiteRenderers/SiteIdCell';
-import DisableSiteCell from 'components/TableAdvancedV2/SiteRenderers/DisableSiteCell';
-import SiteMobileCell from 'components/TableAdvancedV2/SiteRenderers/SiteMobileCell';
+import IdCell from 'components/TableAdvancedV2/SiteRenderers/IdCell';
+import DisableCell from 'components/TableAdvancedV2/SiteRenderers/DisableCell';
+import SiteMobileCell from 'components/TableMobile/SiteMobileCell';
 
 import activateIcon from 'assets/images/icons/site-activate.svg';
 import deactivateIcon from 'assets/images/icons/site-deactivate.svg';
@@ -36,6 +36,12 @@ import exportIcon from 'assets/images/icons/export.svg';
 import addIcon from 'assets/images/icons/add.svg';
 
 import SitesSidebar from './SitesSidebar';
+
+// const sortNames = (a, b) => {
+//   if (a > b) return 1;
+//   if (b > a) return -1;
+//   return 0;
+// };
 
 const SitesV2 = () => {
   const { t } = useTranslation();
@@ -122,12 +128,6 @@ const SitesV2 = () => {
         toast.error('Something went wrong!');
         setIsLoading(false);
       });
-  };
-
-  const sortNames = (a, b) => {
-    if (a > b) return 1;
-    if (b > a) return -1;
-    return 0;
   };
 
   const handleCheckChange = (res, isChecked) => {
@@ -297,14 +297,14 @@ const SitesV2 = () => {
   );
 
   const renderers = {
-    highlightValueCell: HighlightValueCell,
-    siteIdCell: SiteIdCell,
-    disableSiteCell: DisableSiteCell,
+    HighlightValueCell,
+    IdCell,
+    DisableCell,
   };
 
   const cols = [
     {
-      renderer: 'siteIdCell',
+      renderer: 'IdCell',
       headerParams: {
         showCheck: true,
         handleCheckChange,
@@ -313,12 +313,12 @@ const SitesV2 = () => {
       colWidth: 30,
     },
     {
+      field: 'site_name',
       header: 'Name',
       colId: 'siteName',
       initialSort: 'asc',
-      comparator: sortNames,
-      value: ({ data }) => data.site_name,
-      renderer: 'highlightValueCell',
+      // comparator: sortNames,
+      renderer: 'HighlightValueCell',
       // colWidth: 650,
     },
     {
@@ -326,30 +326,30 @@ const SitesV2 = () => {
       colId: 'address',
       value: ({ data }) =>
         `${data.street}, ${data.city} ${data.state} ${data.zip}`,
-      renderer: 'highlightValueCell',
+      renderer: 'HighlightValueCell',
       // colWidth: 650,
     },
     {
+      field: 'district',
       header: 'District',
       colId: 'district',
-      value: ({ data }) => data.district || '-',
-      renderer: 'highlightValueCell',
-      colWidth: 160,
+      renderer: 'HighlightValueCell',
+      colWidth: 130,
     },
     {
+      field: 'contact_name',
       header: 'Contact',
       colId: 'contact',
-      value: ({ data }) => data.contact_name || '-',
-      renderer: 'highlightValueCell',
-      colWidth: 160,
+      renderer: 'HighlightValueCell',
+      colWidth: 130,
     },
     {
       field: 'archive',
-      renderer: 'disableSiteCell',
+      renderer: 'DisableCell',
       header: 'Status',
       colId: 'status',
       disableSort: true,
-      colWidth: 120,
+      colWidth: 100,
     },
   ];
 

@@ -1,12 +1,12 @@
 import React from 'react';
 import { format } from 'date-fns';
 
-import Highlight from '../../Highlight';
+import Highlight from '../Highlight';
 
-import AccountIdCell from './AccountIdCell';
-import AccountStatusCell from './AccountStatusCell';
-import AccountEmailCell from './AccountEmailCell';
-import EditAccountCell from './EditAccountCell';
+import IdCell from '../TableAdvancedV2/AccountRenderers/IdCell';
+import StatusCell from '../TableAdvancedV2/AccountRenderers/StatusCell';
+import EmailCell from '../TableAdvancedV2/AccountRenderers/EmailCell';
+import EditCell from '../TableAdvancedV2/AccountRenderers/EditCell';
 
 import './AccountMobileCell.css';
 
@@ -14,8 +14,8 @@ const AccountMobileCell = ({ data }) => {
   return (
     <div className="AccountMobileCell">
       <div className="head">
-        <AccountIdCell data={data} />
-        <EditAccountCell data={data} />
+        <IdCell data={data} />
+        <EditCell data={data} />
       </div>
       <div className="field tall">
         <div>Name</div>
@@ -23,22 +23,21 @@ const AccountMobileCell = ({ data }) => {
       </div>
       <div className="field tall">
         <div>Email</div>
-        <AccountEmailCell data={data} />
+        <EmailCell data={data} />
       </div>
       <div className="field">
         <div>Added</div>
         <Highlight
           text={
-            data.welcome_email_sent
-              ? format(new Date(data.welcome_email_sent), 'MM-dd-yyyy')
-              : '-'
+            data.welcome_email_sent &&
+            format(new Date(data.welcome_email_sent), 'MM-dd-yyyy')
           }
         />
       </div>
       <div className="field">
         <div>Status</div>
         <div>
-          <AccountStatusCell data={data} />
+          <StatusCell data={data} />
         </div>
       </div>
     </div>
