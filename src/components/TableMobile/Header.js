@@ -11,7 +11,7 @@ import AccountFilter from '../TableAdvancedV2/AccountRenderers/Filter';
 import AccountsSort from './AccountsSort';
 import SitesSort from './SitesSort';
 
-export const Header = ({
+const Header = ({
   gridApi,
   columnApi,
   handleCheckChange,
