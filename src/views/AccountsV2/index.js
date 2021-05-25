@@ -122,17 +122,6 @@ const AccountsV2 = () => {
     doBatch({ archive: true });
   };
 
-  const statusValueGetter = ({ data }) => {
-    if (data.archive) {
-      return 'Inactive';
-    }
-    if (!data.last_login_ip) {
-      return 'Pending';
-    }
-
-    return 'Active';
-  };
-
   const handleCheckChange = (res, isChecked) => {
     const accountIds = res.map(({ id }) => id);
     setAccountsToDisable(isChecked ? [] : res);
@@ -303,6 +292,17 @@ const AccountsV2 = () => {
     </>
   );
 
+  const statusValueGetter = ({ data }) => {
+    if (data.archive) {
+      return 'Inactive';
+    }
+    if (!data.last_login_ip) {
+      return 'Pending';
+    }
+
+    return 'Active';
+  };
+
   const renderers = {
     HighlightValueCell,
 
@@ -335,11 +335,9 @@ const AccountsV2 = () => {
       field: 'email_address',
       header: 'Email',
       colId: 'email',
-      value: ({ data: { email_address } }) => email_address,
       renderer: 'EmailCell',
     },
     {
-      field: 'welcome_email_sent',
       header: 'Added',
       colId: 'added',
       comparator: dateComparator,
@@ -356,9 +354,6 @@ const AccountsV2 = () => {
       colId: 'status',
       colWidth: 100,
       value: statusValueGetter,
-      headerParams: {
-        // textEnd: true,
-      },
     },
     {
       renderer: 'EditCell',
