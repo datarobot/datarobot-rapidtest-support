@@ -159,7 +159,7 @@ const AddSiteV2 = () => {
 
   return (
     <>
-      <h3>{t('addSite.title')}</h3>
+      <h3 className="mb-2">{t('addSite.title')}</h3>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <Controller

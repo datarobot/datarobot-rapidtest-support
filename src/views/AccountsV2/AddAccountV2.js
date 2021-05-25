@@ -30,11 +30,9 @@ const AddAccountV2 = () => {
 
   return (
     <>
-      <h3>Add New Account</h3>
+      <h3 className="mb-2">Add New Account</h3>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h3>Personal Info</h3>
-
         <Controller
           name="first_name"
           control={control}

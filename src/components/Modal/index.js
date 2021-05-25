@@ -33,7 +33,6 @@ const Modal = ({
       overlayClassName={cls('overlay', modalOverlayClassName, { LayoutV2: v2 })}
       shouldCloseOnOverlayClick={closeOnOverlayClick}
       onRequestClose={closeAction}
-      bodyOpenClassName="openedModal"
       {...rest}
     >
       <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-30 outline-none focus:outline-none">

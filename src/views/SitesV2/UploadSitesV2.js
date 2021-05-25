@@ -54,7 +54,7 @@ const UploadSitesV2 = () => {
 
   return (
     <>
-      <h3>Upload a list of sites</h3>
+      <h3 className="mb-6">Upload a list of sites</h3>
       <p>Upload a CSV file with a list of sites to add to your program.</p>
 
       <FileUpload
@@ -73,7 +73,6 @@ const UploadSitesV2 = () => {
           setErrors([]);
         }}
       />
-      <br />
       <ValidColumns
         validColumns={VALID_SITE_COLUMNS}
         errors={errors}

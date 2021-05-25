@@ -67,7 +67,7 @@ const EditAccountV2 = () => {
 
   return (
     <>
-      <h3>
+      <h3 className="mb-2">
         {t('editSite.title')} {currentAccount?.first_name}{' '}
         {currentAccount?.last_name}
       </h3>

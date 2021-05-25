@@ -74,7 +74,7 @@ const EditSiteV2 = () => {
 
   return (
     <>
-      <h3>
+      <h3 className="mb-2">
         {t('editSite.title')} {currentSite.site_name || 'untitled'}
       </h3>
 

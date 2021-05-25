@@ -4,7 +4,7 @@
 .MobileCell {
   @apply bg-white p-4 mt-4 border-b;
 
-  height: 232px;
+  height: 256px;
   border-color: var(--purple-30);
 
   .head {
