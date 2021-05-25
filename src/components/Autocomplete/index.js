@@ -32,12 +32,14 @@ const Autocomplete = ({
       isRequired={isRequired}
     />
 
-    <Button
-      kind={KIND.CLEAR}
-      className={cls('clearIcon', { v2 })}
-      onClick={onClearClick}
-      label={<Icon iconName="times" type="fal" />}
-    />
+    {inputValue && (
+      <Button
+        kind={KIND.CLEAR}
+        className={cls('clearIcon', { v2 })}
+        onClick={onClearClick}
+        label={<Icon iconName="times" type="fal" />}
+      />
+    )}
 
     {listValues?.length > 0 && (
       <ul className="absolute bg-white w-full p-4 shadow-md max-h-80 overflow-y-scroll">

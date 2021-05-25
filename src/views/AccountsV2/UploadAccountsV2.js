@@ -52,7 +52,7 @@ const UploadAccountsV2 = () => {
 
   return (
     <>
-      <h3>Upload a list of accounts</h3>
+      <h3 className="mb-6">Upload a list of accounts</h3>
       <p>Upload a CSV file with a list of accounts to add to your program.</p>
 
       <FileUpload
@@ -72,7 +72,6 @@ const UploadAccountsV2 = () => {
           setErrors([]);
         }}
       />
-      <br />
       <ValidColumns
         validColumns={VALID_ACCOUNT_COLUMNS}
         errors={errors}

@@ -16,27 +16,45 @@ import Table from 'components/Table';
 import upload2 from 'assets/images/icons/upload2.svg';
 
 import './FileUpload.css';
+import { useResponsive } from '../../hooks';
 
-const UploadLabel = ({ v2 = false }) => (
+const UploadLabel = ({ isMobile, v2 = false }) => (
   <>
-    {v2 ? (
-      <img src={upload2} alt="" />
+    {isMobile ? (
+      <>
+        <Button v2 primary small className="w-full mt-6">
+          Choose file
+        </Button>
+      </>
     ) : (
-      <Icon
-        iconName="cloud-upload-alt"
-        size="2x"
-        color={v2 ? '#5B5FF0' : '#00528D'}
-        type="far"
-      />
+      <>
+        {v2 ? (
+          <img src={upload2} alt="" />
+        ) : (
+          <Icon
+            iconName="cloud-upload-alt"
+            size="2x"
+            color={v2 ? '#5B5FF0' : '#00528D'}
+            type="far"
+          />
+        )}
+        <p>Drop files here to upload or</p>
+        <a className={cls('underline', { 'text-blue': !v2 })}>Choose a file</a>
+      </>
     )}
-    <p>Drop files here to upload or</p>
-    <a className={cls('underline', { 'text-blue': !v2 })}>Choose a file</a>
-    <p className="absolute bottom-0 pb-2">
-      Accepted formats:{' '}
-      <span className="font-mono inline-block px-1 rounded-full bg-gray-200 border border-gray-300 text-sm">
-        .csv
-      </span>
-    </p>
+    {v2 ? (
+      <>
+        <p className="mt-4 mb-2">Accepted formats: .csv</p>
+        <hr />
+      </>
+    ) : (
+      <p className="absolute bottom-0 pb-2">
+        Accepted formats:{' '}
+        <span className="font-mono inline-block px-1 rounded-full bg-gray-200 border border-gray-300 text-sm">
+          .csv
+        </span>
+      </p>
+    )}
   </>
 );
 
@@ -128,33 +146,40 @@ const FileUpload = ({
     });
   }, [files]);
 
+  const { isMobile } = useResponsive();
+
   return (
     <>
       {files.length === 0 ? (
         <>
-          <section className="flex justify-between items-center max-w-lg mb-4">
-            {v2 ? (
-              <h6 className="mt-4">Select Files</h6>
-            ) : (
-              <p className="sub-heading text-blue">Select Files</p>
-            )}
+          {!isMobile && (
+            <section className="flex justify-between items-center max-w-lg mb-4">
+              {v2 ? (
+                <h6 className="mt-4">Select Files</h6>
+              ) : (
+                <p className="sub-heading text-blue">Select Files</p>
+              )}
 
-            {!v2 && (
-              <a
-                href={templateFile}
-                download={templateName}
-                className="btn-clear"
-              >
-                Download a template file
-              </a>
-            )}
-          </section>
-          <div className={cls('upload-container', { v2 })} {...getRootProps()}>
+              {!v2 && (
+                <a
+                  href={templateFile}
+                  download={templateName}
+                  className="btn-clear"
+                >
+                  Download a template file
+                </a>
+              )}
+            </section>
+          )}
+          <div
+            className={cls({ 'upload-container': !isMobile, v2 })}
+            {...getRootProps()}
+          >
             <input {...getInputProps()} />
             {isDragActive ? (
               <p>Drop the files here ...</p>
             ) : (
-              <UploadLabel v2={v2} />
+              <UploadLabel isMobile={isMobile} v2={v2} />
             )}
           </div>
         </>

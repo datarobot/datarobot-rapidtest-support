@@ -25,7 +25,7 @@ const AccountMobileCell = ({ data }) => {
         <div>Email</div>
         <EmailCell data={data} />
       </div>
-      <div className="field">
+      <div className="field tall">
         <div>Added</div>
         <Highlight
           text={

@@ -90,7 +90,7 @@ const TableMobile = ({
           onGridReady={onGridReady}
           rowData={isLoading ? null : rows}
           domLayout={'autoHeight'}
-          rowHeight={232 + 16}
+          rowHeight={256 + 16}
           headerHeight={0}
           defaultColDef={{
             flex: 1,

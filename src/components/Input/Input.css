@@ -1,3 +1,4 @@
+@import '../../assets/styles/mixins.css';
 @import '../../assets/styles/typography.css';
 
 .input {
@@ -29,6 +30,16 @@
     &.isSearch {
       @apply rounded-lg;
       min-width: 264px;
+    }
+  }
+}
+
+@mixin for-size-phone {
+  .input {
+    &.v2 {
+      &.isSearch {
+        min-width: 200px;
+      }
     }
   }
 }

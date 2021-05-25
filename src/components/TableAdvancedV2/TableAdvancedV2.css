@@ -117,6 +117,12 @@
   }
 }
 
+@mixin for-size-phone {
+  .Filter {
+    min-width: 115px;
+  }
+}
+
 .ag-theme-rt-v2 {
   color: var(--purple-90);
 

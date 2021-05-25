@@ -23,7 +23,7 @@ const SiteMobileCell = ({ data }) => {
           text={`${data.street}, ${data.city} ${data.state} ${data.zip}`}
         />
       </div>
-      <div className="field">
+      <div className="field tall">
         <div>District</div>
         <Highlight text={data.district} />
       </div>
