@@ -89,7 +89,7 @@ const UploadSitesV2 = () => {
         className="no-underline"
       >
         <Button v2 transparent small className="w-full mt-6">
-          Download a template file.
+          Download a template file
         </Button>
       </a>
     </>

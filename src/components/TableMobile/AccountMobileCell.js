@@ -8,11 +8,11 @@ import StatusCell from '../TableAdvancedV2/AccountRenderers/StatusCell';
 import EmailCell from '../TableAdvancedV2/AccountRenderers/EmailCell';
 import EditCell from '../TableAdvancedV2/AccountRenderers/EditCell';
 
-import './AccountMobileCell.css';
+import './MobileCell.css';
 
 const AccountMobileCell = ({ data }) => {
   return (
-    <div className="AccountMobileCell">
+    <div className="MobileCell">
       <div className="head">
         <IdCell data={data} />
         <EditCell data={data} />

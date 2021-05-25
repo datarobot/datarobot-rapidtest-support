@@ -1,10 +1,10 @@
 @import '../../assets/styles/mixins.css';
 @import '../../assets/styles/typography.css';
 
-.SiteMobileCell {
+.MobileCell {
   @apply bg-white p-4 mt-4 border-b;
 
-  height: 220px;
+  height: 232px;
   border-color: var(--purple-30);
 
   .head {
@@ -18,7 +18,7 @@
       height: 48px;
     }
 
-    > div {
+    > * {
       &:first-child {
         @apply flex-shrink-0;
         @mixin label;
