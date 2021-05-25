@@ -6,7 +6,7 @@ import { quickFilterAtom } from 'rt-store';
 const Highlight = ({ text }) => {
   const [quickFilter] = useAtom(quickFilterAtom);
 
-  if (!text) return '-';
+  if (!text) return <span>-</span>;
   if (!quickFilter) return text;
 
   return (

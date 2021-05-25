@@ -28,7 +28,7 @@ const TableMobile = ({
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
   const [rowCount, setRowCount] = useState(0);
-  const [pageSize, setPageSize] = useState(50);
+  const [pageSize, setPageSize] = useState(25);
   const [isLastPage, setIsLastPage] = useState(false);
   const [isFirstPage, setIsFirstPage] = useState(false);
 
@@ -90,7 +90,7 @@ const TableMobile = ({
           onGridReady={onGridReady}
           rowData={isLoading ? null : rows}
           domLayout={'autoHeight'}
-          rowHeight={220 + 16}
+          rowHeight={232 + 16}
           headerHeight={0}
           defaultColDef={{
             flex: 1,

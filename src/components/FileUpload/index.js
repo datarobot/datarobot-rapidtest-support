@@ -145,7 +145,7 @@ const FileUpload = ({
                 download={templateName}
                 className="btn-clear"
               >
-                Download a template file.
+                Download a template file
               </a>
             )}
           </section>

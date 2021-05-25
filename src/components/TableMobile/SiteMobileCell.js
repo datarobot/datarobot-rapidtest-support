@@ -4,11 +4,11 @@ import Highlight from '../Highlight';
 import IdCell from '../TableAdvancedV2/SiteRenderers/IdCell';
 import DisableCell from '../TableAdvancedV2/SiteRenderers/DisableCell';
 
-import './SiteMobileCell.css';
+import './MobileCell.css';
 
 const SiteMobileCell = ({ data }) => {
   return (
-    <div className="SiteMobileCell">
+    <div className="MobileCell">
       <div className="head">
         <IdCell data={data} />
         <DisableCell value={data.archive} data={data} />

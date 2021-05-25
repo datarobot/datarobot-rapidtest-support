@@ -13,9 +13,10 @@
   display: block;
   width: 64px;
   height: 64px;
-  margin: 8px;
+  margin: 8px auto;
   border-radius: 50%;
-  border: 6px solid #000;
+  border-width: 6px;
+  border-style: solid;
   border-color: #000 transparent #000 transparent;
   animation: loader 1.2s linear infinite;
 }

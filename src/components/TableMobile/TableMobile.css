@@ -22,7 +22,7 @@
   }
 
   .pagination-panel {
-    @apply pb-2 pt-6 flex justify-center items-center;
+    @apply pb-2 pt-6 px-0 flex justify-center items-center;
 
     background-image: linear-gradient(
       0deg,
@@ -36,7 +36,7 @@
   .pagination {
     @apply flex items-center justify-between w-full;
 
-    max-width: 360px;
+    max-width: 374px;
   }
 
   .paging-text {
@@ -48,7 +48,7 @@
   }
 
   .paging-button {
-    @apply px-2 text-3xl rounded-full bg-white;
+    @apply px-2 text-3xl rounded-full bg-white outline-none;
     color: var(--purple-70);
     width: 48px;
     height: 48px;
@@ -61,7 +61,7 @@
 
   .header-cell {
     .header-cell-checkbox {
-      @apply px-4 py-3 rounded-lg;
+      @apply px-4 py-2 rounded-lg;
 
       background-color: var(--purple-20);
 
