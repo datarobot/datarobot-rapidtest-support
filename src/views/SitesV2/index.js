@@ -37,6 +37,12 @@ import addIcon from 'assets/images/icons/add.svg';
 
 import SitesSidebar from './SitesSidebar';
 
+// const sortNames = (a, b) => {
+//   if (a > b) return 1;
+//   if (b > a) return -1;
+//   return 0;
+// };
+
 const SitesV2 = () => {
   const { t } = useTranslation();
 
@@ -122,12 +128,6 @@ const SitesV2 = () => {
         toast.error('Something went wrong!');
         setIsLoading(false);
       });
-  };
-
-  const sortNames = (a, b) => {
-    if (a > b) return 1;
-    if (b > a) return -1;
-    return 0;
   };
 
   const handleCheckChange = (res, isChecked) => {
@@ -316,7 +316,7 @@ const SitesV2 = () => {
       header: 'Name',
       colId: 'siteName',
       initialSort: 'asc',
-      comparator: sortNames,
+      // comparator: sortNames,
       value: ({ data: { site_name } }) => site_name,
       renderer: 'HighlightValueCell',
       // colWidth: 650,

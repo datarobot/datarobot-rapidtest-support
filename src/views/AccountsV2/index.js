@@ -41,6 +41,18 @@ import addIcon from 'assets/images/icons/add.svg';
 
 import AccountsSidebar from './AccountsSidebar';
 
+// const sortNames = (a, b) => {
+//   if (a > b) return 1;
+//   if (b > a) return -1;
+//   return 0;
+// };
+
+// const sortStatus = (a, b) => {
+//   if (a > b) return 1;
+//   if (b > a) return -1;
+//   return 0;
+// };
+
 const AccountsV2 = () => {
   const { t } = useTranslation();
 
@@ -108,18 +120,6 @@ const AccountsV2 = () => {
 
   const handleBatchDeactivate = () => {
     doBatch({ archive: true });
-  };
-
-  const sortNames = (a, b) => {
-    if (a > b) return 1;
-    if (b > a) return -1;
-    return 0;
-  };
-
-  const sortStatus = (a, b) => {
-    if (a > b) return 1;
-    if (b > a) return -1;
-    return 0;
   };
 
   const statusValueGetter = ({ data }) => {
@@ -327,7 +327,7 @@ const AccountsV2 = () => {
       header: 'Name',
       colId: 'name',
       initialSort: 'asc',
-      comparator: sortNames,
+      // comparator: sortNames,
       value: ({ data }) => `${data.last_name}, ${data.first_name}`,
       renderer: 'HighlightValueCell',
     },
@@ -351,7 +351,7 @@ const AccountsV2 = () => {
     },
     {
       renderer: 'StatusCell',
-      comparator: sortStatus,
+      // comparator: sortStatus,
       header: 'Status',
       colId: 'status',
       colWidth: 100,
