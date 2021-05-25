@@ -1,6 +1,6 @@
 import Highlight from 'components/Highlight';
 
-const AccountEmailCell = ({ data }) => {
+const EmailCell = ({ data }) => {
   return (
     <a href={`mailto:${data.email_address}`}>
       <Highlight text={data.email_address} />
@@ -8,4 +8,4 @@ const AccountEmailCell = ({ data }) => {
   );
 };
 
-export default AccountEmailCell;
+export default EmailCell;

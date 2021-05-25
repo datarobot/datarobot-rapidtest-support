@@ -24,11 +24,11 @@ import LayoutV2 from 'components/Layouts/LayoutV2';
 import IconButton from 'components/IconButton';
 import TableAdvancedV2 from 'components/TableAdvancedV2';
 import HighlightValueCell from 'components/TableAdvancedV2/HighlightValueCell';
-import AccountEmailCell from 'components/TableAdvancedV2/AccountRenderers/AccountEmailCell';
-import AccountIdCell from 'components/TableAdvancedV2/AccountRenderers/AccountIdCell';
-import AccountStatusCell from 'components/TableAdvancedV2/AccountRenderers/AccountStatusCell';
-import EditAccountCell from 'components/TableAdvancedV2/AccountRenderers/EditAccountCell';
-import AccountMobileCell from 'components/TableAdvancedV2/AccountRenderers/AccountMobileCell';
+import EmailCell from 'components/TableAdvancedV2/AccountRenderers/EmailCell';
+import IdCell from 'components/TableAdvancedV2/AccountRenderers/IdCell';
+import StatusCell from 'components/TableAdvancedV2/AccountRenderers/StatusCell';
+import EditCell from 'components/TableAdvancedV2/AccountRenderers/EditCell';
+import AccountMobileCell from 'components/TableMobile/AccountMobileCell';
 import TableMobile from 'components/TableMobile';
 import Dropdown from 'components/Dropdown';
 
@@ -304,18 +304,18 @@ const AccountsV2 = () => {
   );
 
   const renderers = {
-    highlightValueCell: HighlightValueCell,
+    HighlightValueCell,
 
-    accountIdCell: AccountIdCell,
-    accountEmailCell: AccountEmailCell,
+    IdCell,
+    EmailCell,
 
-    accountStatusCell: AccountStatusCell,
-    editAccountCell: EditAccountCell,
+    StatusCell,
+    EditCell,
   };
 
   const cols = [
     {
-      renderer: 'accountIdCell',
+      renderer: 'IdCell',
       headerParams: {
         showCheck: true,
         handleCheckChange,
@@ -329,13 +329,13 @@ const AccountsV2 = () => {
       initialSort: 'asc',
       comparator: sortNames,
       value: ({ data }) => `${data.last_name}, ${data.first_name}`,
-      renderer: 'highlightValueCell',
+      renderer: 'HighlightValueCell',
     },
     {
       field: 'email_address',
       header: 'Email',
       colId: 'email',
-      renderer: 'accountEmailCell',
+      renderer: 'EmailCell',
     },
     {
       field: 'welcome_email_sent',
@@ -346,11 +346,11 @@ const AccountsV2 = () => {
         data.welcome_email_sent
           ? format(new Date(data.welcome_email_sent), 'MM-dd-yyyy')
           : '-',
-      renderer: 'highlightValueCell',
+      renderer: 'HighlightValueCell',
       colWidth: 120,
     },
     {
-      renderer: 'accountStatusCell',
+      renderer: 'StatusCell',
       comparator: sortStatus,
       header: 'Status',
       colId: 'status',
@@ -361,7 +361,7 @@ const AccountsV2 = () => {
       },
     },
     {
-      renderer: 'editAccountCell',
+      renderer: 'EditCell',
       header: 'Edit',
       colId: 'nosort-edit',
       disableSort: true,

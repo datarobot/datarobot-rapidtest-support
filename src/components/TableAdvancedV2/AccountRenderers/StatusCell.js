@@ -1,4 +1,4 @@
-const AccountStatusCell = ({ data }) => {
+const StatusCell = ({ data }) => {
   if (data.archive) {
     return <span className="status inactive">Inactive</span>;
   }
@@ -9,4 +9,4 @@ const AccountStatusCell = ({ data }) => {
   return <span className="status active">Active</span>;
 };
 
-export default AccountStatusCell;
+export default StatusCell;

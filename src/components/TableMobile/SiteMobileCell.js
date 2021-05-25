@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Highlight from '../../Highlight';
-import SiteIdCell from './SiteIdCell';
-import DisableSiteCell from './DisableSiteCell';
+import Highlight from '../Highlight';
+import IdCell from '../TableAdvancedV2/SiteRenderers/IdCell';
+import DisableCell from '../TableAdvancedV2/SiteRenderers/DisableCell';
 
 import './SiteMobileCell.css';
 
@@ -10,8 +10,8 @@ const SiteMobileCell = ({ data }) => {
   return (
     <div className="SiteMobileCell">
       <div className="head">
-        <SiteIdCell data={data} />
-        <DisableSiteCell value={data.archive} data={data} />
+        <IdCell data={data} />
+        <DisableCell value={data.archive} data={data} />
       </div>
       <div className="field tall">
         <div>Name</div>

@@ -2,11 +2,11 @@
 import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 
-import Checkbox from 'components/Checkbox';
-
 import { sitesToDisableAtom, siteIdsToDisableAtom } from 'rt-store';
 
-const SiteIdCell = ({ data }) => {
+import Checkbox from 'components/Checkbox';
+
+const IdCell = ({ data }) => {
   const [sites, setSites] = useAtom(sitesToDisableAtom);
   const [siteIds, setSiteIds] = useAtom(siteIdsToDisableAtom);
   const [isChecked, setIsChecked] = useState(false);
@@ -35,4 +35,4 @@ const SiteIdCell = ({ data }) => {
   );
 };
 
-export default SiteIdCell;
+export default IdCell;

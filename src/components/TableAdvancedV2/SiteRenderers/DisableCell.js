@@ -12,7 +12,7 @@ import SuccessCheck from 'components/Notifications/SuccessCheck';
 
 import pencil from 'assets/images/icons/pencil.svg';
 
-const DisableSiteCell = ({ value, data: { id } }) => {
+const DisableCell = ({ value, data: { id } }) => {
   const [, setSitesSidebar] = useAtom(sitesSidebarAtom);
   const [selected, setSelected] = useState(!value);
   const [isLoading, setIsLoading] = useState(false);
@@ -113,4 +113,4 @@ const DisableSiteCell = ({ value, data: { id } }) => {
   );
 };
 
-export default DisableSiteCell;
+export default DisableCell;
