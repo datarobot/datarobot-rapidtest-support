@@ -54,9 +54,11 @@ const HomeV2 = () => {
               Keep students and&nbsp;teachers safe
               {authenticated && currentState ? ` in ${currentState}` : null}
             </h1>
-            <Button className="mt-4" v2 primary>
-              <Link to={ROUTES.JOIN_V2.path}>Join a Program</Link>
-            </Button>
+            <Link to={ROUTES.JOIN_V2.path} className="no-underline">
+              <Button className="mt-4" v2 primary>
+                Join a Program
+              </Button>
+            </Link>
           </div>
           <div className="people">
             <img src={people} alt="" className="mx-auto" />
@@ -116,15 +118,16 @@ const HomeV2 = () => {
               testing program at K-12 schools that keeps teachers and children
               safe.
             </p>
-            <Button className="mt-4" v2 primary>
-              <a
-                href={trainingMaterials}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+            <a
+              href={trainingMaterials}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="no-underline"
+            >
+              <Button className="mt-4" v2 primary>
                 View guide
-              </a>
-            </Button>
+              </Button>
+            </a>
           </div>
           <div className="trainingMaterialsPicture">
             <img src={playbook} alt="playbook" className="mx-auto" />
