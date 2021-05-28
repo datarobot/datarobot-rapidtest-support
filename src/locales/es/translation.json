@@ -64,6 +64,7 @@
     "label": {
       "city": "Ciudad",
       "cliaNumber": "Número CLIA",
+      "cliaHolderName": "Nombre del titular de CLIA",
       "contactEmail": "Email de contacto",
       "contactName": "Nombre de contacto",
       "county": "Condado",

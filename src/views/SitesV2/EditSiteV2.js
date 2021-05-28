@@ -217,14 +217,25 @@ const EditSiteV2 = () => {
 
         <ControlledInput
           v2
-          name="contactEmail"
+          name="contact_email"
           label={t('site.label.contactEmail')}
           type="email"
           onChange={({ target }) =>
-            handleOnChange('contactEmail', target.value)
+            handleOnChange('contact_email', target.value)
           }
           value={currentSite?.contact_email || ''}
           optional
+          ref={register}
+        />
+
+        <ControlledInput
+          v2
+          name="clia_holder_name"
+          label={t('site.label.cliaHolderName')}
+          onChange={({ target }) =>
+            handleOnChange('clia_holder_name', target.value)
+          }
+          value={currentSite?.clia_holder_name || ''}
           ref={register}
         />
 
