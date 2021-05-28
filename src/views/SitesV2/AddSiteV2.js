@@ -401,6 +401,22 @@ const AddSiteV2 = () => {
         />
 
         <Controller
+          name="clia_holder_name"
+          control={control}
+          defaultValue=""
+          render={({ onChange, value }) => (
+            <Input
+              v2
+              name="clia_holder_name"
+              label={t('site.label.cliaHolderName')}
+              onChange={onChange}
+              value={value}
+              className="mt-1"
+            />
+          )}
+        />
+
+        <Controller
           name="clia"
           control={control}
           defaultValue=""

@@ -65,6 +65,7 @@
     "label": {
       "city": "City",
       "cliaNumber": "CLIA Number",
+      "cliaHolderName": "CLIA Holder Name",
       "contactEmail": "Contact Email",
       "contactName": "Contact Name",
       "county": "County",
