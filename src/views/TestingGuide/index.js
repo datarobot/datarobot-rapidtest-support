@@ -143,7 +143,7 @@ const TestingGuide = () => {
                       requirements. The information found in this guide includes
                       the steps required to successfully develop an
                       application-supported testing program at K-12 schools that
-                      keeps teachers and children safe. This guide will overview
+                      keeps teachers and children safe.
                     </p>
                   </div>
                 </div>
@@ -162,7 +162,7 @@ const TestingGuide = () => {
                   human body for the purpose of providing information for the
                   diagnosis, prevention, or treatment of any disease or
                   impairment of, or assessment of the health of, human beings”
-                  to meet certain Federal requirements.{' '}
+                  to meet certain Federal requirements.
                 </p>
               </div>
               <div className="list">
