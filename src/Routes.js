@@ -41,6 +41,7 @@ const Dashboard = lazy(() => import('views/Dashboard'));
 const DashboardV2 = lazy(() => import('views/DashboardV2'));
 const TrainingMaterials = lazy(() => import('views/TrainingMaterials'));
 const TrainingMaterialsV2 = lazy(() => import('views/TrainingMaterialsV2'));
+const TestingGuide = lazy(() => import('views/TestingGuide'));
 const SuggestImprovement = lazy(() => import('views/SuggestImprovement'));
 const SuggestImprovementV2 = lazy(() => import('views/SuggestImprovementV2'));
 const Contact = lazy(() => import('views/Contact'));
@@ -122,6 +123,12 @@ export const Routes = () => {
         {...ROUTES.TRAINING_MATERIALS_V2}
         component={TrainingMaterialsV2}
         layout={LayoutV2}
+      />
+      <PublicRoute
+        exact
+        {...ROUTES.TESTING_GUIDE}
+        component={TestingGuide}
+        layout={NullLayout}
       />
       <PublicRoute exact {...ROUTES.CONTACT} component={Contact} />
       <PublicRoute

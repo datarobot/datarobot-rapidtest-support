@@ -1,0 +1,96 @@
+@import '../../assets/styles/mixins.css';
+@import '../../assets/styles/typography.css';
+
+.FrequencyTable {
+  @apply flex overflow-x-scroll pb-8;
+
+  & > div {
+    @apply flex-shrink-0;
+
+    width: calc(20% - 1rem);
+    min-width: 180px;
+
+    & > div {
+      @apply m-4 mt-6;
+
+      &:not(:first-child) {
+        @apply border-t pt-6;
+        border-color: var(--purple-20);
+      }
+
+      &:nth-child(1) {
+        height: 150px;
+      }
+
+      &:nth-child(2) {
+        height: 100px;
+      }
+
+      &:nth-child(3) {
+        height: 100px;
+      }
+
+      &:nth-child(4) {
+        height: 100px;
+      }
+
+      &:nth-child(5) {
+        height: 150px;
+      }
+
+      &:nth-child(6) {
+        height: 150px;
+      }
+    }
+  }
+
+  .titles {
+    border-top-width: 12px;
+    border-top-color: transparent;
+
+    & > div {
+      @apply mr-0;
+    }
+    & > div:nth-child(2) {
+      @apply pt-2;
+      border-color: transparent;
+    }
+
+    h6 {
+      @apply mb-2;
+    }
+
+    p {
+      @mixin tooltip;
+    }
+  }
+
+  .data {
+    @apply rounded-xl border ml-4;
+
+    border-color: var(--purple-20);
+    border-top-width: 12px;
+
+    & > div {
+      @apply text-center;
+      @mixin body-small;
+    }
+
+    img {
+      @apply mx-auto mb-4;
+    }
+
+    &.low {
+      border-top-color: var(--purple-70);
+    }
+    &.moderate {
+      border-top-color: var(--yellow-90);
+    }
+    &.substantial {
+      border-top-color: var(--orange-80);
+    }
+    &.high {
+      border-top-color: var(--red);
+    }
+  }
+}

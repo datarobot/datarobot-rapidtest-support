@@ -10,7 +10,6 @@ import Button from 'components/Button';
 
 import bars from 'assets/images/bars.svg';
 import close from 'assets/images/close.svg';
-import trainingMaterials from 'assets/static/TrainingMaterials.pdf';
 
 import './Menu.css';
 
@@ -79,17 +78,16 @@ const Menu = ({ authenticated }) => {
               <hr />
             </>
           )}
-          <a
-            href={trainingMaterials}
+          <NavLink
+            exact
             className="p-4"
-            target="_blank"
-            rel="noopener noreferrer"
+            to={ROUTES.TESTING_GUIDE.path}
             onClick={() => {
               closeMenu();
             }}
           >
-            <h5>Training Materials</h5>
-          </a>
+            <h5>Testing Guide</h5>
+          </NavLink>
           <hr />
           <NavLink
             exact
