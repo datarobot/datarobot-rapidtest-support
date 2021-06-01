@@ -48,6 +48,7 @@ const FaqV2 = () => {
   useEffect(() => {
     push(paths[currentTab]);
   }, [currentTab]);
+
   return (
     <section className="FaqV2">
       <h2>Frequently Asked Questions</h2>

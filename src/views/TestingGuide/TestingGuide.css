@@ -1,0 +1,429 @@
+@import '../../assets/styles/mixins.css';
+@import '../../assets/styles/typography.css';
+
+.TestingGuide {
+  @apply pb-8;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--purple-100);
+  }
+
+  h2 {
+    @apply mt-4 mb-3;
+  }
+
+  ol {
+    @apply mt-6;
+
+    display: block;
+    padding: 0 0 0 32px;
+    list-style: none;
+    counter-reset: numList;
+
+    li {
+      @apply relative pl-2 mt-4 w-full;
+      @mixin text-link;
+
+      &:before {
+        @mixin body-small;
+
+        counter-increment: numList;
+        content: counter(numList);
+
+        float: left;
+        position: absolute;
+        left: -28px;
+        top: 2px;
+        padding-left: 1px;
+
+        text-align: center;
+        color: #fff;
+
+        width: 24px;
+        height: 24px;
+        background: var(--purple-70);
+
+        -moz-border-radius: 999px;
+        border-radius: 999px;
+      }
+    }
+  }
+
+  section {
+    &.heading {
+      h2 {
+        @apply text-center mt-16 mb-6;
+
+        color: var(--purple-100);
+      }
+
+      .segments {
+        @apply mx-auto;
+
+        max-width: 630px;
+        > * {
+          @apply w-1/3;
+        }
+      }
+    }
+
+    &.inPersonLearning {
+      @apply flex items-center pt-8 pb-16 gap-8;
+
+      .text {
+        @apply w-2/5;
+
+        h1 {
+          max-width: 400px;
+        }
+      }
+      .people {
+        @apply w-3/5 relative;
+
+        img {
+          max-heigth: 418px;
+        }
+      }
+    }
+
+    &.costEffective {
+      @apply relative flex items-center py-8 gap-8;
+
+      & > div {
+        @apply w-1/2;
+
+        img {
+          max-width: 417px;
+        }
+      }
+    }
+
+    &.cliaWaivers {
+      @apply flex items-center py-8;
+
+      & > div {
+        @apply w-1/2;
+      }
+
+      .list {
+        @apply flex items-center justify-center;
+
+        & > div {
+          @apply bg-white rounded-xl p-8;
+          &:last-child {
+            width: 418px;
+          }
+        }
+      }
+    }
+
+    &.acquiringTests {
+      @apply flex items-center py-20 px-8 relative;
+
+      & > div {
+        @apply w-1/2;
+      }
+
+      .supplyExchange {
+        @apply text-center;
+      }
+
+      .supplyBg {
+        @apply absolute -right-12 bottom-0;
+      }
+    }
+
+    &.obtainingConsent {
+      @apply flex items-center py-8;
+
+      & > div {
+        @apply w-1/2;
+
+        img {
+          @apply mx-auto;
+        }
+      }
+    }
+
+    &.determiningFrequency {
+      .frequencyHeading {
+        @apply w-full flex items-center py-8;
+
+        & > div:first-child {
+          @apply w-1/3;
+        }
+        & > div:last-child {
+          @apply w-2/3;
+        }
+      }
+    }
+
+    &.settingUp {
+      @apply mt-12 mb-8;
+      & > div {
+        @apply w-3/5;
+      }
+    }
+
+    &.example {
+      .three {
+        @apply flex flex-row justify-between mt-6;
+
+        & > div {
+          @apply bg-white rounded-xl;
+
+          width: calc(33% - 1rem);
+          min-height: 490px;
+
+          img {
+            @apply w-full;
+          }
+
+          & > div {
+            @apply p-4;
+          }
+        }
+      }
+    }
+
+    &.staffing {
+      @apply flex items-center py-8 mt-8;
+
+      & > div {
+        @apply w-1/2;
+      }
+    }
+  }
+
+  .wrapper {
+    width: 100vw;
+  }
+
+  @media only screen and (min-width: 1320px) {
+    .wrapper {
+      @apply rounded-xl px-12 mx-auto box-content;
+      width: var(--max-width);
+    }
+  }
+}
+
+@mixin for-size-tablet-or-phone {
+  .TestingGuide {
+    section {
+      &.inPersonLearning {
+        h1 {
+          @mixin h2;
+        }
+
+        .text {
+          @apply w-1/2;
+        }
+        .people {
+          @apply w-1/2 relative;
+        }
+      }
+
+      &.costEffective {
+        @apply rounded-none;
+
+        h2 {
+          @mixin h3;
+        }
+
+        .importantItems {
+          @apply w-full m-0 px-5 pt-4 pb-6 mb-4 justify-start;
+        }
+
+        .importantText {
+          @apply w-full;
+        }
+      }
+
+      &.cliaWaivers {
+        h2 {
+          @mixin h3;
+        }
+      }
+
+      &.acquiringTests {
+        .supplyBg {
+          @apply hidden;
+        }
+      }
+
+      &.obtainingConsent {
+        & > div {
+          img {
+            max-width: 316px;
+          }
+        }
+      }
+
+      &.determiningFrequency {
+        .frequencyHeading {
+          & > div:first-child,
+          & > div:last-child {
+            @apply w-full;
+          }
+        }
+      }
+
+      &.settingUp {
+        & > div {
+          @apply w-full;
+        }
+      }
+
+      &.example {
+        .three {
+          & > div {
+            min-height: 440px;
+          }
+        }
+      }
+
+      &.staffing {
+        & > div {
+          img {
+            max-width: 316px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin for-size-phone {
+  .TestingGuide {
+    section {
+      &.heading {
+        h2 {
+          @mixin h3;
+        }
+
+        .segments {
+          max-width: 336px;
+        }
+      }
+
+      &.inPersonLearning {
+        @apply flex-col-reverse;
+
+        .text {
+          @apply w-full;
+
+          button {
+            @apply mx-auto;
+          }
+        }
+        .people {
+          @apply w-full mt-8;
+        }
+      }
+
+      &.costEffective {
+        @apply flex-col;
+
+        & > div {
+          @apply w-full;
+        }
+
+        .importantItems {
+          @apply px-5;
+        }
+      }
+
+      &.cliaWaivers {
+        @apply flex-col;
+
+        & > div {
+          @apply w-full;
+
+          &.list {
+            @apply my-6;
+          }
+        }
+      }
+
+      &.acquiringTests {
+        @apply flex-col;
+
+        .supplyExchange {
+          @apply mt-8 text-left;
+        }
+
+        & > div {
+          @apply w-full;
+
+          &:last-child {
+            @apply mt-8;
+          }
+        }
+      }
+
+      &.obtainingConsent {
+        @apply flex-col;
+
+        & > div {
+          @apply w-full;
+
+          &:first-child {
+            @apply mb-8;
+          }
+        }
+      }
+
+      &.determiningFrequency {
+        .frequencyHeading {
+          @apply flex-col;
+
+          & > div {
+            @apply w-full;
+          }
+
+          h2 {
+            @mixin h3;
+          }
+        }
+      }
+
+      &.settingUp {
+      }
+
+      &.example {
+        h3 {
+          @mixin h4;
+        }
+
+        .three {
+          @apply flex-col;
+
+          & > div {
+            @apply w-full mb-6;
+          }
+        }
+      }
+
+      &.staffing {
+        @apply flex-col mt-2;
+
+        h2 {
+          @mixin h3;
+        }
+
+        & > div {
+          @apply w-full;
+
+          &:first-child {
+            @apply mb-8;
+          }
+        }
+      }
+    }
+  }
+}

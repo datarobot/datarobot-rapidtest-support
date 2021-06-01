@@ -88,6 +88,8 @@ export const ROUTES = {
   LOG_IN_V2: { path: '/login' },
   TRAINING_MATERIALS: { path: '/v1/training-materials' },
   TRAINING_MATERIALS_V2: { path: '/training-materials' },
+  TESTING_GUIDE: { path: '/testing-guide/:id?' },
+  TESTING_GUIDE_LANDING: { path: '/testing-guide' },
   SUGGEST_IMPROVEMENT: {
     path: '/v1/suggestions',
     roles: [
