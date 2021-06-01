@@ -81,7 +81,7 @@ const Menu = ({ authenticated }) => {
           <NavLink
             exact
             className="p-4"
-            to={ROUTES.TESTING_GUIDE.path}
+            to={ROUTES.TESTING_GUIDE_LANDING.path}
             onClick={() => {
               closeMenu();
             }}

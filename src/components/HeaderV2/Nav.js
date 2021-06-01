@@ -18,7 +18,7 @@ const Nav = ({ authenticated }) => (
       </li>
     )}
     <li>
-      <NavLink exact className="p-4" to={ROUTES.TESTING_GUIDE.path}>
+      <NavLink exact className="p-4" to={ROUTES.TESTING_GUIDE_LANDING.path}>
         <h6>Testing Guide</h6>
       </NavLink>
     </li>
