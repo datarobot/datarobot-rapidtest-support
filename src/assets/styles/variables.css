@@ -26,6 +26,9 @@
   --green-80: #294728;
   --green-10: #d9f9d9;
 
+  --shadow-20: #6d71f920;
+  --shadow-80: #6d71f980;
+
   --text-color: var(--purple-90);
   --background-color: var(--purple-10);
 }
