@@ -17,8 +17,15 @@
     @apply mt-4 mb-3;
   }
 
+  .highlighted {
+    section {
+      padding-top: 4.5rem;
+      padding-bottom: 4.5rem;
+    }
+  }
+
   ol {
-    @apply mt-6;
+    @apply mt-3;
 
     display: block;
     padding: 0 0 0 32px;
@@ -26,7 +33,7 @@
     counter-reset: numList;
 
     li {
-      @apply relative pl-2 mt-4 w-full;
+      @apply relative pl-2 mt-3 w-full;
       @mixin text-link;
 
       &:before {
@@ -37,7 +44,7 @@
 
         float: left;
         position: absolute;
-        left: -28px;
+        left: -32px;
         top: 2px;
         padding-left: 1px;
 
@@ -86,13 +93,13 @@
         @apply w-3/5 relative;
 
         img {
-          max-heigth: 418px;
+          max-height: 418px;
         }
       }
     }
 
     &.costEffective {
-      @apply relative flex items-center py-8 gap-8;
+      @apply relative flex items-center gap-8;
 
       & > div {
         @apply w-1/2;
@@ -104,7 +111,7 @@
     }
 
     &.cliaWaivers {
-      @apply flex items-center py-8;
+      @apply flex items-center py-20;
 
       & > div {
         @apply w-1/2;
@@ -139,7 +146,7 @@
     }
 
     &.obtainingConsent {
-      @apply flex items-center py-8;
+      @apply flex items-center py-32;
 
       & > div {
         @apply w-1/2;
@@ -151,8 +158,14 @@
     }
 
     &.determiningFrequency {
+      @apply pb-10;
+
+      h2 {
+        @apply mt-0;
+      }
+
       .frequencyHeading {
-        @apply w-full flex items-center py-8;
+        @apply w-full flex pb-8;
 
         & > div:first-child {
           @apply w-1/3;
@@ -185,14 +198,14 @@
           }
 
           & > div {
-            @apply p-4;
+            @apply p-6;
           }
         }
       }
     }
 
     &.staffing {
-      @apply flex items-center py-8 mt-8;
+      @apply flex items-center py-32;
 
       & > div {
         @apply w-1/2;
@@ -216,10 +229,6 @@
   .TestingGuide {
     section {
       &.inPersonLearning {
-        h1 {
-          @mixin h2;
-        }
-
         .text {
           @apply w-1/2;
         }
@@ -231,22 +240,12 @@
       &.costEffective {
         @apply rounded-none;
 
-        h2 {
-          @mixin h3;
-        }
-
         .importantItems {
           @apply w-full m-0 px-5 pt-4 pb-6 mb-4 justify-start;
         }
 
         .importantText {
           @apply w-full;
-        }
-      }
-
-      &.cliaWaivers {
-        h2 {
-          @mixin h3;
         }
       }
 
@@ -301,9 +300,13 @@
 @mixin for-size-phone {
   .TestingGuide {
     section {
+      h2 {
+        @mixin h3;
+      }
+
       &.heading {
         h2 {
-          @mixin h3;
+          @apply mt-6 mb-4;
         }
 
         .segments {
@@ -312,7 +315,7 @@
       }
 
       &.inPersonLearning {
-        @apply flex-col-reverse;
+        @apply flex-col-reverse pt-4;
 
         .text {
           @apply w-full;
@@ -322,7 +325,11 @@
           }
         }
         .people {
-          @apply w-full mt-8;
+          @apply w-full;
+
+          img {
+            max-height: 232px;
+          }
         }
       }
 
@@ -385,10 +392,6 @@
           & > div {
             @apply w-full;
           }
-
-          h2 {
-            @mixin h3;
-          }
         }
       }
 
@@ -411,10 +414,6 @@
 
       &.staffing {
         @apply flex-col mt-2;
-
-        h2 {
-          @mixin h3;
-        }
 
         & > div {
           @apply w-full;

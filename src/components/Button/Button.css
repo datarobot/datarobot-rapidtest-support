@@ -38,7 +38,7 @@
 
 .btn-v2-primary {
   color: var(--white);
-  box-shadow: 0px 8px 20px #6d71f980;
+  box-shadow: 0px 8px 20px var(--shadow-80);
   background-color: var(--purple-70);
   border-color: var(--purple-70);
   &:hover {

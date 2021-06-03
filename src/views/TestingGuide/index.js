@@ -87,7 +87,7 @@ const TestingGuide = () => {
             <section className="limitWidth inPersonLearning">
               <div className="text">
                 <div className="badge">Program Overview</div>
-                <h1 className="my-4">In-person Learning is a Pressing Need</h1>
+                <h2>In-person Learning is a Pressing Need</h2>
                 <p>
                   Schools provide a critical outlet for children through
                   education, safety, nutrition, behavioral health care, and
@@ -247,7 +247,7 @@ const TestingGuide = () => {
               <section className="limitWidth determiningFrequency">
                 <div className="frequencyHeading">
                   <div>
-                    <h2>Determining Testing Frequency</h2>
+                    <h2>Determining Testing&nbsp;Frequency</h2>
                   </div>
                   <div>
                     Testing frequency is contingent on factors such as community

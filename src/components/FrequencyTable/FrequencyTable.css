@@ -71,6 +71,10 @@
     border-color: var(--purple-20);
     border-top-width: 12px;
 
+    &:hover {
+      box-shadow: 0px 8px 20px var(--shadow-20);
+    }
+
     & > div {
       @apply text-center;
       @mixin body-small;

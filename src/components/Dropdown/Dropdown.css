@@ -20,7 +20,7 @@
 
     min-width: 185px;
     border-color: var(--purple-10);
-    box-shadow: 0 8px 20px #6d71f91f;
+    box-shadow: 0 8px 20px var(--shadow-20);
   }
   .separator {
     @apply border-b mx-3 my-2;
