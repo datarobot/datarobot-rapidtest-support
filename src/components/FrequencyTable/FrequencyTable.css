@@ -2,99 +2,156 @@
 @import '../../assets/styles/typography.css';
 
 .FrequencyTable {
-  @apply flex overflow-x-scroll pb-8;
+  .columnNames {
+    @apply hidden;
+  }
 
-  & > div {
-    @apply flex-shrink-0;
-
-    width: calc(20% - 1rem);
-    min-width: 180px;
+  .columns {
+    @apply flex overflow-x-scroll pb-8;
 
     & > div {
-      @apply m-4 mt-6;
+      @apply flex-shrink-0;
 
-      &:not(:first-child) {
-        @apply border-t pt-6;
-        border-color: var(--purple-20);
-      }
+      width: calc(20% - 1rem);
+      min-width: 180px;
 
-      &:nth-child(1) {
+      .head {
         height: 150px;
       }
 
-      &:nth-child(2) {
-        height: 100px;
+      & > div {
+        @apply m-4 mt-6;
+        height: 110px;
+
+        &:not(.head) {
+          @apply border-t pt-6;
+          border-color: var(--purple-20);
+        }
+      }
+    }
+
+    .titles {
+      border-top-width: 12px;
+      border-top-color: transparent;
+
+      & > div {
+        @apply mr-0;
+      }
+      & > div:nth-child(2) {
+        @apply pt-2;
+        border-color: transparent;
       }
 
-      &:nth-child(3) {
-        height: 100px;
+      h6 {
+        @apply mb-2;
       }
 
-      &:nth-child(4) {
-        height: 100px;
+      p {
+        @mixin tooltip;
+      }
+    }
+
+    .data {
+      @apply rounded-xl border ml-4;
+
+      border-color: var(--purple-20);
+      border-top-width: 12px;
+
+      &:hover {
+        box-shadow: 0px 8px 20px var(--shadow-20);
       }
 
-      &:nth-child(5) {
-        height: 100px;
+      & > div {
+        @apply text-center;
+        @mixin body-small;
       }
 
-      &:nth-child(6) {
-        height: 100px;
+      img {
+        @apply mx-auto mb-4;
+      }
+
+      &.low {
+        border-top-color: var(--purple-70);
+      }
+      &.moderate {
+        border-top-color: var(--yellow-90);
+      }
+      &.substantial {
+        border-top-color: var(--orange-80);
+      }
+      &.high {
+        border-top-color: var(--red);
       }
     }
   }
+}
 
-  .titles {
-    border-top-width: 12px;
-    border-top-color: transparent;
+@mixin for-size-phone {
+  .FrequencyTable {
+    .columnNames {
+      @apply flex overflow-hidden;
 
-    & > div {
-      @apply mr-0;
-    }
-    & > div:nth-child(2) {
-      @apply pt-2;
-      border-color: transparent;
+      padding-left: calc(50% - 98px);
+
+      & > div {
+        @apply text-center rounded-xl border ml-4 overflow-hidden;
+        min-width: 180px;
+
+        &.dummy {
+          @apply border-transparent;
+        }
+
+        img {
+          @apply mx-auto mb-4;
+        }
+
+        &.active {
+          border-color: var(--purple-70);
+        }
+
+        & > div {
+          @apply p-6 overflow-hidden;
+          border-top-width: 12px;
+
+          &.low {
+            border-top-color: var(--purple-70);
+          }
+          &.moderate {
+            border-top-color: var(--yellow-90);
+          }
+          &.substantial {
+            border-top-color: var(--orange-80);
+          }
+          &.high {
+            border-top-color: var(--red);
+          }
+        }
+      }
     }
 
-    h6 {
-      @apply mb-2;
-    }
+    .columns {
+      .head {
+        @apply hidden;
 
-    p {
-      @mixin tooltip;
-    }
-  }
+        & + div {
+          @apply border-transparent;
+        }
+      }
 
-  .data {
-    @apply rounded-xl border ml-4;
+      .titles {
+        @apply w-1/2 border-0;
+      }
 
-    border-color: var(--purple-20);
-    border-top-width: 12px;
+      .data {
+        @apply w-1/2 ml-0 border-0;
+        & > div {
+          @apply ml-0 pl-4;
 
-    &:hover {
-      box-shadow: 0px 8px 20px var(--shadow-20);
-    }
-
-    & > div {
-      @apply text-center;
-      @mixin body-small;
-    }
-
-    img {
-      @apply mx-auto mb-4;
-    }
-
-    &.low {
-      border-top-color: var(--purple-70);
-    }
-    &.moderate {
-      border-top-color: var(--yellow-90);
-    }
-    &.substantial {
-      border-top-color: var(--orange-80);
-    }
-    &.high {
-      border-top-color: var(--red);
+          &:nth-child(2) {
+            border-color: transparent;
+          }
+        }
+      }
     }
   }
 }
