@@ -279,7 +279,7 @@ const TestingGuide = () => {
             </section>
             <HowItWorksColumns className="limitWidth" />
             <section className="limitWidth example">
-              <h3>Example: Penndale Middle School</h3>
+              <h3>Example</h3>
               <div className="three">
                 <div>
                   <img src={station1} alt="" />
