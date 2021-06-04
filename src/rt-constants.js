@@ -121,6 +121,7 @@ export const VALID_SITE_COLUMNS = {
     'site_type',
     'district',
     'clia',
+    'clia_holder_name',
   ],
   OPTIONAL: [
     'contact_name',

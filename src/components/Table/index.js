@@ -185,7 +185,7 @@ const Table = ({
                     {row.cells.map((cell) => (
                       <td
                         {...cell.getCellProps()}
-                        className="w-full lg:w-auto p-2 text-gray-800 border-b border-gray-400 block lg:table-cell relative lg:static"
+                        className="lg:w-auto p-2 text-gray-800 border-b border-gray-400 block lg:table-cell relative lg:static"
                       >
                         {cell.render('Cell')}
                       </td>
