@@ -29,7 +29,7 @@ import station2 from 'assets/images/guide/station2.jpg';
 import station3 from 'assets/images/guide/station3.jpg';
 
 import trainingMaterials from 'assets/static/TrainingMaterials.pdf';
-import parentConsent from 'assets/static/ParentConsent.pdf';
+import parentConsent from 'assets/static/Assurance Testing - Parent Consent.pdf';
 
 import './TestingGuide.css';
 
