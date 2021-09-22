@@ -9,7 +9,7 @@ import {
   generatePath,
 } from 'react-router-dom';
 
-import { ROUTES } from 'rt-constants';
+import { ROUTES, CONTACT_EMAIL } from 'rt-constants';
 import { useResponsive } from 'hooks';
 
 import StaticContainerV2 from 'components/StaticContainerV2';
@@ -91,7 +91,7 @@ const FaqV2 = () => {
         </div>
 
         <a
-          href="mailto:mack.heiser@datarobot.com?subject=rapidtestingapp.org%20Support%20Request"
+          href={`mailto:${CONTACT_EMAIL}?subject=rapidtestingapp.org%20Support%20Request`}
           className="no-underline"
         >
           <Button v2 transparent>

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { CONTACT_EMAIL } from 'rt-constants';
 import { ControlledInput } from 'components/Input';
 import { ControlledTextarea } from 'components/Textarea';
 import ErrorMessage from 'components/ErrorMessage';
@@ -31,7 +32,9 @@ const SuggestImprovementV2 = () => {
               <p className="pb-4">We're working hard to enable this feature.</p>
               <p>
                 In the mean time, you can{' '}
-                <a href="mailto:mack.heiser@datarobot.com?subject=rapidtestingapp.org%20Improvement%20Suggestion">
+                <a
+                  href={`mailto:${CONTACT_EMAIL}?subject=rapidtestingapp.org%20Improvement%20Suggestion`}
+                >
                   email support directly
                 </a>
                 .

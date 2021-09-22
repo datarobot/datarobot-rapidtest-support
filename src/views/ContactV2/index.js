@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 
+import { CONTACT_EMAIL } from 'rt-constants';
 import { ControlledInput } from 'components/Input';
 import { ControlledTextarea } from 'components/Textarea';
 import ErrorMessage from 'components/ErrorMessage';
@@ -28,7 +29,9 @@ const ContactV2 = () => {
             <p className="pb-4">We're working hard to enable this feature.</p>
             <p>
               In the mean time, you can{' '}
-              <a href="mailto:mack.heiser@datarobot.com?subject=rapidtestingapp.org%20Support%20Request">
+              <a
+                href={`mailto:${CONTACT_EMAIL}?subject=rapidtestingapp.org%20Support%20Request`}
+              >
                 email support directly
               </a>
               .

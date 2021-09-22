@@ -1,5 +1,8 @@
 import trainingMaterials from 'assets/static/TrainingMaterials.pdf';
 
+export const CONTACT_EMAIL =
+  process.env.REACT_APP_CONTACT_EMAIL || 'contact@example.com';
+
 export const ENABLE_I18N_LOGGING = process.env.REACT_APP_ENABLE_I18N_LOGGING;
 
 export const USER_ROLES = {
