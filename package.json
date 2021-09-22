@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.1.1",
-    "@datarobot/docs": "0.0.12",
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
     "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@fortawesome/pro-light-svg-icons": "5.15.1",
