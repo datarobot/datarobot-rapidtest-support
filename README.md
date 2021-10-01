@@ -1,7 +1,5 @@
 # [RapidTest](https://rapidtestapp.org) dashboard.
 
-![Doc-Brown](https://user-images.githubusercontent.com/45003409/111694926-e0595980-8808-11eb-9cfa-1be473a54083.jpeg)
-
 ## Dockerizing the app
 - Change the app version number by running `yarn bumpVersion x.x.x`. This will change the version numbers in `package.json` and `rapid-test-dashboard/Chart.yaml` to whatever args used in the `bumpVersion` command.
   
@@ -113,3 +111,13 @@ The application is deployed to the EKS cluster in the AI Apps Dev account called
    NAME                                              DESIRED   CURRENT   READY   AGE
    replicaset.apps/rapid-test-dashboard-7774ff8866   1         1         1       3m43s
    ```
+
+# Copyright and License
+RapidTest Support is Copyright 2021 DataRobot, Inc.  All rights reserved.
+
+Licensed under a Modified 3-Clause BSD License (the "License"). See the `LICENSE.txt` file.  You may not use this software except in 
+compliance with the License. 
+
+Software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT ANY EXPRESS OR IMPLIED 
+WARRANTIES OF ANY KIND AND WITHOUT ANY LICENSE TO ANY PATENTS OR TRADEMARKS. See the License.txt file for the specific language governing 
+permissions and limitations under the License.
