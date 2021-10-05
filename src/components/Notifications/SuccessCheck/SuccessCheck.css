@@ -1,6 +1,6 @@
 :root {
   --green: #7ac142;
-  --curve: cubic-bezier(0.650, 0.000, 0.450, 1.000);
+  --curve: cubic-bezier(0.65, 0, 0.45, 1);
 }
 
 .success-check {
@@ -12,11 +12,13 @@
   stroke: #fff;
   stroke-miterlimit: 10;
   box-shadow: inset 0 0 0 var(--green);
-  animation: fill 400ms ease-in-out 500ms forwards, scale 300ms ease-in-out 1300ms both;
+  animation: fill 400ms ease-in-out 500ms forwards,
+    scale 300ms ease-in-out 1300ms both;
 }
 
 .success-check.persist {
-  animation: fill 400ms ease-in-out 500ms forwards, scalePersistent 300ms ease-in-out 1300ms both;
+  animation: fill 400ms ease-in-out 500ms forwards,
+    scalePersistent 300ms ease-in-out 1300ms both;
 }
 
 .success-check__circle {
@@ -46,7 +48,8 @@
 }
 
 @keyframes scale {
-  0%, 100% {
+  0%,
+  100% {
     transform: none;
   }
   50% {
@@ -58,7 +61,8 @@
 }
 
 @keyframes scalePersistent {
-  0%, 100% {
+  0%,
+  100% {
     transform: none;
   }
   50% {

@@ -8,13 +8,10 @@ import (
 	"io"
 	"io/ioutil"
 	"log"
-	"mclfy/captcha"
+	"api/captcha"
 	"net/http"
 	"os"
 	"strings"
-
-	// "mcfly/captcha"
-
 	"github.com/gorilla/mux"
 	"github.com/lithammer/fuzzysearch/fuzzy"
 )
@@ -121,7 +118,7 @@ func setup() {
 	var err error
 
 	if isProd == "true" {
-		schoolsCsv, err = os.Open("/mcfly/schools.csv")
+		schoolsCsv, err = os.Open("/api/schools.csv")
 	} else {
 		schoolsCsv, err = os.Open("schools.csv")
 	}
@@ -167,6 +164,6 @@ func main() {
 	router.HandleFunc("/api/captcha", captcha.Captcha).Methods("POST")
 	log.Fatal(http.ListenAndServe(":1337", router))
 
-	fmt.Print("McFly is listening on port 1337")
+	fmt.Print("Api Service is listening on port 1337")
 
 }

@@ -148,7 +148,7 @@ export const SESSION_STORAGE_ITEMS = {
 
 export const FIREBASE_CONFIG = {
   PA: {
-    apiKey: process.env.REACT_APP_PA_FIREBASE_API_KEY,
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_PA_FIREBASE_AUTH_DOMAIN,
     projectId: process.env.REACT_APP_PA_FIREBASE_PROJECT_ID,
     storageBucket: process.env.REACT_APP_PA_FIREBASE_STORAGE_BUCKET,
@@ -157,7 +157,7 @@ export const FIREBASE_CONFIG = {
     measurementId: process.env.REACT_APP_PA_FIREBASE_MEASUREMENT_ID,
   },
   WA: {
-    apiKey: process.env.REACT_APP_WA_FIREBASE_API_KEY,
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_WA_FIREBASE_AUTH_DOMAIN,
     projectId: process.env.REACT_APP_WA_FIREBASE_PROJECT_ID,
     storageBucket: process.env.REACT_APP_WA_FIREBASE_STORAGE_BUCKET,
@@ -197,23 +197,19 @@ export const LANDING_PAGE_LINKS = {
   GETTING_TESTED: [
     {
       text: 'CDC guidance for school and childcare programs',
-      url:
-        'https://www.cdc.gov/coronavirus/2019-ncov/community/schools-childcare/index.html',
+      url: 'https://www.cdc.gov/coronavirus/2019-ncov/community/schools-childcare/index.html',
     },
     {
       text: 'COVID testing guidance',
-      url:
-        'https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/testing.html',
+      url: 'https://www.cdc.gov/coronavirus/2019-ncov/symptoms-testing/testing.html',
     },
     {
       text: 'Children, teens, young adults  (CDC)',
-      url:
-        'https://www.cdc.gov/coronavirus/2019-ncov/daily-life-coping/caring-for-children.html',
+      url: 'https://www.cdc.gov/coronavirus/2019-ncov/daily-life-coping/caring-for-children.html',
     },
     {
       text: 'Screen for COVID among school population',
-      url:
-        'https://www.cdc.gov/coronavirus/2019-ncov/community/schools-childcare/symptom-screening.html',
+      url: 'https://www.cdc.gov/coronavirus/2019-ncov/community/schools-childcare/symptom-screening.html',
     },
   ],
 };
