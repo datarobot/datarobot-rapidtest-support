@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, generatePath } from 'react-router-dom';
 import ReactTooltip from 'react-tooltip';
 import { toast } from 'react-toastify';
+import { faPen } from '@fortawesome/free-solid-svg-icons/faPen';
 
 import Modal from 'components/Modal';
 import ToggleButton from 'components/ToggleButton';
@@ -84,7 +85,7 @@ const DisableSiteCell = ({ value, data: { id } }) => {
               to={generatePath(ROUTES.EDIT_SITE.path, { id })}
               className="mr-4 text-blue-lighter"
             >
-              <Icon iconName="pen" type="fas" className="cursor-pointer" />
+              <Icon iconName={faPen} className="cursor-pointer" />
             </Link>
             <ToggleButton
               defaultChecked={selected}

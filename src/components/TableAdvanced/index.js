@@ -3,6 +3,14 @@ import { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 import cls from 'classnames';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons/faEnvelope';
+import { faUserTimes } from '@fortawesome/free-solid-svg-icons/faUserTimes';
+import { faUserCheck } from '@fortawesome/free-solid-svg-icons/faUserCheck';
+import { faUpload } from '@fortawesome/free-solid-svg-icons/faUpload';
+import { faFileExport } from '@fortawesome/free-solid-svg-icons/faFileExport';
+import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
+import { faFilter } from '@fortawesome/free-solid-svg-icons/faFilter';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 
 import IconButton from 'components/IconButton';
 import Icon from 'components/Icon';
@@ -116,7 +124,7 @@ const TableAdvanced = ({
               <div className="flex items-center">
                 {!isFilterFocused && (
                   <>
-                    <Icon iconName="search" type="fal" />
+                    <Icon iconName={faSearch} />
                     <Input
                       onChange={handleFilterChange}
                       placeholder="Search"
@@ -144,7 +152,7 @@ const TableAdvanced = ({
                     >
                       {!isFilterFocused ? (
                         <>
-                          <Icon iconName="filter" type="fal" className="mr-2" />
+                          <Icon iconName={faFilter} className="mr-2" />
                           <span className="text-gray-400">Filter</span>
                         </>
                       ) : (
@@ -153,7 +161,7 @@ const TableAdvanced = ({
                           className="btn-clear px-2 py-0 border-0"
                           onClick={onFilterReset}
                         >
-                          <Icon iconName="times" type="fal" className="mx-2" />
+                          <Icon iconName={faTimes} className="mx-2" />
                         </button>
                       )}
                     </span>
@@ -187,7 +195,7 @@ const TableAdvanced = ({
                     <IconButton
                       label="Re-send email"
                       className="px-2"
-                      icon="envelope"
+                      icon={faEnvelope}
                       onClick={handleResendEmail}
                     />
                   )}
@@ -196,7 +204,7 @@ const TableAdvanced = ({
                     <IconButton
                       label="Deactivate user(s)"
                       className="px-2"
-                      icon="user-times"
+                      icon={faUserTimes}
                       onClick={onDeactivate}
                     />
                   )}
@@ -205,7 +213,7 @@ const TableAdvanced = ({
                     <IconButton
                       label="Activate user(s)"
                       className="pl-2 pr-1"
-                      icon="user-check"
+                      icon={faUserCheck}
                       onClick={onActivate}
                     />
                   )}
@@ -220,14 +228,14 @@ const TableAdvanced = ({
                 <IconButton
                   label={uploadButtonText}
                   className="px-2"
-                  icon="upload"
+                  icon={faUpload}
                   onClick={handleUploadClick}
                 />
 
                 <IconButton
                   label="Export data"
                   className="px-2"
-                  icon="file-export"
+                  icon={faFileExport}
                   onClick={onExportData}
                 />
 

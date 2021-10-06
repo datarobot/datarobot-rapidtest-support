@@ -2,6 +2,8 @@
 import React from 'react';
 import { Trans } from 'react-i18next';
 import ReactPaginate from 'react-paginate';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons/faChevronLeft';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons/faChevronRight';
 
 import Icon from 'components/Icon';
 
@@ -40,8 +42,8 @@ const Pagination = ({ gotoPage, pageCount, pageIndex, pageSize, rows }) => {
         />
       </span>
       <ReactPaginate
-        previousLabel={<Icon iconName="chevron-left" size="sm" />}
-        nextLabel={<Icon iconName="chevron-right" size="sm" />}
+        previousLabel={<Icon iconName={faChevronLeft} size="sm" />}
+        nextLabel={<Icon iconName={faChevronRight} size="sm" />}
         breakLabel={'...'}
         breakClassName={'break-me'}
         pageCount={pageCount}

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import cls from 'classnames';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons/faTimesCircle';
 
 import Icon from 'components/Icon';
 import Button from 'components/Button';
@@ -68,7 +69,7 @@ const Modal = ({
                     { 'text-blue': !v2 }
                   )}
                 >
-                  <Icon iconName="times-circle" type="fal" />
+                  <Icon iconName={faTimesCircle} />
                 </span>
               </button>
             </div>

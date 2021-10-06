@@ -1,5 +1,7 @@
 // @ts-nocheck
 import { Link } from 'react-router-dom';
+import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons/faLongArrowAltRight';
+
 import Icon from 'components/Icon';
 
 import './HomePageCard.css';
@@ -22,7 +24,7 @@ const HomePageCard = ({ title, subTitle, icon, links = [] }) => (
                 to={url}
                 className="text-blue font-bold text-sm py-1 inline-block"
               >
-                <Icon className="mr-1" iconName="long-arrow-right" /> {text}
+                <Icon className="mr-1" iconName={faLongArrowAltRight} /> {text}
               </Link>
             ) : (
               <a
@@ -31,7 +33,7 @@ const HomePageCard = ({ title, subTitle, icon, links = [] }) => (
                 rel="noopener noreferrer"
                 className="text-blue font-bold text-sm py-1 inline-block"
               >
-                <Icon className="mr-1" iconName="long-arrow-right" /> {text}
+                <Icon className="mr-1" iconName={faLongArrowAltRight} /> {text}
               </a>
             )}
           </li>

@@ -1,5 +1,10 @@
 /* eslint-disable no-unused-vars */
 // @ts-nocheck
+import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons/faAngleDoubleLeft';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons/faAngleLeft';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons/faAngleRight';
+import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons/faAngleDoubleRight';
+
 import Icon from 'components/Icon';
 
 const CalculateCurrentView = ({ pageIndex, pageSize, rows }) => {
@@ -50,14 +55,14 @@ const Pagination = ({
         onClick={() => gridApi.paginationGoToFirstPage()}
         disabled={isFirstPage}
       >
-        <Icon iconName="angle-double-left" type="fal" />
+        <Icon iconName={faAngleDoubleLeft} />
       </button>
       <button
         className="paging-button"
         onClick={() => gridApi.paginationGoToPreviousPage()}
         disabled={isFirstPage}
       >
-        <Icon iconName="angle-left" type="fal" />
+        <Icon iconName={faAngleLeft} />
       </button>
       <CalculateCurrentView
         pageIndex={currentPage - 1}
@@ -69,14 +74,14 @@ const Pagination = ({
         onClick={() => gridApi.paginationGoToNextPage()}
         disabled={isLastPage}
       >
-        <Icon iconName="angle-right" type="fal" />
+        <Icon iconName={faAngleRight} />
       </button>
       <button
         className="paging-button"
         onClick={() => gridApi.paginationGoToLastPage()}
         disabled={isLastPage}
       >
-        <Icon iconName="angle-double-right" type="fal" />
+        <Icon iconName={faAngleDoubleRight} />
       </button>
     </div>
   </>

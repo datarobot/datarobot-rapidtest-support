@@ -3,6 +3,11 @@
 import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAtom } from 'jotai';
+import { faAngleDoubleLeft } from '@fortawesome/free-solid-svg-icons/faAngleDoubleLeft';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons/faAngleLeft';
+import { faAngleRight } from '@fortawesome/free-solid-svg-icons/faAngleRight';
+import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons/faAngleDoubleRight';
+
 import Icon from 'components/Icon';
 import Modal from 'components/Modal';
 
@@ -215,14 +220,14 @@ const Pagination = ({
           onClick={() => onBtnFirst()}
           disabled={isFirstPage}
         >
-          <Icon iconName="angle-double-left" type="fal" />
+          <Icon iconName={faAngleDoubleLeft} />
         </button>
         <button
           className="paging-button"
           onClick={() => onBtnPrevious()}
           disabled={isFirstPage}
         >
-          <Icon iconName="angle-left" type="fal" />
+          <Icon iconName={faAngleLeft} />
         </button>
         <CalculateCurrentView
           pageIndex={currentPage - 1}
@@ -234,14 +239,14 @@ const Pagination = ({
           onClick={() => onBtnNext()}
           disabled={isLastPage}
         >
-          <Icon iconName="angle-right" type="fal" />
+          <Icon iconName={faAngleRight} />
         </button>
         <button
           className="paging-button"
           onClick={() => onBtnLast()}
           disabled={isLastPage}
         >
-          <Icon iconName="angle-double-right" type="fal" />
+          <Icon iconName={faAngleDoubleRight} />
         </button>
       </div>
       <Modal
