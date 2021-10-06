@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { useLocation } from 'react-router-dom';
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 
 import { quickFilterAtom } from 'rt-store';
 
@@ -88,7 +89,7 @@ const TableAdvancedV2 = ({
             v2
             onChange={handleFilterChange}
             placeholder="Search"
-            icon="search"
+            icon={faSearch}
             isSearch
             className="self-center"
           />

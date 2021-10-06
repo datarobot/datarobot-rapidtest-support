@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useAtom } from 'jotai';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { faBuilding } from '@fortawesome/free-solid-svg-icons/faBuilding';
 
 import { getSiteList, editSite } from 'services/api';
 import { ROUTES } from 'rt-constants';
@@ -180,7 +181,7 @@ const Sites = () => {
         renderers={renderers}
         tableName="Manage Sites"
         addButtonText={t('buttons.addSite')}
-        addButtonIcon="building"
+        addButtonIcon={faBuilding}
         uploadButtonText={`+ ${t('buttons.uploadList')}`}
         addRoute={ROUTES.ADD_SITE.path}
         uploadRoute={ROUTES.UPLOAD_SITES.path}

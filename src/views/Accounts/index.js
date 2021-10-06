@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
+import { faUserPlus } from '@fortawesome/free-solid-svg-icons/faUserPlus';
 
 import { getAccountList, editAccount } from 'services/api';
 import { ROUTES } from 'rt-constants';
@@ -256,7 +257,7 @@ const Accounts = () => {
       defaultSortCol="name"
       tableName="Manage Accounts"
       addButtonText={t('buttons.addAccount')}
-      addButtonIcon="user-plus"
+      addButtonIcon={faUserPlus}
       uploadButtonText={t('buttons.uploadList')}
       addRoute={ROUTES.ADD_ACCOUNT.path}
       uploadRoute={ROUTES.UPLOAD_ACCOUNTS.path}

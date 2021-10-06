@@ -2,6 +2,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
 
 import { useResponsive } from 'hooks';
 
@@ -74,7 +75,7 @@ const HeaderV2 = () => {
                     }}
                     title="Sign Out"
                   >
-                    <Icon iconName="sign-out" type="fal" size="lg" />
+                    <Icon iconName={faSignOutAlt} size="lg" />
                   </Link>
                 </div>
               ) : (

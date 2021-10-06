@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { useAtom } from 'jotai';
 import { useLocation } from 'react-router-dom';
+import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
 
 import { headerCellCheckedAtom } from 'rt-store';
 
@@ -44,7 +45,7 @@ const Header = ({
           v2
           onChange={handleFilterChange}
           placeholder="Search"
-          icon="search"
+          icon={faSearch}
           isSearch
           wrapperClass="flex-1 mr-3"
           className="self-center"

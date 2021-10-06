@@ -1,4 +1,7 @@
 import { Fragment } from 'react';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons/faExclamationCircle';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
+
 import Icon from 'components/Icon';
 
 const ValidColumns = ({ clearErrors, errors, validColumns }) => {
@@ -13,7 +16,7 @@ const ValidColumns = ({ clearErrors, errors, validColumns }) => {
             key={i}
           >
             <span>
-              <Icon className="mr-1" iconName="exclamation-circle" />
+              <Icon className="mr-1" iconName={faExclamationCircle} />
               {err}
             </span>
             <button
@@ -21,7 +24,7 @@ const ValidColumns = ({ clearErrors, errors, validColumns }) => {
               onClick={clearErrors}
               className="cursor-pointer text-black"
             >
-              <Icon iconName="times" type="fal" />
+              <Icon iconName={faTimes} />
             </button>
           </p>
         ))}

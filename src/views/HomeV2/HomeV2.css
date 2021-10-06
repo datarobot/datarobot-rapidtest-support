@@ -162,7 +162,7 @@
   }
 
   .wrapper {
-    width: 100vw;
+    /*width: 100vw;*/
   }
 
   @media only screen and (min-width: 1320px) {
@@ -208,7 +208,7 @@
         .importantItems {
           @apply w-full flex-nowrap m-0 px-5 pt-4 pb-6 mb-4 justify-start overflow-x-scroll;
 
-          width: 100vw;
+          /*width: 100vw;*/
 
           &::-webkit-scrollbar {
             height: 6px;

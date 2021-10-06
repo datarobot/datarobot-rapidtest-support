@@ -2,6 +2,9 @@
 import { useEffect, useState } from 'react';
 import cls from 'classnames';
 import { useAtom } from 'jotai';
+import { faSortDown } from '@fortawesome/free-solid-svg-icons/faSortDown';
+import { faSortUp } from '@fortawesome/free-solid-svg-icons/faSortUp';
+import { faSort } from '@fortawesome/free-solid-svg-icons/faSort';
 
 import Checkbox from 'components/Checkbox';
 import Icon from 'components/Icon';
@@ -82,16 +85,10 @@ const HeaderCell = (props) => {
         <div className="customHeaderLabel">{props.displayName}</div>
         {props.enableSorting && (
           <div className="inline-block ml-2 header-sort">
-            {props.column.isSortAscending() && (
-              <Icon iconName="sort-down" type="fas" />
-            )}
-            {props.column.isSortDescending() && (
-              <Icon iconName="sort-up" type="fas" />
-            )}
+            {props.column.isSortAscending() && <Icon iconName={faSortDown} />}
+            {props.column.isSortDescending() && <Icon iconName={faSortUp} />}
             {!props.column.isSortAscending() &&
-              !props.column.isSortDescending() && (
-                <Icon iconName="sort" type="fas" />
-              )}
+              !props.column.isSortDescending() && <Icon iconName={faSort} />}
           </div>
         )}
       </span>

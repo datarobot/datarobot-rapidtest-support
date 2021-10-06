@@ -3,6 +3,11 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import cls from 'classnames';
 import { useTable, useFilters, useSortBy, usePagination } from 'react-table';
+import { faSearch } from '@fortawesome/free-solid-svg-icons/faSearch';
+import { faFileExport } from '@fortawesome/free-solid-svg-icons/faFileExport';
+import { faSort } from '@fortawesome/free-solid-svg-icons/faSort';
+import { faSortUp } from '@fortawesome/free-solid-svg-icons/faSortUp';
+import { faSortDown } from '@fortawesome/free-solid-svg-icons/faSortDown';
 
 import Button, { KIND } from 'components/Button';
 import Empty from 'components/Table/Empty';
@@ -100,7 +105,7 @@ const Table = ({
               <h1 className="headline text-blue mb-4">{tableName}</h1>
             )}
             <div className="flex items-center">
-              <Icon iconName="search" type="fal" />
+              <Icon iconName={faSearch} />
               <Input
                 value={filterInput || ''}
                 onChange={handleFilterChange}
@@ -121,7 +126,7 @@ const Table = ({
               kind={KIND.CLEAR}
               label="Export data"
               className="mr-3 px-2"
-              icon={<Icon iconName="file-export" type="fal" />}
+              icon={<Icon iconName={faFileExport} />}
               onClick={onExportData}
             />
             <Link to={addRoute} className="btn-primary px-2">
@@ -158,13 +163,11 @@ const Table = ({
                           {column.render('Header')}
                           {typeof column.Header === 'string' && (
                             <>
-                              {!isSorted && <Icon iconName="sort" type="fal" />}
+                              {!isSorted && <Icon iconName={faSort} />}
                               {isSorted && !isSortedDesc && (
-                                <Icon iconName="sort-up" type="fal" />
+                                <Icon iconName={faSortUp} />
                               )}
-                              {isSortedDesc && (
-                                <Icon iconName="sort-down" type="fal" />
-                              )}
+                              {isSortedDesc && <Icon iconName={faSortDown} />}
                             </>
                           )}
                         </div>

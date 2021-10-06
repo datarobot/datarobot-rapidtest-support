@@ -2,6 +2,8 @@
 import { forwardRef, useState } from 'react';
 import cls from 'classnames';
 import InputMask from 'react-input-mask';
+import { faEye } from '@fortawesome/free-solid-svg-icons/faEye';
+import { faEyeSlash } from '@fortawesome/free-solid-svg-icons/faEyeSlash';
 
 import Button, { KIND } from 'components/Button';
 import Icon from 'components/Icon';
@@ -63,7 +65,7 @@ const Input = ({
       >
         {icon && (
           <span className="placeholder-icon">
-            <Icon iconName={icon} type="fal" />
+            <Icon iconName={icon} />
           </span>
         )}
         {mask ? (
@@ -108,12 +110,7 @@ const Input = ({
             onClick={() => setShowPasswordText(!showPasswordText)}
             tabIndex={-1}
             className="show-password-toggle"
-            label={
-              <Icon
-                type="fal"
-                iconName={showPasswordText ? 'eye-slash' : 'eye'}
-              />
-            }
+            label={<Icon iconName={showPasswordText ? faEyeSlash : faEye} />}
           />
         )}
       </span>
@@ -194,9 +191,8 @@ export const ControlledInput = forwardRef(
               className={cls('show-password-toggle', { v2 })}
               label={
                 <Icon
-                  type={v2 ? 'fas' : 'fal'}
                   size={v2 ? 'sm' : null}
-                  iconName={showPasswordText ? 'eye-slash' : 'eye'}
+                  iconName={showPasswordText ? faEyeSlash : faEye}
                 />
               }
             />

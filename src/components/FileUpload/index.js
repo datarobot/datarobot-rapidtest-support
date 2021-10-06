@@ -6,6 +6,7 @@ import { useDropzone } from 'react-dropzone';
 import Papa from 'papaparse';
 import { toast } from 'react-toastify';
 import cls from 'classnames';
+import { faCloudUploadAlt } from '@fortawesome/free-solid-svg-icons/faCloudUploadAlt';
 
 import { isEqual } from 'utils';
 
@@ -32,10 +33,9 @@ const UploadLabel = ({ isMobile, v2 = false }) => (
           <img src={upload2} alt="" />
         ) : (
           <Icon
-            iconName="cloud-upload-alt"
+            iconName={faCloudUploadAlt}
             size="2x"
             color={v2 ? '#5B5FF0' : '#00528D'}
-            type="far"
           />
         )}
         <p>Drop files here to upload or</p>

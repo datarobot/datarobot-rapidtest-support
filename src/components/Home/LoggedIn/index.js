@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons/faLongArrowAltRight';
 
 import { AuthContext } from 'components/AuthProvider';
 import Icon from 'components/Icon';
@@ -52,7 +53,7 @@ const LoggedIn = () => {
           <h3 className="font-bold">FAQ</h3>
           <p className="my-2 text-sm">Frequently asked questions</p>
           <Link to={ROUTES.FAQ.path} className="learn-more-link">
-            Learn more <Icon iconName="long-arrow-right" className="ml-2" />
+            Learn more <Icon iconName={faLongArrowAltRight} className="ml-2" />
           </Link>
         </div>
         <div className="w-1/4 mr-4">
@@ -61,21 +62,21 @@ const LoggedIn = () => {
             View implementation and on the ground training materials
           </p>
           <a href={trainingMaterials} className="learn-more-link">
-            Learn more <Icon iconName="long-arrow-right" className="ml-2" />
+            Learn more <Icon iconName={faLongArrowAltRight} className="ml-2" />
           </a>
         </div>
         <div className="w-1/4 mr-4">
           <h3 className="font-bold">Contact Support</h3>
           <p className="my-2 text-sm">Send a message to our support team</p>
           <Link to={ROUTES.CONTACT.path} className="learn-more-link">
-            Learn more <Icon iconName="long-arrow-right" className="ml-2" />
+            Learn more <Icon iconName={faLongArrowAltRight} className="ml-2" />
           </Link>
         </div>
         <div className="w-1/4 mr-4">
           <h3 className="font-bold">Data and Dashboard</h3>
           <p className="my-2 text-sm">View test result data</p>
           <Link to={ROUTES.DASHBOARD.path} className="learn-more-link">
-            Learn more <Icon iconName="long-arrow-right" className="ml-2" />
+            Learn more <Icon iconName={faLongArrowAltRight} className="ml-2" />
           </Link>
         </div>
       </section>

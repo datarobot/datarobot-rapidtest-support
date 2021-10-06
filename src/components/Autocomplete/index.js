@@ -1,5 +1,6 @@
 // @ts-nocheck
 import cls from 'classnames';
+import { faTimes } from '@fortawesome/free-solid-svg-icons/faTimes';
 
 import Button, { KIND } from 'components/Button';
 import Input from 'components/Input';
@@ -37,7 +38,7 @@ const Autocomplete = ({
         kind={KIND.CLEAR}
         className={cls('clearIcon', { v2 })}
         onClick={onClearClick}
-        label={<Icon iconName="times" type="fal" />}
+        label={<Icon iconName={faTimes} />}
       />
     )}
 

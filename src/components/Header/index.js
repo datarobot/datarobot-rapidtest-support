@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ReactTooltip from 'react-tooltip';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons/faSignOutAlt';
 
 import Icon from 'components/Icon';
 import Logo from 'components/Logo';
@@ -65,7 +66,7 @@ const Header = () => {
                 data-tip="Sign Out"
                 data-for="sign-out"
               >
-                <Icon iconName="sign-out" type="fal" size="lg" />
+                <Icon iconName={faSignOutAlt} size="lg" />
               </Link>
             </div>
           ) : (
