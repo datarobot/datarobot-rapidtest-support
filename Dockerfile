@@ -18,7 +18,7 @@ COPY .yarnrc .yarnrc
 RUN yarn install
 
 COPY . .
-RUN yarn build-docs
+# RUN yarn build-docs
 RUN NODE_OPTIONS='--max_old_space_size=8192' yarn build
 
 #####################################################################
@@ -46,7 +46,7 @@ RUN go build -o main .
 
 WORKDIR /
 COPY --from=htmlbuild /html/build /usr/share/nginx/html
-COPY --from=htmlbuild /html/docs/build /usr/share/nginx/docs/docs
+# COPY --from=htmlbuild /html/docs/build /usr/share/nginx/docs/docs
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./Makefile ./Makefile
 
