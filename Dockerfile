@@ -13,7 +13,7 @@ RUN curl -fSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$
 
 WORKDIR /html/
 ENV NODE_ENV=production
-COPY package.json yarn.lock ./
+COPY package.json ./
 COPY .yarnrc .yarnrc
 RUN yarn install
 
@@ -21,12 +21,7 @@ COPY . .
 # RUN yarn build-docs
 RUN NODE_OPTIONS='--max_old_space_size=8192' yarn build
 
-#####################################################################
-# This is the Production image we run, it combines the apionly stuff
-# with the static web content we built. It also adds some labels
-# which are used by our Apps infra.
-#####################################################################
-FROM docker.hq.datarobot.com/datarobot/covid-rhel8-base:2021-03-15 as prod
+FROM registry.access.redhat.com/ubi8/nodejs-14:1-46 as prod
 
 ENV IS_PROD=true
 
@@ -38,9 +33,8 @@ RUN yum -y update && \
   yum -y install xmlsec1 xmlsec1-openssl nginx golang && \
   yum -y clean all
 
-WORKDIR /mcfly
-# COPY ./mcfly/go.mod ./mcfly/go.sum ./mcfly/schools.csv ./mcfly/captcha/captcha.go ./
-COPY ./mcfly/.env ./mcfly ./
+WORKDIR /api
+COPY ./api/.env ./api ./
 RUN go mod download
 RUN go build -o main .
 
@@ -57,9 +51,3 @@ CMD ["make", "start-app"]
 ENV STATIC_FILES_DIR=/html/static/ \
   API_SERVER_PORT=8081 \
   ENV=production
-
-# This label is used to create correct applications bundle and manifest file with <sha>.
-ARG GIT_COMMIT=unspecified
-LABEL git_commit=$GIT_COMMIT
-ARG GIT_REPO=unspecified
-LABEL git_repo=$GIT_REPO

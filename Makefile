@@ -1,3 +1,3 @@
 start-app:
-	nginx && ./mcfly/main
+	nginx && ./api/main
 	

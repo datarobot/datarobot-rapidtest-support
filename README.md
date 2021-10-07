@@ -1,123 +1,67 @@
 # [RapidTest](https://rapidtestapp.org) dashboard.
 
-## Dockerizing the app
-- Change the app version number by running `yarn bumpVersion x.x.x`. This will change the version numbers in `package.json` and `rapid-test-dashboard/Chart.yaml` to whatever args used in the `bumpVersion` command.
-  
-- Log in with docker
-  
-  1. Set your `AWS_PROFILE` environment variable to the AI Apps Dev account
-  
-        _Note:_ This refers to a named profile in `~/.aws/config`
-  
-        ```shell
-     export AWS_PROFILE=aiappdev
-        ```
-  
-  2. Log in to aws using `aws sso login`
-  
-  3. Use this command to log into ECR: `aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 014297230414.dkr.ecr.us-east-1.amazonaws.com`
-  
-- Build & tag the image:
-  - `<tag_name>` should be `prod-x.x.x`, e.g. `prod-0.0.1`
-  - `docker build -t 014297230414.dkr.ecr.us-east-1.amazonaws.com/datarobot/rapid-test-dashboard:<tag_name> .`
-  
-- Push it real good:
-  - `docker push 014297230414.dkr.ecr.us-east-1.amazonaws.com/datarobot/rapid-test-dashboard:<tag_name>`
+## Overview
 
-# Deployment
-The app is deployed to EKS using Helm.
+RapidTest is a program launched by DataRobot and STRAC to help various K-12 schools 
+rollout COVID-19 testing programs in order to return kids to the classroom. The 
+technology found in this repo creates a support site to help program managers monitor 
+the schools who are enrolled in the program as well as add, remove, or edit the list 
+of test administrators who have access to the testing application that STRAC provides. 
+This is a series of web pages which give program managers a GUI to make these changes, 
+rather than having to write scripts themselves. To obtain API keys and access 
+information, please reach out to STRAC. 
 
-## Requirements
-* `aws` cli >=2.0.54
-* `helm` >=3.5.2
-* `kubectl` >= 1.18
+### Requirements
 
-## Setup
-1. Install [Helm](https://helm.sh/docs/intro/install/)
-2. Install [kubectl](https://kubernetes.io/docs/tasks/tools/)
-3. Setup your kube config context so you can talk to the EKS cluster
-   
-   a. Set your `AWS_PROFILE` environment variable to the AI Apps Dev account
-   
-      _Note:_ This refers to a named profile in `~/.aws/config`
-   
-      ```shell
-      export AWS_PROFILE=aiappdev
-      ```
-   
-   b. Login using AWS SSO
+- Python 3.8
+- Node 14.x
+- Yarn 1.16.0
+- Docker 20.10.8 or later
+- docker-compose 1.26.0 or later
 
-      ```shell
-      aws sso login
-      ```
-   
-   c. Setup your kube config context for the EKS cluster so you can communicate
-      with it
-   
-      ```shell
-      aws eks update-kubeconfig --name wes-hendrick-test
-      ```
+This application is meant to be an administrative dashboard for the
+[Rapid Test application](https://github.com/HHS/rapidtest). This application
+is not independent and relies on connecting to an instance of the Rapid Test 
+application.
 
-## Deploying or Updating the App
-The application is deployed to the EKS cluster in the AI Apps Dev account called
-`wes-hendrick-test`. 
+### Configure and Build the Image
+To configure the app, there are 2 configuration files that need to be setup:
 
-1. Make sure you're using the correct kube context. Here's an example of what you
-   should see:
-   
-   ```shell
-   ~$ kubectl config current-context
-   arn:aws:eks:us-east-1:014297230414:cluster/wes-hendrick-test
-   ```
+1. `api/.env` - This file contains secrets for the CAPTCHA tool
+2. `.env` - Configure how to connect to the Rapid Test application
 
-   If you're using the wrong context then switch to the correct one:
+Due to the configuration files being embedded inside the Docker image a new image
+will need to be built and deployed if the configuration changes.
+
+### Running Locally
+Use the `docker-compose.yml` file to run the application locally.
+
+    ```shell
+    docker-compose up
+    ```
+
+The app will be available on `localhost:5000`
+
+### Deployment
+1. Build the Docker image
 
    ```shell
-   kubectl config use-context arn:aws:eks:us-east-1:014297230414:cluster/wes-hendrick-test
+   docker build -t rapid-test-dashboard:latest .
    ```
    
-2. Make sure the correct Docker image tag you want to deploy is updated in 
-   `rapid-test-dashboard/Chart.yaml` on the `appVersion` parameter.
-3. Create a file called `secret-values.yaml` containing the values needed for the
-   secrets listed in the `rapid-test-dashboard/values.yaml` file.
-4. Update/deploy the version you specified to EKS using this command:
+2. Run the container
 
    ```shell
-   helm upgrade --install rapid-test-dashboard -f secret-values.yaml ./rapid-test-dashboard
-   ```
-   
-   You can check the version of the app current deployed using `helm list`:
-
-   ```shell
-   ~$ helm list
-   NAME                	NAMESPACE	REVISION	UPDATED                                  	STATUS  	CHART                     	APP VERSION
-   rapid-test-dashboard	default  	10      	2021-03-16 17:03:33.767516813 -0600 MDT  	deployed	rapid-test-dashboard-0.0.1	prod-0.0.9
-   ```
-   
-   The `APP VERSION` field shows the Docker image version deployed. To see the status of
-   the deployment, use `kubectl`:
-   
-   ```shell
-   ~$ kubectl get all -n rapid-test-dashboard
-   NAME                                        READY   STATUS    RESTARTS   AGE
-   pod/rapid-test-dashboard-7774ff8866-hzl8z   1/1     Running   0          3m43s
-   
-   NAME                           TYPE       CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
-   service/rapid-test-dashboard   NodePort   172.20.246.42   <none>        80:31607/TCP   3m43s
-   
-   NAME                                   READY   UP-TO-DATE   AVAILABLE   AGE
-   deployment.apps/rapid-test-dashboard   1/1     1            1           3m43s
-   
-   NAME                                              DESIRED   CURRENT   READY   AGE
-   replicaset.apps/rapid-test-dashboard-7774ff8866   1         1         1       3m43s
+   docker run -d -p 8080:8080 rapid-test-dashboard:latest
    ```
 
 # Copyright and License
-RapidTest Support is Copyright 2021 DataRobot, Inc.  All rights reserved.
 
-Licensed under a Modified 3-Clause BSD License (the "License"). See the `LICENSE.txt` file.  You may not use this software except in 
-compliance with the License. 
+RapidTest Support is Copyright 2021 DataRobot, Inc. All rights reserved.
 
-Software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT ANY EXPRESS OR IMPLIED 
-WARRANTIES OF ANY KIND AND WITHOUT ANY LICENSE TO ANY PATENTS OR TRADEMARKS. See the License.txt file for the specific language governing 
+Licensed under a Modified 3-Clause BSD License (the "License"). See the `LICENSE.txt` file. You may not use this software except in
+compliance with the License.
+
+Software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT ANY EXPRESS OR IMPLIED
+WARRANTIES OF ANY KIND AND WITHOUT ANY LICENSE TO ANY PATENTS OR TRADEMARKS. See the License.txt file for the specific language governing
 permissions and limitations under the License.
